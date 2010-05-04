@@ -1,0 +1,50 @@
+<div class="grid_12">
+	<h2>Общая статистика переходов</h2>
+	<p>Ресурс: <%= link_to @short_url.short_url(request) %> &rarr; <%= link_to @short_url.origin, @short_url.origin %></p>
+	<p>Дата создания: <%= l @short_url.created_at.to_date, :format=> :long %></p>
+	<% if @short_url.has_clicks? %>
+		<div id='history'>
+			<div id="history_subhead">
+			  <p class="date">Период</p>
+			  <p class="clicks">Переходов</p>
+			  <p class="info">Статистика по регионам</p>
+			</div>
+			<div id="history_items">
+				<div class="history_item">
+					<p class="date"><strong><%= @clicks_report.created_at_period %></strong></p>
+					<p class="clicks"><em><strong><%= @clicks_report.total_clicks %></strong></em></p>
+					<div class="info">
+						<p class="title">
+							<span><%= regions_data(@clicks_report.total_regions) %></span>
+						</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+	
+		<h2>За последние четыре дня</h2>
+		<div id='history'>
+			<div id="history_subhead">
+			  <p class="date">Дата</p>
+			  <p class="clicks">Переходов</p>
+			  <p class="info">Статистика по регионам</p>
+			</div>
+			<div id="history_items">
+					<% @clicks_report.statistic_for_given_days(4).each do |day| %>
+						<div class="history_item">
+							<p class="date"><%= l day[:date], :format=> :short %></p>
+							<p class="clicks"><em><strong><%= day[:clicks] %></strong></em></p>
+							<div class="info">
+								<p class="title">
+									<span><%= regions_data(day[:regions]) %></span>
+								</p>
+						  </div>
+						</div>
+					<%end%>
+				</div>
+			</div>
+		</div>
+	<%else%>
+		<p>На данный момент статистика по ресурсу не доступна</p>
+	<%end%>
+</div>

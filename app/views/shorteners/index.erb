@@ -1,0 +1,46 @@
+<div class="grid_8">
+	<h2>Создание коротких адресов</h2>
+	<p>Введите основной адрес который нужно сократить</p>
+	<p>
+		<% form_for :short_url, @short_url = ShortUrl.new, :url => { :action => "create" } do |f| %>
+			<%= f.text_field :origin %>
+			<%= submit_tag 'создать ссылку (ctrl + enter)' %>
+		<%end%>
+		
+		<p><div id="status_bar" style="height:10px;"></div></p>
+	</p>
+	
+	<h2>Преобразованые ссылки</h2>
+	<div id='history'>
+		<div id="history_subhead">
+		  <p class="date">Добавлено</p>
+		  <p class="clicks">Просмотров</p>
+		  <p class="info">Информация</p>
+		</div>
+		<div id="history_items">
+			<%= render :partial=> 'short_url', :collection=> @short_urls %>
+		</div>
+	</div>
+</div>
+
+<script>
+	$('form').submit(function() {
+	  form_data = $(this).serialize();
+		$('#message').remove();
+		$.ajax({
+		  type: 'post',
+			dataType: 'json',
+		  url: '<%= shorteners_path %>',
+		  data: form_data,
+		  success: function(data) {
+				if(data.error_message) {
+					$('#status_bar').append("<div id='message'>"+data.error_message+"</div>");
+				}
+				if(data.html) {
+					$('#history_items').prepend(data.html);
+				}
+		  }
+		});
+	  return false;
+	});
+</script>

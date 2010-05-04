@@ -1,0 +1,70 @@
+/* Header */
+
+#header {
+	margin: 0 auto 20px auto;
+	padding-top: 20px;
+}
+
+/* Menu */
+
+.menu {
+	float: rigth;
+	/* border: 1px solid #DCDBD5; */
+}
+
+.menu ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.menu li {
+	float: right;
+}
+
+.menu a {
+	display: block;
+	padding: 1px 10px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #50799A;
+}
+
+.menu a:hover {
+	text-decoration: underline;
+}
+
+.menu .active a {
+}
+
+/* url input */
+#short_url_origin { width:70%; font-size: 20px;color: #50799A;}
+
+
+/* history */
+#history { clear: both; width: 100%; float: left; }
+#history p { margin: 0; }
+#history .date, #history .clicks { float: left; }
+#history .date { width: 90px; }
+#history .clicks { width: 120px; }
+#history .info { margin-left: 200px; }
+
+#history_subhead { padding-top: 10px; color: #999; text-transform: uppercase; font-size: 10px; }
+
+.history_item { width: 100%; float: left; padding: 8px 0 14px 0; color: #999; }
+.history_item .date { font-size: 1.2em; } 
+.history_item .clicks { font-size: 11px; } 
+.history_item .clicks strong { display: block; font-size: 30px; line-height: 30px; padding-bottom: 2px; } 
+.history_item .clicks em { display: block; font-style: normal; font-size: 20px; padding-top: 4px; line-height: 20px; }
+.history_item .clicks em a { color:#999; }
+.history_item .info .title { margin: 0 0 5px 0; padding: 0; font-size: 20px; }
+.history_item .info .title a {display: block;font-size: 20px;color: #50799A;}
+.history_item .info .title span.edit_title { font-size:11px; }
+.history_item .info > span { font-size: 10px; text-transform: uppercase; }
+.history_item .twitter { margin: 0; padding: 5px 0; }
+.history_item span.edit_title input { width:350px; font-size:14px; }
+.history_copy a { display:none;}
+
+ul.history_actions { margin: 12px 0 0 0; padding: 0; list-style:none; }
+ul.history_actions li { float:left; width: 90px; margin: 0 5px 0 0; padding: 0; text-align: center; }
+ul.history_actions a { display:block; height: 20px; font-size:12px; color:#888; }
