@@ -1,5 +1,5 @@
 # == Schema Info
-# Schema version: 20100503141450
+# Schema version: 20100504172103
 #
 # Table name: short_sequences
 #

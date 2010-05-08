@@ -7,4 +7,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :shorteners
   map.resources :statistics
+  map.resources :barcodes, :collection=>{:create_link=> :post, :create_sms=> :post, :create_text=> :post}
 end

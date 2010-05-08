@@ -37,8 +37,31 @@
 .menu .active a {
 }
 
-/* url input */
-#short_url_origin { width:70%; font-size: 20px;color: #50799A;}
+/* form */
+form {
+	background: #F4F4F4;
+	padding: 10px;
+}
+
+form div {
+	padding: 2px;
+}
+
+input {
+	width: 100%;
+	font-size: 20px;
+	color: #50799A;
+}
+
+textarea {
+	width: 100%;
+	height: 65px;
+	font-size: 15px;
+	color: #50799A;
+}
+
+/* input button */
+.input_button { width:40%;}
 
 
 /* history */

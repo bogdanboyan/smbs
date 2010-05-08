@@ -10,7 +10,7 @@ class CreateClicks < ActiveRecord::Migration
     
     add_index :clicks, :short_url_id
     add_index :clicks, :user_agent_id
-    add_index :clicks, [:short_url_id, :created_at], :name=> 'short_url_id_created_at'
+    add_index :clicks, [:short_url_id, :created_at]
   end
 
   def self.down
