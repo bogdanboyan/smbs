@@ -18,7 +18,7 @@ class LinkCode < BarCode
   
   include UrlModelsUtil
   
-  validates_presence_of :origin, :message=> PRESENCE_FIELD_MESSAGE
+  validates_length_of   :origin, :is=> 40
   validate :prepare_and_parse_url
   
   def encode_string

@@ -19,8 +19,6 @@ require 'barby/outputter/svg_outputter'
 
 class BarCode < ActiveRecord::Base
   
-  PRESENCE_FIELD_MESSAGE = "Поле является обязательным к заполнению"
-  
   before_save :encode_image
   
   def encode_image

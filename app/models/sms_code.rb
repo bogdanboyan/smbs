@@ -16,8 +16,10 @@
 
 class SmsCode < BarCode
   
-  validates_presence_of :tel, :message=> PRESENCE_FIELD_MESSAGE
-  validates_format_of   :tel, :with=> /\+[0-9]+/, :message=> "Указаный вами номер не верный"
+  validates_presence_of :tel
+  validates_format_of   :tel, :with=> /\+[0-9]+/
+  validates_length_of   :tel,  :is=> 13
+  validates_length_of   :text, :is=> 60
   
   def encode_string
     "sms:#{tel}:#{text}" # smsto:tel subject

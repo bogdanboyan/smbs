@@ -15,7 +15,9 @@
 #  updated_at :datetime
 
 class TextCode < BarCode
+  
   validates_presence_of :text
+  validates_length_of   :text, :is=> 60
   
   def encode_string
     self.text
