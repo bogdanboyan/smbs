@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100504172103) do
+ActiveRecord::Schema.define(:version => 20100512175856) do
 
   create_table "bar_codes", :force => true do |t|
     t.string   "type",                           :null => false
@@ -25,17 +25,61 @@ ActiveRecord::Schema.define(:version => 20100504172103) do
 
   add_index "bar_codes", ["id", "type"], :name => "index_bar_codes_on_id_and_type", :unique => true
 
-  create_table "clicks", :force => true do |t|
-    t.string   "ip_address",    :limit => 15,                 :null => false
-    t.string   "referer",       :limit => 128
-    t.integer  "user_agent_id",                :default => 1, :null => false
-    t.integer  "short_url_id",                                :null => false
+  create_table "cities", :force => true do |t|
+    t.string   "name",       :limit => 36, :null => false
+    t.string   "display",    :limit => 36
+    t.integer  "region_id",                :null => false
+    t.integer  "country_id",               :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "cities", ["country_id"], :name => "index_cities_on_country_id"
+  add_index "cities", ["name", "country_id", "region_id"], :name => "index_cities_on_name_and_country_id_and_region_id"
+  add_index "cities", ["name"], :name => "index_cities_on_name"
+  add_index "cities", ["region_id"], :name => "index_cities_on_region_id"
+
+  create_table "clicks", :force => true do |t|
+    t.string   "ip_address",    :limit => 15,                     :null => false
+    t.string   "referer",       :limit => 128
+    t.integer  "user_agent_id",                :default => 1,     :null => false
+    t.integer  "short_url_id",                                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "country_id"
+    t.integer  "region_id"
+    t.integer  "city_id"
+    t.boolean  "located",                      :default => false
+  end
+
   add_index "clicks", ["short_url_id"], :name => "index_clicks_on_short_url_id"
   add_index "clicks", ["user_agent_id"], :name => "index_clicks_on_user_agent_id"
+
+  create_table "countries", :force => true do |t|
+    t.string   "name",       :limit => 36, :null => false
+    t.string   "code",       :limit => 3,  :null => false
+    t.string   "display",    :limit => 36
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "countries", ["code"], :name => "index_countries_on_code"
+  add_index "countries", ["name", "code"], :name => "index_countries_on_name_and_code"
+  add_index "countries", ["name"], :name => "index_countries_on_name"
+
+  create_table "regions", :force => true do |t|
+    t.string   "name",       :limit => 36
+    t.string   "code",                     :null => false
+    t.string   "display",    :limit => 36
+    t.integer  "country_id",               :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "regions", ["code", "country_id"], :name => "index_regions_on_code_and_country_id"
+  add_index "regions", ["code"], :name => "index_regions_on_code"
+  add_index "regions", ["country_id"], :name => "index_regions_on_country_id"
+  add_index "regions", ["name"], :name => "index_regions_on_name"
 
   create_table "short_sequences", :force => true do |t|
     t.datetime "created_at"

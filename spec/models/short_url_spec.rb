@@ -1,5 +1,5 @@
 # == Schema Info
-# Schema version: 20100504172103
+# Schema version: 20100512175856
 #
 # Table name: short_urls
 #
