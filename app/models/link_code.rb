@@ -18,7 +18,7 @@ class LinkCode < BarCode
   
   include UrlModelsUtil
   
-  validates_length_of   :origin, :is=> 40
+  validates_length_of   :origin, :in=> 4..48
   validate :prepare_and_parse_url
   
   def encode_string

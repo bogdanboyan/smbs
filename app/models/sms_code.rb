@@ -19,7 +19,7 @@ class SmsCode < BarCode
   validates_presence_of :tel
   validates_format_of   :tel, :with=> /\+[0-9]+/
   validates_length_of   :tel,  :is=> 13
-  validates_length_of   :text, :is=> 60
+  validates_length_of   :text, :in=> 1..60, :allow_blank=> true
   
   def encode_string
     "sms:#{tel}:#{text}" # smsto:tel subject
