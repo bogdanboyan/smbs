@@ -154,6 +154,7 @@ module AnnotateModels
 
   def self.get_schema_version
     version = ActiveRecord::Migrator.current_version rescue 0
-    version > 0 ? "\n# Schema version: #{version}" : ''
+    #version > 0 ? "\n# Schema version: #{version}" : ''
+    ''
   end
 end

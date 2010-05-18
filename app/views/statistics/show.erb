@@ -2,7 +2,7 @@
 	<h2>Общая статистика переходов</h2>
 	<p>Ресурс: <%= link_to @short_url.short_url(request) %> &rarr; <%= link_to @short_url.origin, @short_url.origin %></p>
 	<p>Дата создания: <%= l @short_url.created_at.to_date, :format=> :long %></p>
-	<% if @short_url.has_clicks? %>
+	<% if @total_summarized_clicks %>
 		<div id='history'>
 			<div id="history_subhead">
 			  <p class="date">Период</p>
@@ -11,18 +11,19 @@
 			</div>
 			<div id="history_items">
 				<div class="history_item">
-					<p class="date"><strong><%= @clicks_report.created_at_period %></strong></p>
-					<p class="clicks"><em><strong><%= @clicks_report.total_clicks %></strong></em></p>
+					<p class="date"><strong>N/A</strong></p>
+					<p class="clicks"><em><strong><%= @short_url.clicks_count %></strong></em></p>
 					<div class="info">
 						<p class="title">
-							<span><%= regions_data(@clicks_report.total_regions) %></span>
+							<span><%= statistic_for_cities(@total_summarized_clicks) %></span>
 						</p>
 				  </div>
 				</div>
 			</div>
 		</div>
 	
-		<h2>За последние четыре дня</h2>
+		<h2>За последние несколько дней</h2>
+		<% unless @past_summarized_clicks.empty? %>
 		<div id='history'>
 			<div id="history_subhead">
 			  <p class="date">Дата</p>
@@ -30,21 +31,24 @@
 			  <p class="info">Статистика по регионам</p>
 			</div>
 			<div id="history_items">
-					<% @clicks_report.statistic_for_given_days(4).each do |day| %>
+					<% @past_summarized_clicks.each do |clicks_for_day| %>
 						<div class="history_item">
-							<p class="date"><%= l day[:date], :format=> :short %></p>
-							<p class="clicks"><em><strong><%= day[:clicks] %></strong></em></p>
+							<p class="date"><%= l clicks_for_day.date, :format=> :short %></p>
+							<p class="clicks"><em><strong>N/A</strong></em></p>
 							<div class="info">
 								<p class="title">
-									<span><%= regions_data(day[:regions]) %></span>
+									<span><%= statistic_for_cities(clicks_for_day) %></span>
 								</p>
 						  </div>
 						</div>
 					<%end%>
 				</div>
 			</div>
+			<%else%>
+				<%= statistic_is_unavailable %>
+			<%end%>
 		</div>
 	<%else%>
-		<p>На данный момент статистика по ресурсу не доступна</p>
+		<%= statistic_is_unavailable %>
 	<%end%>
 </div>

@@ -1,5 +1,4 @@
 # == Schema Info
-# Schema version: 20100512175856
 #
 # Table name: clicks
 #
@@ -22,5 +21,13 @@ class Click < ActiveRecord::Base
   belongs_to :country
   belongs_to :region
   belongs_to :city
+  
+  class << self
+    
+    def find_last_by_short_url_id(id)
+      self.find(:last, :conditions=>['short_url_id = ?', id])
+    end
+    
+  end
 
 end

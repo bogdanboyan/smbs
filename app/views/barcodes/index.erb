@@ -5,15 +5,10 @@
 	<% form_for :link_code, @link_code = LinkCode.new, :url=> {:action=>'create_link'}, :html=>{:id=>'link_form'} do |f| %>
 		<div>адрес сайта:</div>
 		<div><%= f.text_field :origin %></div>
-		<div><%= submit_tag 'создать код (ctrl + enter)', :class=>'input_button' %></div>
+		<div><%= submit_tag 'создать код', :class=>'input_button' %></div>
 	<%end%>
 	
 	<script>
-	  $('#link_form').keydown(function(event) {
-			if(event.ctrlKey&&event.keyCode==13) {
-				$('#link_form').submit();
-			}
-		});
 		$('#link_form').submit(function() {
 		  form_data = $(this).serialize();
 			$('#message').remove();
@@ -33,16 +28,10 @@
 		<div><%= f.text_field :tel %></div>
 		<div>укажите sms текс:</div>
 		<div><%= f.text_area :text %></div>
-		<div><%= submit_tag 'создать код (ctrl + enter)', :class=>'input_button' %></div>
+		<div><%= submit_tag 'создать код', :class=>'input_button' %></div>
 	<%end%>
 	
 	<script>
-	  $('#sms_form').keydown(function(event) {
-			if(event.ctrlKey&&event.keyCode==13) {
-				$('#sms_form').submit();
-			}
-		});
-		
 		$('#sms_form').submit(function() {
 		  form_data = $(this).serialize();
 			$('#message').remove();
@@ -60,16 +49,10 @@
 	<% form_for :text_code, @text_code = TextCode.new, :url=> {:action=>'create_text'}, :html=>{:id=>'text_form', :style=>'display:none;'} do |f| %>
 		<div>простой текст:</div>
 		<div><%= f.text_area :text %></div>
-		<div><%= submit_tag 'создать код (ctrl + enter)', :class=>'input_button' %></div>
+		<div><%= submit_tag 'создать код', :class=>'input_button' %></div>
 	<%end%>
 	
 	<script>
-	  $('#text_form').keydown(function(event) {
-			if(event.ctrlKey&&event.keyCode==13) {
-				$('#text_form').submit();
-				alert('!');
-			}
-		});
 		$('#text_form').submit(function() {
 		  form_data = $(this).serialize();
 			$('#message').remove();

@@ -1,5 +1,4 @@
 # == Schema Info
-# Schema version: 20100512175856
 #
 # Table name: bar_codes
 #
@@ -14,17 +13,16 @@
 #  created_at :datetime
 #  updated_at :datetime
 
-require 'barby'
-require 'barby/outputter/svg_outputter'
-
 class BarCode < ActiveRecord::Base
   
-  before_save :encode_image
+  before_save  :encode_code_source
+  after_create :save_image_boundle
   
-  def encode_image
-    qr = Barby::QrCode.new(encode_string)
-    self.source = qr.to_svg # which difference for image ouputters: png | image_magic | svg
-    self.level = qr.level.to_s.upcase
-    self.version = qr.size
+  def encode_code_source
+    BarbyBarcode.encode_svg(self)
+  end
+  
+  def save_image_boundle
+    BarbyBarcode.encode_png_boundles(self)
   end
 end

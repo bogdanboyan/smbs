@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100512175856) do
+ActiveRecord::Schema.define(:version => 20100517165032) do
 
   create_table "bar_codes", :force => true do |t|
     t.string   "type",                           :null => false
@@ -97,6 +97,21 @@ ActiveRecord::Schema.define(:version => 20100512175856) do
   end
 
   add_index "short_urls", ["short"], :name => "index_short_urls_on_short", :unique => true
+
+  create_table "summarized_clicks", :force => true do |t|
+    t.integer  "clicks",       :null => false
+    t.integer  "city_id"
+    t.integer  "country_id"
+    t.integer  "region_id"
+    t.integer  "short_url_id", :null => false
+    t.string   "percent",      :null => false
+    t.date     "date",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "summarized_clicks", ["short_url_id", "date"], :name => "index_summarized_clicks_on_short_url_id_and_date"
+  add_index "summarized_clicks", ["short_url_id"], :name => "index_summarized_clicks_on_short_url_id"
 
   create_table "user_agents", :force => true do |t|
     t.string   "details",    :null => false

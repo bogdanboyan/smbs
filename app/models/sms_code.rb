@@ -1,5 +1,4 @@
 # == Schema Info
-# Schema version: 20100512175856
 #
 # Table name: bar_codes
 #
@@ -22,6 +21,6 @@ class SmsCode < BarCode
   validates_length_of   :text, :in=> 1..60, :allow_blank=> true
   
   def encode_string
-    "sms:#{tel}:#{text}" # smsto:tel subject
+    "SMSTO:#{tel}" + (text ? ":"+text : "")
   end
 end

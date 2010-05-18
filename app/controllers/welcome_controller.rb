@@ -2,8 +2,8 @@ class WelcomeController < ApplicationController
   
   def redirect
     if @short_url = ShortUrl.find_by_short(params[:short])
-      click = build_clicks_attributes and build_location_for(click)
-      @short_url.clicks.create(click)
+      click = build_clicks_attributes and click = @short_url.clicks.create(click)
+      build_location_for(click)
       # make redirection
       redirect_to @short_url.origin, :status=> 301
     else

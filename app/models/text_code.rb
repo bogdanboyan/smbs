@@ -1,5 +1,4 @@
 # == Schema Info
-# Schema version: 20100512175856
 #
 # Table name: bar_codes
 #
@@ -17,7 +16,7 @@
 class TextCode < BarCode
   
   validates_presence_of :text
-  validates_length_of   :text, :is=> 60
+  validates_length_of   :text, :in=> 1..60
   
   def encode_string
     self.text

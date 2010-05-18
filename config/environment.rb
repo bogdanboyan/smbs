@@ -6,11 +6,6 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-# Custom MIME types support
-if defined? Mime::Type
-  Mime::Type.register "image/svg+xml" , :svg # used for barcodes resource
-end
-
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -22,7 +17,8 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "rspec", :lib => false, :version => "1.3.0"
   config.gem "rspec-rails", :lib => false, :version => "1.3.0"
-  config.gem "rmagick", :lib => "RMagick2", :version=> "2.12.2"
+  config.gem "rmagick", :lib => "RMagick2", :version=> "2.13.1"
+  config.gem "factory_girl", :source => "http://gemcutter.org"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -39,5 +35,4 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.time_zone = 'Kyev'
   config.i18n.default_locale = :ru
-  
 end

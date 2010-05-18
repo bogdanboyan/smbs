@@ -1,5 +1,4 @@
 # == Schema Info
-# Schema version: 20100512175856
 #
 # Table name: bar_codes
 #
@@ -22,7 +21,7 @@ class LinkCode < BarCode
   validate :prepare_and_parse_url
   
   def encode_string
-    self.origin # urlto:uri without schema
+    self.origin
   end
   
 end

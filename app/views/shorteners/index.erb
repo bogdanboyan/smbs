@@ -4,7 +4,7 @@
 	<% form_for :short_url, @short_url = ShortUrl.new, :url=> {:action=> "create"}, :html=>{:id=>:short_form} do |f| %>
 		<div>введите адрес который нужно сократить:</div>
 		<div><%= f.text_field :origin %></div>
-		<div><%= submit_tag 'создать ссылку (ctrl + enter)', :class=>'input_button' %></div>
+		<div><%= submit_tag 'создать ссылку', :class=>'input_button' %></div>
 	<%end%>
 
 	<div id="status_bar" style="height:10px;"></div>
@@ -23,11 +23,6 @@
 </div>
 
 <script>
-	$('#short_form').keydown(function(event) {
-		if(event.ctrlKey&&event.keyCode==13) {
-			$('#short_form').submit();
-		}
-	});
 	$('#short_form').submit(function() {
 	  form_data = $(this).serialize();
 		$('#message').remove();

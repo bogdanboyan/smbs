@@ -1,68 +1,22 @@
-/* Header */
+/* header */
+#header {margin: 0 auto 20px auto;padding-top: 20px;}
 
-#header {
-	margin: 0 auto 20px auto;
-	padding-top: 20px;
-}
-
-/* Menu */
-
-.menu {
-	float: rigth;
-	/* border: 1px solid #DCDBD5; */
-}
-
-.menu ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
-
-.menu li {
-	float: right;
-}
-
-.menu a {
-	display: block;
-	padding: 1px 10px;
-	text-decoration: none;
-	font-size: 20px;
-	color: #50799A;
-}
-
-.menu a:hover {
-	text-decoration: underline;
-}
-
-.menu .active a {
-}
+/* menu */
+.menu {float: rigth;/* border: 1px solid #DCDBD5; */}
+.menu ul {margin: 0;padding: 0;list-style: none;}
+.menu li {float: right;}
+.menu a {display: block;padding: 1px 10px;text-decoration: none;font-size: 20px;color: #50799A;}
+.menu a:hover {text-decoration: underline;}
+.menu .active a {}
 
 /* form */
-form {
-	background: #F4F4F4;
-	padding: 10px;
-}
-
-form div {
-	padding: 2px;
-}
-
-input {
-	width: 100%;
-	font-size: 20px;
-	color: #50799A;
-}
-
-textarea {
-	width: 100%;
-	height: 65px;
-	font-size: 15px;
-	color: #50799A;
-}
+form { background: #F4F4F4;padding: 10px;}
+form div {padding: 2px;}
+input {width: 100%;font-size: 20px;color: #50799A;}
+textarea {width: 100%;height: 65px;font-size: 15px;color: #50799A;}
 
 /* input button */
 .input_button { width:40%;}
-
 
 /* history */
 #history { clear: both; width: 100%; float: left; }
@@ -91,3 +45,6 @@ textarea {
 ul.history_actions { margin: 12px 0 0 0; padding: 0; list-style:none; }
 ul.history_actions li { float:left; width: 90px; margin: 0 5px 0 0; padding: 0; text-align: center; }
 ul.history_actions a { display:block; height: 20px; font-size:12px; color:#888; }
+
+/*  barcodes */
+.bar_code { float: left; margin: 10px; }
