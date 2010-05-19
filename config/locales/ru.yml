@@ -115,7 +115,7 @@ ru:
         one:   "{{count}} день"
         few:   "{{count}} дня"
         many:  "{{count}} дней"
-        other: "{{count}} дня"
+        other: "{{count}} дней"
       about_x_months:
         one:   "около {{count}} месяца"
         few:   "около {{count}} месяцев"

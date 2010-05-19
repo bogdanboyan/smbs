@@ -22,7 +22,7 @@ class << self
   end
   
   SUMMARIZE_CLICKS = <<-SQL
-    select count(*) as clicks, concat(substring(count(*)/total*100, 1,4),'%') as percent, city_id, country_id, region_id, short_url_id, created_at as date
+    select count(*) as clicks, substring(count(*)/total*100, 1,5) as percent, city_id, country_id, region_id, short_url_id, created_at as date
     from clicks, (select count(*) as total from clicks where short_url_id = :id and date(created_at) = ':date') as total
     where short_url_id = :id and date(created_at) = ':date' group by city_id order by clicks desc
   SQL
@@ -30,7 +30,7 @@ class << self
   def summarize_clicks_for(short_url, date)
     SummarizedClick.exists?(:short_url_id=> short_url.id, :date=> date.to_s(:db)) and raise "Already collected statistic for: short_url(%d), date(%s)" % [short_url.id, date.to_s]
     # do agregation
-    if Click.exists?(:short_url_id=> short_url.id, :created_at=> date.to_s(:db))
+    if Click.find(:first, :conditions=> ['short_url_id = ? and date(created_at) = ?', short_url.id, date.to_s(:db)])
       s_clicks = SummarizedClick.find_by_sql SUMMARIZE_CLICKS.gsub(':id', short_url.id.to_s).gsub(':date', date.to_s(:db))
       s_clicks.each {|s_click| SummarizedClick.create(s_click.attributes) }
     end

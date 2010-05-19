@@ -27,7 +27,7 @@ class SummarizedClick < ActiveRecord::Base
     end
     
     SUMMARIZE_ALL = <<-SQL
-      select count(*) as clicks, concat(substring(count(*)/total*100, 1,4),'%') as percent, city_id, country_id, region_id, short_url_id
+      select count(*) as clicks, substring(count(*)/total*100, 1,5) as percent, city_id, country_id, region_id, short_url_id
       from summarized_clicks, (select count(*) as total from summarized_clicks where short_url_id = :id) as total
       where short_url_id = :id group by city_id order by clicks desc
     SQL
@@ -38,12 +38,15 @@ class SummarizedClick < ActiveRecord::Base
     end
     
     def find_all_from_now_by_short_url(days, short_url)
-      yesterday = 1.day.ago.to_date and end_date = yesterday - days
-      self.find(
-        :all, 
-        :conditions=>['short_url_id = ? and date(date) <= ? and date(date) >= ?', short_url.id, yesterday.to_s(:db), end_date.to_s(:db)],
-        :include=> :city
-      )
+      yesterday = cursor_date = (1.day.ago.to_date) and end_date = (yesterday - days)
+      day_clicks = []
+      
+      while cursor_date > end_date do
+        day_clicks << self.find(:all, :conditions=>['short_url_id = ? and date(date) = ?', short_url.id, cursor_date.to_s(:db)],:include=> :city)
+        cursor_date -= 1
+      end
+      day_clicks.delete([]) unless day_clicks.empty?
+      day_clicks.empty? ? nil : day_clicks
     end
   end
 end
