@@ -9,6 +9,12 @@
 .menu a:hover {text-decoration: underline;}
 .menu .active a {}
 
+/* notice */
+#status_bar {
+	height: 12px;
+	margin-bottom: 15px;
+}
+
 /* form */
 form { background: #F4F4F4;padding: 10px;}
 form div {padding: 2px;}

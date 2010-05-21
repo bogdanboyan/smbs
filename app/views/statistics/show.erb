@@ -11,7 +11,7 @@
 			</div>
 			<div id="history_items">
 				<div class="history_item">
-					<p class="date"><strong><%= distance_of_time_in_words_to_now(@short_url.created_at) %></strong></p>
+					<p class="date"><%= distance_of_time_in_words_to_now(@short_url.created_at) %></p>
 					<p class="clicks"><em><strong><%= @short_url.clicks_count %></strong></em></p>
 					<div class="info">
 						<p class="title">

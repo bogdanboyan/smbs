@@ -15,6 +15,6 @@ module StatisticsHelper
   end
   
   def city_name(click)
-    click.city || "Другие города"
+    click.city || "Другие города<sup>*</sup>"
   end
 end
