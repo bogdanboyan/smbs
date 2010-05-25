@@ -7,19 +7,12 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  # Settings in config/environments/* take precedence over those specified here.
-  # Application configuration should go into files in config/initializers
-  # -- all .rb files in that directory are automatically loaded.
-
-  # Add additional load paths for your own custom dirs
-  # config.load_paths += %W( #{RAILS_ROOT}/extras )
-
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "rspec", :lib => false, :version => "1.3.0"
   config.gem "rspec-rails", :lib => false, :version => "1.3.0"
   config.gem "rmagick", :lib => "RMagick2", :version=> "2.13.1"
   config.gem "factory_girl", :source => "http://gemcutter.org"
-
+  
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   config.plugins = [ :all ]
@@ -32,7 +25,6 @@ Rails::Initializer.run do |config|
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-  # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.time_zone = 'Kyev'
   config.i18n.default_locale = :ru
 end
