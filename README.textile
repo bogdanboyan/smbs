@@ -1,9 +1,61 @@
-h2. Короткие адреса
+h1. Scope
 
-* пользователь преобразует url и создает short url
-* пользователю без регистрации доступна базовая функциональность
-* предполагается хранить сессию в cookies файлах
-* история преобразования отображается в виде списка адресов
-* перейдя на страницу профайла короткого адреса:
-* мы отображем статистику посещения этого линка
-* seed data: user_platforms, user_agents, user_browsers
+	*organization:*
+	+ write base project concept (sm-concept.textile)
+	- update project concept
+	- create pdf document 
+	- disscuss project with Taras and Oleg
+		- collect opinions and make changes
+		- get more perspective contacts
+	- deploy production environment
+	
+	*roadmap:*
+	+ move smbs to github
+	
+	+ ip recornition: test geokit plugin/test max_mind
+		+ make simple ip recognition
+		+ create geographic boundles
+		+ apply /statistic presentation
+
+	+ initial recognition test of barcode images
+		+ all codes works fine
+
+	- investigate document building technics
+		+ more about rp document builder
+	  + how it's works on http://madmimi.com/
+		- design github solution builder as concept
+		  - "project scope":~/builder/README.textile
+			- participate people for project contribution
+			- release project under Railsware LLC
+
+	- Initial mobile-campaign builder
+		- merge from builder
+
+	*ui:*
+	+ improve error-message block
+	+ PNG thumbnail for barcodes preview
+
+	*drop-box:*
+	- cookies based session that holds created items
+	- extract shortener as separated service (metal)
+	- make sm-sys-conf holder
+	- spam domains
+	- short_url cancelation button
+	- short_url custom link (/getup - download scanner for give mobile etc)
+	- create barcode package
+	- barcodes title and description + add this fields to preview page
+		- like Semapedia_Main_Page.pdf
+	- define barcode application page
+	- barcode for tel call and send email
+		- save selected form
+		- release data from submited form 
+	- introduce cukes for main steps and concepts
+
+h2. Links
+
+* http://www.drhu.org/QRCode/QRDecoder.php
+* http://keremerkan.net/php-qr-code-and-data-matrix-generator/
+* http://habrahabr.ru/blogs/webdev/92094/
+* I-nigma, QuickMark, UpCode понимают "smsto:+123456:text" правильно
+* http://www.zytrax.com/tech/web/mobile_ids.html
+* http://mobiforge.com/
