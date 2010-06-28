@@ -17,9 +17,11 @@ class << self
   
   def encode_png_boundles(bar_code)
     qr = Barby::QrCode.new(bar_code.encode_string.strip)
-    # png
     File.open(make_storage_file_name(:id=> bar_code.id, :style=> 'thumbnail'), 'w' ) do |f|
-      f.write qr.to_png(:margin=>4, :xdim=>6)
+      f.write qr.to_png(:margin=>3, :xdim=>4)
+    end
+    File.open(make_storage_file_name(:id=> bar_code.id, :style=> 'preview'), 'w' ) do |f|
+      f.write qr.to_png(:margin=>4, :xdim=>7)
     end
   end
   

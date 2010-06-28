@@ -69,14 +69,19 @@
 		});
 	</script>
 
-	<h2>Сгенерированые коды</h2>
-	
-	<div id="code_items">
-		<% @bar_codes.each do |bar_code| %>
-			<%= render 'bar_code', :object=> bar_code %>
-		<%end%>
-	</div>
+  <h2>Сгенерированые коды</h2>
 
+  <div id='history'>
+    <div id="history_subhead">
+      <p class="date">Добавлено</p>
+      <p class="images">Изображение</p>
+      <p class="info">Информация</p>
+    </div>
+    <div id="history_items">
+      <%= render :partial=> 'bar_code', :collection=> @bar_codes %>
+    </div>
+  </div>
+	
 	<script>
 		var toggle_form     = function(id) {
 			$('form').hide();$(id).show();
@@ -87,7 +92,7 @@
 				display_notice(data.error_message);
 			}
 			if(data.html) {
-				$('#code_items').prepend(data.html);
+				$('#history_items').prepend(data.html);
 			}
 		}
 	</script>

@@ -6,9 +6,6 @@ class BarcodesController < ApplicationController
   
   def show
     @bar_code = BarCode.find(params[:id])
-    # respond_to do |format|
-    #   format.svg { render :text=> @bar_code.source }
-    # end
   end
   
   def create_link
