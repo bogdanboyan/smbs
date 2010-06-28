@@ -3,6 +3,7 @@
 # Table name: short_urls
 #
 #  id           :integer(4)      not null, primary key
+#  campaign_id  :integer(4)
 #  clicks_count :integer(4)      not null, default(0)
 #  description  :text
 #  origin       :string(255)     not null
