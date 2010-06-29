@@ -1,58 +1,31 @@
 <div class="grid_8 alpha">
-	<h2>Создать короткий адрес</h2>
+  <h2>Создать короткий адрес</h2>
 
-	<%= render :partial=>'shared/notice' %>
-	<% form_for :short_url, @short_url = ShortUrl.new, :url=> {:action=> "create"}, :html=>{:id=>:short_form} do |f| %>
-		<div>введите адрес который нужно сократить:</div>
-		<div><%= f.text_field :origin %></div>
-		<div><%= submit_tag 'создать ссылку', :class=>'input_button' %></div>
-	<%end%>
+  <%= render :partial=> 'form' %>
 
-	<h2>Преобразованые ссылки</h2>
-	<div id='history'>
-		<div id="history_subhead">
-		  <p class="date">Добавлено</p>
-		  <p class="clicks">Просмотров</p>
-		  <p class="info">Информация</p>
-		</div>
-		<div id="history_items">
-			<%= render :partial=> 'short_url', :collection=> @short_urls %>
-		</div>
-	</div>
+  <h2>Преобразованые ссылки</h2>
+  <div id='history'>
+    <div id="history_subhead">
+      <p class="date">Добавлено</p>
+      <p class="clicks">Просмотров</p>
+      <p class="info">Информация</p>
+    </div>
+    <div id="history_items">
+      <%= render :partial=> 'short_url', :collection=> @short_urls %>
+    </div>
+  </div>
 </div>
 
-<script>
-	$('#short_form').submit(function() {
-	  form_data = $(this).serialize();
-		$('#message').remove();
-		$.ajax({
-		  type: 'post',
-			dataType: 'json',
-		  url: '<%= shorteners_path %>',
-		  data: form_data,
-		  success: function(data) {
-				if(data.error_message) {
-					display_notice(data.error_message);
-				}
-				if(data.html) {
-					$('#history_items').prepend(data.html);
-				}
-		  }
-		});
-	  return false;
-	});
-</script>
-
 <div class="grid_4 omega">
-	<p><strong>ЧТО ТАКОЕ КОРОТКИЙ АДРЕС:</strong></p>
-	<p>Сервис сокращения адресов позволеят сократить длинный адрес сайта в короткий его эквивалент. Это может быть полезно для передачи адреса сайта через смс.</p>
-	<p>Когда пользователь переходит по ссылке короткого адреса - система переводит его на полноценный сайт предварительно собрав статистическую информацию о времени и регионе перехода.</p>
-	<p><strong>ИСПОЛЬЗОВАНИЕ:</strong></p>
-	<ul>
-		<li>Введите адрес сайта.</li>
-		<li>Нажмите кнопку "создать ссылку".</li>
-		<li>Используйте короткий адрес в смс.</li>
-		<li>Используйте короткий адрес в Баркоде.</li>
-		<li>Изучайте статистику посещений!</li>
-	</ul>
+  <p><strong>ЧТО ТАКОЕ КОРОТКИЙ АДРЕС:</strong></p>
+  <p>Сервис сокращения адресов позволеят сократить длинный адрес сайта в короткий его эквивалент. Это может быть полезно для передачи адреса сайта через смс.</p>
+  <p>Когда пользователь переходит по ссылке короткого адреса - система переводит его на полноценный сайт предварительно собрав статистическую информацию о времени и регионе перехода.</p>
+  <p><strong>ИСПОЛЬЗОВАНИЕ:</strong></p>
+  <ul>
+    <li>Введите адрес сайта.</li>
+    <li>Нажмите кнопку "создать ссылку".</li>
+    <li>Используйте короткий адрес в смс.</li>
+    <li>Используйте короткий адрес в Баркоде.</li>
+    <li>Изучайте статистику посещений!</li>
+  </ul>
 </div>

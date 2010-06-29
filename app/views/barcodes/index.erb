@@ -1,76 +1,9 @@
 <div class="grid_8 alpha">
-	<h2>Создать QR код</h2>
-	<p>Закодировать: <%= link_to "ссылку на сайт", '#', :onclick=> "toggle_form('#link_form');" %>, <%= link_to "смс-сообщение", '#', :onclick=> "toggle_form('#sms_form');" %>, <%= link_to "текст", '#', :onclick=> "toggle_form('#text_form');" %></p>
-	
-	<%= render :partial=>'shared/notice' %>
+  <h2>Создать QR код</h2>
 
-	<% form_for :link_code, @link_code = LinkCode.new, :url=> {:action=>'create_link'}, :html=>{:id=>'link_form'} do |f| %>
-		<div>адрес сайта:</div>
-		<div><%= f.text_field :origin %></div>
-		<div><%= submit_tag 'создать код', :class=>'input_button' %></div>
-	<%end%>
-	
-	<script>
-		$('#link_form').submit(function() {
-		  form_data = $(this).serialize();
-			$('#message').remove();
-			$.ajax({
-			  type: 'post',
-				dataType: 'json',
-			  url: '<%= create_link_barcodes_path %>',
-			  data: form_data,
-			  success: on_ajax_success
-			});
-		  return false;
-		});
-	</script>
-	
-	<% form_for :sms_code, @sms_code = SmsCode.new, :url=> {:action=> "create_sms"}, :html=> {:id=> 'sms_form', :style=> 'display: none;'} do |f| %>
-		<div>укажите номер телефона:</div>
-		<div><%= f.text_field :tel %></div>
-		<div>укажите sms текс:</div>
-		<div><%= f.text_area :text %></div>
-		<div><%= submit_tag 'создать код', :class=>'input_button' %></div>
-	<%end%>
-	
-	<script>
-		$('#sms_form').submit(function() {
-		  form_data = $(this).serialize();
-			$('#message').remove();
-			$.ajax({
-			  type: 'post',
-				dataType: 'json',
-			  url: '<%= create_sms_barcodes_path %>',
-			  data: form_data,
-			  success: on_ajax_success
-			});
-		  return false;
-		});
-	</script>
-	
-	<% form_for :text_code, @text_code = TextCode.new, :url=> {:action=>'create_text'}, :html=>{:id=>'text_form', :style=>'display:none;'} do |f| %>
-		<div>простой текст:</div>
-		<div><%= f.text_area :text %></div>
-		<div><%= submit_tag 'создать код', :class=>'input_button' %></div>
-	<%end%>
-	
-	<script>
-		$('#text_form').submit(function() {
-		  form_data = $(this).serialize();
-			$('#message').remove();
-			$.ajax({
-			  type: 'post',
-				dataType: 'json',
-			  url: '<%= create_text_barcodes_path %>',
-			  data: form_data,
-			  success: on_ajax_success
-			});
-		  return false;
-		});
-	</script>
+  <%= render :partial=> 'form' %>
 
   <h2>Сгенерированые коды</h2>
-
   <div id='history'>
     <div id="history_subhead">
       <p class="date">Добавлено</p>
@@ -82,31 +15,17 @@
     </div>
   </div>
 	
-	<script>
-		var toggle_form     = function(id) {
-			$('form').hide();$(id).show();
-			return false;
-		}
-		var on_ajax_success = function(data) {
-			if(data.error_message) {
-				display_notice(data.error_message);
-			}
-			if(data.html) {
-				$('#history_items').prepend(data.html);
-			}
-		}
-	</script>
 </div>
 
 <div class="grid_4 omega">
-	<p><strong>ЧТО ТАКОЕ QR-КОД:</strong></p>
-	<p>QR код «QR - Quick Response - Быстрый Отклик» — это двухмерный штрихкод (бар-код), предоставляющий информацию для быстрого ее распознавания с помощью камеры на мобильном телефоне.</p>
-	<p>При помощи QR-кода можно закодировать любую информацию, например: текст, номер телефона, ссылку на сайт или визитную карточку.</p>
-	<p><strong>ИСПОЛЬЗОВАНИЕ:</strong></p>
-	<ul>
-		<li>Возьмите мобильный телефон с камерой.</li>
-		<li>Запустите программу для сканирования кода.</li>
-		<li>Наведите объектив камеры на код.</li>
-		<li>Получите информацию!</li>
-	</ul>
+  <p><strong>ЧТО ТАКОЕ QR-КОД:</strong></p>
+  <p>QR код «QR - Quick Response - Быстрый Отклик» — это двухмерный штрихкод (бар-код), предоставляющий информацию для быстрого ее распознавания с помощью камеры на мобильном телефоне.</p>
+  <p>При помощи QR-кода можно закодировать любую информацию, например: текст, номер телефона, ссылку на сайт или визитную карточку.</p>
+  <p><strong>ИСПОЛЬЗОВАНИЕ:</strong></p>
+  <ul>
+    <li>Возьмите мобильный телефон с камерой.</li>
+    <li>Запустите программу для сканирования кода.</li>
+    <li>Наведите объектив камеры на код.</li>
+    <li>Получите информацию!</li>
+  </ul>
 </div>

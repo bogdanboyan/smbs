@@ -2,3 +2,4 @@ test/*
 log/*
 tmp/*
 public/images/barcodes/*
+.bundle/*
