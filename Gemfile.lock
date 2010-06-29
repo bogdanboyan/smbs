@@ -1,0 +1,63 @@
+--- 
+dependencies: 
+  rails: 
+    group: 
+    - :default
+    version: = 2.3.5
+  mysql: 
+    group: 
+    - :default
+    version: = 2.8.1
+  rspec: 
+    group: 
+    - :test
+    version: = 1.3.0
+  unicorn: 
+    group: 
+    - :default
+    version: = 1.0.0
+  rspec-rails: 
+    group: 
+    - :test
+    version: = 1.3.2
+  factory_girl: 
+    group: 
+    - :test
+    version: = 1.2.4
+  rmagick: 
+    group: 
+    - :default
+    version: = 2.13.1
+specs: 
+- rake: 
+    version: 0.8.7
+- activesupport: 
+    version: 2.3.5
+- rack: 
+    version: 1.0.1
+- actionpack: 
+    version: 2.3.5
+- actionmailer: 
+    version: 2.3.5
+- activerecord: 
+    version: 2.3.5
+- activeresource: 
+    version: 2.3.5
+- factory_girl: 
+    version: 1.2.4
+- mysql: 
+    version: 2.8.1
+- rails: 
+    version: 2.3.5
+- rmagick: 
+    version: 2.13.1
+- rspec: 
+    version: 1.3.0
+- rspec-rails: 
+    version: 1.3.2
+- unicorn: 
+    version: 1.0.0
+hash: cbbe2101a6f49a7a275c1810e2daf115e0ae6a0a
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org

@@ -7,12 +7,7 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
-  # Specify gems that this application depends on and have them installed with rake gems:install
-  config.gem "rspec", :lib => false, :version => "1.3.0"
-  config.gem "rspec-rails", :lib => false, :version => "1.3.0"
-  config.gem "rmagick", :lib => "RMagick2", :version=> "2.13.1"
-  config.gem "factory_girl", :source => "http://gemcutter.org"
-  
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   config.plugins = [ :all ]
