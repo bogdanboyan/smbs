@@ -4,13 +4,13 @@
   <%= render :partial=> 'form' %>
 
   <h2>Сгенерированые коды</h2>
-  <div id='history'>
-    <div id="history_subhead">
+  <div class='history'>
+    <div class="history_subhead">
       <p class="date">Добавлено</p>
       <p class="images">Изображение</p>
       <p class="info">Информация</p>
     </div>
-    <div id="history_items">
+    <div id="bar_code_element">
       <%= render :partial=> 'bar_code', :collection=> @bar_codes %>
     </div>
   </div>

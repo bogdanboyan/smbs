@@ -3,8 +3,8 @@
 	<p>Ресурс: <%= link_to @short_url.short_url(request) %> &rarr; <%= link_to @short_url.origin, @short_url.origin %></p>
 	<p>Дата создания: <%= l @short_url.created_at.to_date, :format=> :long %></p>
 	<% if @total_summarized_clicks %>
-		<div id='history'>
-			<div id="history_subhead">
+		<div class='history'>
+			<div class="history_subhead">
 			  <p class="date">Период</p>
 			  <p class="clicks">Переходов</p>
 			  <p class="info">Статистика по регионам</p>
@@ -24,8 +24,8 @@
 	
 		<h2>За последние несколько дней</h2>
 		<% if @past_summarized_clicks %>
-		<div id='history'>
-			<div id="history_subhead">
+		<div class='history'>
+			<div class="history_subhead">
 			  <p class="date">Дата</p>
 			  <p class="clicks">Переходов</p>
 			  <p class="info">Статистика по регионам</p>

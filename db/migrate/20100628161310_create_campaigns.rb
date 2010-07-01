@@ -2,7 +2,7 @@ class CreateCampaigns < ActiveRecord::Migration
   def self.up
     create_table :campaigns do |t|
       t.string :title
-      t.string :state
+      t.string :state, :default=> 'unpublished'
       t.timestamps
     end
     

@@ -19,9 +19,9 @@ class ShortUrl < ActiveRecord::Base
   has_many   :clicks
   belongs_to :campaign
   
+
   validate :prepare_and_parse_url
-  validates_uniqueness_of :campaign
-  
+
   
   def short_url(request)
     "#{request.domain}/g/#{self.short}"

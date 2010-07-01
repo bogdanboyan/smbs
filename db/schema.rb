@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20100628161310) do
 
   create_table "campaigns", :force => true do |t|
     t.string   "title"
-    t.string   "state"
+    t.string   "state",      :default => "unpublished"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

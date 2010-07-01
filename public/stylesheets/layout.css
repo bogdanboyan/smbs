@@ -10,7 +10,7 @@
 .menu .active a {}
 
 /* notice */
-#status_bar {
+.status_bar {
 	height: 12px;
 	margin-bottom: 15px;
 }
@@ -18,22 +18,22 @@
 /* form */
 form { background: #F4F4F4;padding: 10px;}
 form div {padding: 2px;}
-input {width: 100%;font-size: 20px;color: #50799A;}
+input[type=text] {width: 100%;font-size: 20px;color: #50799A;}
 textarea {width: 100%;height: 65px;font-size: 15px;color: #50799A;}
 
-/* input button */
-.input_button { width:40%;}
+/* submit button */
+.submit_button { width:40%;}
 
 /* history */
-#history { clear: both; width: 100%; float: left; }
-#history p { margin: 0; }
-#history .date, #history .clicks, #history .images { float: left; }
-#history .date { width: 90px; }
-#history .clicks { width: 120px; }
-#history .images { width: 120px; }
-#history .info { margin-left: 200px; }
+.history { clear: both; width: 100%; float: left; }
+.history p { margin: 0; }
+.history .date, .history .clicks, .history .images { float: left; }
+.history .date { width: 90px; }
+.history .clicks { width: 120px; }
+.history .images { width: 120px; }
+.history .info { margin-left: 200px; }
 
-#history_subhead { padding-top: 10px; color: #999; text-transform: uppercase; font-size: 10px; }
+.history_subhead { padding-top: 10px; color: #999; text-transform: uppercase; font-size: 10px; }
 
 .history_item { width: 100%; float: left; padding: 8px 0 14px 0; color: #999; }
 .history_item .date { font-size: 1.2em; } 

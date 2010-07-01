@@ -4,13 +4,13 @@
   <%= render :partial=> 'form' %>
 
   <h2>Преобразованые ссылки</h2>
-  <div id='history'>
-    <div id="history_subhead">
+  <div class='history'>
+    <div class="history_subhead">
       <p class="date">Добавлено</p>
       <p class="clicks">Просмотров</p>
       <p class="info">Информация</p>
     </div>
-    <div id="history_items">
+    <div id="short_url_element">
       <%= render :partial=> 'short_url', :collection=> @short_urls %>
     </div>
   </div>

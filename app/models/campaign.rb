@@ -1,3 +1,13 @@
+# == Schema Info
+#
+# Table name: campaigns
+#
+#  id         :integer(4)      not null, primary key
+#  state      :string(255)
+#  title      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+
 class Campaign < ActiveRecord::Base
   
   has_one :short_url
@@ -10,6 +20,10 @@ class Campaign < ActiveRecord::Base
   
   def unpublished?
     state == 'unpublished'
+  end
+  
+  def title
+    attributes[:title] || "Без названия #{Time.now.to_date.to_s(:simple)}"
   end
   
 end

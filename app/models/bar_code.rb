@@ -18,8 +18,6 @@ class BarCode < ActiveRecord::Base
   
   belongs_to :campaign
   
-  validates_uniqueness_of :campaign
-  
   before_save  :encode_code_source
   after_create :save_image_boundle
 
