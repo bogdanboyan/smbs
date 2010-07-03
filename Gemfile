@@ -11,7 +11,6 @@ group :test do
   gem 'factory_girl', '1.2.4'
   gem 'cucumber-rails'
   gem 'capybara'
-  gem 'capybara-envjs'
   gem 'database_cleaner'
 end
 
