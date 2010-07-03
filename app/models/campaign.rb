@@ -3,7 +3,7 @@
 # Table name: campaigns
 #
 #  id         :integer(4)      not null, primary key
-#  state      :string(255)
+#  state      :string(255)     default("unpublished")
 #  title      :string(255)
 #  created_at :datetime
 #  updated_at :datetime
