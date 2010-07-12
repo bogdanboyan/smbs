@@ -1,7 +1,7 @@
 Feature: Create short links
-  As I business
+  I as business
   I want to create short url links
-  So I can see visitors analytic information
+  Then I can see visitors analytic
 
   Background:
     Given short urls for business:
