@@ -11,8 +11,17 @@ end
   has_css?('.history')
   таблица.hashes.each do |row|
     within('.history') do
-      bar_code = BarCode.find_by_type row['type'].camelize
+      bar_code = BarCode.find_by_type(row['type'].camelize)
       body.should include(bar_code_title(bar_code))
     end
+  end
+end
+
+Тогда /^я должен увидеть QR Код:$/ do |список|
+  has_css?('.history')
+  row = список.rows_hash
+  within('.history') do
+    bar_code = BarCode.find_by_type(row['type'].camelize)
+    body.should include(bar_code_title(bar_code))
   end
 end

@@ -38,7 +38,7 @@
 <% form_for :sms_code, @sms_code = SmsCode.new, :url=> create_sms_barcodes_path, :html=> {:id=> 'sms_form', :style=> 'display: none;'} do |f| %>
   <div>укажите номер телефона:</div>
   <div><%= f.text_field :tel %></div>
-  <div>укажите sms текс:</div>
+  <div>укажите смс текс:</div>
   <div><%= f.text_area :text %></div>
   <div><%= submit_tag 'создать код', :class=>'submit_button' %></div>
 <%end%>
