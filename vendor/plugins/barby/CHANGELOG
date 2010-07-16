@@ -1,0 +1,32 @@
+* 0.3.2
+
+* Fix bug where Code128 extras choke on newlines [Wayne Conrad]
+* Don't allow Code128 with empty data strings [Wayne Conrad]
+* Allow custom :size for QrCodes
+
+* 0.3.1
+
+* Add support for PDF417, using Pdf417lib (JRuby only) [Aslak Hellesøy]
+
+* 0.3.0
+
+* Make compatible with Ruby 1.9 [Chris Mowforth]
+* Add SvgOutputter for outputting SVGs without dependencies [Peter H. Li]
+
+* 0.2.1
+
+* Allow QR Codes with sizes up to 40
+
+* 0.2.0
+
+* Added support for 2D barcodes
+* Updated all outputters to support 2D barcodes
+* Added support for QR Code
+
+* 0.1.2
+
+* Added CairoOutputter [Kouhei Sutou]
+
+* 0.1.1
+
+* Added PngOutputter that uses "png" gem
