@@ -11,4 +11,12 @@ class CampaignsController < ApplicationController
      @short_urls = ShortUrl.find(:all, :order=> 'id DESC', :limit=> 10)
   end
   
+  def create
+    if params[:campaign].length >= 3
+    else
+      flash[:notice] = "Для создания компании нужно задать: Мобильный сайт или Короткий адрес и QR код"
+      redirect_to :action=> 'new'
+    end
+  end
+  
 end

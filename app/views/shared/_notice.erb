@@ -6,4 +6,4 @@
   }
 </script>
 
-<div id="<%= notice %>" class="status_bar"></div>
+<div id="<%= notice || 'notice' %>" class="status_bar"><%= flash[:notice] %></div>
