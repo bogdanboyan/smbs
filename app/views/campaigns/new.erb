@@ -1,63 +1,67 @@
 <div class="grid_8">
   <h2>Создать компанию</h2>
   
-  <h3>1. Выбрать или Создать Мобильный сайт</h3>
+  <p>1. Выбрать или Создать Мобильный сайт</p>
   
-  <h3>2.
-    <a href="#" onclick="toggle('#short_url_step', '#short_urls_list')">Выбрать</a> или 
-    <a href="#" onclick="toggle('#short_url_step', '#new_short_url')">Создать</a> Короткий адрес
-  </h3>
-  <div id="short_url_step">
-    <div id="new_short_url" style="display: none;">
-      <%= render :partial=> 'shorteners/form' %>
-    </div>
-    <div id="short_urls_list" style="display: none;">
-      <% @short_urls.each do |e| %>
-        <li><a href="#" onclick="apply_element('<%= underscored_type(e) %>', <%= e.id %>); return false;"><%= element_title(e) %></a></li>
-      <% end %>
-    </div>
-    
-    <div id="short_url_preview" class="history" style="display: none;">
-      <div class="history_subhead">
-        <p class="date">Добавлено</p>
-        <p class="clicks">Просмотров</p>
-        <p class="info">Информация</p>
+  <div id="shorteners_wizard">
+    <p>2.
+      <a href="#" onclick="toggle('#shorteners_step', '#short_urls_list')">Выбрать</a> или 
+      <a href="#" onclick="toggle('#shorteners_step', '#new_short_url')">Создать</a> Короткий адрес
+    </p>
+    <div id="shorteners_step">
+      <div id="new_short_url" style="display: none;">
+        <%= render :partial=> 'shorteners/form' %>
       </div>
-      <div id="short_url_element"></div>
+      <div id="short_urls_list" style="display: none;">
+        <% @short_urls.each do |e| %>
+          <li><a href="#" onclick="apply_element('<%= underscored_type(e) %>', <%= e.id %>); return false;"><%= element_title(e) %></a></li>
+        <% end %>
+      </div>
+    
+      <div id="short_url_preview" class="history" style="display: none;">
+        <div class="history_subhead">
+          <p class="date">Добавлено</p>
+          <p class="clicks">Просмотров</p>
+          <p class="info">Информация</p>
+        </div>
+        <div id="short_url_element"></div>
+      </div>
     </div>
   </div>
   
-  <h3>3. 
-    <a href="#" onclick="toggle('#bar_code_step', '#bar_codes_list')">Выбрать</a> или 
-    <a href="#" onclick="toggle('#bar_code_step', '#new_bar_code')">Создать</a> QR-Код
-  </h3>
-  <div id="bar_code_step">
-    <div id="new_bar_code" style="display: none;">
-      <%= render :partial=> 'barcodes/form' %>
-    </div>
-    <div id="bar_codes_list" style="display: none;">
-      <ul>
-        <% @bar_codes.each do |e| %>
-          <li><a href="#" onclick="apply_element('<%= underscored_type(e) %>', <%= e.id %>); return false;"><%= element_title(e) %></a></li>
-        <% end %>
-      </ul>
-    </div>
-    <div id="bar_code_preview" class="history" style="display: none;">
-      <div class="history_subhead">
-        <p class="date">Добавлено</p>
-        <p class="images">Изображение</p>
-        <p class="info">Информация</p>
+  <div id="codes_wizard">
+    <p>3. 
+      <a href="#" onclick="toggle('#codes_step', '#bar_codes_list')">Выбрать</a> или 
+      <a href="#" onclick="toggle('#codes_step', '#new_bar_code')">Создать</a> QR-Код
+    </p>
+    <div id="codes_step">
+      <div id="new_bar_code" style="display: none;">
+        <%= render :partial=> 'barcodes/form' %>
       </div>
-      <div id="bar_code_element"></div>
+      <div id="bar_codes_list" style="display: none;">
+        <ul>
+          <% @bar_codes.each do |e| %>
+            <li><a href="#" onclick="apply_element('<%= underscored_type(e) %>', <%= e.id %>); return false;"><%= element_title(e) %></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="bar_code_preview" class="history" style="display: none;">
+        <div class="history_subhead">
+          <p class="date">Добавлено</p>
+          <p class="images">Изображение</p>
+          <p class="info">Информация</p>
+        </div>
+        <div id="bar_code_element"></div>
+      </div>
     </div>
   </div>
 
-  <h3>4. Создать компанию</h3>
+  <p>4. Создать компанию</p>
   <div>
   <% form_for :campaign, @campaign = Campaign.new, :url=> campaigns_path do |f| %>
     <div><%= f.text_field :title, :value=> @campaign.title %></div>
     <div><%= f.check_box :state, {:checked=> true}, 'published', 'unpublished' %> Сделать компанию опубликованой</div>
-    <div><%= submit_tag 'Сохранить компанию' %></div>
+    <div><%= submit_tag 'cохранить компанию' %></div>
   <%end%>
   </div>
   
