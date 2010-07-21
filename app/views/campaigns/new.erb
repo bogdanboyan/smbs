@@ -1,4 +1,4 @@
-<div class="grid_8">
+<div class="grid_8 alpha">
   
   <h2>Создать компанию</h2>
 
@@ -63,7 +63,7 @@
   <div>
   <% form_for :campaign, @campaign = Campaign.new, :url=> campaigns_path, :html => {:id => 'campaign_form'} do |f| %>
     <div><%= f.text_field :title, :value=> @campaign.title %></div>
-    <div><%= f.check_box :state, {:checked=> true}, 'published', 'unpublished' %> Сделать компанию опубликованой</div>
+    <div><%= f.check_box :state, {:checked=> true}, 'published', 'unpublished' %> Официально опубликовать материалы этой компании</div>
     <div><%= submit_tag 'сохранить компанию' %></div>
   <%end%>
   </div>
@@ -110,4 +110,15 @@
     }
 
   </script>
+</div>
+
+<div class="grid_4 omega">
+  <p><%= link_to "Создать", new_campaign_path %></p>
+  <p><strong>КАК ИСПОЛЬЗОВАТЬ:</strong></p>
+  <ul>
+    <li>Для того чтоб создать компанию вы должны указать: 'Мобильный сайт' или 'Короткий адрес' вместе с 'QR кодом'</li>
+    <li>Выбрав нужные компоненты обязательно укажите Название компании, например: 'Мисс Купальник-2010'</li>
+    <li>После того как нажав на кнопку 'сохранить компанию' система активирует ваши компоненты для публичного просмотра</li>
+    <li>Система сбора статистики начнет подготавливать ежедневный отчет о посетителях</li>
+  </ul>
 </div>
