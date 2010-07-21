@@ -1,31 +1,20 @@
 <div class="grid_8 alpha">
-  <h2>Активированые</h2>
+  <h2>Сохраненные</h2>
   <div class='history'>
     <div class="history_subhead">
       <p class="date">Добавлено</p>
-      <p class="clicks">Переходы</p>
+      <p class="clicks">Просмотров</p>
       <p class="info">Информация</p>
     </div>
     <div id="history_items">
-      <%= render :partial=> 'campaign', :collection=> @p_campaigns %>
+      <%= render :partial=> 'campaign', :collection=> @campaigns %>
     </div>
   </div>
-  
-  <h2>Не активные</h2>
-  <div class='history'>
-    <div class="history_subhead">
-      <p class="date">Добавлено</p>
-      <p class="clicks">Переходы</p>
-      <p class="info">Информация</p>
-    </div>
-    <div id="history_items">
-      <%= render :partial=> 'campaign', :collection=> @un_campaigns %>
-    </div>
-  </div>
-  
+
+
 </div>
 
 <div class="grid_4 omega">
   <p><%= link_to "Создать", new_campaign_path %></p>
-  <p><strong>ЧТО ТАКОЕ КОМПАНИИ:</strong></p>
+  <p><strong>КАК ИСПОЛЬЗОВАТЬ ЭТОТ РАЗДЕЛ:</strong></p>
 </div>
