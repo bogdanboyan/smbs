@@ -13,16 +13,17 @@
 #  updated_at   :datetime
 
 class ShortUrl < ActiveRecord::Base
-  
+
   include UrlModelsUtil
-  
+
   has_many   :clicks
   belongs_to :campaign
-  
 
   validate :prepare_and_parse_url
 
-  
+  named_scope :unbound, :conditions => { :campaign_id => nil }
+
+
   def short_url(request)
     "#{request.domain}/g/#{self.short}"
   end

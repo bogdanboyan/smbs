@@ -7,24 +7,23 @@
 <%end%>
 
 <script>
-	$('#short_form').submit(function() {
-	  form_data = $(this).serialize();
-		$('#message').remove();
-		$.ajax({
-		  type: 'post',
-			dataType: 'json',
-		  url: '<%= shorteners_path %>',
-		  data: form_data,
-		  success: function(data) {
-				if(data.error_message) {
-					display_notice('#short_url_notice', data.error_message);
-				}
-				if(data.html) {
-					$('#short_url_element').prepend(data.html);
-				}
-		  }
-		});
-	  return false;
-	});
+  $('#short_form').submit(function() {
+    form_data = $(this).serialize();
+    $('#message').remove();
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '<%= shorteners_path %>',
+      data: form_data,
+      success: function(data) {
+        if(data.error_message) {
+          display_notice('#short_url_notice', data.error_message);
+        }
+        if(data.html) {
+          $('#short_url_element').prepend(data.html).trigger('change');
+        }
+      }
+    });
+    return false;
+  });
 </script>
-

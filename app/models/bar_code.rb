@@ -20,6 +20,8 @@ class BarCode < ActiveRecord::Base
   
   before_save  :encode_code_source
   after_create :save_image_boundle
+  
+  named_scope :unbound, :conditions => { :campaign_id => nil }
 
 
   def encode_code_source

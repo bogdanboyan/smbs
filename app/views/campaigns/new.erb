@@ -62,6 +62,7 @@
   <p>4. Создать компанию</p>
   <div>
   <% form_for :campaign, @campaign = Campaign.new, :url=> campaigns_path, :html => {:id => 'campaign_form'} do |f| %>
+    <%= hidden_field_tag :selected_short_url_element %><%= hidden_field_tag :selected_bar_code_element %>
     <div><%= f.text_field :title, :value=> @campaign.title %></div>
     <div><%= f.check_box :state, {:checked=> true}, 'published', 'unpublished' %> Официально опубликовать материалы этой компании</div>
     <div><%= submit_tag 'сохранить компанию' %></div>
@@ -72,10 +73,11 @@
   
     $(document).ready(function() {
       $('#short_url_element, #bar_code_element').change(function() {
-        console.log('change()');
         preview = $(this).parent();
         $(preview).parent().children().hide();
         $(preview).show();
+        hidden = "#selected_"+ $(this).attr('id');
+        $(hidden).val($(this).find('custom').text());
       });
     });
 
@@ -93,8 +95,7 @@
           if(data.html) {
             element = '#' + type + '_element';
             $(element).children().remove();
-            $(element).append(data.html);
-            $(element).trigger('change');
+            $(element).append(data.html).trigger('change');
           }
         }
       });

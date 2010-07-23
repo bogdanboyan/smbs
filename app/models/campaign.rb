@@ -23,7 +23,7 @@ class Campaign < ActiveRecord::Base
   end
   
   def title
-    attributes[:title] || "Без названия #{Time.now.to_date.to_s(:simple)}"
+    read_attribute(:title) || "Без названия #{Time.now.to_date.to_s(:simple)}"
   end
   
 end
