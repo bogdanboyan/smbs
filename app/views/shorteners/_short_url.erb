@@ -1,14 +1,15 @@
 <div class="history_item">
-	<p class="date"><%= l short_url.created_at, :format=> :short %></p>
-	<p class="clicks"><em><strong><%= short_url.clicks_count %></strong></em></p>
-	<div class="info">
-		<p class="title">
-			<span><%= link_to short_url.origin, short_url.origin, :class=> 'title', :target=> '_blank' %></span>
-			<ul class="history_actions">
-				<li><%= link_to "Cтатистика", statistic_path(short_url.id) %></li>
-				<li><%= link_to "Копировать" %></li>
-			</ul>
-			<strong class="short_url"><%= short_url.short_url(request) %></strong>
-		</p>
+  <custom name="resource"><%= short_url.id %></custom>
+  <p class="date"><%= l short_url.created_at, :format=> :short %></p>
+  <p class="clicks"><em><strong><%= short_url.clicks_count %></strong></em></p>
+  <div class="info">
+    <p class="title">
+    <span><%= link_to short_url.origin, short_url.origin, :class=> 'title', :target=> '_blank' %></span>
+    <ul class="history_actions">
+      <li><%= link_to "Cтатистика", statistic_path(short_url.id) %></li>
+      <li><%= link_to "Копировать" %></li>
+    </ul>
+    <strong class="short_url"><%= short_url.short_url(request) %></strong>
+    </p>
   </div>
 </div>

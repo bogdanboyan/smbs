@@ -1,0 +1,29 @@
+<%= render :partial=>'shared/notice', :object=> 'short_url_notice' %>
+
+<% form_for :short_url, @short_url = ShortUrl.new, :url=> shorteners_path, :html=>{:id=>:short_form} do |f| %>
+  <div>введите адрес который нужно сократить:</div>
+  <div><%= f.text_field :origin %></div>
+  <div><%= submit_tag 'создать ссылку', :class=>'submit_button' %></div>
+<%end%>
+
+<script>
+  $('#short_form').submit(function() {
+    form_data = $(this).serialize();
+    $('#message').remove();
+    $.ajax({
+      type: 'post',
+      dataType: 'json',
+      url: '<%= shorteners_path %>',
+      data: form_data,
+      success: function(data) {
+        if(data.error_message) {
+          display_notice('#short_url_notice', data.error_message);
+        }
+        if(data.html) {
+          $('#short_url_element').prepend(data.html).trigger('change');
+        }
+      }
+    });
+    return false;
+  });
+</script>

@@ -1,0 +1,125 @@
+<div class="grid_8 alpha">
+  
+  <h2>Создать компанию</h2>
+
+  <%= render :partial=>'shared/notice' %>
+
+  <p>1. Выбрать или Создать Мобильный сайт</p>
+  
+  <div id="shorteners_wizard">
+    <p>2.
+      <a href="#" onclick="toggle('#shorteners_step', '#shorteners_list')">Выбрать</a> или 
+      <a href="#" onclick="toggle('#shorteners_step', '#new_shorteners')">Создать</a> Короткий адрес
+    </p>
+    <div id="shorteners_step">
+      <div id="new_shorteners" style="display: none;">
+        <%= render :partial=> 'shorteners/form' %>
+      </div>
+      <div id="shorteners_list" style="display: none;">
+        <% @short_urls.each do |e| %>
+          <li><a href="#" onclick="apply_element('<%= underscored_type(e) %>', <%= e.id %>); return false;"><%= element_title(e) %></a></li>
+        <% end %>
+      </div>
+    
+      <div id="short_url_preview" class="history" style="display: none;">
+        <div class="history_subhead">
+          <p class="date">Добавлено</p>
+          <p class="clicks">Просмотров</p>
+          <p class="info">Информация</p>
+        </div>
+        <div id="short_url_element"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="codes_wizard">
+    <p>3. 
+      <a href="#" onclick="toggle('#codes_step', '#barcodes_list')">Выбрать</a> или 
+      <a href="#" onclick="toggle('#codes_step', '#new_barcode')">Создать</a> QR-Код
+    </p>
+    <div id="codes_step">
+      <div id="new_barcode" style="display: none;">
+        <%= render :partial=> 'barcodes/form' %>
+      </div>
+      <div id="barcodes_list" style="display: none;">
+        <ul>
+          <% @bar_codes.each do |e| %>
+            <li><a href="#" onclick="apply_element('<%= underscored_type(e) %>', <%= e.id %>); return false;"><%= element_title(e) %></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="bar_code_preview" class="history" style="display: none;">
+        <div class="history_subhead">
+          <p class="date">Добавлено</p>
+          <p class="images">Изображение</p>
+          <p class="info">Информация</p>
+        </div>
+        <div id="bar_code_element"></div>
+      </div>
+    </div>
+  </div>
+
+  <p>4. Создать компанию</p>
+  <div>
+  <% form_for :campaign, @campaign = Campaign.new, :url=> campaigns_path, :html => {:id => 'campaign_form'} do |f| %>
+    <%= hidden_field_tag :selected_short_url_element %><%= hidden_field_tag :selected_bar_code_element %>
+    <div><%= f.text_field :title, :value=> @campaign.title %></div>
+    <div><%= f.check_box :state, {:checked=> true}, 'published', 'unpublished' %> Официально опубликовать материалы этой компании</div>
+    <div><%= submit_tag 'сохранить компанию' %></div>
+  <%end%>
+  </div>
+  
+  <script>
+  
+    $(document).ready(function() {
+      $('#short_url_element, #bar_code_element').change(function() {
+        preview = $(this).parent();
+        $(preview).parent().children().hide();
+        $(preview).show();
+        hidden = "#selected_"+ $(this).attr('id');
+        $(hidden).val($(this).find('custom').text());
+      });
+    });
+
+    var toggle = function(where, what) {
+      $(where).children().hide();
+      $(where).find(what).show();
+    }
+
+    var apply_element = function(type, id) {
+      $.ajax({
+        type:     'get',
+        dataType: 'json',
+        url: resource_path_for(type, id),
+        success: function(data) {
+          if(data.html) {
+            element = '#' + type + '_element';
+            $(element).children().remove();
+            $(element).append(data.html).trigger('change');
+          }
+        }
+      });
+      return false;
+    }
+
+    var resource_path_for = function(type, id) {
+      if(type == 'short_url') {
+        return '<%= shortener_path(-1, :json) %>'.replace('-1', id);
+      } else {
+        return '<%= barcode_path(-1, :json) %>'.replace('-1', id);
+      }
+    }
+
+  </script>
+</div>
+
+<div class="grid_4 omega">
+  <p><%= link_to "Создать", new_campaign_path %></p>
+  <p><strong>КАК ИСПОЛЬЗОВАТЬ:</strong></p>
+  <ul>
+    <li>Для того чтоб создать компанию вы должны указать: 'Мобильный сайт' или 'Короткий адрес' вместе с 'QR кодом'</li>
+    <li>Выбрав нужные компоненты обязательно укажите Название компании, например: 'Мисс Купальник-2010'</li>
+    <li>После того как нажав на кнопку 'сохранить компанию' система активирует ваши компоненты для публичного просмотра</li>
+    <li>Система сбора статистики начнет подготавливать ежедневный отчет о посетителях</li>
+  </ul>
+</div>

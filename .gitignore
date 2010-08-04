@@ -1,6 +1,6 @@
 test/*
 log/*
 tmp/*
-public/images/barcodes/*
+public/images/cucumber/*
+public/images/development/*
 .bundle/*
-

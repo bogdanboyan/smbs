@@ -1,8 +1,9 @@
 <script>
-	var display_notice = function(message) {
-		$('#status_bar').append("<div id='message' style=''>"+message+"</div>");
-		$('#message').show('slow').delay(4000).hide('slow');
-	}
+  var display_notice = function(holder, message) {
+    $(holder).children().remove();
+    $(holder).append("<div>"+message+"</div>");
+    $(holder).show('slow').delay(4000).hide('slow');
+  }
 </script>
 
-<div id="status_bar"></div>
+<div id="<%= notice || 'notice' %>" class="status_bar"><%= flash[:notice] %></div>

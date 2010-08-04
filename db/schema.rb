@@ -9,21 +9,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100517165032) do
+ActiveRecord::Schema.define(:version => 20100628161310) do
 
   create_table "bar_codes", :force => true do |t|
-    t.string   "type",                           :null => false
+    t.string   "type",                            :null => false
     t.string   "origin"
     t.string   "tel"
     t.string   "text"
-    t.text     "source",     :limit => 16777215
+    t.text     "source",      :limit => 16777215
     t.integer  "version"
     t.string   "level"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "campaign_id"
   end
 
   add_index "bar_codes", ["id", "type"], :name => "index_bar_codes_on_id_and_type", :unique => true
+
+  create_table "campaigns", :force => true do |t|
+    t.string   "title"
+    t.string   "state",      :default => "unpublished"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cities", :force => true do |t|
     t.string   "name",       :limit => 36, :null => false
@@ -94,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20100517165032) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "campaign_id"
   end
 
   add_index "short_urls", ["short"], :name => "index_short_urls_on_short", :unique => true

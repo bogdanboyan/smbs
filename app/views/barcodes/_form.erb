@@ -1,0 +1,80 @@
+<p>Закодировать: <%= link_to "ссылку на сайт", '#', :onclick=> "toggle_form('#link_form');" %>, <%= link_to "смс-сообщение", '#', :onclick=> "toggle_form('#sms_form');" %>, <%= link_to "текст", '#', :onclick=> "toggle_form('#text_form');" %></p>
+
+<script>
+  var toggle_form     = function(id) {
+    $('#link_form, #sms_form, #text_form').hide();$(id).show();
+    return false;
+  }
+  var on_ajax_success = function(data) {
+    if(data.error_message) { display_notice('#bar_code_notice', data.error_message); }
+    if(data.html) { $('#bar_code_element').prepend(data.html); $('#bar_code_element').trigger('change'); }
+  }
+</script>
+
+
+<%= render :partial=>'shared/notice', :object=> 'bar_code_notice' %>
+
+<% form_for :link_code, @link_code = LinkCode.new, :url=> create_link_barcodes_path, :html=>{:id=>'link_form'} do |f| %>
+	<div>адрес сайта:</div>
+	<div><%= f.text_field :origin %></div>
+	<div><%= submit_tag 'создать код', :class=>'submit_button' %></div>
+<%end%>
+
+<script>
+	$('#link_form').submit(function() {
+	  form_data = $(this).serialize();
+		$('#message').remove();
+		$.ajax({
+		  type: 'post',
+			dataType: 'json',
+		  url: '<%= create_link_barcodes_path %>',
+		  data: form_data,
+		  success: on_ajax_success
+		});
+	  return false;
+	});
+</script>
+
+<% form_for :sms_code, @sms_code = SmsCode.new, :url=> create_sms_barcodes_path, :html=> {:id=> 'sms_form', :style=> 'display: none;'} do |f| %>
+  <div>укажите номер телефона:</div>
+  <div><%= f.text_field :tel %></div>
+  <div>укажите смс текс:</div>
+  <div><%= f.text_area :text %></div>
+  <div><%= submit_tag 'создать код', :class=>'submit_button' %></div>
+<%end%>
+
+<script>
+	$('#sms_form').submit(function() {
+	  form_data = $(this).serialize();
+		$('#message').remove();
+		$.ajax({
+		  type: 'post',
+			dataType: 'json',
+		  url: '<%= create_sms_barcodes_path %>',
+		  data: form_data,
+		  success: on_ajax_success
+		});
+	  return false;
+	});
+</script>
+
+<% form_for :text_code, @text_code = TextCode.new, :url=> create_text_barcodes_path, :html=>{:id=>'text_form', :style=>'display:none;'} do |f| %>
+  <div>простой текст:</div>
+  <div><%= f.text_area :text %></div>
+  <div><%= submit_tag 'создать код', :class=>'submit_button' %></div>
+<%end%>
+
+<script>
+	$('#text_form').submit(function() {
+	  form_data = $(this).serialize();
+		$('#message').remove();
+		$.ajax({
+		  type: 'post',
+			dataType: 'json',
+		  url: '<%= create_text_barcodes_path %>',
+		  data: form_data,
+		  success: on_ajax_success
+		});
+	  return false;
+	});
+</script>

@@ -1,15 +1,15 @@
 <div class="history_item">
-	<p class="date"><%= l bar_code.created_at, :format=> :short %></p>
-	<p class="images"><%= image_tag BarbyBarcode.image_path(:id=> bar_code.id) %></p>
-	<div class="info">
-		<p class="title">
-			<span><%= link_to "campaign title" %></span>
-			<p><%= bar_code_title(bar_code) %></p>
-			<ul class="history_actions">
-				<li><%= link_to "Cкачать архив" %></li>
-				<li><%= link_to "Отправить на почту" %></li>
-			</ul>
-		</p>
+  <custom name="resource"><%= bar_code.id %></custom>
+  <p class="date"><%= l bar_code.created_at, :format=> :short %></p>
+  <p class="images"><%= image_tag BarbyBarcode.image_path(:id=> bar_code.id) %></p>
+  <div class="info">
+    <p class="title">
+      <span><%= link_to "campaign title" %></span>
+      <p><%= bar_code_title(bar_code) %></p>
+      <ul class="history_actions">
+        <li><%= link_to "Cкачать архив" %></li>
+        <li><%= link_to "Отправить на почту" %></li>
+      </ul>
+    </p>
   </div>
 </div>
-
