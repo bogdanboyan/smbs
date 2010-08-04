@@ -10,6 +10,10 @@ class CampaignsController < ApplicationController
      @short_urls = ShortUrl.unbound.find(:all, :order=> 'id DESC', :limit=> 10)
   end
   
+  def show
+    @campaign = Campaign.find(params[:id])
+  end
+  
   def create
     p params.class.name
     if is_ready_to_save

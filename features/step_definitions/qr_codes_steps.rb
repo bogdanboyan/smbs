@@ -1,6 +1,6 @@
 include BarcodesHelper
 
-Допустим /^пользователь уже создал QR коды:$/ do |таблица|
+Допустим /^пользователь уже создал QR код(?:ы)?:$/ do |таблица|
   таблица.hashes.each do |row|
      bar_code = row['type'].camelize.constantize.create(row)
      bar_code.valid?.should be_true

@@ -20,3 +20,14 @@ end
 То /^я должен увидеть список ранее созданых QR кодов$/ do
   page.has_css?('div#barcodes_list')
 end
+
+Допустим /^пользователь уже создал ранее рекламные компании:$/ do |таблица|
+  таблица.hashes.each do |row|
+    campaign = Campaign.create(:title => row['title'])
+    short_url = ShortUrl.find_by_origin(row['short_url_origin'])
+    bar_code  = BarCode.find_by_text(row['qr_code_text']) # customize this options
+    [short_url, bar_code].each do |entity|
+      entity.update_attribute(:campaign_id, campaign.id)
+    end
+  end
+end
