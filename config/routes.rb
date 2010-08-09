@@ -1,9 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.with_options :controller=> :welcome do |w|
-     w.root :action=> 'show'
-     w.connect 'g/:short', :action=> 'redirect'
-  end
+  map.root :action=> 'show', :controller => 'welcome'
 
   map.resources :campaigns
   map.resources :shorteners
