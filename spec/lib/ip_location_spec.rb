@@ -13,7 +13,7 @@ describe IpLocation do
   
   it 'should recognize location from click' do
     click = Factory.create(:click_two)
-    IpLocation.find_location_for(click).should be_true
+    IpLocation.resolve_location_for(click).should be_true
     click.country.code.should eql('UKR')
     click.city.name.should eql('Kiev')
   end
