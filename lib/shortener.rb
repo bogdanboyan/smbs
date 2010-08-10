@@ -1,4 +1,4 @@
-class Shortener
+module Shortener
   
   def self.get_random_code(length)
     chars, rval = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a, ''
