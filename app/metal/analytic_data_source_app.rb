@@ -4,21 +4,17 @@ require(File.dirname(__FILE__) + "/../../config/environment") unless defined?(Ra
 class AnalyticDataSourceApp
 
   # GET /ds/:shortener/:86/:clicks(:params)+
-  # GET /ds/:shortener/:86/:cities(:params)+
+  PATH_INFO_ROUTE = /^\/ds\/(\w+)\/(\d+)\/(\w+)/
+
   def self.call(env)
-    if env["PATH_INFO"] =~ /^\/ds\/shortener\/clicks/
-      puts env.inspect
+    if env["PATH_INFO"] =~ PATH_INFO_ROUTE
       
-      [200, {"Content-Type" => "json"}, [
-        {
-          :status => 'ok', :reqId => 0, 
-          :table =>
-            {
-              :cols => [ {:id => '1', :label => 'Период', :type => 'string'}, {:id => '2', :label => '', :type => 'number'} ],
-              :rows => [ {:c => [{:v => '2004'}, {:v => 400}]}, {:c => [{:v => '2005'}, {:v => 500}]} ],
-            }
-        }.to_json
-      ]]
+      data, id, action = env["PATH_INFO"].scan(PATH_INFO_ROUTE).first
+      
+      # very slowly!!!
+      data_table = DataSource.fetch(data, action, id)
+      
+      [200, {"Content-Type" => "json"}, [data_table.to_json] ]
     else
       [404, {"Content-Type" => "text/html"}, ["Not Found"]]
     end
