@@ -1,54 +1,66 @@
-<div class="grid_12">
+<div class="grid_8 alpha">
 	<h2>Общая статистика переходов</h2>
 	<p>Ресурс: <%= link_to @short_url.short_url(request) %> &rarr; <%= link_to @short_url.origin, @short_url.origin %></p>
 	<p>Дата создания: <%= l @short_url.created_at.to_date, :format=> :long %></p>
 	<% if @total_summarized_clicks %>
-		<div class='history'>
-			<div class="history_subhead">
-			  <p class="date">Период</p>
-			  <p class="clicks">Переходов</p>
-			  <p class="info">Статистика по регионам</p>
-			</div>
-			<div id="history_items">
-				<div class="history_item">
-					<p class="date"><%= distance_of_time_in_words_to_now(@short_url.created_at) %></p>
-					<p class="clicks"><em><strong><%= @short_url.clicks_count %></strong></em></p>
-					<div class="info">
-						<p class="title">
-							<span><%= statistic_for_cities(@total_summarized_clicks) %></span>
-						</p>
-				  </div>
-				</div>
-			</div>
-		</div>
-	
-		<h2>За последние несколько дней</h2>
-		<% if @past_summarized_clicks %>
-		<div class='history'>
-			<div class="history_subhead">
-			  <p class="date">Дата</p>
-			  <p class="clicks">Переходов</p>
-			  <p class="info">Статистика по регионам</p>
-			</div>
-			<div id="history_items">
-					<% @past_summarized_clicks.each do |clicks_for_day| %>
-						<div class="history_item">
-							<p class="date"><%= l clicks_for_day.first.date, :format=> :short %></p>
-							<p class="clicks"><em><strong><%= total_clicks(clicks_for_day) %></strong></em></p>
-							<div class="info">
-								<p class="title">
-									<span><%= statistic_for_cities(clicks_for_day) %></span>
-								</p>
-						  </div>
-						</div>
-					<%end%>
-				</div>
-			</div>
-			<%else%>
-				<%= statistic_is_unavailable %>
-			<%end%>
-		</div>
+
+      <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+      <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(initialize);
+
+        function initialize() {
+          var query = new google.visualization.Query("/ds/shortener/clicks");
+          query.send(handleQueryResponse);
+        }
+
+        function handleQueryResponse(response) {
+            if (response.isError()) {
+              console.log('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+              return;
+            }
+          
+            var data = response.getDataTable();
+            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(data, {
+              width: 400, height: 240, hAxis: {title:'Период', titleColor:'#FF0000'}
+            });
+          }
+      </script>
+      
+      <div id="chart_div"></div>
+
+    <!-- <h2>За последние несколько дней</h2>
+    <% if @past_summarized_clicks %>
+    <div class='history'>
+      <div class="history_subhead">
+        <p class="date">Дата</p>
+        <p class="clicks">Переходов</p>
+        <p class="info">Статистика по регионам</p>
+      </div>
+      <div id="history_items">
+          <% @past_summarized_clicks.each do |clicks_for_day| %>
+            <div class="history_item">
+              <p class="date"><%= l clicks_for_day.first.date, :format=> :short %></p>
+              <p class="clicks"><em><strong><%= total_clicks(clicks_for_day) %></strong></em></p>
+              <div class="info">
+                <p class="title">
+                  <span><%= statistic_for_cities(clicks_for_day) %></span>
+                </p>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+      <%else%>
+        <%= statistic_is_unavailable %>
+      <%end%>
+    </div> -->
 	<%else%>
 		<%= statistic_is_unavailable %>
 	<%end%>
+</div>
+
+<div class="grid_4 omega">
+    <p><strong>КАК ИСПОЛЬЗОВАТЬ:</strong></p>
 </div>
