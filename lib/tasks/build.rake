@@ -1,5 +1,5 @@
 desc "Continues Integration helpers"
-task :ci do
+task :build do
   spec = "script/spec spec/"
   puts "\nRun specs: %s" % spec
   system spec
