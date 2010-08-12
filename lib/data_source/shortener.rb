@@ -1,6 +1,8 @@
 module DataSource
   class Shortener
     
+    # Who does ClickAgregation?
+    
     def clicks(id, params={})
       {
         :status => 'ok', :reqId => 0,
@@ -26,7 +28,7 @@ module DataSource
     end
     
     def date_field(date)
-      I18n.localize(date, :format => :short)
+      I18n.localize(date, :format => :day_long)
     end
     
   end # class
