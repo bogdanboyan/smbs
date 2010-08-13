@@ -5,26 +5,40 @@ module DataSource
     
     def clicks(id, params={})
       {
-        :status => 'ok', :reqId => 0,
-        :table =>
-          {
-            :cols => [ {:id => '1', :label => 'Дата', :type => 'string'}, {:id => '2', :label => 'Посещений', :type => 'number'} ],
-            :rows => fetch_data(id),
-          }
+        :cols => [ {:id => '1', :label => 'Дата', :type => 'string'}, {:id => '2', :label => 'Посещений', :type => 'number'} ],
+        :rows => fetch_clicks_data(id),
       }
     end
     
+    def regions(id, params={})
+      {
+        :cols => [ {:id => '1', :label => 'Город', :type => 'string'}, {:id => '2', :label => 'Посещений', :type => 'number'} ],
+        :rows => fetch_regions_data(id),
+      }
+    end
+    
+    
     private
     
-    def fetch_data(id)
-      rows, all_clicks = [], SummarizedClick.find_all_by_short_url_id(id)
+    def fetch_clicks_data(id)
+      rows, reports = [], SummarizedClick.find_all_by_short_url_id(id)
       
-      all_clicks.each do |report|
-        #[ {:c => [{:v => '2004'}, {:v => 400}]}, {:c => [{:v => '2005'}, {:v => 500}]} ]
+      reports.each do |report|
         rows << {:c => [ {:v => date_field(report.date)}, {:v => report.clicks} ]}
       end
       
       rows
+    end
+    
+    def fetch_regions_data(id)
+      rows, reports = {}, SummarizedClick.find_all_by_short_url_id(id)
+      
+      reports.each do |report|
+        city = report.city || "Другие города"
+        rows.has_key?(city) ? rows[city] += report.clicks : rows[city] = report.clicks
+      end
+      
+      rows.map {|city, clicks| {:c => [ {:v => city}, {:v => clicks} ]} }
     end
     
     def date_field(date)

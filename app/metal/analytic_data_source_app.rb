@@ -1,5 +1,6 @@
 # Allow the metal piece to run in isolation
 require(File.dirname(__FILE__) + "/../../config/environment") unless defined?(Rails)
+require 'rack/request'
 
 class AnalyticDataSourceApp
 
@@ -8,15 +9,22 @@ class AnalyticDataSourceApp
 
   def self.call(env)
     if env["PATH_INFO"] =~ PATH_INFO_ROUTE
-      
-      data, id, action = env["PATH_INFO"].scan(PATH_INFO_ROUTE).first
+      request = Rack::Request.new(env)
+      data, id, action = request.path_info.scan(PATH_INFO_ROUTE).first
       
       # very slowly!!!
-      data_table = DataSource.fetch(data, action, id)
+      response = prepare_response(request, DataSource.fetch(data, action, id))
       
-      [200, {"Content-Type" => "json"}, [data_table.to_json] ]
+      [200, {"Content-Type" => "json"}, [response.to_json] ]
     else
       [404, {"Content-Type" => "text/html"}, ["Not Found"]]
     end
   end
+
+
+  private
+  
+    def self.prepare_response(request, data)
+      { :status => 'ok', :reqId => request.params['tqx'].split(':').last,:table => data }
+    end
 end
