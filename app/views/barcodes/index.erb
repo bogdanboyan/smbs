@@ -1,3 +1,24 @@
+<script>
+  $(document).ready(function() {
+    $('.history_actions .remove').live('click', function() {
+      if(confirm("Вы действительно хотите удалить?")) {
+        container = $(this).parents('div.history_item:first');
+        resource_id = container.find('custom').text();
+        if(resource_id != null) {
+            path = '<%= barcode_path(-1) %>';
+            path = path.replace('-1', resource_id);
+
+            $.ajax({
+              type: 'delete',
+              url: path,
+              success: function(data) { container.hide(); }
+            });
+        }
+      }
+    });
+  });
+</script>
+
 <div class="grid_8 alpha">
   <h2>Создать QR код</h2>
 

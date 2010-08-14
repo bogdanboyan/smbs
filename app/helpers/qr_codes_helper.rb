@@ -7,7 +7,8 @@ module QrCodesHelper
       when TextCode then "%s" % qr.text
     end
     
-    desc.slice(0, 35 - 3) + '...'
+    desc.slice!(0, 35 - 3) + '...' if desc.length >= 35
+    desc
   end
   
   def qr_code_description(qr)
@@ -17,6 +18,7 @@ module QrCodesHelper
       when TextCode then "текст: <strong>%s</strong>" % qr.text.strip
     end
     
-    desc.slice(0, 120 - 3) + '...'
+    desc.slice!(0, 120 - 3) + '...' if desc.length >= 120
+    desc
   end
 end

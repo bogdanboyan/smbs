@@ -12,6 +12,15 @@ class BarcodesController < ApplicationController
     end
   end
   
+  def destroy
+    begin
+      BarCode.destroy(params[:id])
+      render :text => "OK", :status => 200
+    rescue
+      render :text => "Not Found", :status => 404
+    end
+  end
+  
   def create_link
     @link_code = LinkCode.new(params[:link_code])
     if @link_code.valid? and @link_code.save
