@@ -1,5 +1,5 @@
 include ActionView::Helpers::SanitizeHelper::ClassMethods, ActionView::Helpers::SanitizeHelper
-include CampaignsHelper, BarcodesHelper, ShortenersHelper
+include CampaignsHelper, QrCodesHelper, ShortenersHelper
 
 То /^когда я выбираю адрес "([^\"]*)" из списка$/ do |урл|
   shortener = ShortUrl.find_by_origin("http://#{урл}")

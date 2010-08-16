@@ -2,7 +2,7 @@ module CampaignsHelper
   
   def element_title(model)
     case(model)
-      when BarCode  then bar_code_title(model)
+      when BarCode  then qr_code_title(model)
       when ShortUrl then short_url_title(model)
     end
   end

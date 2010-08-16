@@ -1,4 +1,4 @@
-include BarcodesHelper
+include QrCodesHelper
 
 Допустим /^пользователь уже создал QR код(?:ы)?:$/ do |таблица|
   таблица.hashes.each do |row|
@@ -12,7 +12,7 @@ end
   таблица.hashes.each do |row|
     within('.history') do
       bar_code = BarCode.find_by_type(row['type'].camelize)
-      body.should include(bar_code_title(bar_code))
+      body.should include(qr_code_title(bar_code))
     end
   end
 end
@@ -22,6 +22,6 @@ end
   row = список.rows_hash
   within('.history') do
     bar_code = BarCode.find_by_type(row['type'].camelize)
-    body.should include(bar_code_title(bar_code))
+    body.should include(qr_code_title(bar_code))
   end
 end
