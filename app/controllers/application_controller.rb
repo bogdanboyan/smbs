@@ -16,4 +16,12 @@ class ApplicationController < ActionController::Base
     self.class.bot_request?(request)
   end
   
+  def render_status_200
+    render :text => "OK", :status => 200
+  end
+  
+  def render_status_404
+    render :text => "Not found", :status => 404
+  end
+  
 end

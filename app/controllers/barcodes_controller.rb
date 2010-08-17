@@ -15,10 +15,15 @@ class BarcodesController < ApplicationController
   def destroy
     begin
       BarCode.destroy(params[:id])
-      render :text => "OK", :status => 200
+      render_status_200
     rescue
-      render :text => "Not Found", :status => 404
+      render_status_404
     end
+  end
+  
+  def download
+    path = "public/images/%s" % BarbyBarcode.image_path({:id => params[:id], :style => 'preview'})
+    File.exists?(path) ? send_file(path, :type => 'image/png') : render_status_404
   end
   
   def create_link
