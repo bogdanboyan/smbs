@@ -45,8 +45,8 @@
   И список созданых мною QR кодов:
     | type      | origin   | text  | tel            |
     | link_code | drive.ru |       |                |
-    | sms_code  |          | текс  | +380978053300  |
-    | text_code  |         | текс  |                |
+    | sms_code  |          | текст | +380978053300  |
+    | text_code  |         | текст |                |
 
   @javascript
   Сценарий: Пользователь создает QR-Код с ссылкой на сайт
