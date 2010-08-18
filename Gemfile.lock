@@ -60,7 +60,9 @@ specs:
     version: 1.3.0
 - rspec-rails: 
     version: 1.3.2
-hash: 9bf6d1c7b12910712102df6cc22be8c2f7d7d464
+- unicorn: 
+    version: 1.1.2
+hash: 83ee5564cd6d1a5f6781147842bacdb577873cb6
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
@@ -74,6 +76,10 @@ dependencies:
     group: 
     - :cucumber
     - :test
+  unicorn: 
+    version: = 1.1.2
+    group: 
+    - :default
   mysql: 
     version: = 2.8.1
     group: 

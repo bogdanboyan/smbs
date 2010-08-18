@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+require File.dirname(__FILE__) + '/../config/boot'
+environment = ENV['RAILS_ENV'] || 'development'
+
+if ARGV[0]
+  puts "\n\n\n---------------------------- \033[1;37;41m CACHE is OFF \033[0m ----------------------------\n\n\n"
+else
+  puts "\n\n\n--------------------------- \033[1;37;42m CACHE is ON \033[0m ---------------------------"
+  puts " Try to use \033[1;31;40m./script/unicorn off\033[0m - to start server \033[1;31;40mWITHOUT\033[0m Chache"
+  puts "---------------------------------------------------------------------\n\n\n"
+  ENV['CACHE'] = 'CLASSES'
+end
+
+puts '=> Load Unicorn with settings:'
+system "cat config/unicorn.development.rb"
+
+puts "=> Start SMBS application"
+puts "=> Ctrl-C to shutdown server"
+
+system 'unicorn_rails --config-file config/unicorn.development.rb'
+
+trap(:INT) { exit }
+
+system "[ -f tmp/pids/unicorn.pid ] && kill -s QUIT $(cat tmp/pids/unicorn.pid)"
+puts "Exiting"
