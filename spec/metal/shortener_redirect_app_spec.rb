@@ -3,11 +3,12 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ShortenersRedirectApp do
   
   context 'routing context' do
-    
-    it 'should process only short link' do
-      ['/campaign/10', '/shorteners', '/statistic/20', '/barcodes'].each do |path|
-        response = ShortenersRedirectApp.call({'PATH_INFO' => path})
-        response[0].should == 404
+
+    %w[/campaigns /campaigns/10 /shorteners /statistics/20 /barcodes /ds].each do |path|
+      it "should not process #{path} path" do
+          path.should match(ShortenersRedirectApp::APPLICATION_ROUTE)
+          response = ShortenersRedirectApp.call({'PATH_INFO' => path})
+          response[0].should == 404
       end
     end
     

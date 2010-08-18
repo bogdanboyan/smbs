@@ -9,7 +9,7 @@ describe AnalyticDataSourceApp do
   ]
   
   UNKNOWN_DATA_SOURCES = [
-    'ds/shortener/98/unknown',
+    'ds/shortener/98/world',
     'ds/shortener/98',
     'campaigns/100',
   ]

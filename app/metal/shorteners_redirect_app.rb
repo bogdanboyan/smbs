@@ -3,11 +3,10 @@ require(File.dirname(__FILE__) + "/../../config/environment") unless defined?(Ra
 
 class ShortenersRedirectApp
 
-  APPLICATION_ROUTE = /^(campaign|shortener|statistic)/
+  APPLICATION_ROUTE = /^(\/)?(campaign|shortener|statistic|barcode|ds)/
 
   def self.call(env)
-    path_info = env['PATH_INFO'].delete('/')
-    if not (path_info =~ APPLICATION_ROUTE) and (@short_url = ShortUrl.find_by_short(path_info))
+    if not (env['PATH_INFO'] =~ APPLICATION_ROUTE) and (@short_url = ShortUrl.find_by_short(env['PATH_INFO'].delete('/')))
 
       click = build_clicks_params(env) and click = @short_url.clicks.create(click)
       update_location_for(click)
