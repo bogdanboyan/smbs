@@ -7,7 +7,7 @@ class BarcodesController < ApplicationController
   def show
     @bar_code = BarCode.find(params[:id])
     respond_to do |format|
-      format.html # show.erb
+      format.html  # show.erb
       format.json  { render_response(render_to_string(:partial=> 'bar_code', :object=> @bar_code)) }
     end
   end

@@ -14,7 +14,7 @@
 
 <%= render :partial=>'shared/notice', :object=> 'bar_code_notice' %>
 
-<% form_for :link_code, @link_code = LinkCode.new, :url=> create_link_barcodes_path, :html=>{:id=>'link_form'} do |f| %>
+<% form_for :link_code, :url=> '#', :html=>{:id=>'link_form'} do |f| %>
 	<div>адрес сайта:</div>
 	<div><%= f.text_field :origin %></div>
 	<div><%= submit_tag 'создать код', :class=>'submit_button' %></div>
@@ -35,7 +35,7 @@
 	});
 </script>
 
-<% form_for :sms_code, @sms_code = SmsCode.new, :url=> create_sms_barcodes_path, :html=> {:id=> 'sms_form', :style=> 'display: none;'} do |f| %>
+<% form_for :sms_code, :url=> '#', :html=> {:id=> 'sms_form', :style=> 'display: none;'} do |f| %>
   <div>укажите номер телефона:</div>
   <div><%= f.text_field :tel %></div>
   <div>укажите смс текс:</div>
@@ -58,7 +58,7 @@
 	});
 </script>
 
-<% form_for :text_code, @text_code = TextCode.new, :url=> create_text_barcodes_path, :html=>{:id=>'text_form', :style=>'display:none;'} do |f| %>
+<% form_for :text_code, :url=> '#', :html=>{:id=>'text_form', :style=>'display:none;'} do |f| %>
   <div>простой текст:</div>
   <div><%= f.text_area :text %></div>
   <div><%= submit_tag 'создать код', :class=>'submit_button' %></div>
