@@ -15,3 +15,7 @@ group :cucumber, :test do
   gem 'factory_girl',     '1.2.4'
 end
 
+group :development do
+  gem 'nokogiri', :require => false
+end
+

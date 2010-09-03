@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100628161310) do
+ActiveRecord::Schema.define(:version => 20100903092532) do
 
   create_table "bar_codes", :force => true do |t|
     t.string   "type",                            :null => false
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(:version => 20100628161310) do
   add_index "countries", ["code"], :name => "index_countries_on_code"
   add_index "countries", ["name", "code"], :name => "index_countries_on_name_and_code"
   add_index "countries", ["name"], :name => "index_countries_on_name"
+
+  create_table "mobiles", :force => true do |t|
+    t.string   "manufacturer"
+    t.string   "model"
+    t.string   "resolution"
+    t.integer  "width",        :default => 0
+    t.integer  "height",       :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "regions", :force => true do |t|
     t.string   "name",       :limit => 36
