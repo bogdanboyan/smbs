@@ -6,6 +6,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
+Mobile.delete_all
+
 Mobile.create!({:manufacturer=>'Acer', :model=>'Acer E101', :resolution=>'240 x 400'})
 Mobile.create!({:manufacturer=>'Acer', :model=>'Acer F900', :resolution=>'480 x 800'})
 Mobile.create!({:manufacturer=>'Acer', :model=>'Acer S200', :resolution=>'480 x 800'})
@@ -3982,3 +3984,8 @@ Mobile.create!({:manufacturer=>'ZTE', :model=>'Yoigo F233', :resolution=>'176 x 
 Mobile.create!({:manufacturer=>'ZTE', :model=>'ZTE X990', :resolution=>'320 x 240'})
 Mobile.create!({:manufacturer=>'ZTE', :model=>'ZTE-F233', :resolution=>'176 x 220'})
 Mobile.create!({:manufacturer=>'ZTE', :model=>'ZTE-G X760', :resolution=>'240 x 320'})
+
+Mobile.all.each do |m| 
+  width, height = m.resolution.scan(/(\d+) x (\d+)/)[0]
+  m.update_attributes({:width => width, :height => height})
+end
