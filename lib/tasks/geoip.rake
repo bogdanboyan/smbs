@@ -12,4 +12,12 @@ namespace :geoip do
   
   task :updatedisplay => :environment
   
+  desc "update geoip db"
+  task :update => :environment do
+    system('cd tmp && wget -N http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz')
+    system('! test -d db/max_mind && mkdir db/max_mind')
+    system('gzip -dfvN tmp/GeoLiteCity.dat.gz')
+    system('mv -f tmp/GeoLiteCity.dat db/max_mind/GeoLiteCity.dat')
+  end
+  
 end

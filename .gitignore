@@ -4,3 +4,4 @@ tmp/*
 public/images/cucumber/*
 public/images/development/*
 .bundle/*
+db/max_mind/GeoLiteCity.dat
