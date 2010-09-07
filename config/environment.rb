@@ -23,3 +23,8 @@ Rails::Initializer.run do |config|
   config.time_zone = 'Kyev'
   config.i18n.default_locale = :ru
 end
+
+ExceptionNotification::Notifier.exception_recipients = %w(smbs.app@gmail.com)
+ExceptionNotification::Notifier.sender_address = %("Application Error" <smbs.app@gmail.com>)
+ExceptionNotification::Notifier.email_prefix = "[SMBS <%= Rails.env %>] "
+

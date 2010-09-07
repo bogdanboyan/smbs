@@ -4,6 +4,7 @@ gem 'rails',   '2.3.5'
 gem 'mysql',   '2.8.1'
 gem 'unicorn', '1.1.2'
 gem 'rmagick', '2.13.1'
+gem 'exception_notification', '2.3.3.0'
 
 group :cucumber, :test do
   gem 'rspec',            '1.3.0'

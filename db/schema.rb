@@ -12,11 +12,11 @@
 ActiveRecord::Schema.define(:version => 20100903092532) do
 
   create_table "bar_codes", :force => true do |t|
-    t.string   "type",                              :null => false
+    t.string   "type",                            :null => false
     t.string   "origin"
     t.string   "tel"
     t.string   "text"
-    t.text     "source",      :limit => 2147483647
+    t.text     "source",      :limit => 16777215
     t.integer  "version"
     t.string   "level"
     t.datetime "created_at"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20100903092532) do
     t.boolean  "located",                      :default => false
   end
 
+  add_index "clicks", ["short_url_id", "created_at"], :name => "index_clicks_on_short_url_id_and_created_at"
   add_index "clicks", ["short_url_id"], :name => "index_clicks_on_short_url_id"
   add_index "clicks", ["user_agent_id"], :name => "index_clicks_on_user_agent_id"
 
