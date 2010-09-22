@@ -3,5 +3,7 @@ log/*
 tmp/*
 public/images/cucumber/*
 public/images/development/*
+public/javascripts/all.js
+public/stylesheets/all.css
 .bundle/*
 db/max_mind/GeoLiteCity.dat
