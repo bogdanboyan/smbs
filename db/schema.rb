@@ -9,14 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100903092532) do
+ActiveRecord::Schema.define(:version => 20100923145735) do
 
   create_table "bar_codes", :force => true do |t|
-    t.string   "type",                              :null => false
+    t.string   "type",                            :null => false
     t.string   "origin"
     t.string   "tel"
     t.string   "text"
-    t.text     "source",      :limit => 2147483647
+    t.text     "source",      :limit => 16777215
     t.integer  "version"
     t.string   "level"
     t.datetime "created_at"
