@@ -6,6 +6,7 @@ gem 'unicorn',                '1.1.2'
 gem 'rmagick',                '2.13.1'
 gem 'paperclip',              '2.3.3'
 gem 'exception_notification', '2.3.3.0'
+gem 'RedCloth',               '4.2.3'
 
 group :cucumber, :test do
   gem 'rspec',            '1.3.0'
