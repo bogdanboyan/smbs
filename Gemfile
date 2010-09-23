@@ -1,9 +1,10 @@
 source :gemcutter
 
-gem 'rails',   '2.3.5'
-gem 'mysql',   '2.7'
-gem 'unicorn', '1.1.2'
-gem 'rmagick', '2.13.1'
+gem 'rails',                  '2.3.5'
+gem 'mysql',                  '2.7'
+gem 'unicorn',                '1.1.2'
+gem 'rmagick',                '2.13.1'
+gem 'paperclip',              '2.3.3'
 gem 'exception_notification', '2.3.3.0'
 
 group :cucumber, :test do
