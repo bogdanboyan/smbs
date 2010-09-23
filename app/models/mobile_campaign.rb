@@ -1,14 +1,13 @@
-class MobileCampaign < ActiveRecord::Base
-  def self.up
-    create_table :mobile_campaigns do |t|
-      t.string :title
-      t.text   :style_model
-      t.text   :document_model
-      t.timestamps
-    end
-  end
+# == Schema Info
+#
+# Table name: mobile_campaigns
+#
+#  id             :integer(4)      not null, primary key
+#  document_model :text
+#  style_model    :text
+#  title          :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
 
-  def self.down
-    drop_table :mobile_campaigns
-  end
+class MobileCampaign < ActiveRecord::Base
 end
