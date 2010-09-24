@@ -1,0 +1,51 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'vendor/fileuploader' %>
+
+  <%= javascript_include_tag 'vendor/fileuploader' -%>
+
+  <%= javascript_include_tag 
+    'mobcn/builder/partial_behaviour',
+    'mobcn/builder/images_behaviour',
+    'mobcn/builder/texts_behaviour',
+    'mobcn/builder/headers_behaviour' -%>
+
+  <%= javascript_include_tag 'mobcn/builder' -%>
+  <%= javascript_include_tag 'mobcn/initializer' -%>
+<%end%>
+
+
+<div id="action">
+  <input id="title" name="title" value="<%= render_document_title(@mbc) %>" />
+  <ul>
+    <li><a id="save" href="#">Сохранить</a>(<%= link_to 'Close', mobile_campaigns_path %>)</li>
+    <li><a id="preview_or_edit" href="#">Просмотр</a></li>
+  </ul>
+  <div class="clear">&nbsp;</div>
+</div>
+
+
+<div class="grid_8 alpha">
+  <div id="document"></div>
+  <div id="preview" style="display:none;"></div>
+  
+  <div id="document_partials">
+    <ul>
+      <li id="header">Заголовок</li>
+      <li id="text">Текстовый блок</li>
+      <li id="images">Изображения</li>
+    </ul>
+  </div>
+</div>
+
+<div class="grid_4 omega">
+  <div id="gallery"><%= render :partial => 'assets' %></div>
+  <div id="themes" style="display:none;">
+    <div id="resolutions">
+      <input type="radio" id="radio1" name="radio"/><label for="radio1">128x160</label>
+      <input type="radio" id="radio2" name="radio"/><label for="radio2">176x220</label>
+      <input type="radio" id="radio3" name="radio"/><label for="radio3">240x320</label>
+      <input type="radio" id="radio4" name="radio"/><label for="radio4">320x480</label>
+      <input type="radio" id="radio5" name="radio"/><label for="radio5">480x800</label>
+    </div>
+  </div>
+</div>

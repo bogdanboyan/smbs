@@ -1,0 +1,24 @@
+<h2>Галлерея</h2>
+
+<div class="gallery">
+  <%= render :partial => 'image', :collection => @images %>
+</div>
+
+<div id="file-uploader">
+  <% form_for :image, :url => upload_image_mobile_assets_path, :html => { :id => 'image_form', :multipart => true } do |form| %>
+    <%= form.file_field :asset, :size => 15 %>
+    <%= submit_tag "upload" %>
+  <% end %>
+</div>
+
+<script>
+  var uploader = new qq.FileUploader({
+      element: document.getElementById('file-uploader'),
+      action: '<%= upload_image_mobile_assets_path %>',
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+      sizeLimit: 524288 /*512kb*/,
+      onComplete: function(id, file_name, data) {
+        $('.gallery').prepend(data.html).trigger('change');
+      }
+  });
+</script>
