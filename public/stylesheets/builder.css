@@ -1,0 +1,165 @@
+/* builder */
+
+a {
+  color: #02627A;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#action input {
+	width: 68%;
+	float: left;
+	font-size: 16px;
+}
+
+#action ul li {
+	list-style: none;
+	font-size: 16px;
+  float: left;
+	padding: 6px;
+	margin-left: 10px;
+}
+
+.document_partial {
+  margin: 10px 0;
+  border: 1px solid #999;
+  padding: 10px;
+  background-color: #ccc;
+  overflow: hidden;
+}
+
+.toolbar {
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+.toolbar .move,
+.toolbar .remove {
+	display: inline-block;
+	width: 55px;
+	height: 55px;  
+}
+
+.toolbar .move {
+	cursor: move;
+	background: url('/images/move_icon.png') no-repeat 0 0;
+}
+
+.toolbar .remove {
+	cursor: pointer;
+	background: url('/images/delete_icon.png') no-repeat 0 0;
+}
+
+.text_container {
+	width: 100%;
+	height: 125px;
+}
+
+.text_container textarea {
+	height: 125px;
+	resize: none;
+}
+
+input, textarea {
+  border: 1px solid #666;
+	font-size: 16px;
+	width: 100%;
+}
+
+.header_container {
+	width: 100%;
+}
+
+.header_container .header {
+	width: 100%;
+}
+
+.header input {
+  font-size: 30px;
+  padding: 5px 0;
+}
+
+.image_container {
+	width: 100%;
+	min-height: 100px;
+	text-align: center;
+}
+
+.image_container .image {
+	width: 100px;
+	min-height: 100px;
+	padding: 5px; 
+	float: left;
+}
+
+.droppable {
+  background-color: #fff;
+	border: 1px dashed #666;
+	color: #666;
+	font-size: 20px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.droppable-hover {
+	background-color: red;
+}
+
+.draggable, .sortable {
+	cursor: move;
+}
+
+.ui-icon-trash {
+	position: absolute;
+	bottom: 15px;
+	left: 5px;
+}
+
+#document_partials ul li {
+	list-style: none;
+	font-size: 16px;
+  float: left;
+	background-color: #555;
+	cursor: pointer;
+	padding: 5px 10px;
+	margin: 15px 10px 0 0;
+	margin-right: 10px;
+	margin-top: 15px;
+	border: 1px solid #999;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-box-shadow: 5px 5px 8px #888;
+	-webkit-box-shadow: 5px 5px 8px #888;
+	color: #fff;
+}
+
+.ui-slider {
+  clear: left;
+}
+
+#gallery {
+  border: 1px solid #999;
+  padding: 10px;
+  margin-left: 15px;
+}
+
+/* preview */
+#preview {
+
+}
+
+#preview iframe {
+	width: 650px;
+	height: 480px;
+}
+/* styling */
+.styling {
+	display: none;
+}
+
+.font_setting, .plus, .minus, .color_setting, span { float: left; margin: 5px;}
+.font_setting { background-color: white; border: 1px solid black; }
+.plus,.minus,.color_setting {cursor: pointer;}
+.color_setting { width: 16px; height: 16px; }
