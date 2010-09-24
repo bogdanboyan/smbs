@@ -1,8 +1,7 @@
 test/*
 log/*
 tmp/*
-public/images/cucumber/*
-public/images/development/*
+public/assets/
 public/javascripts/all.js
 public/stylesheets/all.css
 .bundle/*

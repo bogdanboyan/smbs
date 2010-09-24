@@ -16,6 +16,16 @@
 
 require 'spec_helper'
 
+describe BarCode do
+  it 'should save qr code image bundle' do
+    qr = TextCode.create!(:text => 'hello world')
+    file_path = BarbyBarcode.image_path(:id => qr.id)
+    
+    file_path.should == "barcodes/#{qr.id}/#{qr.id}.thumbnail.png"
+    %w(preview thumbnail).each { |style| File.exist?("public/assets/barcodes/#{qr.id}/#{qr.id}." + style + ".png").should be_true }
+  end
+end
+
 describe SmsCode do
   
   it 'should be valid' do
