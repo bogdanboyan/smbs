@@ -44,7 +44,7 @@ var ImagesBehaviour = PartialBehaviour.extend({
       function() {
         width      = $(this).css('width');
         src        = $(this).find('img').attr('src');
-        parsed_src = src.match(/\/asset\/image\/(\d+)\/(\w+)/);
+        parsed_src = src.match(/\/assets\/mobcn\/(\d+)\/\d+\.(\w+)/);
         assets.push({width:width, asset_id:parsed_src[1], style:parsed_src[2], path:src});
       });
     

@@ -35,8 +35,8 @@ qq.FileUploader = function(o){
         // UI customizations
 
         template: '<div class="qq-uploader">' + 
-                '<div class="qq-upload-drop-area"><span>Drop files here to upload</span></div>' +
-                '<div class="qq-upload-button">Upload a file</div>' +
+                '<div class="qq-upload-drop-area"><span>Переместите сюда изображение</span></div>' +
+                '<div class="qq-upload-button">Загрузить изображение</div>' +
                 '<ul class="qq-upload-list"></ul>' + 
              '</div>',
 
@@ -45,8 +45,8 @@ qq.FileUploader = function(o){
                 '<span class="qq-upload-file"></span>' +
                 '<span class="qq-upload-spinner"></span>' +
                 '<span class="qq-upload-size"></span>' +
-                '<a class="qq-upload-cancel" href="#">Cancel</a>' +
-                '<span class="qq-upload-failed-text">Failed</span>' +
+                '<a class="qq-upload-cancel" href="#">Отменить</a>' +
+                '<span class="qq-upload-failed-text">Сохранение отменено сервером</span>' +
             '</li>',
 
         classes: {
@@ -68,9 +68,9 @@ qq.FileUploader = function(o){
         },
         messages: {
             //serverError: "Some files were not uploaded, please contact support and/or try again.",
-            typeError: "{file} has invalid extension. Only {extensions} are allowed.",
-            sizeError: "{file} is too large, maximum file size is {sizeLimit}.",
-            emptyError: "{file} is empty, please select files again without it."            
+            typeError: "{file} не разрешен к загрузке. Только файлы с расширением {extensions}.",
+            sizeError: "{file} превышает разрешенный размер {sizeLimit}.",
+            emptyError: "{file} пустой. Возможно вы ошиблись."
         },
         showMessage: function(message){
             alert(message);

@@ -14,15 +14,15 @@ module Mobile::CampaignsHelper
   def render_partials_to_js_object
     <<-JS_OBJECT 
     {
-        text_container   : '#{render_partial_for 'text_container'}',
-        header_container : '#{render_partial_for 'header_container'}',
-        image_container  : '#{render_partial_for 'image_container'}'
+        text_container   : '#{render_partial_for('text_container')}',
+        header_container : '#{render_partial_for('header_container')}',
+        image_container  : '#{render_partial_for('image_container')}'
     } 
     JS_OBJECT
   end
   
   def render_document_title(page)
-    page ? page.title : "Untitled #{Time.now.to_date.to_s(:simple)}"
+    page ? page.title : "Без названия #{Time.now.to_date.to_s(:simple)}"
   end
   
   def t9e(text, group = :text)
@@ -33,12 +33,12 @@ module Mobile::CampaignsHelper
   end
   
   def compress_css(source)
-    source.gsub!(/\s+/, " ")           # collapse space
-    source.gsub!(/\/\*(.*?)\*\//, "")  # remove comments - caution, might want to remove this if using css hacks
-    source.gsub!(/\} /, "}\n")         # add line breaks
-    source.gsub!(/\n$/, "")            # remove last break
-    source.gsub!(/ \{ /, " {")         # trim inside brackets
-    source.gsub!(/; \}/, "}")          # trim inside brackets
+    source.gsub!(/\s+/, " ")
+    source.gsub!(/\/\*(.*?)\*\//, "")
+    source.gsub!(/\} /, "}\n")
+    source.gsub!(/\n$/, "")
+    source.gsub!(/ \{ /, " {")
+    source.gsub!(/; \}/, "}")
     source
   end
 
@@ -46,7 +46,7 @@ module Mobile::CampaignsHelper
   private
   
     def render_partial_for container
-      render(:partial=> 'document_partials', :object=> container).delete("\n")
+      render(:partial=> 'partials', :object=> container).delete("\n")
     end
   
 end

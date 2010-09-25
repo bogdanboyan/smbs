@@ -11,7 +11,7 @@
 
 class MobileCampaign < ActiveRecord::Base
 
-  has_many :image_assets
+  has_many :image_assets, :dependent => :destroy
 
   def document_model_as(format = :json)
     case format

@@ -1,7 +1,9 @@
 <% if partials == 'header_container' %>
   <div class="document_partial"style="display: none;">
-    <div class="toolbar"><span class="move">&nbsp;</span> <span class="remove">&nbsp;</span>
-    <span class="text_control">| header_controll toobar</span></div>
+    <div class="toolbar">
+      <span class="move">переместить</span> <span class="remove">удалить</span>
+      <span class="text_control">панель инструментов</span>
+    </div>
     <div class="header_container">
       <div class="header"><input name="header"/></div>
     </div>
@@ -12,8 +14,10 @@
 
 <% if partials == 'text_container' %>
   <div class="document_partial"style="display: none;">
-    <div class="toolbar"><span class="move">&nbsp;</span> <span class="remove">&nbsp;</span>
-    <span class="text_control">| text_controll toobar</span></div>
+    <div class="toolbar">
+      <span class="move">переместить</span> <span class="remove">удалить</span>
+      <span class="text_control">панель инструментов</span>
+    </div>
     <div class="text_container"><textarea name="text"></textarea></div>
     <div class="clear">&nbsp;</div>
   </div>
@@ -22,9 +26,11 @@
 
 <% if partials == 'image_container' %>
   <div class="document_partial"style="display: none;">
-    <div class="toolbar"><span class="move">&nbsp;</span> <span class="remove">&nbsp;</span>
-    <div class="image_slider"></div></div>
-    <div class="image_container droppable">Drop images here</div>
+    <div class="toolbar">
+      <span class="move">переместить</span> <span class="remove">удалить</span>
+      <div class="image_slider"></div>
+    </div>
+    <div class="image_container droppable">Переместите изображение из галлереи</div>
     <div class="clear">&nbsp;</div>
   </div>
 <%end%>

@@ -2,7 +2,7 @@
 
 <script>
   var builder = new Builder(<%= render_partials_to_js_object %>);
-  var page_id = <%= @page.id %>;
+  var page_id = <%= @mbc.id %>;
   $(document).ready(function() {
     switch_save_to_update();
     builder.inject_serialized_document(<%= @mbc.document_model %>);

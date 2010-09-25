@@ -6,7 +6,7 @@ class Mobile::CampaignsController < ApplicationController
   
   def show
     @mbc = MobileCampaign.find(params[:id])
-    @document_model = @mbc.document_model_as(:hash).map! {|entity| entity.symbolize_keys }
+    @document_model = @mbc.document_model_as(:array).map! {|entity| entity.symbolize_keys }
     render :action => 'show', :layout => false
   end
   
@@ -31,7 +31,7 @@ class Mobile::CampaignsController < ApplicationController
   
   def destroy
     MobileCampaign.destroy(params[:id])
-    redirect_to :back
+    redirect_to mobile_campaigns_path
   end
   
   

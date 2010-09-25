@@ -4,7 +4,7 @@ describe ShortenersRedirectApp do
   
   context 'routing context' do
 
-    %w[/campaigns /campaigns/10 /shorteners /statistics/20 /barcodes /ds].each do |path|
+    %w[/campaigns /campaigns/10 /shorteners /statistics/20 /barcodes /ds /mobile].each do |path|
       it "should not process #{path} path" do
           path.should match(ShortenersRedirectApp::APPLICATION_ROUTE)
           response = ShortenersRedirectApp.call({'PATH_INFO' => path})
