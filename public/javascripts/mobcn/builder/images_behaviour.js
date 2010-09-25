@@ -19,6 +19,7 @@ var ImagesBehaviour = PartialBehaviour.extend({
       hoverClass: "droppable-hover",
       accept: ":not(.ui-sortable-helper)",
       drop: function(event, ui) {
+        $(this).find('p').remove();
         asset_src = ui.draggable.attr('src').replace('thumbnail', 'view');
         $(image_html_proxy(current_width+'px', asset_src)).appendTo(this);
       }
