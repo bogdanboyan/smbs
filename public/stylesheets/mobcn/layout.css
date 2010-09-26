@@ -99,7 +99,7 @@ input, textarea {
 }
 
 .droppable-hover {
-	background-color: red;
+	background-color: #50799A;
 }
 
 .draggable, .sortable {
@@ -153,12 +153,3 @@ input, textarea {
 	width: 650px;
 	height: 480px;
 }
-/* styling */
-.styling {
-	display: none;
-}
-
-.font_setting, .plus, .minus, .color_setting, span { float: left; margin: 5px;}
-.font_setting { background-color: white; border: 1px solid black; }
-.plus,.minus,.color_setting {cursor: pointer;}
-.color_setting { width: 16px; height: 16px; }
