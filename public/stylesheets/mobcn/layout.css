@@ -8,6 +8,10 @@ a:hover {
   text-decoration: none;
 }
 
+#action {
+  height: 50px;
+}
+
 #action input {
 	width: 54%;
 	float: left;
@@ -20,6 +24,10 @@ a:hover {
   float: left;
 	padding: 6px;
 	margin-left: 10px;
+}
+
+#action #notice {
+  text-align: center;
 }
 
 .document_partial {
@@ -59,8 +67,9 @@ a:hover {
 }
 
 input, textarea {
-	font-size: 16px;
-	width: 100%;
+  color: black;
+  font-size: 16px;
+  width: 100%;
 }
 
 .header_container {
@@ -146,7 +155,11 @@ input, textarea {
 
 /* preview */
 
+#resolutions {
+  cursor: pointer;
+}
+
 #preview iframe {
-  width: 650px;
-  height: 480px;
+  width: 128px;
+  height: 160px;
 }

@@ -6,6 +6,7 @@ $(document).ready(function() {
   
   $('#preview').click(function() {
     if(page_id) window.location='/mobile/campaigns/'+page_id+'/preview';
+    return false;
   }),
   
   $('#save').click(function() {
@@ -17,8 +18,11 @@ $(document).ready(function() {
       success: function(data) {
         page_id = data.mbc_id;
         switch_save_to_update();
-      }
+        show_notice('Страница была успешно ' + (page_id ? 'обновлена' : 'сохранена'));
+      },
+      error: function() { show_notice('Сохранение не может быть выполнено'); }
     });
+    return false;
   });
   
 }); // end ready()

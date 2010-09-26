@@ -22,7 +22,8 @@
       <li><a id="save" href="#">Сохранить</a> (<%= link_to 'Закрыть', mobile_campaigns_path %>)</li>
       <li><a id="preview" href="#">Просмотр</a></li>
     </ul>
-    <div class="clear">&nbsp;</div>
+    <div class="clear">&nbsp;</div> 
+    <%= render :partial=>'shared/notice' %>
   </div>
   
   <div id="document"></div>

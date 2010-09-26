@@ -1,3 +1,11 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'mobcn/asset_uploader' -%>
+<%end%>
+
+<script>
+  SMBS.MobileCampaign.AssetUploader.init('<%= upload_image_mobile_assets_path %>');
+</script>
+
 <h2>Галлерея</h2>
 
 <div class="assets">
@@ -10,20 +18,3 @@
     <%= submit_tag "upload" %>
   <% end %>
 </div>
-
-<script>
-  var uploader = new qq.FileUploader({
-      element: document.getElementById('file-uploader'),
-      action: '<%= upload_image_mobile_assets_path %>',
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-      sizeLimit: 524288 /*512kb*/,
-      onComplete: function(id, file_name, data) {
-        $('.assets').prepend(data.html).trigger('change');
-        // re-index draggable elements
-        $('.draggable').draggable('destroy');
-        $('.draggable').draggable({appendTo: 'body', helper: 'clone'});
-        // clear status bar
-        $('.qq-upload-list').empty();
-      }
-  });
-</script>
