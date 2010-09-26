@@ -27,7 +27,7 @@ $(document).ready(function() {
       url:      page_id ? '/mobile/campaigns/' + page_id : '/mobile/campaigns',
       data:     'mbc[title]='+$('#title').val()+'&mbc[document_model]='+builder.serialize_document(),
       success: function(data) {
-        page_id = data.page_id;
+        page_id = data.mbc_id;
         switch_save_to_update();
       }
     });

@@ -8,6 +8,7 @@ var ImagesBehaviour = PartialBehaviour.extend({
     current_width = 100;
     
     if(data) {
+      $(this.image_container).find('p').hide();
       for(i in data.value) {
         current_width = data.value[i].width.replace('px', '')
         $(this._image_html(data.value[i].width, data.value[i].path)).appendTo(this.image_container);
@@ -19,7 +20,7 @@ var ImagesBehaviour = PartialBehaviour.extend({
       hoverClass: "droppable-hover",
       accept: ":not(.ui-sortable-helper)",
       drop: function(event, ui) {
-        $(this).find('p').remove();
+        $(this).find('p').hide();
         asset_src = ui.draggable.attr('src').replace('thumbnail', 'view');
         $(image_html_proxy(current_width+'px', asset_src)).appendTo(this);
       }
