@@ -1,1 +1,3 @@
 var SMBS = {}
+
+SMBS.MobileCampaign = {}

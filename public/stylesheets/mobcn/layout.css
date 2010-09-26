@@ -145,11 +145,8 @@ input, textarea {
 }
 
 /* preview */
-#preview {
-
-}
 
 #preview iframe {
-	width: 650px;
-	height: 480px;
+  width: 650px;
+  height: 480px;
 }

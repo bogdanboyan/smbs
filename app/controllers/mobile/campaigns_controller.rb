@@ -10,6 +10,10 @@ class Mobile::CampaignsController < ApplicationController
     render :action => 'show', :layout => false
   end
   
+  def preview
+    @mbc = MobileCampaign.find(params[:id])
+  end
+  
   def edit
     @mbc = MobileCampaign.find(params[:id])
     @images = ImageAsset.all
@@ -33,6 +37,5 @@ class Mobile::CampaignsController < ApplicationController
     MobileCampaign.destroy(params[:id])
     redirect_to mobile_campaigns_path
   end
-  
   
 end

@@ -27,9 +27,8 @@ ActionController::Routing::Routes.draw do |map|
 
     :member => { :download => :get }
 
-
   map.namespace :mobile do |mobile|
-    mobile.resources :campaigns, :collection => { :draggable => :get }
+    mobile.resources :campaigns, :member => { :preview => :get }
     mobile.resources :assets, :collection => { :upload_image => :post }
   end
 
