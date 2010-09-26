@@ -136,6 +136,14 @@ input, textarea {
   margin-left: 15px;
 }
 
+.assets {
+}
+
+.assets .container {
+  float: left;
+  margin-right: 6px;
+}
+
 /* preview */
 #preview {
 

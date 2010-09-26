@@ -1,9 +1,9 @@
 <h2>Галлерея</h2>
 
-<div class="gallery">
+<div class="assets">
   <%= render :partial => 'image', :collection => @images %>
 </div>
-
+<div class="clear">&nbsp;</div>
 <div id="file-uploader">
   <% form_for :image, :url => upload_image_mobile_assets_path, :html => { :id => 'image_form', :multipart => true } do |form| %>
     <%= form.file_field :asset, :size => 15 %>
@@ -18,7 +18,12 @@
       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
       sizeLimit: 524288 /*512kb*/,
       onComplete: function(id, file_name, data) {
-        $('.gallery').prepend(data.html).trigger('change');
+        $('.assets').prepend(data.html).trigger('change');
+        // re-index draggable elements
+        $('.draggable').draggable('destroy');
+        $('.draggable').draggable({appendTo: 'body', helper: 'clone'});
+        // clear status bar
+        $('.qq-upload-list').empty();
       }
   });
 </script>

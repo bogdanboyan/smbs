@@ -34,11 +34,12 @@ qq.FileUploader = function(o){
         //
         // UI customizations
 
-        template: '<div class="qq-uploader">' + 
+        template: '<div class="qq-uploader">' +
+                '<ul class="qq-upload-list"></ul>' +
                 '<div class="qq-upload-drop-area"><span>Переместите сюда изображение</span></div>' +
                 '<div class="qq-upload-button">Загрузить изображение</div>' +
                 '<ul class="qq-upload-list"></ul>' + 
-             '</div>',
+                '</div>',
 
         // template for one item in file list
         fileTemplate: '<li>' +

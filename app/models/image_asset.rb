@@ -14,7 +14,7 @@
 class ImageAsset < AssetFile
 
   has_attached_file :asset,
-      :styles => { :preview => "850x560>", :view => "200x200#", :thumbnail => "100x100#" },
+      :styles => { :preview => "850x560>", :view => "200x200#", :thumbnail => "60x60#" },
       :url  => "/assets/mobcn/:id/:basename.:style.:extension",
       :path => ":rails_root/public/assets/mobcn/:id/:basename.:style.:extension"
 
