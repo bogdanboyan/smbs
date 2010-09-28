@@ -1,14 +1,11 @@
 // initialize document builder
 $(document).ready(function() {
-  
-  // image draggable property
-  $('.draggable').draggable({appendTo: 'body', helper: 'clone'});
-  
+
   $('#preview').click(function() {
     if(page_id) window.location='/mobile/campaigns/'+page_id+'/preview';
     return false;
   }),
-  
+
   $('#save').click(function() {
     $.ajax({
       type:     page_id ? 'put' : 'post',
@@ -24,6 +21,9 @@ $(document).ready(function() {
     });
     return false;
   });
+
+  // initialize behaviours
+  ImagesBehaviour.Initializer.init();
   
 }); // end ready()
 

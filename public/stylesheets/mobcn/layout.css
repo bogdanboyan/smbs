@@ -99,12 +99,29 @@ input, textarea {
   text-align: center;
 }
 
+.image > .controls > .move,  .image > .controls > .remove {
+  position: absolute;
+  font-size: 9.5px;
+  background-color: #CCCCCC;
+}
+
+.image > .controls > .move {
+  cursor: move;
+  right: 5px;
+}
+
+.image > .controls > .remove {
+  cursor: pointer;
+  bottom: 15px;
+  right: 5px;
+}
+
 .droppable {
   background-color: #fff;
-	border: 1px dashed #666;
-	color: #666;
-	font-size: 20px;
-	overflow: hidden;
+  border: 1px dashed #666;
+  color: #666;
+  font-size: 20px;
+  overflow: hidden;
 }
 
 .droppable-hover {

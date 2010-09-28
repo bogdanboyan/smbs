@@ -1,5 +1,10 @@
 var ImagesBehaviour = PartialBehaviour.extend({
   init : function(type){ this._super(type); },
+  
+  image_template: "<div class='sortable image' style='width:#{width}; position: relative;'>" +
+    "<div class='controls'><div class='remove'>удалить</div><div class='move'>переместить</div></div>" +
+    "<img width='100%' src='#{src}'/>" +
+    "</div>",
 
   /* public */
   apply : function(/*JQuery*/ element, /*Object*/ data) { this._super(element);
@@ -7,27 +12,31 @@ var ImagesBehaviour = PartialBehaviour.extend({
     
     current_width = 100;
     
+    // load from document_model
     if(data) {
-      $(this.image_container).find('p').hide();
+      $(this.image_container).find('.drag_here').hide();
       for(i in data.value) {
         current_width = data.value[i].width.replace('px', '')
         $(this._image_html(data.value[i].width, data.value[i].path)).appendTo(this.image_container);
       }
     }
     
+    // droppable
     image_html_proxy = $.proxy(this._image_html, this);
     this.image_container.droppable({
       hoverClass: "droppable-hover",
       accept: ":not(.ui-sortable-helper)",
       drop: function(event, ui) {
-        $(this).find('p').hide();
+        $(this).find('.drag_here').hide();
         asset_src = ui.draggable.attr('src').replace('thumbnail', 'view');
         $(image_html_proxy(current_width+'px', asset_src)).appendTo(this);
       }
     });
     
-    this.image_container.sortable();
+    // sortable
+    this.image_container.sortable( { handle: '.move' } );
     
+    // slider
     element.find('.image_slider').slider({
       range: "min", value: current_width - 100, min: 1, max: 96,
       slide: function(event, ui) {
@@ -57,6 +66,23 @@ var ImagesBehaviour = PartialBehaviour.extend({
   
   /*private*/
       _image_html : function(width, src) {
-        return "<div class='sortable image' style='width:" +width+"; position: relative;'><div class='ui-icon ui-icon-trash'/><img width='100%' src='" + src + "'/></div>"
+        return this.image_template.replace("#{width}", width).replace("#{src}", src);
       }
 });
+
+
+ImagesBehaviour.Initializer = {
+  init : function() {
+    // image draggable property
+    $('.draggable').draggable({appendTo: 'body', helper: 'clone'});
+
+    // remove image
+    $('.image_container').find('.remove').live('click', function() {
+      if(confirm('Вы уверены что хотите удалить изображение?')) {
+        sortable = $(this).parents('.sortable');
+        if(sortable.parent().children().size() == 2) sortable.parent().find('.drag_here').show();
+        sortable.remove();
+      }
+    });
+  }
+};

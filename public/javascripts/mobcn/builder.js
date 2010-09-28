@@ -25,7 +25,7 @@ var Builder = Class.extend({
     });
     
     $('.toolbar .remove').live('click', function() {
-      if(confirm('Are you sure?')) {
+      if(confirm('Вы уверены что хотите удалить целый блок?')) {
         $(this).parentsUntil('#document').remove();
       }
     });
