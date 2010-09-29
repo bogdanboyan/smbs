@@ -6,17 +6,18 @@ var ImagesBehaviour = PartialBehaviour.extend({
     "<img width='100%' src='#{src}'/>" +
     "</div>",
 
+
   /* public */
   apply : function(/*JQuery*/ element, /*Object*/ data) { this._super(element);
     this.image_container = element.find('.image_container');
-    
-    current_width = 100;
+    this.image_container.data('current_width', 100);
     
     // load from document_model
     if(data) {
       $(this.image_container).find('.drag_here').hide();
       for(i in data.value) {
-        current_width = data.value[i].width.replace('px', '')
+        current_width = data.value[i].width.replace('px', '');
+        this.image_container.data('current_width', current_width);
         $(this._image_html(data.value[i].width, data.value[i].path)).appendTo(this.image_container);
       }
     }
@@ -27,6 +28,7 @@ var ImagesBehaviour = PartialBehaviour.extend({
       hoverClass: "droppable-hover",
       accept: ":not(.ui-sortable-helper)",
       drop: function(event, ui) {
+        current_width = $(this).data('current_width');
         $(this).find('.drag_here').hide();
         asset_src = ui.draggable.attr('src').replace('thumbnail', 'view');
         $(image_html_proxy(current_width+'px', asset_src)).appendTo(this);
@@ -38,9 +40,13 @@ var ImagesBehaviour = PartialBehaviour.extend({
     
     // slider
     element.find('.image_slider').slider({
-      range: "min", value: current_width - 100, min: 1, max: 96,
+      range: "min", 
+      value: element.find('.image_container').data('current_width') - 100,
+      min: 1, 
+      max: 96,
       slide: function(event, ui) {
         current_width = 100 + ui.value;
+        element.find('.image_container').data('current_width', current_width);
         element.find('.sortable, .image').css('width', current_width);
       }
     });
