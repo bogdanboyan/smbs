@@ -9,21 +9,21 @@
   </head>
   
   <body>
-    <% @document_model.each do |entity| %>
-        <% if is_a_data?(entity, 'header') %>
+    <% @document_model.each do |entity| -%>
+        <% if is_a_data?(entity, 'header') -%>
           <%= t9e(entity[:value], :header) %>
-        <% end %>
-        <% if is_a_data?(entity, 'text') %>
+        <% end -%>
+        <% if is_a_data?(entity, 'text') -%>
           <div><%= t9e(entity[:value], :text) %></div>
-        <% end %>
-        <% if is_a_data?(entity, 'images') %>
+        <% end -%>
+        <% if is_a_data?(entity, 'images') -%>
           <div style="text-align: center;">
-          <% prepared_images(entity[:value]).each do |image| %>
+          <% prepared_images(entity[:value]).each do |image| -%>
               <a href="<%= image[:instance].asset.url(:preview) %>"><img src="<%= image[:instance].asset.url(image[:style]) %>" style="width: <%= image[:width] %>"/></a>
-          <% end %>
+          <% end -%>
           </div>
           <div class="clear">&nbsp;</div>
-        <% end %>
-    <% end %>
+        <% end -%>
+    <% end -%>
   </body>
 </html>
