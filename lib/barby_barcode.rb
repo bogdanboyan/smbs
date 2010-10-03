@@ -6,7 +6,7 @@ module BarbyBarcode
   
   class << self
   
-    IMAGE_STORAGE_PATH = 'barcodes/:id/:id.:style.png'
+    IMAGE_STORAGE_PATH = 'assets/barcodes/:id/:id.:style.png'
   
     def encode_svg(bar_code)
       qr = Barby::QrCode.new(bar_code.encode_string.strip)
@@ -33,7 +33,7 @@ module BarbyBarcode
     private
   
       def make_storage_file_name(opts)
-        file_path = "public/assets/%s" % image_path(opts)
+        file_path = "public/%s" % image_path(opts)
         path      = file_path.match('.+/').to_s and FileUtils.makedirs(path)
         file_path
       end

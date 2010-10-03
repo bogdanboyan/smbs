@@ -21,7 +21,7 @@ describe BarCode do
     qr = TextCode.create!(:text => 'hello world')
     file_path = BarbyBarcode.image_path(:id => qr.id)
     
-    file_path.should == "barcodes/#{qr.id}/#{qr.id}.thumbnail.png"
+    file_path.should == "assets/barcodes/#{qr.id}/#{qr.id}.thumbnail.png"
     %w(preview thumbnail).each { |style| File.exist?("public/assets/barcodes/#{qr.id}/#{qr.id}." + style + ".png").should be_true }
   end
 end

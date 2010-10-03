@@ -22,7 +22,7 @@ class BarcodesController < ApplicationController
   end
   
   def download
-    path = "public/images/%s" % BarbyBarcode.image_path({:id => params[:id], :style => 'preview'})
+    path = "public/%s" % BarbyBarcode.image_path({:id => params[:id], :style => 'preview'})
     File.exists?(path) ? send_file(path, :type => 'image/png') : render_status_404
   end
   
