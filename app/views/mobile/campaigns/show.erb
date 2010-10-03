@@ -14,10 +14,10 @@
           <%= t9e(entity[:value], :header) %>
         <% end -%>
         <% if is_a_data?(entity, 'text') -%>
-          <div><%= t9e(entity[:value], :text) %></div>
+          <div class="cm"><%= t9e(entity[:value], :text) %></div>
         <% end -%>
         <% if is_a_data?(entity, 'images') -%>
-          <div style="text-align: center;">
+          <div class="cm" style="text-align: center;">
           <% prepared_images(entity[:value]).each do |image| -%>
               <a href="<%= image[:instance].asset.url(:preview) %>"><img src="<%= image[:instance].asset.url(image[:style]) %>" style="width: <%= image[:width] %>"/></a>
           <% end -%>
@@ -25,5 +25,9 @@
           <div class="clear">&nbsp;</div>
         <% end -%>
     <% end -%>
+    <div class="cm">
+      <br/>
+      <span class="cpr">SMBS&copy; <%= Time.now.year %></span>
+    </div>
   </body>
 </html>
