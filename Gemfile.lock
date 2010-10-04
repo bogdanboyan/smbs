@@ -35,6 +35,7 @@ GEM
     factory_girl (1.2.4)
     ffi (0.6.3)
       rake (>= 0.8.7)
+    geoip_city (0.2.0)
     gherkin (2.0.2)
       trollop (~> 1.16.2)
     json_pure (1.4.6)
@@ -81,6 +82,7 @@ DEPENDENCIES
   database_cleaner (= 0.5.2)
   exception_notification (= 2.3.3.0)
   factory_girl (= 1.2.4)
+  geoip_city
   mysql (= 2.7)
   nokogiri
   paperclip (= 2.3.3)
