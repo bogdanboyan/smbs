@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100923150606) do
+ActiveRecord::Schema.define(:version => 20101005090024) do
 
   create_table "asset_files", :force => true do |t|
     t.string   "type"
@@ -58,16 +58,18 @@ ActiveRecord::Schema.define(:version => 20100923150606) do
   add_index "cities", ["region_id"], :name => "index_cities_on_region_id"
 
   create_table "clicks", :force => true do |t|
-    t.string   "ip_address",    :limit => 15,                     :null => false
+    t.string   "ip_address",    :limit => 15,                                                    :null => false
     t.string   "referer",       :limit => 128
-    t.integer  "user_agent_id",                :default => 1,     :null => false
-    t.integer  "short_url_id",                                    :null => false
+    t.integer  "user_agent_id",                                               :default => 1,     :null => false
+    t.integer  "short_url_id",                                                                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "country_id"
     t.integer  "region_id"
     t.integer  "city_id"
-    t.boolean  "located",                      :default => false
+    t.boolean  "located",                                                     :default => false
+    t.decimal  "latitude",                     :precision => 10, :scale => 6
+    t.decimal  "longitude",                    :precision => 10, :scale => 6
   end
 
   add_index "clicks", ["short_url_id", "created_at"], :name => "index_clicks_on_short_url_id_and_created_at"

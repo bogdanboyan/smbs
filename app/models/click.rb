@@ -9,7 +9,9 @@
 #  short_url_id  :integer(4)      not null
 #  user_agent_id :integer(4)      not null, default(1)
 #  ip_address    :string(15)      not null
+#  latitude      :float(10)
 #  located       :boolean(1)
+#  longitude     :float(10)
 #  referer       :string(128)
 #  created_at    :datetime
 #  updated_at    :datetime
