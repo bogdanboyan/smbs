@@ -1,0 +1,74 @@
+macbook@green-zatvor:/opt/smbs/smbs$rake rails:upgrade:check
+(in /Users/macbook/Desktop/smbs)
+Deprecated session secret setting
+Previously, session secret was set directly on ActionController::Base; it's now config.secret_token.
+More information: http://lindsaar.net/2010/4/7/rails_3_session_secret_and_session_store
+
+The culprits: 
+	- /Users/macbook/Desktop/smbs/config/initializers/session_store.rb
+
+Old router API
+The router API has totally changed.
+More information: http://yehudakatz.com/2009/12/26/the-rails-3-router-rack-it-up/
+
+The culprits: 
+	- config/routes.rb
+
+Deprecated test_help path
+You now must require 'rails/test_help' not just 'test_help'.
+More information: http://weblog.rubyonrails.org/2009/9/1/gem-packaging-best-practices
+
+The culprits: 
+	- /Users/macbook/Desktop/smbs/test/test_helper.rb
+
+New file needed: config/application.rb
+You need to add a config/application.rb.
+More information: http://omgbloglol.com/post/353978923/the-path-to-rails-3-approaching-the-upgrade
+
+The culprits: 
+	- config/application.rb
+
+Deprecated ERb helper calls
+Block helpers that use concat (e.g., form_for) should use <%= instead of <%.  The current form will continue to work for now, but you will get deprecation warnings since this form will go away in the future.
+More information: http://weblog.rubyonrails.org/
+
+The culprits: 
+	- /Users/macbook/Desktop/smbs/app/views/barcodes/_form.erb
+	- /Users/macbook/Desktop/smbs/app/views/campaigns/new.erb
+	- /Users/macbook/Desktop/smbs/app/views/mobile/campaigns/_assets.erb
+	- /Users/macbook/Desktop/smbs/app/views/shorteners/_form.erb
+
+Deprecated constant(s)
+Constants like RAILS_ENV, RAILS_ROOT, and RAILS_DEFAULT_LOGGER are now deprecated.
+More information: http://litanyagainstfear.com/blog/2010/02/03/the-rails-module/
+
+The culprits: 
+	- /Users/macbook/Desktop/smbs/lib/clicks_agregator.rb
+	- /Users/macbook/Desktop/smbs/lib/ip_location.rb
+
+Soon-to-be-deprecated ActiveRecord calls
+Methods such as find(:all), find(:first), finds with conditions, and the :joins option will soon be deprecated.
+More information: http://m.onkey.org/2010/1/22/active-record-query-interface
+
+The culprits: 
+	- /Users/macbook/Desktop/smbs/app/controllers/barcodes_controller.rb
+	- /Users/macbook/Desktop/smbs/app/controllers/campaigns_controller.rb
+	- /Users/macbook/Desktop/smbs/app/controllers/shorteners_controller.rb
+	- /Users/macbook/Desktop/smbs/app/models/summarized_click.rb
+
+named_scope is now just scope
+The named_scope method has been renamed to just scope.
+More information: http://github.com/rails/rails/commit/d60bb0a9e4be2ac0a9de9a69041a4ddc2e0cc914
+
+The culprits: 
+	- /Users/macbook/Desktop/smbs/app/models/bar_code.rb
+	- /Users/macbook/Desktop/smbs/app/models/short_url.rb
+
+Old ActionMailer class API
+You're using the old API in a mailer class.
+More information: http://lindsaar.net/2010/1/26/new-actionmailer-api-in-rails-3
+
+The culprits: 
+	- /Users/macbook/Desktop/smbs/app/models/summarized_click.rb
+
+macbook@green-zatvor:/opt/smbs/smbs$
