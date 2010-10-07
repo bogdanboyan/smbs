@@ -1,27 +1,27 @@
 Smbs::Application.routes.draw do |map|
 
-  # this is old 2.3.5
+  root :to => 'welcome#show'
 
-  map.root :action=> 'show', :controller => 'welcome'
+  resources :campaigns, :shorteners, :statistics
 
-  map.resources :campaigns
-  map.resources :shorteners
-  map.resources :statistics
+  resources :barcodes do
 
-  map.resources :barcodes,
-    :collection => {
-      :create_link => :post,
-      :create_sms  => :post,
-      :create_text => :post
-    },
+    collection do
+      post :create_link
+      post :create_sms
+      post :create_text
+    end
 
-    :member => { :download => :get }
+    member do
+      post :download
+    end
 
-  map.namespace :mobile do |mobile|
-    mobile.resources :campaigns, :member => { :preview => :get }
-    mobile.resources :assets, :collection => { :upload_image => :post }
   end
 
+  namespace :mobile do
+    resources :campaigns { member { get :preview } }
+    resources :assets    { collection { post :upload_image } }
+  end
 
 
   # The priority is based upon order of creation:
