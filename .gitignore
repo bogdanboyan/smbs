@@ -1,8 +1,11 @@
+.idea
+.bundle
+db/*.sqlite3
+db/max_mind/GeoLiteCity.dat
+log/*.log
+tmp/**/*
 test/*
-log/*
-tmp/*
+
 public/assets/
 public/javascripts/all.js
 public/stylesheets/all.css
-.bundle/*
-db/max_mind/GeoLiteCity.dat

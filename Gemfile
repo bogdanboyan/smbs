@@ -1,7 +1,7 @@
-source :gemcutter
+source 'http://rubygems.org'
 
-gem 'rails',                  '2.3.5'
-gem 'mysql',                  '2.7'
+gem 'rails',                  '3.0.0'
+gem 'mysql2'
 gem 'unicorn',                '1.1.2'
 gem 'rmagick',                '2.13.1'
 gem 'paperclip',              '2.3.3'
@@ -22,4 +22,3 @@ end
 group :development do
   gem 'nokogiri', :require => false
 end
-
