@@ -1,13 +1,13 @@
 class CampaignsController < ApplicationController
   
   def index
-     @campaigns = Campaign.find(:all, :order=> 'id DESC')
+     @campaigns = Campaign.where(:order=> 'id DESC')
   end
   
   def new
      #entities ready for campaign - unbound
-     @bar_codes =  BarCode.unbound.find(:all, :order=> 'id DESC', :limit=> 10)
-     @short_urls = ShortUrl.unbound.find(:all, :order=> 'id DESC', :limit=> 10)
+     @bar_codes =  BarCode.unbound.where(:order=> 'id DESC', :limit=> 10)
+     @short_urls = ShortUrl.unbound.where(:order=> 'id DESC', :limit=> 10)
   end
   
   def show

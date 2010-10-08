@@ -1,7 +1,7 @@
 class ShortenersController < ApplicationController
   
   def index
-    @short_urls = ShortUrl.find(:all, :order=> 'id DESC', :limit=> 10)
+    @short_urls = ShortUrl.where(:order=> 'id DESC', :limit=> 10)
   end
   
   def show

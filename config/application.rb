@@ -40,7 +40,7 @@ module Smbs
     config.filter_parameters += [:password]
 
     # Configure ExceptionNotification
-    config.middleware.use ExceptionNotifier,
+    config.middleware.use ::ExceptionNotifier,
       :email_prefix         => "[SMBS <%= Rails.env %>] ",
       :sender_address       => %{"Application Error" <smbs.app@gmail.com>},
       :exception_recipients => %w{smbs.app@gmail.com}

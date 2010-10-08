@@ -17,7 +17,7 @@ module IpLocation
         click.latitude = location[:latitude] and click.longitude = location[:longitude]
         click.located  = true
       else
-        RAILS_DEFAULT_LOGGER.warn("Can't lookup ip: " + click.ip_address)
+        Rails.logger.warn("Can't lookup ip: " + click.ip_address)
       end
       
       click

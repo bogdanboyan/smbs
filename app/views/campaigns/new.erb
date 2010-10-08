@@ -61,7 +61,7 @@
 
   <p>4. Создать компанию</p>
   <div>
-  <% form_for :campaign, @campaign = Campaign.new, :url=> campaigns_path, :html => {:id => 'campaign_form'} do |f| %>
+  <%= form_for :campaign, @campaign = Campaign.new, :url=> campaigns_path, :html => {:id => 'campaign_form'} do |f| %>
     <%= hidden_field_tag :selected_short_url_element %><%= hidden_field_tag :selected_bar_code_element %>
     <div><%= f.text_field :title, :value=> @campaign.title %></div>
     <div><%= f.check_box :state, {:checked=> true}, 'published', 'unpublished' %> Официально опубликовать материалы этой компании</div>

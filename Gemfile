@@ -5,7 +5,7 @@ gem 'mysql2',                 '0.2.3'
 gem 'unicorn',                '1.1.4'
 gem 'rmagick',                '2.13.1'
 gem 'paperclip',              '2.3.3'
-gem 'exception_notification', :git => 'git://github.com/rails/exception_notification.git'
+gem 'exception_notification', :git => 'git://github.com/rails/exception_notification.git', :require => 'exception_notifier'
 gem 'RedCloth',               '4.2.3'
 gem 'geoip_city'
 

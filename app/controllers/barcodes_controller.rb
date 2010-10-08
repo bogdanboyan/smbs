@@ -1,7 +1,7 @@
 class BarcodesController < ApplicationController
   
   def index
-    @bar_codes = BarCode.find(:all, :order=> 'id DESC', :limit=> 10)
+    @bar_codes = BarCode.where(:order=> 'id DESC', :limit=> 10)
   end
   
   def show
@@ -25,6 +25,8 @@ class BarcodesController < ApplicationController
     path = "public/%s" % BarbyBarcode.image_path({:id => params[:id], :style => 'preview'})
     File.exists?(path) ? send_file(path, :type => 'image/png') : render_status_404
   end
+  
+  # todo: apply DRY principle (blocks, blocks, blocks)
   
   def create_link
     @link_code = LinkCode.new(params[:link_code])

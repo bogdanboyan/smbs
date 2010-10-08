@@ -23,7 +23,7 @@ class SummarizedClick < ActiveRecord::Base
   class << self
     
     def find_last_by_short_url_id(id)
-      self.find(:last, :conditions=> ['short_url_id = ?', id])
+      self.where('short_url_id = ?', id).last # WARNING: Array#last from select * from summarized_clicks where short_url_id = ?
     end
 
 
@@ -45,7 +45,7 @@ class SummarizedClick < ActiveRecord::Base
       day_clicks = []
       
       while cursor_date > end_date do
-        day_clicks << self.find(:all, :conditions=>['short_url_id = ? and date(date) = ?', id, cursor_date.to_s(:db)],:include=> :city)
+        day_clicks << SummarizedClick.includes(:city).where('short_url_id = ? and date(date) = ?', id, cursor_date.to_s(:db))
         cursor_date -= 1
       end
       day_clicks.delete([]) unless day_clicks.empty?

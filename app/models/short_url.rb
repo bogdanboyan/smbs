@@ -21,7 +21,7 @@ class ShortUrl < ActiveRecord::Base
 
   validate :prepare_and_parse_url
 
-  named_scope :unbound, :conditions => { :campaign_id => nil }
+  scope :unbound, where(:campaign_id => nil)
 
 
   def short_url(request)

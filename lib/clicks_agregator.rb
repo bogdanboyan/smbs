@@ -14,7 +14,7 @@ module ClicksAgregator
           cursor_date += 1
         end
       else
-        RAILS_DEFAULT_LOGGER.info("** Can't agregate statistic for short_url(%d)" % short_url_id)
+        Rails.logger.info("** Can't agregate statistic for short_url(%d)" % short_url_id)
       end
     
       s_clicks.compact! unless s_clicks.empty?
@@ -30,7 +30,7 @@ module ClicksAgregator
     def summarize_clicks_for(short_url_id, date)
       SummarizedClick.exists?(:short_url_id=> short_url_id, :date=> date.to_s(:db)) and raise "Already collected statistic for: short_url(%d), date(%s)" % [short_url_id, date.to_s]
       # do agregation
-      if Click.find(:first, :conditions=> ['short_url_id = ? and date(created_at) = ?', short_url_id, date.to_s(:db)])
+      if Click.where('short_url_id = ? and date(created_at) = ?', short_url_id, date.to_s(:db)).limit(1)
         s_clicks = SummarizedClick.find_by_sql SUMMARIZE_CLICKS.gsub(':id', short_url_id.to_s).gsub(':date', date.to_s(:db))
         s_clicks.each {|s_click| SummarizedClick.create(s_click.attributes) }
       end
