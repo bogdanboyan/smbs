@@ -19,8 +19,15 @@ Smbs::Application.routes.draw do |map|
   end
 
   namespace :mobile do
-    resources :campaigns { member { get :preview } }
-    resources :assets    { collection { post :upload_image } }
+    
+    resources :campaigns do
+       member     { get :preview }
+    end
+    
+    resources :assets do
+       collection { post :upload_image }
+    end
+    
   end
 
 
