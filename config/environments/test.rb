@@ -32,4 +32,10 @@ Smbs::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  # Initialize factory baba
+  config.after_initialize do
+    Factory.find_definitions
+  end
+  
 end

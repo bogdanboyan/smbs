@@ -12,7 +12,7 @@ describe ClicksAgregator do
   describe 'should test summarize_clicks_for' do
     it 'should can not do anything' do
       @short_url = Factory.create(:short_url)
-      ClicksAgregator.summarize_clicks_for(@short_url.id, Time.now.to_date).should be_nil
+      ClicksAgregator.summarize_clicks_for(@short_url.id, Time.now.to_date).should be_empty
     end
     
     it 'should build summarized_click' do
