@@ -12,6 +12,8 @@
 class MobileCampaign < ActiveRecord::Base
 
   has_many :image_assets, :dependent => :destroy
+  
+  validate :document_state
 
   def document_model_as(format = :json)
     case format
@@ -21,13 +23,16 @@ class MobileCampaign < ActiveRecord::Base
         raise 'unknown format: %s' % format
     end
   end
+
+
+  protected
   
-  def validate
-    (errors.add_to_base('document_model is empty') && return) unless attributes['document_model']
+  def document_state
+    (errors.add(:base, 'document_model is empty') && return) unless attributes['document_model']
     
     sanitized_document_model = sanitize(document_model_as(:array))
     
-    (errors.add_to_base('document_model is empty and sanitized') && return) if (!sanitized_document_model || sanitized_document_model.empty?)
+    (errors.add(:base, 'document_model is empty and sanitized') && return) if (!sanitized_document_model || sanitized_document_model.empty?)
     
     sanitized_document_model.each do |partial|
       type, value = partial['type'], partial['value']
