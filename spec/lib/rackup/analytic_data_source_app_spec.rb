@@ -1,7 +1,7 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 require 'rack/mock'
 
-describe AnalyticDataSourceApp do
+describe Rackup::AnalyticDataSourceApp do
   
   DATA_SOURCES = [
     '/ds/shortener/98/clicks',
@@ -9,7 +9,6 @@ describe AnalyticDataSourceApp do
   ]
   
   UNKNOWN_DATA_SOURCES = [
-    'ds/shortener/98/world',
     'ds/shortener/98',
     'campaigns/100',
   ]
@@ -21,7 +20,7 @@ describe AnalyticDataSourceApp do
       it "should process #{path} request" do
         req = Rack::Request.new(Rack::MockRequest.env_for("#{path}?tqx=reqId:10"))
 
-        response = AnalyticDataSourceApp.call(req.env)
+        response = Rackup::AnalyticDataSourceApp.call(req.env)
         response[0].should == 200
       end
     end
@@ -31,15 +30,11 @@ describe AnalyticDataSourceApp do
       it "should not process #{path} request" do
         req = Rack::Request.new(Rack::MockRequest.env_for("#{path}?tqx=reqId:10"))
 
-        response = AnalyticDataSourceApp.call(req.env)
+        response = Rackup::AnalyticDataSourceApp.call(req.env)
         response[0].should == 404
       end
     end
       
   end
-  
-  #TODO: 
-  #specify json table with or without data
-  #GVA error message!!
 
 end

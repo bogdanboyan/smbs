@@ -1,4 +1,9 @@
+require 'rackup'
+
 Smbs::Application.routes.draw do
+
+  match 'ds/*other' => Rackup::AnalyticDataSourceApp
+  match 'sh/*other' => Rackup::ShortenersRedirectApp
 
   root :to => 'welcome#show'
 
