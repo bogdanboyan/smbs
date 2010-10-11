@@ -1,6 +1,7 @@
 # Allow the metal piece to run in isolation
 require(File.dirname(__FILE__) + "/../../config/environment") unless defined?(Rails)
 require 'rack/request'
+require 'data_source'
 
 class AnalyticDataSourceApp
 

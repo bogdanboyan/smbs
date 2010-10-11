@@ -1,3 +1,4 @@
+# encoding: utf-8
 module QrCodesHelper
   
   def qr_code_title(qr)

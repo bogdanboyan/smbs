@@ -14,7 +14,7 @@
 
 class ShortUrl < ActiveRecord::Base
 
-  include UrlModelsUtil
+  include Validations::Url
 
   has_many   :clicks
   belongs_to :campaign

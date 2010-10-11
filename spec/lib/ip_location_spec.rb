@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
+require 'ip_location'
 
 describe IpLocation do
   it 'should recognize some predefined ip' do

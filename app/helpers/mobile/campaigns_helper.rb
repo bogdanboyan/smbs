@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Mobile::CampaignsHelper
   
   def is_a_data?(model, type)

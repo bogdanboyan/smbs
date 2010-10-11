@@ -16,7 +16,7 @@
 
 class LinkCode < BarCode
   
-  include UrlModelsUtil
+  include Validations::Url
   
   validates_length_of   :origin, :in=> 4..48
   validate :prepare_and_parse_url

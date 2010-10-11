@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ShortenersHelper
   
   def short_url_title(model)

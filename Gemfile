@@ -18,8 +18,5 @@ group :test do
   gem 'capybara',             '0.3.9'
   #gem 'capybara-envjs',       '0.1.6'
   #gem 'capybara-envjs-fixes', '0.0.5'
-end
-
-group :development do
-  gem 'nokogiri', :require => false
+  #gem 'nokogiri',              '1.4.3.1'
 end

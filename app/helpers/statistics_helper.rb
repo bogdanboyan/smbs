@@ -1,3 +1,4 @@
+# encoding: utf-8
 module StatisticsHelper
   
   def statistic_is_unavailable

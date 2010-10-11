@@ -45,6 +45,11 @@ module Smbs
     #   :sender_address        => %{"Application Error" <smbs.app@gmail.com>},
     #   :exception_recipients  => %w{smbs.app@gmail.com}
     # }
-
+    
+    config.after_initialize do
+      require 'clicks_agregator'
+      require 'barby_barcode'
+    end
+    
   end
 end

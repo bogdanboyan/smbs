@@ -1,4 +1,5 @@
-module UrlModelsUtil
+# encoding: utf-8
+module Validations::Url
 
   def prepare_and_parse_url
     generic_error_msg = "Нужно указать правильный адрес ресурса"

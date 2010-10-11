@@ -18,10 +18,10 @@ module BarbyBarcode
     def encode_png_boundles(bar_code)
       qr = Barby::QrCode.new(bar_code.encode_string.strip)
       File.open(make_storage_file_name(:id=> bar_code.id, :style=> 'thumbnail'), 'w' ) do |f|
-        f.write qr.to_png(:margin=>3, :xdim=>4)
+        f.write qr.to_png(:margin=>3, :xdim=>4).force_encoding('utf-8')
       end
       File.open(make_storage_file_name(:id=> bar_code.id, :style=> 'preview'), 'w' ) do |f|
-        f.write qr.to_png(:margin=>4, :xdim=>7)
+        f.write qr.to_png(:margin=>4, :xdim=>7).force_encoding('utf-8')
       end
     end
   

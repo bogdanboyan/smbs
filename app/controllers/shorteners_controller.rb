@@ -1,3 +1,5 @@
+require 'shortener'
+
 class ShortenersController < ApplicationController
   
   def index

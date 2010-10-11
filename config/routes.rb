@@ -1,4 +1,4 @@
-Smbs::Application.routes.draw do |map|
+Smbs::Application.routes.draw do
 
   root :to => 'welcome#show'
 
