@@ -3,7 +3,7 @@ require 'ip_location'
 
 module Rackup
   class ShortenersRedirectApp
-
+    
     APPLICATION_ROUTE = /^(\/)?(campaign|shortener|statistic|barcode|ds|mobile)/
     
     class << self
@@ -19,6 +19,7 @@ module Rackup
 
         [404, {"Content-Type" => "text/html"}, ["Not Found"]]
       end
+
 
       private
 

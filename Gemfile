@@ -7,7 +7,7 @@ gem 'rmagick',                '2.13.1'
 gem 'paperclip',              '2.3.3'
 gem 'exception_notification', :git => 'git://github.com/railsware/exception_notification.git', :require => 'exception_notifier', :tag => 'v1.0.0.rc'
 gem 'RedCloth',               '4.2.3'
-gem 'geoip_city'
+gem 'geoip-c',                :git => 'git://github.com/zarqman/geoip.git'
 
 group :test do
   gem 'rspec',                '2.0.0.beta.20'

@@ -9,8 +9,8 @@ describe IpLocation do
     result[:country_name].should   == 'Ukraine'
     result[:region].should         == '13' 
     result[:city].should           == 'Kiev'
-    result[:latitude].to_s.should  == '50.4333000183105'
-    result[:longitude].to_s.should == '30.5167007446289'
+    result[:latitude].to_s.should  == '50.43330001831055'
+    result[:longitude].to_s.should == '30.516700744628906'
     
     IpLocation.find('127.0.0.1').should be_nil
     IpLocation.find('127.0.0.1').to_json.should eql("null")

@@ -1,11 +1,11 @@
-require 'geoip_city'
+require 'geoip'
 
 module IpLocation
   
   class << self
   
     def find(ip)
-      @geo_db ||= GeoIPCity::Database.new('db/max_mind/GeoLiteCity.dat', :memory, true)
+      @geo_db ||= GeoIP::City.new('db/max_mind/GeoLiteCity.dat', :memory, true)
       response = @geo_db.look_up(ip)
     end
   
