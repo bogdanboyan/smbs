@@ -18,7 +18,7 @@ Smbs::Application.routes.draw do
     end
 
     member do
-      post :download
+      get :download
     end
 
   end

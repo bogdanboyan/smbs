@@ -1,7 +1,7 @@
 class BarcodesController < ApplicationController
   
   def index
-    @bar_codes = BarCode.where(:order=> 'id DESC', :limit=> 10)
+    @bar_codes = BarCode.order('id DESC').limit(10)
   end
   
   def show
@@ -58,10 +58,10 @@ class BarcodesController < ApplicationController
   
   private
     def render_error_message(instance)
-      render :json=> {:error_message=>instance.errors.full_messages.first}.to_json
+      render :json=> {:error_message=>instance.errors.full_messages.first}
     end
     
     def render_response(text)
-      render :json=> {:html=> text}.to_json
+      render :json=> {:html=> text}
     end
 end

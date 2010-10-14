@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Допустим /^пользователь уже создал Short адрес:$/ do |таблица|
   таблица.hashes.each do |row|
     ShortUrl.create(row)

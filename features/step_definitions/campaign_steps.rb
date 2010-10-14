@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 include ActionView::Helpers::SanitizeHelper::ClassMethods, ActionView::Helpers::SanitizeHelper
 include CampaignsHelper, QrCodesHelper, ShortenersHelper
 
