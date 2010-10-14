@@ -2,37 +2,36 @@
 require 'ip_location'
 
 module Rackup
-  class ShortenersRedirectApp
+  class ShortenersRedirectApp < ActionController::Metal
     
-    APPLICATION_ROUTE = /^(\/)?(campaign|shortener|statistic|barcode|ds|mobile)/
+    def redirect
+      if @short_url = ShortUrl.find_by_short(params[:short])
+        click = build_clicks_params(env) and click = @short_url.clicks.create(click)
+        update_location_for(click)
+
+        set_headers :status => 301, :response_body => "Ваш запрос будет перенаправлен", :location => @short_url.origin
+      else
+        set_headers :status => 404, :response_body => 'Запрашиваем ресурс не найден'
+      end
+    end
+
+
+    private
     
-    class << self
+    def set_headers(options)
+      options.each { |k,v| self.send k.to_s+'=', v }
+    end
 
-      def call(env)
-        if @short_url = ShortUrl.find_by_short(env['PATH_INFO'].delete('/sh'))
+    def build_clicks_params(env)
+      click[:ip_address] = env['REMOTE_ADDR']
+      click[:referer]    = env['HTTP_REFERER']
+      click[:user_agent] = UserAgent.find_or_create_by_details(env['HTTP_USER_AGENT']) unless env['HTTP_USER_AGENT'].blank?
+      click
+    end
 
-          click = build_clicks_params(env) and click = @short_url.clicks.create(click)
-          update_location_for(click)
-
-          return [301, {"Content-Type" => "text/html", "Location" => @short_url.origin}, ["Ваш запрос будет перенаправлен"]]
-        end
-
-        [404, {"Content-Type" => "text/html"}, ["Not Found"]]
-      end
-
-
-      private
-
-      def build_clicks_params(env)
-        click = {:ip_address=> env['REMOTE_ADDR'], :referer=> env['HTTP_REFERER']}
-        click[:user_agent] = UserAgent.find_or_create_by_details(env['HTTP_USER_AGENT']) unless env['HTTP_USER_AGENT'].blank?
-        return click
-      end
-
-      def update_location_for(click)
-        IpLocation.resolve_location_for(click)
-      end
+    def update_location_for(click)
+      IpLocation.resolve_location_for(click)
+    end
       
-   end # end class << self
   end # end class
 end
