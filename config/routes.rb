@@ -7,7 +7,7 @@ Smbs::Application.routes.draw do
 
   root :to => 'welcome#show'
 
-  resources :campaigns, :shorteners, :statistics
+  resources :shorteners, :statistics
 
   resources :barcodes do
 
