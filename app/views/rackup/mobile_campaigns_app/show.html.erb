@@ -5,20 +5,20 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><%= @mbc.title %></title>
-    <style type="text/css"><%= compress_css render(:partial => 'layout_css') %></style>
+    <style type="text/css"><%= controller.compress_css render(:partial => 'default_css') %></style>
   </head>
   
   <body>
     <% @document_model.each do |entity| -%>
-        <% if is_a_data?(entity, 'header') -%>
-          <%= raw t9e(entity[:value], :header) %>
+        <% if controller.is_a_data?(entity, 'header') -%>
+          <%= raw controller.t9e(entity[:value], :header) %>
         <% end -%>
-        <% if is_a_data?(entity, 'text') -%>
-          <div class="cm"><%= raw t9e(entity[:value], :text) %></div>
+        <% if controller.is_a_data?(entity, 'text') -%>
+          <div class="cm"><%= raw controller.t9e(entity[:value], :text) %></div>
         <% end -%>
-        <% if is_a_data?(entity, 'images') -%>
+        <% if controller.is_a_data?(entity, 'images') -%>
           <div class="cm" style="text-align: center;">
-          <% prepared_images(entity[:value]).each do |image| -%>
+          <% controller.prepared_images(entity[:value]).each do |image| -%>
               <a href="<%= image[:instance].asset.url(:preview) %>"><img src="<%= image[:instance].asset.url(image[:style]) %>" style="width: <%= image[:width] %>"/></a>
           <% end -%>
           </div>
