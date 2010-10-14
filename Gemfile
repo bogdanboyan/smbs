@@ -3,15 +3,18 @@ source 'http://rubygems.org'
 gem 'rails',                  '3.0.0'
 gem 'mysql2',                 '0.2.3'
 gem 'unicorn',                '1.1.4'
+
 gem 'rmagick',                '2.13.1'
 gem 'paperclip',              '2.3.3'
-#gem 'exception_notification', :git => 'git://github.com/railsware/exception_notification.git', :require => 'exception_notifier', :tag => 'v1.0.0.rc'
 gem 'RedCloth',               '4.2.3'
+
 gem 'geoip-c',                :git => 'git://github.com/zarqman/geoip.git'
 
+gem 'exception_notification_rails3', '1.0.0', :require => 'exception_notifier'
+
 group :test do
-  gem 'rspec',                '2.0.0.beta.20'
-  gem 'rspec-rails',          '2.0.0.beta.20'
+  gem 'rspec',                '2.0.0'
+  gem 'rspec-rails',          '2.0.0'
   gem 'factory_girl',         '1.3.2'
   gem 'cucumber',             '0.8.5'
   gem 'cucumber-rails',       '0.3.2'
