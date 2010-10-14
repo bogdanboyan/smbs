@@ -20,7 +20,7 @@ module Rackup
       it 'should redirect short link' do
         short_url = ShortUrl.create(:origin => 'http://ya.ru', :short => '1qZ')
       
-        response = get "/#{short_url.short}", {}, {
+        response = get "/sh/#{short_url.short}", {}, {
           'REMOTE_ADDR'     => "127.0.0.1",
           'HTTP_USER_AGENT' => "rspec-rails"
         }

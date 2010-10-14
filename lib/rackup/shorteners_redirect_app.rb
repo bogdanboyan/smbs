@@ -9,7 +9,7 @@ module Rackup
     class << self
 
       def call(env)
-        if @short_url = ShortUrl.find_by_short(env['PATH_INFO'].delete('/'))
+        if @short_url = ShortUrl.find_by_short(env['PATH_INFO'].delete('/sh'))
 
           click = build_clicks_params(env) and click = @short_url.clicks.create(click)
           update_location_for(click)
