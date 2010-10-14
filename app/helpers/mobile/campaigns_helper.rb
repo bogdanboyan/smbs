@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'redcloth'
+
 module Mobile::CampaignsHelper
   
   def is_a_data?(model, type)
@@ -46,8 +48,14 @@ module Mobile::CampaignsHelper
 
   private
   
-    def render_partial_for container
-      render(:partial=> 'partials', :object=> container).delete("\n")
-    end
+  def render_partial_for container
+    render(:partial=> 'partials', :object=> container).delete("\n")
+  end
+  
+  def textilize(text)
+     RedCloth.new(text).to_html
+  end
+  
+  alias :textilize_without_paragraph :textilize
   
 end

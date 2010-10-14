@@ -11,10 +11,10 @@
   <body>
     <% @document_model.each do |entity| -%>
         <% if is_a_data?(entity, 'header') -%>
-          <%= t9e(entity[:value], :header) %>
+          <%= raw t9e(entity[:value], :header) %>
         <% end -%>
         <% if is_a_data?(entity, 'text') -%>
-          <div class="cm"><%= t9e(entity[:value], :text) %></div>
+          <div class="cm"><%= raw t9e(entity[:value], :text) %></div>
         <% end -%>
         <% if is_a_data?(entity, 'images') -%>
           <div class="cm" style="text-align: center;">

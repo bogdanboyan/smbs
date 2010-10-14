@@ -2,7 +2,10 @@
 $(document).ready(function() {
 
   $('#preview').click(function() {
-    if(page_id) window.location='/mobile/campaigns/'+page_id+'/preview';
+    if(page_id) {
+      $('#save').click();
+      window.location='/mobile/campaigns/'+page_id+'/preview';
+    }
     return false;
   }),
 
