@@ -1,8 +1,9 @@
 # encoding: utf-8
 
 Допустим /^пользователь уже создал Short адрес:$/ do |таблица|
+  @short_urls = []
   таблица.hashes.each do |row|
-    ShortUrl.create(row)
+    @short_urls << ShortUrl.create(row)
   end
 end
 
@@ -24,4 +25,25 @@ end
     short_url = ShortUrl.find_by_origin(row['origin'])
     body.should include(short_url.origin)
   end
+end
+
+Тогда /^система должна зарегистрировать мой переход$/ do
+  short_url = @short_urls.first.reload
+  short_url.clicks_count.should == 1
+  short_url.clicks.size.should  == 1
+  short_url.clicks.first.ip_address.should == '127.0.0.1'
+end
+
+Тогда /^система не должна регистрировать этот запрос$/ do
+  short_url = @short_urls.first.reload
+  short_url.clicks_count.should == 0
+end
+
+Тогда /^мой запрос должен быть перенаправлен на адрес "([^"]*)"$/ do |адрес|
+  page.status_code == 301
+  page.response_headers['Location'] == адрес
+end
+
+Тогда /^я должен получить ошибку "([^"]*)"$/ do |код|
+  page.status_code == код.to_i
 end

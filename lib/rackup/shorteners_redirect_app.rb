@@ -3,11 +3,11 @@ require 'ip_location'
 
 module Rackup
   class ShortenersRedirectApp < ActionController::Metal
-    
+
     def redirect
       if @short_url = ShortUrl.find_by_short(params[:short])
-        click = build_clicks_params(env) and click = @short_url.clicks.create(click)
-        update_location_for(click)
+        click = build_clicks_params(env) and click = update_location_for(Click.new(click))
+        @short_url.clicks << click
 
         set_headers :status => 301, :response_body => "Ваш запрос будет перенаправлен", :location => @short_url.origin
       else
@@ -23,6 +23,7 @@ module Rackup
     end
 
     def build_clicks_params(env)
+      click = {}
       click[:ip_address] = env['REMOTE_ADDR']
       click[:referer]    = env['HTTP_REFERER']
       click[:user_agent] = UserAgent.find_or_create_by_details(env['HTTP_USER_AGENT']) unless env['HTTP_USER_AGENT'].blank?
