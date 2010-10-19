@@ -27,9 +27,9 @@ class Click < ActiveRecord::Base
   class << self
     
     def find_last_by_short_url_id(id)
-      self.find(:last, :conditions=>['short_url_id = ?', id])
+      self.where('short_url_id = ?', id).last
     end
     
-  end
+  end # end << self
 
 end

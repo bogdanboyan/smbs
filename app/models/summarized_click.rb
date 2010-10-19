@@ -23,7 +23,7 @@ class SummarizedClick < ActiveRecord::Base
   class << self
     
     def find_last_by_short_url_id(id)
-      self.where('short_url_id = ?', id).last # WARNING: Array#last from select * from summarized_clicks where short_url_id = ?
+      self.where('short_url_id = ?', id).last
     end
 
 
@@ -51,5 +51,6 @@ class SummarizedClick < ActiveRecord::Base
       day_clicks.delete([]) unless day_clicks.empty?
       day_clicks.empty? ? nil : day_clicks
     end
-  end
+    
+  end # end << self
 end
