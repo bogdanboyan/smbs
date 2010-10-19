@@ -6,7 +6,7 @@ SMBS.Shortener.Clicks = {
     google.setOnLoadCallback(initialize);
 
     function initialize() {
-      query = new google.visualization.Query("/ds/shortener/"+ short_url_id +"/clicks");
+      query = new google.visualization.Query("/analytic/shortener/"+ short_url_id +"/clicks.json");
       query.send(handleQueryResponse);
     }
 
@@ -29,7 +29,7 @@ SMBS.Shortener.Regions = {
     google.setOnLoadCallback(initialize);
     
     function initialize() {
-      query = new google.visualization.Query("/ds/shortener/"+ short_url_id +"/regions");
+      query = new google.visualization.Query("/analytic/shortener/"+ short_url_id +"/regions.json");
       query.send(handleQueryResponse);
     }
     

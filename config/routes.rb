@@ -1,9 +1,8 @@
 require 'rackup'
 
 Smbs::Application.routes.draw do
-  
-  # 'statistics/:source/:id.json'
-  match '/ds/*other' => Rackup::AnalyticDataSourceApp
+
+  match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
   match '/shorteners/:short/redirect' => Rackup::ShortenersRedirectApp.action(:redirect)
   match '/mobile/campaigns/:id'       => Rackup::MobileCampaignsApp.action(:show)
 

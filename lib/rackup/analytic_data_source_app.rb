@@ -1,38 +1,30 @@
-require 'rack/request'
+# encoding: utf-8
 require 'data_source'
 
 module Rackup
-  class AnalyticDataSourceApp
-    class << self
+  class AnalyticDataSourceApp < ActionController::Metal
 
-      # GET /ds/:shortener/:86/:clicks(:params)+
-      PATH_INFO_ROUTE = /^\/ds\/(\w+)\/(\d+)\/(\w+)/
-
-      def call(env)
-        if env["PATH_INFO"] =~ PATH_INFO_ROUTE
-          request = Rack::Request.new(env)
-          data, id, action = request.path_info.scan(PATH_INFO_ROUTE).first
-      
-          # very slowly!!!
-          response = begin
-            prepare_response(request, DataSource.fetch(data, action, id))
-          rescue
-            "unknown_action"
-          end
-      
-          [200, {"Content-Type" => "json"}, [response.to_json] ]
-        else
-          [404, {"Content-Type" => "text/html"}, ["Not Found"]]
-        end
+    def fetch
+      response = begin
+        prepare_response(DataSource.fetch(params[:source], params[:member], params[:id]))
+        
+        set_headers :content_type => 'json', :response_body => response.to_json
+      rescue
+        Rails.logger.warn("Can't :fetch analytic data for #{params} request")
+        
+        set_headers :status => 404, :response_body => 'Запрашиваем ресурс не найден'
       end
+    end
 
 
-      private
-  
-      def prepare_response(request, data)
-        { :status => 'ok', :reqId => request.params['tqx'].split(':').last,:table => data }
-      end
+    private
+
+    def prepare_response(data)
+      { :status => 'ok', :reqId => params[:tqx].split(':').last,:table => data }
+    end
     
+    def set_headers(options)
+      options.each { |k,v| self.send k.to_s+'=', v }
     end
     
   end
