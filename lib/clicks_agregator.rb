@@ -2,15 +2,14 @@ module ClicksAgregator
   class << self
 
     def summarize_all_clicks(short_url_id)
+      s_clicks     = []
       last_s_click = SummarizedClick.find_last_by_short_url_id(short_url_id) and end_date = last_s_click.date + 1
 
-      if not end_date
-        click = Click.find_last_by_short_url_id(short_url_id) and end_date = click.created_at
-      end
+      (click = Click.find_by_short_url_id(short_url_id) and end_date = click.created_at) if not end_date
 
-      s_clicks = []
-      if begin_date = 1.day.ago.to_date && cursor_date = end_date.try(:to_date)
-        while cursor_date <= begin_date do
+      begin_date, cursor_date = 1.day.ago.to_date, end_date.try(:to_date)
+      if begin_date && cursor_date
+        while begin_date >= cursor_date do
           s_clicks << summarize_clicks_for(short_url_id, cursor_date)
           cursor_date += 1
         end
@@ -18,8 +17,7 @@ module ClicksAgregator
         Rails.logger.info("** Can't agregate statistic for short_url(%d)" % short_url_id)
       end
 
-      s_clicks.compact! unless s_clicks.empty?
-      s_clicks.empty? ? nil : s_clicks
+      s_clicks.compact.flatten
     end
 
     SUMMARIZE_CLICKS = <<-SQL

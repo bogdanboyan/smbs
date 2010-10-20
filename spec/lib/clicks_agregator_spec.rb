@@ -10,7 +10,7 @@ describe ClicksAgregator do
   context 'summarize_all_clicks' do
     
     it 'can not do anything' do
-      ClicksAgregator.summarize_all_clicks(@short_url.id).should be_nil
+      ClicksAgregator.summarize_all_clicks(@short_url.id).should be_empty
     end
     
     it 'collect all clicks' do
@@ -25,11 +25,8 @@ describe ClicksAgregator do
       
       s_clicks = ClicksAgregator.summarize_all_clicks(@short_url.id)
       
-      puts s_clicks.inspect
-      
       s_clicks.should_not be_nil
       s_clicks.size.should == 4
-      
     end
     
   end
@@ -68,5 +65,4 @@ describe ClicksAgregator do
     end
     
   end
-  
 end

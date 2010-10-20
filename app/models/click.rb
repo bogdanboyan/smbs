@@ -23,13 +23,5 @@ class Click < ActiveRecord::Base
   belongs_to :country
   belongs_to :region
   belongs_to :city
-  
-  class << self
-    
-    def find_last_by_short_url_id(id)
-      self.where('short_url_id = ?', id).last
-    end
-    
-  end # end << self
 
 end
