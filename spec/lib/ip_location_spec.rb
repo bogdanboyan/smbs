@@ -17,7 +17,7 @@ describe IpLocation do
   end
   
   it 'should recognize location from click' do
-    click = Factory.create(:click_two)
+    click = Factory.create(:kiev_click)
     IpLocation.resolve_location_for(click).should be_true
     click.save! and click.reload
     

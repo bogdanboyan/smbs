@@ -15,11 +15,11 @@ describe ClicksAgregator do
     
     it 'collect all clicks' do
       clicks = []
-      35.times { clicks << Factory.build(:click_two,   :short_url => @short_url, :created_at => 3.day.ago.to_time) }
-      5.times  { clicks << Factory.build(:click_three, :short_url => @short_url, :created_at => 2.day.ago.to_time) }
-      5.times  { clicks << Factory.build(:click_two,   :short_url => @short_url, :created_at => 1.day.ago.to_time) }
-      45.times { clicks << Factory.build(:click_three, :short_url => @short_url, :created_at => 1.day.ago.to_time) }
-      10.times { clicks << Factory.build(:click_two,   :short_url => @short_url, :created_at => Time.now)          }
+      35.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => 3.day.ago.to_time) }
+      5.times  { clicks << Factory.build(:moscow_click, :short_url => @short_url, :created_at => 2.day.ago.to_time) }
+      5.times  { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => 1.day.ago.to_time) }
+      45.times { clicks << Factory.build(:moscow_click, :short_url => @short_url, :created_at => 1.day.ago.to_time) }
+      10.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => Time.now)          }
       
       clicks.each { |click| IpLocation.resolve_location_for(click).save }
       
@@ -40,9 +40,9 @@ describe ClicksAgregator do
     it 'calculate all clicks around two days' do
       
       clicks = []
-      15.times { clicks << Factory.build(:click_two,   :short_url => @short_url, :created_at => 2.day.ago.to_time) }
-      25.times { clicks << Factory.build(:click_three, :short_url => @short_url, :created_at => 2.day.ago.to_time) }
-      10.times { clicks << Factory.build(:click_two,   :short_url => @short_url, :created_at => Time.now)          }
+      15.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => 2.day.ago.to_time) }
+      25.times { clicks << Factory.build(:moscow_click, :short_url => @short_url, :created_at => 2.day.ago.to_time) }
+      10.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => Time.now)          }
       
       clicks.each { |click| IpLocation.resolve_location_for(click).save }
       
