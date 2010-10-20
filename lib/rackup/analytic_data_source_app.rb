@@ -5,12 +5,12 @@ module Rackup
   class AnalyticDataSourceApp < ActionController::Metal
 
     def fetch
-      response = begin
-        prepare_response(DataSource.fetch(params[:source], params[:member], params[:id]))
+      begin
+        response = prepare_response(DataSource.fetch(params[:source], params[:member], params[:id]))
         
         set_headers :content_type => 'json', :response_body => response.to_json
-      rescue
-        Rails.logger.warn("Can't :fetch analytic data for #{params} request")
+      rescue Exception => exception
+        ExceptionNotifier::Notifier.exception_notification(env, exception).deliver
         
         set_headers :status => 404, :response_body => 'Запрашиваем ресурс не найден'
       end

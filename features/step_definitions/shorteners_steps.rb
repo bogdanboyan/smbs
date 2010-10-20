@@ -5,6 +5,7 @@
   таблица.hashes.each do |row|
     @short_urls << ShortUrl.create(row)
   end
+  @short_url = @short_urls.try(:first)
 end
 
 Тогда /^список созданых мною Short адресов:$/ do |таблица|
@@ -34,16 +35,23 @@ end
   short_url.clicks.first.ip_address.should == '127.0.0.1'
 end
 
+Тогда /^Short адрес посетили такие пользователи:$/ do |таблица|
+  @clicks = []
+  таблица.hashes.each do |row|
+    @clicks << Click.create(row.merge(:short_url => @short_url, :created_at => 2.days.ago))
+  end
+end
+
 Тогда /^система не должна регистрировать этот запрос$/ do
   short_url = @short_urls.first.reload
   short_url.clicks_count.should == 0
 end
 
-Тогда /^мой запрос должен быть перенаправлен на адрес "([^"]*)"$/ do |адрес|
+Тогда /^мой запрос должен быть перенаправлен на адрес "([^\"]*)"$/ do |адрес|
   page.status_code == 301
   page.response_headers['Location'] == адрес
 end
 
-Тогда /^я должен получить ошибку "([^"]*)"$/ do |код|
+Тогда /^я должен получить ошибку "([^\"]*)"$/ do |код|
   page.status_code == код.to_i
 end

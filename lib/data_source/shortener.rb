@@ -2,8 +2,6 @@
 module DataSource
   class Shortener
     
-    # Who does ClickAgregation?
-    
     def clicks(id, params={})
       {
         :cols => [ {:id => '1', :label => 'Дата', :type => 'string'}, {:id => '2', :label => 'Посещений', :type => 'number'} ],
@@ -43,7 +41,7 @@ module DataSource
     end
     
     def date_field(date)
-      I18n.localize(date, :format => :day_long)
+      I18n.localize(date, :format => :long)
     end
     
   end # class
