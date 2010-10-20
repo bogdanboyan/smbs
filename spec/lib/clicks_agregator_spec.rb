@@ -7,7 +7,7 @@ describe ClicksAgregator do
     @short_url = Factory.create(:short_url)
   end
   
-  context 'summarize_all_clicks' do
+  context 'with summarize_all_clicks should' do
     
     it 'can not do anything' do
       ClicksAgregator.summarize_all_clicks(@short_url.id).should be_empty
@@ -31,7 +31,7 @@ describe ClicksAgregator do
     
   end
   
-  context 'summarize_clicks_for' do
+  context 'with summarize_clicks_for should' do
     
     it 'can not do anything' do
       ClicksAgregator.summarize_clicks_for(@short_url.id, Time.now.to_date).should be_empty
@@ -62,6 +62,25 @@ describe ClicksAgregator do
       
       # Clicks already calculated
       lambda { ClicksAgregator.summarize_clicks_for(@short_url.id, 2.day.ago.to_date) }.should raise_error
+    end
+    
+    it 'calculate today clicks with options "persist = false"' do
+      clicks = []
+      26.times { clicks << Factory.build(:moscow_click, :short_url => @short_url, :created_at => 1.day.ago.to_time) }
+      13.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => Time.now)          }
+      
+      clicks.each { |click| IpLocation.resolve_location_for(click).save }
+      
+      s_clicks = ClicksAgregator.summarize_today_clicks(@short_url.id)
+      s_clicks.should_not be_nil
+      s_clicks.size.should == 1
+      #s_clicks.each{ |s_click| s_click.new_record?.should be_true }
+      
+      from_kiev = s_clicks[0]
+      
+      from_kiev.city.name.should   == 'Kiev'
+      from_kiev.clicks.should      == 13
+      from_kiev.percent.should     == '100.0'
     end
     
   end

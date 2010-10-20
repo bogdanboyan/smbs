@@ -26,13 +26,18 @@ module ClicksAgregator
       where short_url_id = :id and date(created_at) = ':date' group by city_id order by clicks desc
     SQL
 
-    def summarize_clicks_for(short_url_id, date)
+    def summarize_clicks_for(short_url_id, date, persist = true)
       SummarizedClick.exists?(:short_url_id=> short_url_id, :date=> date.to_s(:db)) and raise "Already collected statistic for: short_url(%d), date(%s)" % [short_url_id, date.to_s]
       # do agregation
       if Click.where('short_url_id = ? and date(created_at) = ?', short_url_id, date.to_s(:db)).limit(1)
         s_clicks = SummarizedClick.find_by_sql SUMMARIZE_CLICKS.gsub(':id', short_url_id.to_s).gsub(':date', date.to_s(:db))
-        s_clicks.each {|s_click| SummarizedClick.create(s_click.attributes) }
+        s_clicks.each {|s_click| SummarizedClick.create(s_click.attributes) } if persist
+        s_clicks
       end
+    end
+    
+    def summarize_today_clicks(short_url_id, persist = false)
+       summarize_clicks_for(short_url_id, Time.now.to_date, persist)
     end
 
   end # class << self
