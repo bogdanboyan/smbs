@@ -1,10 +1,17 @@
+# debian environment
+# apt-get install libxslt1-dev
+# apt-get install libmysql-ruby libmysqlclient-dev
+# apt-get install imagemagick
+# apt-get install geoip-bin libgeoip1 libgeoip-dev
+
 source 'http://rubygems.org'
 
 gem 'rails',                  '3.0.0'
+
 gem 'mysql2',                 '0.2.3'
 gem 'unicorn',                '1.1.4'
 
-gem 'rmagick',                '2.13.1'
+gem 'rmagick',                '2.12.2'
 gem 'paperclip',              '2.3.3'
 gem 'RedCloth',               '4.2.3'
 
@@ -21,7 +28,4 @@ group :test do
   gem 'selenium-webdriver',   '0.0.29'
   gem 'capybara',             '0.3.9'
   gem 'database_cleaner',     '0.6.0.rc.3'
-  #gem 'capybara-envjs',       '0.1.6'
-  #gem 'capybara-envjs-fixes', '0.0.5'
-  #gem 'nokogiri',              '1.4.3.1'
 end
