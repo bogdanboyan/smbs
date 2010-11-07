@@ -5,7 +5,11 @@ namespace :geoip do
   task :trylocate => :environment do
     count = 0
     Click.find_all_by_located(false).each do |click|
-      IpLocation.find_location_for(click) and click.save and count += 1
+      IpLocation.find_location_for(click)
+      if click.located?
+        click.save
+        count += 1
+      end
     end
     count > 0 ? puts("Updated %d records" % count) : puts("Nothing updated")
   end
