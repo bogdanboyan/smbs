@@ -20,8 +20,8 @@ gem 'geoip-c',                :git => 'git://github.com/zarqman/geoip.git'
 gem 'exception_notification_rails3', '1.0.0', :require => 'exception_notifier'
 
 group :test do
-  gem 'rspec',                '2.0.0'
-  gem 'rspec-rails',          '2.0.0'
+  gem 'rspec',                '2.0.1'
+  gem 'rspec-rails',          '2.0.1'
   gem 'factory_girl',         '1.3.2'
   gem 'cucumber',             '0.8.5'
   gem 'cucumber-rails',       '0.3.2'
