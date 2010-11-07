@@ -4,7 +4,7 @@ Smbs::Application.routes.draw do
 
   match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
   match '/shorteners/:short/redirect' => Rackup::ShortenersRedirectApp.action(:redirect)
-  match '/mobile/campaigns/:id'       => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
+  get   '/mobile/campaigns/:id'       => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
 
   root :to => 'welcome#show'
 
