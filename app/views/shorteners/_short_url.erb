@@ -1,10 +1,10 @@
 <div class="history_item">
   <custom name="resource"><%= short_url.id %></custom>
-  <p class="date"><%= l short_url.created_at, :format=> :short %></p>
+  <p class="date"><%= l(short_url.created_at.to_date, :format=> :short) %></p>
   <p class="clicks"><em><strong><%= short_url.clicks_count %></strong></em></p>
   <div class="info">
     <p class="title">
-    <span><%= link_to short_url.origin, short_url.origin, :class=> 'title', :target=> '_blank' %></span>
+    <span><%= link_to truncate(short_url.origin, :length => 40), short_url.origin, :class=> 'title', :target=> '_blank' %></span>
     <p><%= short_url.short_url(request) %></p>
     <ul class="history_actions">
       <li><%= link_to "Cтатистика", statistic_path(short_url.id) %></li>

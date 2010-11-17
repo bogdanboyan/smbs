@@ -1,6 +1,6 @@
 <div class="history_item">
   <custom name="resource"><%= bar_code.id %></custom>
-  <p class="date"><%= l bar_code.created_at, :format=> :short %></p>
+  <p class="date"><%= l(bar_code.created_at.to_date, :format=> :short) %></p>
   <p class="images"><img alt="<%= qr_code_title(bar_code) %>" class="qr-code-preview" src="/<%= BarbyBarcode.image_path(:id=> bar_code.id) %>"/></p>
   <div class="info">
     <p class="title">
