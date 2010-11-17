@@ -19,6 +19,8 @@ gem 'geoip-c',                :git => 'git://github.com/zarqman/geoip.git'
 
 gem 'exception_notification_rails3', '1.0.0', :require => 'exception_notifier'
 
+gem 'aasm',                   '2.2.0'
+
 group :test do
   gem 'rspec',                '2.0.1'
   gem 'rspec-rails',          '2.0.1'

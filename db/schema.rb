@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101005090024) do
+ActiveRecord::Schema.define(:version => 20101117164536) do
 
   create_table "asset_files", :force => true do |t|
     t.string   "type"
@@ -126,16 +127,18 @@ ActiveRecord::Schema.define(:version => 20101005090024) do
   end
 
   create_table "short_urls", :force => true do |t|
-    t.string   "origin",                      :null => false
-    t.string   "short",                       :null => false
-    t.integer  "clicks_count", :default => 0, :null => false
+    t.string   "origin",                                             :null => false
+    t.string   "short",                                              :null => false
+    t.integer  "clicks_count",                :default => 0,         :null => false
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "campaign_id"
+    t.string   "current_state", :limit => 15, :default => "proxied"
   end
 
+  add_index "short_urls", ["current_state"], :name => "index_short_urls_on_current_state"
   add_index "short_urls", ["short"], :name => "index_short_urls_on_short", :unique => true
 
   create_table "summarized_clicks", :force => true do |t|

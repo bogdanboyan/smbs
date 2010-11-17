@@ -29,4 +29,37 @@ describe ShortUrl do
     url.valid?.should be_true
     url.origin.eql? 'http://ya.ru'
   end
+  
+  describe "with AASM" do
+    context "by default" do
+      
+      before(:all) do
+        @short_url = Factory.create(:short_url)
+      end
+      
+      it "should be proxied" do
+        @short_url.should be_proxied
+      end
+
+      it "should NOT be pending" do
+        @short_url.should_not be_pending
+      end
+      
+      context "with disable! event" do
+        it "should switch to pending state" do
+          @short_url.disable!
+          @short_url.should be_pending
+        end
+      end
+      
+      context "with enable! event" do
+        it "should switch to proxied state" do
+          @short_url.enable!
+          @short_url.should be_proxied
+        end
+      end
+      
+    end #end context "by default"
+  end # end describe
+  
 end

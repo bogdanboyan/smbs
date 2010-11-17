@@ -22,8 +22,25 @@ class ShortUrl < ActiveRecord::Base
   validate :prepare_and_parse_url
 
   scope :unbound, where(:campaign_id => nil)
-
-
+  
+  # init final state machine
+  include AASM
+  
+  aasm_column :current_state
+  aasm_initial_state :proxied
+  
+  aasm_state :proxied
+  aasm_state :pending
+  
+  aasm_event :enable do
+    transitions :to => :proxied, :from => [:pending]
+  end
+  
+  aasm_event :disable do
+    transitions :to => :pending, :from => [:proxied]
+  end
+  
+  
   def short_url(request)
     "#{request.domain}/#{self.short}"
   end

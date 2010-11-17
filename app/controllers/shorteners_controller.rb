@@ -3,7 +3,7 @@ require 'shortener'
 class ShortenersController < ApplicationController
   
   def index
-    @short_urls = ShortUrl.order('id DESC').limit(10)
+    @short_urls = ShortUrl.where(:current_state => 'proxied').order('id DESC')
   end
   
   def show
@@ -26,6 +26,12 @@ class ShortenersController < ApplicationController
       result = {:error_message=> @short_url.errors.full_messages.first}
     end
     render :json => result
+  end
+  
+  def destroy
+    @short_url = ShortUrl.find(params[:id]) and @short_url.disable!
+    
+    redirect_to :back
   end
   
 end
