@@ -8,7 +8,7 @@
     <p><%= short_url.short_url(request) %></p>
     <ul class="history_actions">
       <li><%= link_to "Cтатистика", statistic_path(short_url) %></li>
-      <li><%= button_to "Заблокировать", shortener_path(short_url), :confirm => 'Вы действительно уверены что желаете заблокировать этот адрес?', :method => :delete %></li>
+      <li><%= link_to "Заблокировать", shortener_path(short_url), :confirm => 'Вы действительно уверены что желаете заблокировать этот адрес?', :method => :delete %></li>
     </ul>
     </p>
   </div>

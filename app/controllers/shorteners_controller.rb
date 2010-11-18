@@ -6,14 +6,6 @@ class ShortenersController < ApplicationController
     @short_urls = ShortUrl.where(:current_state => 'proxied').order('id DESC')
   end
   
-  def show
-    @short_url = ShortUrl.find(params[:id])
-    respond_to do |format|
-      format.html # show.erb
-      format.json  { render :json => {:html=> render_to_string(:partial=> 'short_url', :object=> @short_url)} }
-    end
-  end
-  
   def create
     @short_url = ShortUrl.new(params[:short_url])
     if @short_url.valid?
@@ -31,7 +23,7 @@ class ShortenersController < ApplicationController
   def destroy
     @short_url = ShortUrl.find(params[:id]) and @short_url.disable!
     
-    redirect_to :back
+    redirect_to shorteners_url
   end
   
 end
