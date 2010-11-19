@@ -20,20 +20,21 @@ module DataSource
     private
     
     def fetch_clicks_data(id)
-      rows, reports = [], SummarizedClick.find_all_by_short_url_id(id)
+      merged_reports, reports = {}, SummarizedClick.find_all_by_short_url_id(id)
       
-      reports.each do |report|
-        rows << {:c => [ {:v => date_field(report.date)}, {:v => report.clicks} ]}
+      reports.reduce(merged_reports) do |memo, report|
+        memo[report.date] = report.clicks + (memo[report.date] || 0)
+        memo
       end
       
-      rows
+      merged_reports.map { |report| {:c => [ {:v => date_field(report.first)}, {:v => report.last} ] } }
     end
     
     def fetch_regions_data(id)
       rows, reports = {}, SummarizedClick.find_all_by_short_url_id(id)
       
       reports.each do |report|
-        city = report.city || "Другие города"
+        city = report.city.try(:display) || report.city.try(:name) || "Другие города"
         rows.has_key?(city) ? rows[city] += report.clicks : rows[city] = report.clicks
       end
       
