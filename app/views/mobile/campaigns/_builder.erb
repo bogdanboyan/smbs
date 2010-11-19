@@ -1,17 +1,21 @@
 <% content_for :head do %>
-  
-  <%= stylesheet_link_tag 'vendor/jquery-ui' %>
-  <%= stylesheet_link_tag 'vendor/fileuploader' %>
-  <%= stylesheet_link_tag 'mobcn/layout' %>
 
-  <%= javascript_include_tag 'vendor/jquery-ui-min' -%>
-  <%= javascript_include_tag 'vendor/inheritance' -%>
-  <%= javascript_include_tag 'vendor/fileuploader' -%>
+  <%= stylesheet_link_tag 'vendor/jquery-ui', 
+    'vendor/fileuploader', 
+    'mobcn/layout', 
+    :cache => 'all_mobcn_builder' %>
 
-  <%= javascript_include_tag 'mobcn/builder/partial_behaviour', 'mobcn/builder/images_behaviour', 'mobcn/builder/texts_behaviour', 'mobcn/builder/headers_behaviour' -%>
+  <%= javascript_include_tag 'vendor/jquery-ui-min', 
+    'vendor/inheritance', 
+    'vendor/fileuploader', 
+    'mobcn/builder/partial_behaviour', 
+    'mobcn/builder/images_behaviour', 
+    'mobcn/builder/texts_behaviour', 
+    'mobcn/builder/headers_behaviour', 
+    'mobcn/builder', 
+    'mobcn/initializer', 
+    :cache => 'all_mobcn_builder' %>
 
-  <%= javascript_include_tag 'mobcn/builder' -%>
-  <%= javascript_include_tag 'mobcn/initializer' -%>
 <%end%>
 
 
