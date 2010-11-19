@@ -52,7 +52,7 @@ describe ClicksAgregator do
       
       from_moscow, from_kiev = s_clicks[0], s_clicks[1]
       
-      from_moscow.city.name.should == 'Moscow'
+      #from_moscow.city.name.should == 'Moscow'
       from_moscow.clicks.should    == 25
       from_moscow.percent.should   == '62.50'
       
