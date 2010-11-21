@@ -27,7 +27,7 @@ module ClicksAgregator
     SQL
 
     def summarize_clicks_for(short_url_id, date, persist = true)
-      SummarizedClick.exists?(:short_url_id=> short_url_id, :date=> date.to_s(:db)) and raise "Already collected statistic for: short_url(%d), date(%s)" % [short_url_id, date.to_s]
+      SummarizedClick.exists?(:short_url_id => short_url_id, :date => date.to_s(:db)) and raise "Statistic is already summarized (short_url.id=%d, date=%s" % [short_url_id, date.to_s]
       # do agregation
       if Click.where('short_url_id = ? and date(created_at) = ?', short_url_id, date.to_s(:db)).limit(1)
         s_clicks = SummarizedClick.find_by_sql SUMMARIZE_CLICKS.gsub(':id', short_url_id.to_s).gsub(':date', date.to_s(:db))
