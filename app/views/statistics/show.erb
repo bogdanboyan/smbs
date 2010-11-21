@@ -11,7 +11,7 @@
 
 <div class="grid_8 alpha">
   <h2>Общая статистика переходов</h2>
-  <p>Ресурс: <%= link_to @short_url.short_url(request) %> &rarr; <%= link_to @short_url.origin, @short_url.origin %></p>
+  <p>Ресурс: <%= link_to @short_url.short_url(request) %> &rarr; <%= link_to truncate(@short_url.origin, :length => 40), @short_url.origin %></p>
   <p>Дата создания: <%= l @short_url.created_at.to_date, :format=> :long %></p>
     
   <div id="clicks_report"></div>
