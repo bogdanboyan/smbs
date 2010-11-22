@@ -23,6 +23,7 @@ gem 'aasm',                   '2.2.0'
 
 group :test do
   gem 'rspec',                '2.0.1'
+  gem "shoulda",              '2.11.3'
   gem 'rspec-rails',          '2.0.1'
   gem 'factory_girl',         '1.3.2'
   gem 'cucumber',             '0.8.5'

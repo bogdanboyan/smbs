@@ -34,6 +34,7 @@ describe ShortUrl do
     context "by default" do
       
       before(:all) do
+        ShortUrl.destroy_all
         @short_url = Factory.create(:short_url)
       end
       

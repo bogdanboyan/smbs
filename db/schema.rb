@@ -10,11 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122194643) do
+ActiveRecord::Schema.define(:version => 20101122221155) do
 
   create_table "asset_files", :force => true do |t|
     t.string   "type"
-    t.integer  "page_id"
+    t.integer  "mobile_campaign_id"
     t.string   "asset_file_name"
     t.string   "asset_content_type"
     t.integer  "asset_file_size"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20101122194643) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "current_state",  :limit => 15, :default => "published"
+    t.integer  "short_url_id"
   end
 
   add_index "mobile_campaigns", ["current_state"], :name => "index_mobile_campaigns_on_current_state"

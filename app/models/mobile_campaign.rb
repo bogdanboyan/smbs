@@ -1,17 +1,7 @@
-# == Schema Info
-#
-# Table name: mobile_campaigns
-#
-#  id             :integer(4)      not null, primary key
-#  document_model :text
-#  style_model    :text
-#  title          :string(255)
-#  created_at     :datetime
-#  updated_at     :datetime
-
 class MobileCampaign < ActiveRecord::Base
 
   has_many :image_assets, :dependent => :destroy
+  belongs_to :short_url
   
   validate :document_state
 
@@ -26,15 +16,15 @@ class MobileCampaign < ActiveRecord::Base
   aasm_state :archived
   
   aasm_event :archive do
-    transitions :to => :archived, :from => [:published, :pending]
+    transitions :to => :archived, :from => [:published, :pending], :on_transition => Proc.new { |t| t.short_url.try(:disable!) }
   end
   
   aasm_event :publish do
-    transitions :to => :published, :from => [:pending]
+    transitions :to => :published, :from => [:pending], :on_transition => Proc.new { |t| t.short_url.try(:enable!)  }
   end
   
   aasm_event :unpublish do
-    transitions :to => :pending, :from => [:published]
+    transitions :to => :pending, :from => [:published], :on_transition => Proc.new { |t| t.short_url.try(:disable!) }
   end
 
 
