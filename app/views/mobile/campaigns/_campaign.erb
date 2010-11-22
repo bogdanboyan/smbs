@@ -7,7 +7,7 @@
       <ul class="history_actions">
         <li><%= link_to "Редактировать", edit_mobile_campaign_path(campaign) %></li>
         <li><%= link_to "Настройки", settings_mobile_campaign_path(campaign) %></li>
-        <li><%= link_to "Архивировать", mobile_campaign_path(campaign), :confirm => 'Вы действительно уверены что желаете заархивировать эту страницу?', :method => :delete %></li>
+        <li><%= link_to "Архивировать", mobile_campaign_path(campaign), :confirm => 'Вы действительно желаете поместить этот документ в архив?', :method => :delete %></li>
       </ul>
     </p>
   </div>
