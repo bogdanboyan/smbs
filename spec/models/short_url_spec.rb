@@ -37,26 +37,15 @@ describe ShortUrl do
         @short_url = Factory.create(:short_url)
       end
       
-      it "should be proxied" do
-        @short_url.should be_proxied
-      end
-
-      it "should NOT be pending" do
-        @short_url.should_not be_pending
-      end
+      it { @short_url.should be_proxied     }
+      it { @short_url.should_not be_pending }
       
       context "with disable! event" do
-        it "should switch to pending state" do
-          @short_url.disable!
-          @short_url.should be_pending
-        end
+        specify { @short_url.disable!; @short_url.should be_pending }
       end
       
       context "with enable! event" do
-        it "should switch to proxied state" do
-          @short_url.enable!
-          @short_url.should be_proxied
-        end
+        specify { @short_url.enable!; @short_url.should be_proxied  }
       end
       
     end #end context "by default"

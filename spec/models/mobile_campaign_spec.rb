@@ -72,4 +72,30 @@ describe MobileCampaign do
     end
   end
   
+  describe "with AASM" do
+    context "by default" do
+      
+      before(:all) do
+        @mbc = Factory.create(:mobile_campaign)
+      end
+      
+      it { @mbc.should be_published    }
+      it { @mbc.should_not be_pending  }
+      it { @mbc.should_not be_archived }
+    
+      context "with unpublish! event" do
+        specify { @mbc.unpublish!; @mbc.should be_pending }
+      end
+      
+      context "with publish! event" do
+        specify { @mbc.publish!; @mbc.should be_published }
+      end
+      
+      context "with archive! event" do
+        specify { @mbc.archive!; @mbc.should be_archived }
+      end
+    
+    end # end context
+  end #end describe
+  
 end

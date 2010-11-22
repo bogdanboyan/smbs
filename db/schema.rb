@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101117164536) do
+ActiveRecord::Schema.define(:version => 20101122194643) do
 
   create_table "asset_files", :force => true do |t|
     t.string   "type"
@@ -95,7 +95,10 @@ ActiveRecord::Schema.define(:version => 20101117164536) do
     t.text     "document_model"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "current_state",  :limit => 15, :default => "published"
   end
+
+  add_index "mobile_campaigns", ["current_state"], :name => "index_mobile_campaigns_on_current_state"
 
   create_table "mobiles", :force => true do |t|
     t.string   "manufacturer"

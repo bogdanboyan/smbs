@@ -15,6 +15,29 @@ class MobileCampaign < ActiveRecord::Base
   
   validate :document_state
 
+  # init final state machine
+  include AASM
+  
+  aasm_column :current_state
+  aasm_initial_state :published
+  
+  aasm_state :published
+  aasm_state :pending
+  aasm_state :archived
+  
+  aasm_event :archive do
+    transitions :to => :archived, :from => [:published, :pending]
+  end
+  
+  aasm_event :publish do
+    transitions :to => :published, :from => [:pending]
+  end
+  
+  aasm_event :unpublish do
+    transitions :to => :pending, :from => [:published]
+  end
+
+
   def document_model_as(format = :json)
     case format
       when :json  then attributes['document_model']

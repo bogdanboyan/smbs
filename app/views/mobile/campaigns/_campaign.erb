@@ -6,8 +6,10 @@
       <span><%= truncate campaign.title, :length => 40 %></span>
       <!-- <p>статус: проверяется</p> -->
       <ul class="history_actions">
+        <li><%= link_to "Статистика" %></li>
         <li><%= link_to "Просмотр", preview_mobile_campaign_path(campaign) %></li>
         <li><%= link_to "Редактировать", edit_mobile_campaign_path(campaign) %></li>
+        <li><%= link_to "Архивировать", mobile_campaign_path(campaign), :confirm => 'Вы действительно уверены что желаете заархивировать эту страницу?', :method => :delete %></li>
       </ul>
     </p>
   </div>

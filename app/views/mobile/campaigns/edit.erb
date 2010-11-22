@@ -2,9 +2,9 @@
 
 <script>
   var builder = new Builder(<%= raw render_partials_to_js_object %>);
-  var page_id = <%= @mbc.id %>;
+  var page_id = <%= @campaign.id %>;
   $(document).ready(function() {
     switch_save_to_update();
-    builder.inject_serialized_document(<%= raw @mbc.document_model %>);
+    builder.inject_serialized_document(<%= raw @campaign.document_model %>);
   });
 </script>

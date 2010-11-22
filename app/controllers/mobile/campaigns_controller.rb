@@ -1,21 +1,15 @@
 class Mobile::CampaignsController < ApplicationController
   
   def index
-    @campaigns  = MobileCampaign.all
-  end
-  
-  def show
-    @mbc = MobileCampaign.find(params[:id])
-    @document_model = @mbc.document_model_as(:array).map! {|entity| entity.symbolize_keys }
-    render :action => 'show', :layout => false
+    @campaigns  = MobileCampaign.where(:current_state => 'published')
   end
   
   def preview
-    @mbc = MobileCampaign.find(params[:id])
+    @campaign = MobileCampaign.find(params[:id])
   end
   
   def edit
-    @mbc = MobileCampaign.find(params[:id])
+    @campaign = MobileCampaign.find(params[:id])
     @images = ImageAsset.all
   end
   
@@ -24,17 +18,18 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def create
-    mbc = MobileCampaign.new(params[:mbc])
-    mbc.save ? render(:json=> {:mbc_id => mbc.id }) : render(:status => 400, :text => 'Bad Request')
+    campaign = MobileCampaign.new(params[:mbc])
+    
+    campaign.save ? render(:json=> {:mbc_id => campaign.id }) : render(:status => 400, :text => 'Bad Request')
   end
   
   def update
-    mbc = MobileCampaign.find(params[:id])
-    mbc.update_attributes(params[:mbc]) ? render(:json=> {:mbc_id => mbc.id }) : render(:status => 400, :text => 'Bad Request')
+    campaign = MobileCampaign.find(params[:id])
+    campaign.update_attributes(params[:mbc]) ? render(:json=> {:mbc_id => campaign.id }) : render(:status => 400, :text => 'Bad Request')
   end
   
   def destroy
-    MobileCampaign.destroy(params[:id])
+    campaign = MobileCampaign.find(params[:id]) and campaign.archive!
     redirect_to mobile_campaigns_path
   end
   
