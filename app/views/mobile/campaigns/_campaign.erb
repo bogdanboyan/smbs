@@ -1,14 +1,12 @@
 <div class="history_item">
   <div class="date"><%= l(campaign.created_at.to_date, :format => :short) %></div>
-  <div class="clicks"><em><strong>0</strong></em></div>
+  <div class="clicks"><em><strong><%= link_to "0" %></strong></em></div>
   <div class="info">
     <p class="title">
       <span><%= truncate campaign.title, :length => 40 %></span>
-      <!-- <p>статус: проверяется</p> -->
       <ul class="history_actions">
-        <li><%= link_to "Статистика" %></li>
-        <li><%= link_to "Просмотр", preview_mobile_campaign_path(campaign) %></li>
         <li><%= link_to "Редактировать", edit_mobile_campaign_path(campaign) %></li>
+        <li><%= link_to "Настройки", settings_mobile_campaign_path(campaign) %></li>
         <li><%= link_to "Архивировать", mobile_campaign_path(campaign), :confirm => 'Вы действительно уверены что желаете заархивировать эту страницу?', :method => :delete %></li>
       </ul>
     </p>

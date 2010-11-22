@@ -176,7 +176,7 @@ input, textarea {
   cursor: pointer;
 }
 
-#preview iframe {
+#settings iframe {
   width: 128px;
   height: 160px;
 }

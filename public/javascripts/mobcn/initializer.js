@@ -1,10 +1,10 @@
 // initialize document builder
 $(document).ready(function() {
 
-  $('#preview').click(function() {
+  $('#settings').click(function() {
     if(page_id) {
       $('#save').click();
-      window.location='/mobile/campaigns/'+page_id+'/preview';
+      window.location='/mobile/campaigns/'+page_id+'/settings';
     }
     return false;
   }),

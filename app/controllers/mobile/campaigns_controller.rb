@@ -4,7 +4,7 @@ class Mobile::CampaignsController < ApplicationController
     @campaigns  = MobileCampaign.where(:current_state => 'published')
   end
   
-  def preview
+  def settings
     @campaign = MobileCampaign.find(params[:id])
   end
   

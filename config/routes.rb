@@ -27,7 +27,7 @@ Smbs::Application.routes.draw do
   namespace :mobile do
     
     resources :campaigns do
-       member     { get :preview }
+       member     { get :settings }
     end
     
     resources :assets do
