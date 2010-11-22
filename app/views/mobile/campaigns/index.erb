@@ -1,12 +1,19 @@
 <div class="grid_8 alpha">
   <h2>Мобильные страницы</h2>
 
-  <ul>
-    <% @campaigns.each do |page| %>
-      <li><%= link_to page.title, preview_mobile_campaign_path(page) %> (<%= link_to "Редактировать", edit_mobile_campaign_path(page) %>) <%#= link_to "Удалить", mobile_campaign_path(page), :method => :delete, :confirm => 'Вы уверены что хотите удалить?' %></li>
-    <%end%>
-  </ul>
+  <div class='history'>
+    <div class="history_subhead">
+      <p class="date">Добавлено</p>
+      <p class="clicks">Просмотров</p>
+      <p class="info">Информация</p>
+    </div>
+    <div>
+      <%= render :partial=> 'campaign', :collection=> @campaigns %>
+    </div>
+  </div>
+  
 </div>
+
 <div class="grid_4 omega">
     <p><%= link_to "Создать", new_mobile_campaign_path %></p>
     <p><strong>КАК ИСПОЛЬЗОВАТЬ:</strong></p>

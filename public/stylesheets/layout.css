@@ -31,13 +31,11 @@ textarea {width: 100%;height: 65px;font-size: 15px;color: #50799A;}
 .history p { margin: 0; }
 .history .date, .history .clicks, .history .images { float: left; }
 .history .date { width: 90px; }
-.history .clicks { width: 120px; }
-.history .images { width: 120px; }
 .history .info { margin-left: 200px; }
 
-.history_subhead { padding-top: 10px; color: #999; text-transform: uppercase; font-size: 10px; }
+.history_subhead { color: #999; text-transform: uppercase; font-size: 10px; }
 
-.history_item { width: 100%; float: left; padding: 8px 0 14px 0; color: #999; }
+.history_item { width: 100%; float: left; padding: 8px 0 14px 0; }
 .history_item .date { font-size: 1.2em; } 
 .history_item .clicks { font-size: 11px; } 
 .history_item .clicks strong { display: block; font-size: 30px; line-height: 30px; padding-bottom: 2px; } 
