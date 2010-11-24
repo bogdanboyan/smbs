@@ -35,6 +35,9 @@ module Smbs
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
+    
+    # Use SQL instead of Active Record's schema dumper when creating the test database.
+    config.active_record.schema_format = :sql
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]

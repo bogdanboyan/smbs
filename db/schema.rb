@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101122221155) do
+ActiveRecord::Schema.define(:version => 20101124155451) do
 
   create_table "asset_files", :force => true do |t|
     t.string   "type"
@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(:version => 20101122221155) do
   add_index "countries", ["code"], :name => "index_countries_on_code"
   add_index "countries", ["name", "code"], :name => "index_countries_on_name_and_code"
   add_index "countries", ["name"], :name => "index_countries_on_name"
+
+  create_table "invites", :force => true do |t|
+    t.string   "email",      :null => false
+    t.string   "full_name",  :null => false
+    t.string   "company"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mobile_campaigns", :force => true do |t|
     t.string   "title"
