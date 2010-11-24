@@ -18,7 +18,7 @@ module Mobile::CampaignsHelper
   end
   
   def clicks_counter_link_to(short_url)
-    short_url ? link_to(short_url.clicks, statistic_path(short_url)) : 0
+    short_url ? link_to(short_url.clicks_count, statistic_path(short_url)) : 0
   end
 
 

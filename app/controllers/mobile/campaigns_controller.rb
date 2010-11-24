@@ -1,15 +1,12 @@
 class Mobile::CampaignsController < ApplicationController
   
+  before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url]
+  
   def index
     @campaigns  = MobileCampaign.where(:current_state => 'published')
   end
   
-  def settings
-    @campaign = MobileCampaign.find(params[:id])
-  end
-  
   def edit
-    @campaign = MobileCampaign.find(params[:id])
     @images = ImageAsset.all
   end
   
@@ -24,13 +21,27 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def update
-    campaign = MobileCampaign.find(params[:id])
     campaign.update_attributes(params[:mbc]) ? render(:json=> {:mbc_id => campaign.id }) : render(:status => 400, :text => 'Bad Request')
   end
   
   def destroy
-    campaign = MobileCampaign.find(params[:id]) and campaign.archive!
+    campaign.archive!
     redirect_to mobile_campaigns_path
   end
   
+  def assign_short_url
+    if params[:short_url].match(/\/(\w+)$/) && short_url = ShortUrl.find_by_short($1)
+      @campaign.short_url = short_url
+      @campaign.save!
+    end
+    
+    redirect_to settings_mobile_campaign_url(@campaign)
+  end
+
+
+  private
+  
+  def load_mobile_camapign
+    @campaign = MobileCampaign.find(params[:id])
+  end
 end

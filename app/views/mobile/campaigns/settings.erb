@@ -19,7 +19,6 @@
   </div>
   
   <div id="preview"></div>
-  
 </div>
 
 <div class="grid_4 omega">
@@ -31,4 +30,20 @@
     <li><a href="#">320x480</a> HTC Hero/Apple iPhone</li>
     <li><a href="#">480x800</a> Google Nexus One</li>
   </ul>
+  
+<% if @campaign.short_url %>
+  <div>
+    <p><strong>Короткий адрес:</strong></p>
+    <%= short_url_title_with_origin_link_pair(@campaign.short_url) %>
+  </div>
+<%end%>
+  
+  <div>
+    <p><strong><%= @campaign.short_url ? "Изменить" : "Установить" %> короткий адрес:</strong></p>
+    <%= form_tag assign_short_url_mobile_campaign_path(@campaign), :method => :put do %>
+      <%= text_field_tag 'short_url' %>
+      <%= submit_tag 'Добавить' %>
+    <%end%>
+  </div>
+  
 </div>
