@@ -17,6 +17,16 @@ custom {display: none;}
 	margin-bottom: 15px;
 }
 
+.reasons {
+  margin: 1em 0 1em 2em !important;
+}
+
+.reasons li {
+  list-style-type: circle;
+  margin-bottom:0.5em;
+  margin-top:0.5em;
+}
+
 /* form */
 form { background: #F4F4F4;padding: 10px;}
 form div {padding: 2px;}
