@@ -3,7 +3,7 @@ class Mobile::CampaignsController < ApplicationController
   before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url]
   
   def index
-    @campaigns  = MobileCampaign.where(:current_state => 'published')
+    @campaigns  = MobileCampaign.where(:current_state => 'published').order('created_at DESC')
   end
   
   def edit
