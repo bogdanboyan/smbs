@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Mobile::CampaignsController < ApplicationController
   
   before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url]
@@ -33,6 +34,10 @@ class Mobile::CampaignsController < ApplicationController
     if params[:short_url].match(/\/(\w+)$/) && short_url = ShortUrl.find_by_short($1)
       @campaign.short_url = short_url
       @campaign.save!
+      
+      flash[:notice] = "Короткий адрес '/#{short_url.short}' был добавлен к мобильной странице"
+    else
+      flash[:error]  = "Не верный формат короткого адреса - задайте полный URL"
     end
     
     redirect_to settings_mobile_campaign_url(@campaign)

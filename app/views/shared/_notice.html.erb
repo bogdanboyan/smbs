@@ -14,4 +14,4 @@
   
 </script>
 
-<div id="<%= notice || 'notice' %>" class="status_bar"><%= flash[:notice] %></div>
+<div id="<%= notice || 'notice' %>" class="status_bar"><%= flash[:notice] || flash[:error] %></div>
