@@ -41,8 +41,11 @@
   
   <div>
     <p><strong><%= @campaign.short_url ? "Изменить" : "Установить" %> короткий адрес:</strong></p>
+    <ul class="input-list">
+        <li class="item">
+          <%= button_to 'Сгенерировать автоматически', generate_short_url_mobile_campaign_path(@campaign), :method => :put %>
+        </li>
     <%= form_tag assign_short_url_mobile_campaign_path(@campaign), :method => :put do %>
-      <ul class="input-list">
         <li class="item">
           <%= label_tag 'short_url', "введите новый адрес:" %>
           <%= text_field_tag 'short_url' %>
@@ -50,10 +53,5 @@
         <li class="item"><%= submit_tag 'Добавить', :class=> 'submit_button' %></li>
       </ul>
     <%end%>
-  </div>
-  
-  <div>
-    <%= button_to 'Сгенерируйте Автоматически', generate_short_url_mobile_campaign_path(@campaign), :method => :put %>
-  </div>
-  
+  </div>  
 </div>
