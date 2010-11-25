@@ -28,7 +28,7 @@ Smbs::Application.routes.draw do
   namespace :mobile do
     
     resources :campaigns do
-       member     { get :settings;  put :assign_short_url }
+       member     { get :settings;  put :assign_short_url; put :generate_short_url }
     end
     
     resources :assets do

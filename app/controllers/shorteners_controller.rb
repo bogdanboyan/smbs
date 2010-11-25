@@ -7,6 +7,7 @@ class ShortenersController < ApplicationController
   end
   
   def create
+    # TODO : USE ShortUrl.generate method
     @short_url = ShortUrl.new(params[:short_url])
     if @short_url.valid?
       @short_url.short = Shortener.get_basemade_value(ShortSequence.create.id)

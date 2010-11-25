@@ -40,6 +40,15 @@ class ShortUrl < ActiveRecord::Base
     transitions :to => :pending, :from => [:proxied]
   end
   
+  class << self
+    
+    def generate(origin_url)
+      short_url       = ShortUrl.new(:origin => origin_url)
+      short_url.short = Shortener.get_basemade_value(ShortSequence.create.id)
+      short_url.save!
+      short_url
+    end
+  end
   
   def short_url(request)
     "http://#{request.domain}/#{self.short}"

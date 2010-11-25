@@ -66,11 +66,6 @@ a:hover {
 	resize: none;
 }
 
-input, textarea {
-  color: black;
-  font-size: 16px;
-  width: 100%;
-}
 
 .header_container {
 	width: 100%;

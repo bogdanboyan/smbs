@@ -1,9 +1,13 @@
 <%= render :partial=>'shared/notice', :object=> 'short_url_notice' %>
 
 <%= form_for :short_url, :url=> '#', :html=>{ :id => :short_form } do |f| %>
-  <div>введите адрес который нужно сократить:</div>
-  <div><%= f.text_field :origin %></div>
-  <div><%= submit_tag 'создать ссылку', :class=>'submit_button' %></div>
+  <ul class="input-list">
+    <li class="item">
+      <%= f.label :origin, "введите адрес который нужно сократить:" %>
+      <%= f.text_field :origin %>
+    </li>
+    <li class="item"><%= submit_tag 'создать ссылку', :class=>'submit_button' %></li>
+  </ul>
 <%end%>
 
 <script>

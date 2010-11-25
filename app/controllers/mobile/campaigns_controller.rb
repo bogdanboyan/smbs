@@ -1,7 +1,7 @@
 #encoding: utf-8
 class Mobile::CampaignsController < ApplicationController
   
-  before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url]
+  before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url, :generate_short_url]
   
   def index
     @campaigns  = MobileCampaign.where(:current_state => 'published').order('created_at DESC')
@@ -40,6 +40,15 @@ class Mobile::CampaignsController < ApplicationController
       flash[:error]  = "Не верный формат короткого адреса - задайте полный URL"
     end
     
+    redirect_to settings_mobile_campaign_url(@campaign)
+  end
+  
+  def generate_short_url
+    @campaign.short_url = ShortUrl.generate mobile_campaign_url(@campaign)
+    @campaign.save!
+    
+    flash[:notice] = "Короткий адрес '/#{@campaign.short_url.short}' был добавлен к мобильной странице"
+  
     redirect_to settings_mobile_campaign_url(@campaign)
   end
 
