@@ -51,7 +51,7 @@ class ShortUrl < ActiveRecord::Base
   end
   
   def short_url(request)
-    "http://#{request.domain}/#{self.short}"
+    "http://yamco.mobi/#{self.short}"
   end
   
   def has_clicks?
