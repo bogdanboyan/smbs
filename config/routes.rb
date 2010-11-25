@@ -25,6 +25,8 @@ Smbs::Application.routes.draw do
 
   end
 
+  match '/mobile'  => 'mobile/welcome#index'
+
   namespace :mobile do
     
     resources :campaigns do
