@@ -6,7 +6,7 @@ SMBS.MobileCampaign.AssetUploader = {
           element: document.getElementById('file-uploader'),
           action: upload_image_mobile_assets_path,
           allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-          sizeLimit: 524288 /*512kb*/,
+          sizeLimit: 1048576 /*512kb x2*/,
           onComplete: function(id, file_name, data) {
             $('.assets').prepend(data.html).trigger('change');
             // re-index draggable elements
