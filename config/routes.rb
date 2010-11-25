@@ -2,12 +2,13 @@ require 'rackup'
 
 Smbs::Application.routes.draw do
 
-  root :to           => 'welcome#show'
+  root :to        => 'welcome#show'
   post  '/invite' => "invite#create"
 
   match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
-  match '/shorteners/:short/redirect' => Rackup::ShortenersRedirectApp.action(:redirect)
-  get   '/mobile/campaigns/:id'       => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
+  match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
+  get   '/mobile/campaigns/:id'              => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
+  get   '/mobile'                            => Rackup::MobileApp.action(:index)
 
   resources :shorteners, :statistics
 
@@ -24,8 +25,6 @@ Smbs::Application.routes.draw do
     end
 
   end
-
-  match '/mobile'  => 'mobile/welcome#index'
 
   namespace :mobile do
     
