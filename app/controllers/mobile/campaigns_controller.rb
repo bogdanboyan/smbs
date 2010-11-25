@@ -22,7 +22,7 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def update
-    campaign.update_attributes(params[:mbc]) ? render(:json=> {:mbc_id => campaign.id }) : render(:status => 400, :text => 'Bad Request')
+    @campaign.update_attributes(params[:mbc]) ? render(:json=> {:mbc_id => @campaign.id }) : render(:status => 400, :text => 'Bad Request')
   end
   
   def destroy
