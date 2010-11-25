@@ -71,6 +71,11 @@ a:hover {
 	width: 100%;
 }
 
+.header_container input[type="text"] {
+  width: 100%;
+}
+
+
 .header_container .header {
 	width: 100%;
 }
