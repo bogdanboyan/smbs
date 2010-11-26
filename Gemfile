@@ -28,7 +28,7 @@ group :test do
   gem 'factory_girl',         '1.3.2'
   gem 'cucumber',             '0.8.5'
   gem 'cucumber-rails',       '0.3.2'
-  gem 'selenium-webdriver',   '0.0.29'
+  gem 'selenium-webdriver',   '0.1.0'
   gem 'capybara',             '0.3.9'
-  gem 'database_cleaner',     '0.6.0.rc.3'
+  gem 'database_cleaner',     '0.6.0'
 end
