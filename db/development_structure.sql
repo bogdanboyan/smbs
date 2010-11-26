@@ -68,7 +68,7 @@ CREATE TABLE `clicks` (
   KEY `index_clicks_on_short_url_id` (`short_url_id`),
   KEY `index_clicks_on_user_agent_id` (`user_agent_id`),
   KEY `index_clicks_on_short_url_id_and_created_at` (`short_url_id`,`created_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -144,7 +144,7 @@ CREATE TABLE `short_sequences` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `short_urls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -160,7 +160,7 @@ CREATE TABLE `short_urls` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_short_urls_on_short` (`short`),
   KEY `index_short_urls_on_current_state` (`current_state`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `summarized_clicks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

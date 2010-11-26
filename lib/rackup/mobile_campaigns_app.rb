@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Rackup
   class MobileCampaignsApp < ActionController::Metal
     
@@ -7,10 +9,14 @@ module Rackup
     
     
     def show
-      @mbc = MobileCampaign.find(params[:id])
-      @document_model = @mbc.document_model_as(:array).map! {|entity| entity.symbolize_keys }
-      
-      render
+      # we want receive email notification about requests for unknown campaigns ids
+      # if MobileCampaign.exists? params[:id]
+        @mbc = MobileCampaign.find params[:id]
+        @document_model = @mbc.document_model_as(:array).map! {|entity| entity.symbolize_keys }
+        render
+      # else
+      #   render :text => 'Страница не найдена', :status => 404
+      # end
     end
     
     
