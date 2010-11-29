@@ -5,6 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Ямко - навигатор выгодных предложений</title>
+    <style type="text/css"><%= compress_css render(:partial => 'rackup/shared/layout_css') %></style>
   </head>
   
   <body>
@@ -22,6 +23,9 @@
     
     <p>Используя функцию закладок в вашем браузере, поместите <a href="http://yamco.mobi">yamco.mobi</a> в закладки - тогда вы сможете быстрым переходом, в удобное время или когда увы на вашем пути затор, получать инфомацию о новых функциях нашего сервиса.</p>
     
-    <p>Администрация <a href="http://yamco.mobi">Ямко</a>&copy;</p>
+    <div class="cm">
+      <br/>
+      <span class="cpr"><%= link_to "Ямко", "http://yamco.mobi" %>&copy; <%= Time.now.year %></span>
+    </div>
   </body>
 </html>

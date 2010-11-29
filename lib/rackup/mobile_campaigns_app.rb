@@ -1,12 +1,7 @@
 # encoding: utf-8
 
 module Rackup
-  class MobileCampaignsApp < ActionController::Metal
-    
-    include ActionController::Rendering
-    
-    append_view_path "#{Rails.root}/app/views"
-    
+  class MobileCampaignsApp < AbstractMobileMetalController
     
     def show
       # we want receive email notification about requests for unknown campaigns ids
@@ -17,20 +12,6 @@ module Rackup
       # else
       #   render :text => 'Страница не найдена', :status => 404
       # end
-    end
-    
-    
-    #
-    # Helper methods
-    #
-    def compress_css(source)
-      source.gsub!(/\s+/, " ")
-      source.gsub!(/\/\*(.*?)\*\//, "")
-      source.gsub!(/\} /, "}\n")
-      source.gsub!(/\n$/, "")
-      source.gsub!(/ \{ /, " {")
-      source.gsub!(/; \}/, "}")
-      source
     end
     
     def is_a_data?(model, type)

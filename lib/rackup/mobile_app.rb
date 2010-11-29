@@ -1,10 +1,5 @@
 module Rackup
-  class MobileApp < ActionController::Metal
-    
-    include ActionController::Rendering
-    
-    append_view_path "#{Rails.root}/app/views"
-    
+  class MobileApp < AbstractMobileMetalController
     
     def index
       render
