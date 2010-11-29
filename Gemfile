@@ -21,6 +21,8 @@ gem 'exception_notification_rails3', '1.0.0', :require => 'exception_notifier'
 
 gem 'aasm',                   '2.2.0'
 
+gem 'will_paginate',          '3.0.pre2'
+
 group :test do
   gem 'rspec',                '2.0.1'
   gem "shoulda",              '2.11.3'

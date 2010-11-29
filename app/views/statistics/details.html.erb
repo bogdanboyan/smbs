@@ -1,0 +1,26 @@
+<div class="grid_8 alpha">
+  <table>
+    <tbody>
+      <tr>
+        <th>IP адрес</th>
+        <th>Информация о мобильном телефоне</th>
+        <th>Дата просмотра</th>
+      </tr>
+      <% @clicks.each do |click| %>
+        <tr>
+          <td><%= click.ip_address %></td>
+          <td align="center"><%= truncate click.user_agent.details, :length => 100 %></td>
+          <td align="center"><%= l click.created_at, :format => :short %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= paginate @clicks, :renderer => PaginationHelper::StatisticLinkRenderer %>
+  
+</div>
+
+<div class="grid_4 omega">
+  <p><%= link_to "Статистика в графиках", statistic_path(@short_url) %></p>
+  <p><strong>ЧТО ОЗНАЧАЕТ:</strong></p>
+</div>

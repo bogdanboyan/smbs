@@ -10,7 +10,11 @@ Smbs::Application.routes.draw do
   get   '/mobile/campaigns/:id'              => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
   get   '/mobile'                            => Rackup::MobileApp.action(:index)
 
-  resources :shorteners, :statistics
+  resources :shorteners
+
+  resources :statistics do
+    member { get :details }
+  end
 
   resources :barcodes do
 

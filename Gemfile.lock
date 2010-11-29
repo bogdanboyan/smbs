@@ -127,6 +127,7 @@ GEM
     tzinfo (0.3.23)
     unicorn (1.1.4)
       rack
+    will_paginate (3.0.pre2)
 
 PLATFORMS
   ruby
@@ -150,3 +151,4 @@ DEPENDENCIES
   selenium-webdriver (= 0.1.0)
   shoulda (= 2.11.3)
   unicorn (= 1.1.4)
+  will_paginate (= 3.0.pre2)
