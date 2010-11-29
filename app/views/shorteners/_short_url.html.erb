@@ -4,7 +4,7 @@
   <div class="clicks"><em><strong><%= clicks_counter_link_to(short_url) %></strong></em></div>
   <div class="info">
     <p class="title">
-      <span><%= link_to truncate(short_url.origin, :length => 40), short_url.origin, :class=> 'title', :target=> '_blank' %></span>
+      <span><%== link_to_origin_or_mobile_campaign(short_url) %></span>
       <p><%= short_url.short_url(request) %></p>
       <ul class="history_actions">
         <li><%= link_to "Заблокировать", shortener_path(short_url), :confirm => 'Вы действительно уверены что желаете заблокировать этот адрес?', :method => :delete %></li>

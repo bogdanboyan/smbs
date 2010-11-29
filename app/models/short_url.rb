@@ -5,7 +5,7 @@ class ShortUrl < ActiveRecord::Base
   include Validations::Url
 
   has_many   :clicks
-  belongs_to :campaign
+  has_one    :mobile_campaign
 
   validate :prepare_and_parse_url
 
