@@ -11,7 +11,9 @@
 <div class="assets">
   <%= render :partial => 'image', :collection => @images %>
 </div>
+
 <div class="clear">&nbsp;</div>
+
 <div id="file-uploader">
   <%= form_for :image, :url => upload_image_mobile_assets_path, :html => { :id => 'image_form', :multipart => true } do |form| %>
     <%= form.file_field :asset, :size => 15 %>
