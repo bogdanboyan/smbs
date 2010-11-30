@@ -1,6 +1,11 @@
 class MobileCampaign < ActiveRecord::Base
 
-  has_many :image_assets, :dependent => :destroy
+  has_and_belongs_to_many :asset_files do
+    def images
+      where(:type => 'ImageAsset')
+    end
+  end
+  
   belongs_to :short_url
   
   validate :document_state
@@ -37,6 +42,14 @@ class MobileCampaign < ActiveRecord::Base
     end
   end
 
+  def sanitize(document = [])
+    document = document.delete_if do |partial|
+      type, value = partial['type'], partial['value']
+      type.nil? || type =~ /[^header|text|images]/ || value.nil? || value.empty? || sanitize_partial(type, value)
+    end
+    document.compact
+  end
+
 
   protected
   
@@ -69,14 +82,6 @@ class MobileCampaign < ActiveRecord::Base
 
   def should_be_true(*state)
     errors.add("value", "has invalid format") unless state.delete_if {|s| s}.empty?
-  end
-
-  def sanitize(document = [])
-    document = document.delete_if do |partial|
-      type, value = partial['type'], partial['value']
-      type.nil? || type =~ /[^header|text|images]/ || value.nil? || value.empty? || sanitize_partial(type, value)
-    end
-    document.compact
   end
 
   def sanitize_partial(type, value)

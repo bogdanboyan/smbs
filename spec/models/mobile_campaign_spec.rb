@@ -2,10 +2,33 @@ require 'spec_helper'
 
 describe MobileCampaign do
   
-  it { should have_db_column(:document_model) }
-  it { should have_db_column(:title)          }
-  it { should belong_to(:short_url)           }
-  it { should have_many(:image_assets)        }
+  # specify model members
+  it { should have_db_column(:document_model)           }
+  it { should have_db_column(:title)                    }
+  it { should belong_to(:short_url)                     }
+  
+  it { should have_and_belong_to_many(:asset_files)     }
+  
+  describe "with assets" do
+    
+    before(:each) do
+      @mobile_campaign = Factory.create(:mobile_campaign)
+    end
+    
+    specify "image assignments" do
+      
+      @mobile_campaign.asset_files.images.should have(1).item
+      
+      [
+        { :asset_file_name => 'first image',  :asset_content_type => 'image/gif', :asset_file_size => 10 },
+        { :asset_file_name => 'second image', :asset_content_type => 'image/gif', :asset_file_size => 10 },
+      ].each { |asset_params| @mobile_campaign.asset_files << ImageAsset.create(asset_params) }
+      
+      @mobile_campaign.reload
+      @mobile_campaign.asset_files.images.should have(3).items
+      @mobile_campaign.asset_files.images.first.should be_instance_of(ImageAsset)
+    end
+  end
   
   describe "with document model" do
     it 'should truncate invalid document model' do
@@ -68,6 +91,7 @@ describe MobileCampaign do
   end
   
   describe "with AASM" do
+    
     context "by default" do
       
       before(:all) do
@@ -95,9 +119,12 @@ describe MobileCampaign do
     context "by linked short_url" do
       
       before(:all) do
-        MobileCampaign.destroy_all
-        @short_url = Factory.create(:short_url)
-        @mbc       = Factory.create(:mobile_campaign, :short_url => @short_url)
+        # TODO investigate!!
+        AssetFile.destroy_all; MobileCampaign.destroy_all
+        
+        @mbc           = Factory.create(:mobile_campaign, :short_url => @short_url)
+        @short_url     = Factory.create(:short_url)
+        @mbc.short_url = @short_url
       end
       
       it { @short_url.should be_proxied }
