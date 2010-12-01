@@ -1,0 +1,13 @@
+<script>
+  SMBS.MobileCampaign.ImageGalleryWidget.init('<%= @campaign.id %>');
+</script>
+
+<h2>Галлерея</h2>
+
+<div class="assets">
+  <%= render :partial => 'image_asset', :collection => @images %>
+</div>
+
+<div class="clear">&nbsp;</div>
+
+<div id="file-uploader"></div>

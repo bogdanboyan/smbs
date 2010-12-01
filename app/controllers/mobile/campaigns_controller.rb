@@ -8,7 +8,7 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def edit
-    @images = ImageAsset.all
+    @images = @campaign.asset_files.only_images
   end
   
   def new
@@ -56,6 +56,6 @@ class Mobile::CampaignsController < ApplicationController
   private
   
   def load_mobile_camapign
-    @campaign = MobileCampaign.find(params[:id])
+    @campaign = MobileCampaign.find params[:id]
   end
 end

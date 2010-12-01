@@ -1,5 +1,3 @@
-<%= render :partial=> 'builder' %>
-
 <script>
   var builder = new Builder(<%= raw render_partials_to_js_object %>);
   var page_id = <%= @campaign.id %>;
@@ -8,3 +6,5 @@
     builder.inject_serialized_document(<%= raw @campaign.document_model %>);
   });
 </script>
+
+<%= render :partial=> 'builder' %>

@@ -12,8 +12,9 @@
     'mobcn/builder/images_behaviour', 
     'mobcn/builder/texts_behaviour', 
     'mobcn/builder/headers_behaviour', 
-    'mobcn/builder', 
-    'mobcn/initializer', 
+    'mobcn/image_gallery_widget',
+    'mobcn/builder',
+    'mobcn/initializer',
     :cache => 'all_mobcn_builder' %>
 
 <%end%>
@@ -31,7 +32,6 @@
   </div>
   
   <div id="document"></div>
-  <div id="preview" style="display:none;"></div>
   
   <div id="document_partials">
     <ul>
@@ -43,14 +43,5 @@
 </div>
 
 <div class="grid_4 omega">
-  <div id="gallery"><%= render :partial => 'assets' %></div>
-  <div id="themes" style="display:none;">
-    <div id="resolutions">
-      <input type="radio" id="radio1" name="radio"/><label for="radio1">128x160</label>
-      <input type="radio" id="radio2" name="radio"/><label for="radio2">176x220</label>
-      <input type="radio" id="radio3" name="radio"/><label for="radio3">240x320</label>
-      <input type="radio" id="radio4" name="radio"/><label for="radio4">320x480</label>
-      <input type="radio" id="radio5" name="radio"/><label for="radio5">480x800</label>
-    </div>
-  </div>
+  <div id="gallery"><%= render :partial => 'image_gallery_widget' %></div>
 </div>
