@@ -1,3 +1,4 @@
+# encoding: utf-8
 class MobileCampaign < ActiveRecord::Base
 
   has_and_belongs_to_many :asset_files, :uniq => true do
@@ -64,7 +65,7 @@ class MobileCampaign < ActiveRecord::Base
     
     sanitized_document_model = sanitize(document_model_as(:array))
     
-    (errors.add(:base, 'document_model is empty and sanitized') && return) if (!sanitized_document_model || sanitized_document_model.empty?)
+    (errors.add(:base, 'Пустой документ не может быть сохранен') && return) if (!sanitized_document_model || sanitized_document_model.empty?)
     
     sanitized_document_model.each do |partial|
       type, value = partial['type'], partial['value']

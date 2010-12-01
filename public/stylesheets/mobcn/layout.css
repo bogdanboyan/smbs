@@ -170,6 +170,10 @@ a:hover {
   margin-right: 6px;
 }
 
+.assets .notice {
+  display: none;
+}
+
 /* preview */
 
 #resolutions {

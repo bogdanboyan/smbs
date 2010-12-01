@@ -6,16 +6,13 @@ var Builder = Class.extend({
 
   init : function(document_partials) {
     this.document_partials = document_partials;
-    //this.style_model       = new StyleModel();
 
     /* 'this' context as proxied object */
     var place_container_to_document_proxy = $.proxy(this._place_container_to_document, this);
-
+    
     /* init document partials listeners */
     $('#document_partials ul').find('li').each(function(/*<li>*/index) {
-      $(this).click(function() {
-        place_container_to_document_proxy($(this).attr('id'));
-      });
+      $(this).click(function() { place_container_to_document_proxy($(this).attr('id')); });
     });
 
     /* common behaviour */

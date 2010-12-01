@@ -11,18 +11,17 @@ class Mobile::CampaignsController < ApplicationController
     @images = @campaign.asset_files.only_images
   end
   
-  def new
-    @images = ImageAsset.all
-  end
-  
   def create
     campaign = MobileCampaign.new(params[:mbc])
+    is_saved = campaign.save
     
-    campaign.save ? render(:json=> {:mbc_id => campaign.id }) : render(:status => 400, :text => 'Bad Request')
+    render :json => { :mbc_id => campaign.id, :success => !!is_saved, :error => campaign.errors.full_messages.first }
   end
   
   def update
-    @campaign.update_attributes(params[:mbc]) ? render(:json=> {:mbc_id => @campaign.id }) : render(:status => 400, :text => 'Bad Request')
+    is_updated = @campaign.update_attributes(params[:mbc]) 
+    
+    render :json => { :mbc_id => @campaign.id, :success => !!is_updated, :error => @campaign.errors.full_messages.first }
   end
   
   def destroy
