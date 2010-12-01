@@ -17,7 +17,7 @@ describe MobileCampaign do
     
     specify "image assignments" do
       
-      @mobile_campaign.asset_files.images.should have(1).item
+      @mobile_campaign.asset_files.only_images.should have(1).item
       
       [
         { :asset_file_name => 'first image',  :asset_content_type => 'image/gif', :asset_file_size => 10 },
@@ -25,8 +25,9 @@ describe MobileCampaign do
       ].each { |asset_params| @mobile_campaign.asset_files << ImageAsset.create(asset_params) }
       
       @mobile_campaign.reload
-      @mobile_campaign.asset_files.images.should have(3).items
-      @mobile_campaign.asset_files.images.first.should be_instance_of(ImageAsset)
+      
+      @mobile_campaign.asset_files.only_images.should have(3).items
+      @mobile_campaign.asset_files.only_images.first.should be_instance_of(ImageAsset)
     end
   end
   

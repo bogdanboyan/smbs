@@ -1,7 +1,7 @@
 class MobileCampaign < ActiveRecord::Base
 
   has_and_belongs_to_many :asset_files, :uniq => true do
-    def images
+    def only_images
       where(:type => 'ImageAsset')
     end
     
@@ -56,11 +56,7 @@ class MobileCampaign < ActiveRecord::Base
     document.compact
   end
 
-  # HACK :uniq => true doesnot works!
-  def push_asset_files(*objects)
-    objects.each{ |o| (asset_files << o) unless asset_files.include?(o) }
-  end
-  
+
   protected
   
   def document_state
