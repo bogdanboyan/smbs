@@ -32,6 +32,9 @@ class Mobile::CampaignsController < ApplicationController
   
   def assign_short_url
     if params[:short_url].match(/\/(\w+)$/) && short_url = ShortUrl.find_by_short($1)
+      short_url.origin    = mobile_campaign_url(@campaign)
+      short_url.save!
+      
       @campaign.short_url = short_url
       @campaign.save!
       
