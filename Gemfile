@@ -34,3 +34,8 @@ group :test do
   gem 'capybara',             '0.3.9'
   gem 'database_cleaner',     '0.6.0'
 end
+
+group :production do
+  gem 'scout',                '5.1.4'
+  gem 'request-log-analyzer', '1.9.8'
+end
