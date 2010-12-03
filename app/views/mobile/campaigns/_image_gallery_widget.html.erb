@@ -3,7 +3,7 @@ $(document).ready(function() {
   SMBS.MobileCampaign.ImageGalleryWidget.init('<%= @campaign.try(:id) %>')
   
 <% if @campaign %>
-  SMBS.MobileCampaign.ImageGalleryWidget.enable(<%= "'show enabled notice'" if @images.empty? %>)
+  SMBS.MobileCampaign.ImageGalleryWidget.enable(<%= "'show notice'" if @images.empty? %>)
 <%else%>
   SMBS.MobileCampaign.ImageGalleryWidget.disable()
 <%end%>
@@ -13,6 +13,11 @@ $(document).ready(function() {
 <h2>Галерея</h2>
 
 <div class="gallery-widget">
+  <div class="navigation-tools">
+    <a class="previous button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('left')" title="Посмотреть галерею предыдущей мобильной страницы">&larr;</a>
+    <span>Изображения других страниц</span>
+    <a class="next button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('right')" title="Вернуться отбратно">&rarr;</a>
+  </div>
   <div class="items"><%= render :partial => 'image_asset', :collection => @images %></div>
   <span class="disabled notice">Пока макет мобильной страницы не сохранен вы не можете загружать изображения в Галерею</span>
   <span class="enabled notice">Вы можете загружать одновременно несколько изображений, важно чтоб размер одного файла не привышал 1Мб</span>

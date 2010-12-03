@@ -7,10 +7,9 @@ class Mobile::ImagesController < ApplicationController
   def index
     @images = @campaign.asset_files.only_images
     
-    respond_with(@images) do |format|
-      format.js do 
-        images_attributes = @images.map { |image| image.attributes.merge({ :asset_file_thumbnail_url => image.asset.url(:thumbnail) }) }
-        render :json => images_attributes
+    respond_with do |format|
+      format.js do
+        render :json => { :html => @images.map { |i| render_to_string :partial => '/mobile/campaigns/image_asset', :object => i }.join }
       end
     end
   end

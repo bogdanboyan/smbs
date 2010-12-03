@@ -49,4 +49,59 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
     return '/mobile/campaigns/'+this.campaign_id+'/images'
   },
   
-} // end SMBS.MobileCampaign.ImageGalleryWidget
+}, // end SMBS.MobileCampaign.ImageGalleryWidget
+
+
+SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
+  
+  cursor: undefined,
+  map:    undefined,
+  
+  
+  goto: function(direction) {
+    
+    if(this.map == undefined) {
+      $.ajax({
+        async:    false,
+        type:     'get',
+        dataType: 'json',
+        url:      '/mobile/campaigns/ids_with_images',
+        success:   function(data) {
+          if(data.ids) {
+            SMBS.MobileCampaign.ImageGalleryWidget.Navi.map    = data.ids
+            SMBS.MobileCampaign.ImageGalleryWidget.Navi.cursor = SMBS.MobileCampaign.ImageGalleryWidget.Navi.map.length - 1
+          } // end if
+        } // end success
+      }) // end ajax
+    }
+    
+    if(this.map) switch(direction) {
+      case  "left": return this._show_after_load(this.cursor - 1)
+      case "right": return this._show_after_load(this.cursor + 1)
+    }
+    
+    return false
+  },
+  
+  _show_after_load: function(try_move_to) {
+    if(this.map[try_move_to]) {
+      $.ajax( {
+        type:     'get',
+        dataType: 'json',
+        url:      '/mobile/campaigns/'+this.map[try_move_to]+'/images',
+        success:  function(data) {
+          if(data.html) { 
+            SMBS.MobileCampaign.ImageGalleryWidget.Navi.cursor = try_move_to
+            SMBS.MobileCampaign.ImageGalleryWidget.Navi._show(data.html)
+          }
+        }
+      }) // end ajax
+    } // end if
+  }, // end _load
+  
+  _show: function(html) {
+    $('.gallery-widget .items').children().remove()
+    $('.gallery-widget .items').append(html)
+  },
+  
+}

@@ -34,6 +34,8 @@ Smbs::Application.routes.draw do
     
     resources :campaigns do
        member     { get :settings;  put :assign_short_url; put :generate_short_url }
+       collection { get :ids_with_images }
+       
        resources  :images
     end
     

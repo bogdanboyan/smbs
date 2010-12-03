@@ -45,6 +45,10 @@ class Mobile::CampaignsController < ApplicationController
     redirect_to settings_mobile_campaign_url(@campaign)
   end
   
+  def ids_with_images
+    render :json => { :ids => MobileCampaign.all.delete_if {|i| i.asset_files.only_images.empty? }.map(&:id) }
+  end
+  
   def generate_short_url
     @campaign.short_url = ShortUrl.generate mobile_campaign_url(@campaign)
     @campaign.save!
