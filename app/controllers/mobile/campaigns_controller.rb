@@ -13,13 +13,13 @@ class Mobile::CampaignsController < ApplicationController
   
   def create
     campaign = MobileCampaign.new(params[:mbc])
-    is_saved = campaign.save
+    is_saved = campaign.save and campaign.map_document_model_images
     
     render :json => { :mbc_id => campaign.id, :success => !!is_saved, :error => campaign.errors.full_messages.first }
   end
   
   def update
-    is_updated = @campaign.update_attributes(params[:mbc]) 
+    is_updated = @campaign.update_attributes(params[:mbc]) and @campaign.map_document_model_images
     
     render :json => { :mbc_id => @campaign.id, :success => !!is_updated, :error => @campaign.errors.full_messages.first }
   end

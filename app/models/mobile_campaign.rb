@@ -59,6 +59,16 @@ class MobileCampaign < ActiveRecord::Base
     end
     document.compact
   end
+  
+  def map_document_model_images
+    document_model_as(:array).each do |document|
+      if document['type'] == 'images'
+        document['value'].each do |image_model|
+          asset_files.push!(ImageAsset.find image_model['asset_id']) if ImageAsset.exists?(image_model['asset_id'])
+        end
+      end # end if
+    end
+  end
 
 
   protected
