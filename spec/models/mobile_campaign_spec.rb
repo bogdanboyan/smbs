@@ -117,7 +117,7 @@ describe MobileCampaign do
     
     end # end context
     
-    context "by linked short_url" do
+    context "by linked proxied short_url" do
       
       before(:all) do
         # TODO investigate!!
@@ -142,6 +142,33 @@ describe MobileCampaign do
         specify { @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending }
       end
     end # end context
+    
+    context "by linked pending short_url" do
+      
+      before(:all) do
+        MobileCampaign.destroy_all
+        
+        @short_url = Factory.create(:short_url)
+        @short_url.disable!
+        
+        @mbc       = Factory.create(:mobile_campaign, :short_url => @short_url)
+      end
+      
+      it { @short_url.should be_pending }
+      
+      context "with unpublish! event" do
+        specify { @mbc.unpublish!; @mbc.should be_pending; @mbc.short_url.should be_pending }
+      end
+      
+      context "with publish! event" do
+        specify { @mbc.publish!; @mbc.should be_published; @mbc.short_url.should be_proxied }
+      end
+      
+      context "with archive! event" do
+        specify { @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending }
+      end
+    end # end context
+    
   end #end describe
   
 end
