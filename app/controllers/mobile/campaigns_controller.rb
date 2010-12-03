@@ -26,7 +26,7 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def destroy
-    campaign.archive!
+    @campaign.archive!
     redirect_to mobile_campaigns_path
   end
   
