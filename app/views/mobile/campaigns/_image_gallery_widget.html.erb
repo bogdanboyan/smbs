@@ -1,9 +1,9 @@
 <script>
 $(document).ready(function() {
-  SMBS.MobileCampaign.ImageGalleryWidget.init('<%= @campaign.try(:id) %>')
+  SMBS.MobileCampaign.ImageGalleryWidget.init(<%= @campaign.try(:id) %>)
   
 <% if @campaign %>
-  SMBS.MobileCampaign.ImageGalleryWidget.enable(<%= "'show notice'" if @images.empty? %>)
+  SMBS.MobileCampaign.ImageGalleryWidget.enable()
 <%else%>
   SMBS.MobileCampaign.ImageGalleryWidget.disable()
 <%end%>

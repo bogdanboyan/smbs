@@ -19,11 +19,11 @@ $(document).ready(function() {
         page_id = data.mbc_id;
         if(data.success) {
           switch_save_to_update()
-          show_notice('Страница была успешно ' + (page_id ? 'обновлена' : 'сохранена'))
+          show_notice('Страница была успешно сохранена')
           
           // image gallery widget ready for image upload!
           SMBS.MobileCampaign.ImageGalleryWidget.campaign_id = page_id
-          SMBS.MobileCampaign.ImageGalleryWidget.enable('with notice')
+          SMBS.MobileCampaign.ImageGalleryWidget.enable()
         } else {
           show_notice(data.error)
         }

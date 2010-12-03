@@ -13,12 +13,10 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
         sizeLimit: 1048576 /*512kbx2*/,
         onComplete: function(id, file_name, response) {
-          // add image to gallery
-          $('.gallery-widget .enabled').hide()
-          $('.gallery-widget .items').append(response.html).trigger('change')
+          // append image
+          SMBS.MobileCampaign.ImageGalleryWidget.append(response.html)
           // re-index draggable elements
-          $('.draggable').draggable('destroy')
-          $('.draggable').draggable({appendTo: 'body', helper: 'clone'})
+          SMBS.MobileCampaign.ImageGalleryWidget.draggable()
           // reset download progress bar
           $('.qq-upload-list').empty()
           
@@ -37,12 +35,23 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
     $('.qq-upload-button').hide()
   },
   
-  enable: function(show_enabled_notice) {
+  enable: function() {
     $('.gallery-widget .disabled').hide()
-    if(show_enabled_notice) $('.gallery-widget .enabled').show()
+    if(!$('.gallery-widget .items').children().length) $('.gallery-widget .enabled').show()
     $('.qq-upload-button').show()
     // substitute image upload path from undefined to real
     this._uploader._handler._options.action = this.mobile_campaign_images_path()
+  },
+  
+  draggable: function() {
+    // make all images a draggable
+    $('.draggable').draggable('destroy')
+    $('.draggable').draggable({appendTo: 'body', helper: 'clone'})
+  },
+  
+  append: function(image_items) {
+    $('.gallery-widget .enabled').hide()
+    $('.gallery-widget .items').append(image_items).trigger('change')
   },
   
   mobile_campaign_images_path: function() {
@@ -69,7 +78,8 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
         success:   function(data) {
           if(data.ids) {
             SMBS.MobileCampaign.ImageGalleryWidget.Navi.map    = data.ids
-            SMBS.MobileCampaign.ImageGalleryWidget.Navi.cursor = SMBS.MobileCampaign.ImageGalleryWidget.Navi.map.length - 1
+            indexOf = SMBS.MobileCampaign.ImageGalleryWidget.Navi.map.indexOf(SMBS.MobileCampaign.ImageGalleryWidget.campaign_id)
+            SMBS.MobileCampaign.ImageGalleryWidget.Navi.cursor = indexOf == -1 ? SMBS.MobileCampaign.ImageGalleryWidget.Navi.map.length - 1 : indexOf
           } // end if
         } // end success
       }) // end ajax
@@ -101,7 +111,8 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
   
   _show: function(html) {
     $('.gallery-widget .items').children().remove()
-    $('.gallery-widget .items').append(html)
+    SMBS.MobileCampaign.ImageGalleryWidget.append(html)
+    SMBS.MobileCampaign.ImageGalleryWidget.draggable()
   },
   
 }

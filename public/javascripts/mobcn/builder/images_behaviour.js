@@ -79,9 +79,8 @@ var ImagesBehaviour = PartialBehaviour.extend({
 
 ImagesBehaviour.Initializer = {
   init : function() {
-    // image draggable property
-    $('.draggable').draggable({appendTo: 'body', helper: 'clone'});
-
+    // draggable
+    $('.draggable').draggable({appendTo: 'body', helper: 'clone'})
     // remove image
     $('.image_container').find('.remove').live('click', function() {
       if(confirm('Вы уверены что хотите удалить изображение?')) {
