@@ -23,7 +23,7 @@ $(document).ready(function() {
           
           // image gallery widget ready for image upload!
           SMBS.MobileCampaign.ImageGalleryWidget.campaign_id = page_id
-          SMBS.MobileCampaign.ImageGalleryWidget.enable()
+          SMBS.MobileCampaign.ImageGalleryWidget.enable('with notice')
         } else {
           show_notice(data.error)
         }

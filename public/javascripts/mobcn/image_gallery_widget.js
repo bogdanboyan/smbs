@@ -13,7 +13,9 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
         sizeLimit: 1048576 /*512kbx2*/,
         onComplete: function(id, file_name, response) {
-          $('.assets').append(response.html).trigger('change')
+          // add image to gallery
+          $('.gallery-widget .enabled').hide()
+          $('.gallery-widget .items').append(response.html).trigger('change')
           // re-index draggable elements
           $('.draggable').draggable('destroy')
           $('.draggable').draggable({appendTo: 'body', helper: 'clone'})
@@ -31,13 +33,13 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
   }, // end init
   
   disable: function() {
-    $('.assets .disabled').show()
+    $('.gallery-widget .disabled').show()
     $('.qq-upload-button').hide()
   },
   
   enable: function(show_enabled_notice) {
-    $('.assets .disabled').hide()
-    if(show_enabled_notice == 'true') $('.assets .enabled').show()
+    $('.gallery-widget .disabled').hide()
+    if(show_enabled_notice) $('.gallery-widget .enabled').show()
     $('.qq-upload-button').show()
     // substitute image upload path from undefined to real
     this._uploader._handler._options.action = this.mobile_campaign_images_path()
@@ -47,4 +49,4 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
     return '/mobile/campaigns/'+this.campaign_id+'/images'
   },
   
-}
+} // end SMBS.MobileCampaign.ImageGalleryWidget

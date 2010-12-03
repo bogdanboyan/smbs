@@ -162,15 +162,12 @@ a:hover {
   margin-left: 15px;
 }
 
-.assets {
-}
-
-.assets .container {
+.gallery-widget .items .container {
   float: left;
   margin-right: 6px;
 }
 
-.assets .notice {
+.gallery-widget .notice {
   display: none;
 }
 
