@@ -146,7 +146,8 @@ describe MobileCampaign do
     context "by linked pending short_url" do
       
       before(:all) do
-        MobileCampaign.destroy_all
+        # TODO investigate!!
+        AssetFile.destroy_all; MobileCampaign.destroy_all; ShortUrl.destroy_all
         
         @short_url = Factory.create(:short_url)
         @short_url.disable!
