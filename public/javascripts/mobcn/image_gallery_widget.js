@@ -31,12 +31,13 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
   }, // end init
   
   disable: function() {
-    $('.assets .notice').show()
+    $('.assets .disabled').show()
     $('.qq-upload-button').hide()
   },
   
-  enable: function() {
-    $('.assets .notice').hide()
+  enable: function(show_enabled_notice) {
+    $('.assets .disabled').hide()
+    if(show_enabled_notice == 'true') $('.assets .enabled').show()
     $('.qq-upload-button').show()
     // substitute image upload path from undefined to real
     this._uploader._handler._options.action = this.mobile_campaign_images_path()

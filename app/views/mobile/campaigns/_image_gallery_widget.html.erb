@@ -3,18 +3,19 @@ $(document).ready(function() {
   SMBS.MobileCampaign.ImageGalleryWidget.init('<%= @campaign.try(:id) %>')
   
 <% if @campaign %>
-  SMBS.MobileCampaign.ImageGalleryWidget.enable()
+  SMBS.MobileCampaign.ImageGalleryWidget.enable('<%= @images.empty? %>')
 <%else%>
   SMBS.MobileCampaign.ImageGalleryWidget.disable()
 <%end%>
 })
 </script>
 
-<h2>Галлерея</h2>
+<h2>Галерея</h2>
 
 <div class="assets">
   <%= render :partial => 'image_asset', :collection => @images %>
-  <span class="notice">Вы не можете загружать изображения в документ который не сохранен</span>
+  <span class="disabled notice">Пока макет мобильной страницы не сохранен вы не можете загружать изображения в Галерею</span>
+  <span class="enabled notice">Вы можете загружать одновременно несколько изображений, важно чтоб размер одного файла не привышал 1Мб</span>
 </div>
 
 <div class="clear">&nbsp;</div>
