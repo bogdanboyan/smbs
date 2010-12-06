@@ -99,11 +99,19 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
         type:     'get',
         dataType: 'json',
         url:      '/mobile/campaigns/'+this.map[try_move_to]+'/images',
+        beforeSend: function(request) {
+          $('.navigation-tools .title').hide()
+          $('.navigation-tools .loading').show()
+        },
         success:  function(data) {
           if(data.html) { 
             SMBS.MobileCampaign.ImageGalleryWidget.Navi.cursor = try_move_to
             SMBS.MobileCampaign.ImageGalleryWidget.Navi._show(data.html)
           }
+        },
+        complete: function(request) {
+          $('.navigation-tools .loading').hide()
+          $('.navigation-tools .title').show()
         }
       }) // end ajax
     } // end if

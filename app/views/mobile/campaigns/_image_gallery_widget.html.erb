@@ -15,7 +15,8 @@ $(document).ready(function() {
 <div class="gallery-widget">
   <div class="navigation-tools">
     <a class="previous button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('left')" title="Посмотреть галерею предыдущей мобильной страницы">&larr;</a>
-    <span>Изображения других страниц</span>
+    <span class="title">Изображения других страниц</span>
+    <span class="loading">Загружается...</span>
     <a class="next button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('right')" title="Вернуться отбратно">&rarr;</a>
   </div>
   <div class="items"><%= render :partial => 'image_asset', :collection => @images %></div>

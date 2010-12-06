@@ -171,6 +171,13 @@ a:hover {
   display: none;
 }
 
+.navigation-tools .loading {
+  display: none;
+  padding-left: 20px;
+  background:url("/images/ajax-loader-small.gif") no-repeat left center;
+  padding-right: 78px;
+}
+
 
 /* preview */
 
