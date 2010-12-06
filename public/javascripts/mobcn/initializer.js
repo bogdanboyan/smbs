@@ -11,6 +11,7 @@ $(document).ready(function() {
 
   $('#save').click(function() {
     $.ajax({
+      async:    false,
       type:     page_id ? 'put' : 'post',
       dataType: 'json',
       url:      page_id ? '/mobile/campaigns/' + page_id : '/mobile/campaigns',
