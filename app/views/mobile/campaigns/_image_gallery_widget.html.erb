@@ -14,10 +14,10 @@ $(document).ready(function() {
 
 <div class="gallery-widget">
   <div class="navigation-tools">
-    <a class="previous button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('left')" title="Посмотреть галерею предыдущей мобильной страницы">&larr;</a>
+    <a class="previous button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('left'); return false" title="Посмотреть галерею предыдущей мобильной страницы">&larr;</a>
     <span class="title">Изображения других страниц</span>
-    <span class="loading">Загружается...</span>
-    <a class="next button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('right')" title="Вернуться отбратно">&rarr;</a>
+    <span class="loading">Загружаются...</span>
+    <a class="next button" href="#" onclick="SMBS.MobileCampaign.ImageGalleryWidget.Navi.goto('right'); return false" title="Вернуться отбратно">&rarr;</a>
   </div>
   <div class="items"><%= render :partial => 'image_asset', :collection => @images %></div>
   <span class="disabled notice">Пока макет мобильной страницы не сохранен вы не можете загружать изображения в Галерею</span>

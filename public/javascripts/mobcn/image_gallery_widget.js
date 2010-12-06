@@ -89,8 +89,6 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
       case  "left": return this._show_after_load(this.cursor - 1)
       case "right": return this._show_after_load(this.cursor + 1)
     }
-    
-    return false
   },
   
   _show_after_load: function(try_move_to) {
@@ -115,6 +113,8 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
         }
       }) // end ajax
     } // end if
+    
+    return false
   }, // end _load
   
   _show: function(html) {
