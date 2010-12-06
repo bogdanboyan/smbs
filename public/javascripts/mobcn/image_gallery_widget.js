@@ -50,7 +50,7 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
   },
   
   append: function(image_items) {
-    $('.gallery-widget .enabled').hide()
+    $('.gallery-widget .notice').hide()
     $('.gallery-widget .items').append(image_items).trigger('change')
   },
   

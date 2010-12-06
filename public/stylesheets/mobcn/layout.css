@@ -8,9 +8,6 @@ a:hover {
   text-decoration: none;
 }
 
-.controls {
-  height: 50px;
-}
 
 .controls input {
   width: 325px;
@@ -99,18 +96,18 @@ a:hover {
   text-align: center;
 }
 
-.image > .controls > .move,  .image > .controls > .remove {
+.image .controls .move,  .image .controls .remove {
   position: absolute;
   font-size: 9.5px;
   background-color: #CCCCCC;
 }
 
-.image > .controls > .move {
+.image .controls .move {
   cursor: move;
   right: 5px;
 }
 
-.image > .controls > .remove {
+.image .controls .remove {
   cursor: pointer;
   bottom: 15px;
   right: 5px;
