@@ -21,9 +21,7 @@ $(document).ready(function() {
   <div class="items"><%= render :partial => 'image_asset', :collection => @images %></div>
   <span class="disabled notice">Пока макет мобильной страницы не сохранен вы не можете загружать изображения в Галерею</span>
   <span class="enabled notice">Вы можете загружать одновременно несколько изображений, важно чтоб размер одного файла не привышал 1Мб</span>
+
+  <div class="clear">&nbsp;</div>
+  <div id="file-uploader"></div>
 </div>
-
-<div class="clear">&nbsp;</div>
-
-<div id="file-uploader"></div>
-

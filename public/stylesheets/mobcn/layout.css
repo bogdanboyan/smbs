@@ -154,7 +154,10 @@ a:hover {
   clear: left;
 }
 
-#gallery {
+/* gallery widget */
+
+.widget-container {
+  position: fixed;
   padding: 10px;
   margin-left: 15px;
 }
@@ -174,7 +177,6 @@ a:hover {
   background:url("/images/ajax-loader-small.gif") no-repeat left center;
   padding-right: 78px;
 }
-
 
 /* preview */
 
