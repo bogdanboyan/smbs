@@ -24,9 +24,9 @@ gem 'aasm',                   '2.2.0'
 gem 'will_paginate',          '3.0.pre2'
 
 group :test do
-  gem 'rspec',                '2.0.1'
+  gem 'rspec',                '2.2.0'
+  gem 'rspec-rails',          '2.2.1'
   gem "shoulda",              '2.11.3'
-  gem 'rspec-rails',          '2.0.1'
   gem 'factory_girl',         '1.3.2'
   gem 'cucumber',             '0.8.5'
   gem 'cucumber-rails',       '0.3.2'
