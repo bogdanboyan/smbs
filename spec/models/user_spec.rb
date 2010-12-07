@@ -26,7 +26,7 @@ describe User do
   context "with states" do
     
     before(:all) do
-      @user = User.new
+      @user = Factory.create :user
     end
     
     it { @user.should be_activated    }

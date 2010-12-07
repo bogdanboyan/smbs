@@ -37,6 +37,8 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.6)
+    authlogic (2.1.6)
+      activesupport
     builder (2.1.2)
     capybara (0.3.9)
       culerity (>= 0.2.4)
@@ -141,6 +143,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth (= 4.2.3)
   aasm (= 2.2.0)
+  authlogic (= 2.1.6)
   capybara (= 0.3.9)
   cucumber (= 0.8.5)
   cucumber-rails (= 0.3.2)

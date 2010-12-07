@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   
   belongs_to :account
   
+  # init final state machine
   include AASM
 
   aasm_column :state
@@ -17,6 +18,11 @@ class User < ActiveRecord::Base
   
   aasm_event :disable do
     transitions :to => :pending, :from => [:activated]
+  end
+  
+  # init authlogic
+  acts_as_authentic do |c|
+    c.session_class UserSession
   end
   
 end
