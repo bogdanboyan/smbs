@@ -20,6 +20,7 @@ describe User do
     it {should have_db_column(:state)                }
     
     it {should belong_to(:account)                   }
+    it {should have_db_index(:account_id)            }
     
   end
   

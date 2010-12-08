@@ -14,6 +14,9 @@ describe Account do
     it {should have_db_column(:kind_of)            }
     
     it {should have_many(:users)                   }
+    it {should have_many(:short_urls)              }
+    it {should have_many(:mobile_campaigns)        }
+    it {should have_many(:bar_codes)               }
     
   end
   

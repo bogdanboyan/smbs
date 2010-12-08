@@ -1,22 +1,22 @@
-# == Schema Info
-#
-# Table name: bar_codes
-#
-#  id          :integer(4)      not null, primary key
-#  campaign_id :integer(4)
-#  level       :string(255)
-#  origin      :string(255)
-#  source      :text(16777215)
-#  tel         :string(255)
-#  text        :string(255)
-#  type        :string(255)     not null
-#  version     :integer(4)
-#  created_at  :datetime
-#  updated_at  :datetime
-
 require 'spec_helper'
 
 describe BarCode do
+  
+  context "specify fields" do
+    
+    it {should have_db_column(:type)             }
+    it {should have_db_column(:origin)           }
+    it {should have_db_column(:tel)              }
+    it {should have_db_column(:text)             }
+    it {should have_db_column(:source)           }
+    it {should have_db_column(:version)          }
+    it {should have_db_column(:level)            }
+
+    it {should belong_to(:account)               }
+    it {should have_db_index(:account_id)        }
+    
+  end
+  
   it 'should save qr code image bundle' do
     qr = TextCode.create!(:text => 'hello world')
     file_path = BarbyBarcode.image_path(:id => qr.id)
@@ -56,6 +56,3 @@ describe TextCode do
     TextCode.new(:text=>'simple text').encode_string.should eql('simple text')
   end
 end
-
-# phone_call TEL:001
-# email SMTP:for_me@g.gl:Yo!:Body

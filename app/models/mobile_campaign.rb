@@ -1,5 +1,7 @@
 class MobileCampaign < ActiveRecord::Base
 
+  belongs_to :account
+
   has_many :image_assets, :dependent => :destroy
   belongs_to :short_url
   

@@ -7,6 +7,10 @@ describe MobileCampaign do
   it { should belong_to(:short_url)           }
   it { should have_many(:image_assets)        }
   
+  it {should belong_to(:account)              }
+  it {should have_db_index(:account_id)       }
+  
+  
   describe "with document model" do
     it 'should truncate invalid document model' do
       MobileCampaign.new.sanitize([

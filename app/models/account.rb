@@ -2,6 +2,10 @@ class Account < ActiveRecord::Base
   
   has_many :users
 
+  has_many :short_urls
+  has_many :mobile_campaigns
+  has_many :bar_codes
+
   # init final state machine
   include AASM
   

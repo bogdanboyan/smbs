@@ -1,17 +1,3 @@
-# == Schema Info
-#
-# Table name: short_urls
-#
-#  id           :integer(4)      not null, primary key
-#  campaign_id  :integer(4)
-#  clicks_count :integer(4)      not null, default(0)
-#  description  :text
-#  origin       :string(255)     not null
-#  short        :string(255)     not null
-#  title        :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
-
 require 'spec_helper'
 
 describe ShortUrl do
@@ -28,6 +14,24 @@ describe ShortUrl do
     url = ShortUrl.new(:origin=>'ya.ru')
     url.valid?.should be_true
     url.origin.eql? 'http://ya.ru'
+  end
+  
+  context "specify fields" do
+    
+    it {should have_db_column(:origin)          }
+    it {should have_db_column(:short)           }
+    it {should have_db_column(:clicks_count)    }
+    it {should have_db_column(:title)           }
+    it {should have_db_column(:description)     }
+    it {should have_db_column(:current_state)   }
+    
+    it {should have_one(:mobile_campaign)       }
+    it {should have_many(:clicks)               }
+    
+    it {should have_db_index(:current_state)    }
+    
+    it {should belong_to(:account)              }
+    it {should have_db_index(:account_id)       }
   end
   
   describe "with AASM" do
