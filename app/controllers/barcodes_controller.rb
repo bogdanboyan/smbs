@@ -15,15 +15,15 @@ class BarcodesController < ApplicationController
   def destroy
     begin
       BarCode.destroy(params[:id])
-      render_status_200
+      render_200_response
     rescue
-      render_status_404
+      render_404_response
     end
   end
   
   def download
     path = "public/%s" % BarbyBarcode.image_path({:id => params[:id], :style => 'preview'})
-    File.exists?(path) ? send_file(path, :type => 'image/png') : render_status_404
+    File.exists?(path) ? send_file(path, :type => 'image/png') : render_404_response
   end
   
   # todo: apply DRY principle (blocks, blocks, blocks)

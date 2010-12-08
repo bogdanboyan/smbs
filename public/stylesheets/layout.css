@@ -1,13 +1,32 @@
 custom {display: none;}
 
 /* header */
-#header {margin: 0 auto 20px auto;padding-top: 20px;}
+.head {
+  margin: 0 auto 20px auto;
+  padding-top: 20px;
+}
 
-/* menu */
-.menu {float: rigth;/* border: 1px solid #DCDBD5; */}
-.menu ul {margin: 0;padding: 0;list-style: none;}
-.menu li {float: right;}
-.menu a {display: block;padding: 1px 10px;text-decoration: none;font-size: 20px;color: #50799A;}
+/* navigation */
+.menu {float: right; }
+
+.menu ul { 
+  margin: 0;
+  padding: 0;
+  display: table-row; 
+}
+
+.menu li {
+  display: table-cell;
+}
+
+.menu a {
+  display: block;
+  padding: 1px 10px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #50799A;
+}
+
 .menu a:hover {text-decoration: underline;}
 .menu .active a {}
 

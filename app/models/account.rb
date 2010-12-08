@@ -31,7 +31,7 @@ class Account < ActiveRecord::Base
   end
   
   def is?(type)
-    type == type.to_s
+    kind_of == type.to_s
   end
   
 end

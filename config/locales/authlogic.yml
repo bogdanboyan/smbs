@@ -1,0 +1,22 @@
+ru:
+  authlogic:
+    error_messages:
+      login_blank: не указан
+      # login_not_found: is not valid
+      # login_invalid: should use only letters, numbers, spaces, and .-_@ please.
+      consecutive_failed_logins_limit_exceeded: Вы использовали все попытки авторизации. Ваш аккаунт был заблокирован
+      email_invalid: неверный
+      password_blank: не указан
+      password_invalid: неверный
+      not_active: Ваш аккаунт не активен
+      not_confirmed: Ваш аккаунт неподтвержденный
+      not_approved: Ваш аккаунт неподтвержденный
+      no_authentication_details: Вы не указали данные для аутентификации
+    models:
+      user_session: UserSession (or whatever name you are using)
+    attributes:
+      user_session:
+        # login: login
+        email: Почтовый адрес
+        password: Пароль
+        remember_me: Запомнить меня

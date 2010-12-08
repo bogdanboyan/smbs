@@ -1,0 +1,27 @@
+<div>
+  <div class="block-center">
+    <h1>Вход в систему</h1>
+    <%= error_messages_for :user_session, :header_message => nil, :message => nil -%>  
+  </div>
+
+<%= form_for :user_session, :url => login_url do |form| %>
+  <div class="block-center">
+    <ul class="input-list">
+      <li class="item">
+        <p><%= form.label :email, "введите свой email:" %></p>
+        <p class="field"><%= form.text_field :email, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :password, "введите пароль:" %></p>
+        <p class="field"><%= form.password_field :password, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.check_box :remember_me %> <%= form.label :remember_me, "запомнить меня" %></p>
+      </li>
+    </ul>
+  </div>
+  <div class="block-center">
+    <%= submit_tag "Вход" %> или <%= link_to "Востановить пароль", "#" %>
+  </div>
+<%end%>
+</div>

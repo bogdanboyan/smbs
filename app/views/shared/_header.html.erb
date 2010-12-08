@@ -1,8 +1,20 @@
-<div class="grid_12 menu">
-  <ul>
-    <li><%= link_to "QR коды", barcodes_path %></li>
-    <li><%= link_to "Мобильныe страницы", mobile_campaigns_path%></li>
-    <li><%= link_to "Короткие адреса", shorteners_path %></li>
-    <li><%= link_to "Главная", root_url %></li>
-  </ul>
+<div class="grid_12">
+  <div class="menu">
+    <ul>
+      <li><%= link_to "QR коды", barcodes_path %></li>
+      <li><%= link_to "Мобильныe страницы", mobile_campaigns_path%></li>
+      <li><%= link_to "Короткие адреса", shorteners_path %></li>
+      <li><%= link_to "Главная", root_url %></li>
+    </ul>
+  </div>
+  <div class="menu">
+    <ul>
+      <%if current_user -%>
+        <li><%= link_to current_user.full_name, "#" %></li>
+        <li><%= link_to "Выход", logout_path %></li>
+      <%else%>
+        <li><%= link_to "Вход", login_path %></li>
+      <%end%>
+    </ul>
+  </div>
 </div>

@@ -1,0 +1,23 @@
+.block-center {
+  text-align: center;
+}
+
+.block-center ul {
+  display: block;
+  width: 320px;
+  margin: 0px auto;
+}
+
+.input-list .item {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.item .text-field {
+  width: 306px;
+  padding: 3px 6px;
+  border: 1px solid #abadb3;
+  font-size: 18px;
+}

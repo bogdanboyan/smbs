@@ -12,6 +12,7 @@ gem 'mysql2',                 '0.2.3'
 gem 'unicorn',                '1.1.4'
 
 gem 'authlogic',              '2.1.6'
+gem 'dynamic_form',           '1.1.1'
 
 gem 'rmagick',                '2.12.2'
 gem 'paperclip',              '2.3.3'

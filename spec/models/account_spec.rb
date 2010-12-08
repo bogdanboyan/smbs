@@ -11,7 +11,7 @@ describe Account do
     it {should have_db_column(:city)               }
     it {should have_db_column(:bank_account)       }
     it {should have_db_column(:state)              }
-    it {should have_db_column(:state)              }
+    it {should have_db_column(:kind_of)            }
     
     it {should have_many(:users)                   }
     
