@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :account_home_url
 
   helper :all # include all helpers, all the time
 
@@ -29,9 +29,21 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
   
-  def require_user
-    unless current_user
-      flash[:notice] = "Вы должны войти в систему для доступа к этой странице"
+  def require_yamco_user
+    require_user(:yamco)
+  end
+  
+  def require_reseller_user
+    require_user(:reseller)
+  end
+  
+  def require_business_user
+    require_user(:business)
+  end
+  
+  def require_user(kind_of)
+    if !current_user || !current_user.account.is?(kind_of)
+      flash[:notice] = "Вы должны быть авторизированы для доступа к этой странице"
       
       redirect_to login_url
       return false
@@ -40,10 +52,18 @@ class ApplicationController < ActionController::Base
 
   def require_no_user
     if current_user
-      flash[:notice] = "Вы не должны быть автозирированы для доступа к этой странице"
-      
       redirect_to root_url
       return false
+    end
+  end
+  
+  def account_home_url(given_user = nil)
+    kind_of = (current_user||given_user).account.kind_of
+    
+    case kind_of
+    when 'yamco' then admin_dashboard_url
+    else
+      raise "can't find '%s' account type home page " % kind_of
     end
   end
   

@@ -25,15 +25,8 @@ class Account < ActiveRecord::Base
 
 
   AVAILABLE_TYPES = %w[business reseller]
-  
-  def business?
-    is?(:business)
-  end
-  
-  def reseller?
-    is?(:reseller)
-  end
-  
+
+
   def is?(type)
     kind_of == type.to_s
   end
