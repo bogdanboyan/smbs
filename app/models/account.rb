@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Account < ActiveRecord::Base
   
   has_many :users
@@ -5,6 +6,8 @@ class Account < ActiveRecord::Base
   has_many :short_urls
   has_many :mobile_campaigns
   has_many :bar_codes
+  
+  validates_length_of :title, :minimum => 4, :message => "Не меньше 4 символов"
 
   # init final state machine
   include AASM

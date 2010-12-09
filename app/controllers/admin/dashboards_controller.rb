@@ -1,5 +1,4 @@
-class Admin::DashboardsController < ApplicationController
+class Admin::DashboardsController < Admin::BaseController
   
-  before_filter :require_yamco_user
   
 end

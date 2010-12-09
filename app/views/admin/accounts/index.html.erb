@@ -1,0 +1,7 @@
+<h1>Управление аккаунтами (<%= link_to "Создать новый" %>)</h1>
+
+<ul>
+  <% @accounts.each do |account| %>
+    <li><%= link_to account.title, settings_admin_account_path(account) %></li>
+  <%end%>
+</ul>

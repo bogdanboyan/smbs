@@ -1,0 +1,12 @@
+<h1>Аккаунт <%= @account.title %></h1>
+
+<%= render :partial => 'actions' %>
+
+<h2>Настройки</h2>
+
+<%= render :partial => 'form' %>
+
+<h2>Статус</h2>
+
+<span><%= @account.kind_of %></span>
+<span><%= @account.state %></span>

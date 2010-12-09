@@ -19,8 +19,10 @@ Smbs::Application.routes.draw do
   # admin console
   namespace :admin do
     
-    resource :dashboard
-    
+    resource  :dashboard
+    resources :accounts do
+      member { get :settings }
+    end
   end
 
   resources :shorteners

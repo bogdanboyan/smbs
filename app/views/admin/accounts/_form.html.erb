@@ -1,0 +1,38 @@
+<%= error_messages_for :account, :header_message => nil, :message => nil -%>
+<%= form_for :account, :url => admin_account_path(@account), :html => { :method => :put } do |form| %>
+  <div class="block-center">
+    <ul class="input-list">
+      <li class="item">
+        <p><%= form.label :title, "название аккаунта" %></p>
+        <p class="field"><%= form.text_field :title, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :contact_phone, "контактный телефон" %></p>
+        <p class="field"><%= form.text_field :contact_phone, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :contact_person, "контактное лицо" %></p>
+        <p class="field"><%= form.text_field :contact_person, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :city, "город" %></p>
+        <p class="field"><%= form.text_field :city, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :address, "почтовый адрес" %></p>
+        <p class="field"><%= form.text_field :address, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :bank_account, "банковские реквизиты" %></p>
+        <p class="field"><%= form.text_field :bank_account, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :address, "почтовый адрес" %></p>
+        <p class="field"><%= form.text_field :address, :class => "text-field" %></p>
+      </li>
+    </ul>
+  </div>
+  <div class="block-center">
+    <%= submit_tag "Сохранить изменения" %>
+  </div>
+<%end%>
