@@ -2,6 +2,8 @@ require 'shortener'
 
 class ShortenersController < ApplicationController
   
+  before_filter :require_user
+  
   def index
     @short_urls = ShortUrl.where(:current_state => 'proxied').order('id DESC')
   end

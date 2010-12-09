@@ -1,5 +1,7 @@
 class BarcodesController < ApplicationController
   
+  before_filter :require_user
+  
   def index
     @bar_codes = BarCode.order('id DESC').limit(10)
   end

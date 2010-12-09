@@ -1,6 +1,8 @@
 # encoding:utf-8
 class InviteController < ApplicationController
   
+  before_filter :require_no_user
+  
   def create
     invite = Invite.create(params[:invite])
     if invite.save

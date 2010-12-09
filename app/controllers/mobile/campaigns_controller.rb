@@ -1,6 +1,8 @@
 #encoding: utf-8
 class Mobile::CampaignsController < ApplicationController
   
+  before_filter :require_user
+  
   before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url, :generate_short_url]
   
   def index
