@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   
   belongs_to :account
   
+  # validation
+  validates_length_of     :full_name, :minimum => 4, :allow_blank => true
+  validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  # validates_uniqueness_of :email
+  
   # init final state machine
   include AASM
 

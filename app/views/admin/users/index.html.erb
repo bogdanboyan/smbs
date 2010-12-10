@@ -1,0 +1,12 @@
+<h1><%= account_pages_title %></h1>
+
+<%= render :partial => 'admin/accounts/actions' %>
+
+<h2>Пользователи (<%= link_to "Добавить пользователя", new_admin_account_user_path(@account) %>)</h2>
+
+
+<ul>
+  <% @users.each do |user| %>
+    <li><%= link_to user.email, edit_admin_account_user_path(@account, user) %> (<%= user.full_name %>)</li>
+  <%end%>
+</ul>

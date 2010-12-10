@@ -1,0 +1,14 @@
+<h1><%= account_pages_title %></h1>
+
+<%= render :partial => 'admin/accounts/actions' %>
+
+<h2>Редактировать пользователя <%= @user.full_name %></h2>
+
+<%= error_messages_for :user, :header_message => nil, :message => nil -%>
+<%= form_for :user, :url => admin_account_user_path(@account, @user), :html => { :method => :put } do |form| %>
+  <%= render :partial => 'form', :object => form %>
+<%end%>
+
+<h2>Статус</h2>
+
+<span><%= @user.state %></span>

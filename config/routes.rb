@@ -16,12 +16,14 @@ Smbs::Application.routes.draw do
   get   '/mobile/campaigns/:id'              => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
   get   '/mobile'                            => Rackup::MobileApp.action(:index)
 
-  # admin console
+  # yamco console
   namespace :admin do
     
     resource  :dashboard
+    
     resources :accounts do
       member { get :settings }
+      resources :users
     end
   end
 

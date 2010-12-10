@@ -94,6 +94,11 @@ ru:
       # Overrides model and default messages.
       account:
         title: "Название аккаунта"
+      user:
+        full_name: "Имя и фамилия"
+        email: "Контактный email"
+        password: "Пароль"
+        password_confirmation: "Повтор пароля"
       
       # qr codes
       bar_code:
