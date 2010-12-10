@@ -21,3 +21,12 @@
   border: 1px solid #abadb3;
   font-size: 18px;
 }
+
+.action-list {
+  display: table-row; 
+}
+
+.action-list .item {
+  display: table-cell;
+  padding: 3px 6px;
+}
