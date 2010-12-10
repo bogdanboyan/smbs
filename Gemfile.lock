@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/railsware/authlogic.git
+  revision: 6b0fc4faa9f275a7d1a84b775d877bce273b442e
+  tag: v2.1.6.1
+  specs:
+    authlogic (2.1.6)
+      activesupport
+
+GIT
   remote: git://github.com/zarqman/geoip.git
   revision: f8c6887808961b8419b1b36e52d030a5227defe5
   specs:
@@ -37,8 +45,6 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.6)
-    authlogic (2.1.6)
-      activesupport
     builder (2.1.2)
     capybara (0.3.9)
       culerity (>= 0.2.4)
@@ -144,7 +150,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth (= 4.2.3)
   aasm (= 2.2.0)
-  authlogic (= 2.1.6)
+  authlogic!
   capybara (= 0.3.9)
   cucumber (= 0.8.5)
   cucumber-rails (= 0.3.2)
