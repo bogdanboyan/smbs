@@ -1,11 +1,25 @@
 # encoding: utf-8
 class Admin::AccountsController < Admin::BaseController
   
-  before_filter :load_account, :except => [:index]
+  respond_to :html
+  
+  before_filter :load_account, :except => [:index, :new, :create]
   
   
   def index
     @accounts = Account.all
+  end
+  
+  def new
+    @account = Account.new
+  end
+  
+  def create
+    @account = Account.new params[:account]
+    if @account.save
+      flash[:notice] = "Аккаунт '%s' был создан" % @account.title
+    end
+    respond_with @account, :location => admin_accounts_url
   end
   
   def update

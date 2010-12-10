@@ -7,7 +7,7 @@ class Account < ActiveRecord::Base
   has_many :mobile_campaigns
   has_many :bar_codes
   
-  validates_length_of :title, :minimum => 4, :message => "Не меньше 4 символов"
+  validates_length_of :title, :minimum => 4
 
   # init final state machine
   include AASM
