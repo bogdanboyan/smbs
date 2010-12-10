@@ -23,7 +23,7 @@ describe Account do
   context "with states" do
     
     before(:all) do
-      @account = Account.new
+      @account = Account.new :title => 'RSpec'
     end
     
     it { @account.should be_activated    }
