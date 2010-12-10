@@ -39,4 +39,5 @@ group :production do
   gem 'scout',                '5.1.4'
   gem 'request-log-analyzer', '1.9.8'
   gem 'mysql',                '2.8.1'
+  gem 'highline',             '1.6.1'
 end
