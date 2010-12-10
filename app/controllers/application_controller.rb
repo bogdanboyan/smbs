@@ -66,7 +66,9 @@ class ApplicationController < ActionController::Base
     kind_of = (current_user||given_user).account.kind_of
     
     case kind_of
-    when 'yamco' then admin_dashboard_url
+    when 'yamco'    then admin_dashboard_url
+    when 'reseller' then reseller_dashboard_url
+    when 'business' then business_dashboard_url
     else
       raise "can't find '%s' account type home page " % kind_of
     end

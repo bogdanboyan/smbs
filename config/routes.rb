@@ -26,6 +26,14 @@ Smbs::Application.routes.draw do
       resources :users
     end
   end
+  
+  namespace :reseller do
+    resource :dashboard
+  end
+  
+  namespace :business do
+    resource :dashboard
+  end
 
   resources :shorteners
 
