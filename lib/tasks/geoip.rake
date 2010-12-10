@@ -10,7 +10,7 @@ namespace :geoip do
       count = 0
       City.where(:display => nil).each do |city|
         display = HighLine.new.ask "Enter russian city name for #{city.name} (#{city.try(:region).try(:name)}):"
-        city.update_attribute('display', display) and count += 1
+        (city.update_attribute('display', display) and count += 1) unless display.empty?
       end
       count > 0 ? puts("Updated %d records" % count) : puts("Nothing update")
     end
