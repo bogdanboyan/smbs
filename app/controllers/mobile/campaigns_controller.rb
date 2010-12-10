@@ -6,7 +6,7 @@ class Mobile::CampaignsController < ApplicationController
   before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url, :generate_short_url]
   
   def index
-    @campaigns  = MobileCampaign.where(:current_state => 'published').order('created_at DESC')
+    @campaigns  = current_account.mobile_campaigns.where(:current_state => 'published').order('created_at DESC')
   end
   
   def edit
@@ -20,7 +20,7 @@ class Mobile::CampaignsController < ApplicationController
   def create
     campaign = MobileCampaign.new(params[:mbc])
     
-    campaign.save ? render(:json=> {:mbc_id => campaign.id }) : render(:status => 400, :text => 'Bad Request')
+    (campaign.save && current_account.mobile_campaigns << campaign) ? render(:json=> {:mbc_id => campaign.id }) : render(:status => 400, :text => 'Bad Request')
   end
   
   def update
@@ -61,6 +61,6 @@ class Mobile::CampaignsController < ApplicationController
   private
   
   def load_mobile_camapign
-    @campaign = MobileCampaign.find(params[:id])
+    @campaign = current_account.mobile_campaigns.find params[:id]
   end
 end

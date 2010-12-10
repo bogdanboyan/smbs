@@ -1,4 +1,4 @@
-module ClicksAgregator
+class ClicksAgregator
   class << self
 
     def summarize_all_clicks(short_url_id)

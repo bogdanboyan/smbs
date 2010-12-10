@@ -16,6 +16,6 @@ class StatisticsController < ApplicationController
   private
   
   def load_short_url
-    @short_url = ShortUrl.find params[:id]
+    @short_url = current_account.short_urls.find params[:id]
   end
 end
