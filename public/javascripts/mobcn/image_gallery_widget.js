@@ -5,7 +5,7 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
   
   init : function(mobile_campaign_id) {
     this.campaign_id = mobile_campaign_id
-    
+    SMBS.MobileCampaign.ImageGalleryWidget.draggable()
     // init upload button
     this._uploader = new qq.FileUploader({
         element: document.getElementById('file-uploader'),
