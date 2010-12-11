@@ -1,7 +1,7 @@
 .idea
 .bundle
 db/*.sqlite3
-db/max_mind/GeoLiteCity.dat
+db/max_mind/*GeoLiteCity.dat
 log/*.log
 tmp/**/*
 test/*
