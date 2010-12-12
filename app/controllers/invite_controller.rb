@@ -8,7 +8,7 @@ class InviteController < ApplicationController
     if invite.save
       flash[:notice] = "Ваша заявка принята :) Мы обязательно с вами свяжемся"
     else
-      flash[:error] = "#{invite.errors.full_messages.join(', ')}. Пожайлуста заполните все поля правильно"
+      flash[:error] = "#{invite.errors.full_messages.join(', ')}. Пожайлуста заполните все поля правильно!"
     end
     
     redirect_to root_url

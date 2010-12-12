@@ -92,18 +92,22 @@ ru:
       #
       #
       # Overrides model and default messages.
+      invite:
+        company: Название компании
+        email: Контактный email
+        phone: Контартный телефон
       account:
-        title: "Название аккаунта"
+        title: Название аккаунта
       user:
-        full_name: "Имя и фамилия"
-        email: "Контактный email"
-        password: "Пароль"
-        password_confirmation: "Повтор пароля"
+        full_name: Имя и фамилия
+        email: Контактный email
+        password: Пароль
+        password_confirmation: Повтор пароля
       
       # qr codes
       bar_code:
-        text: "Текст кода"
+        text: Текст кода
       sms_code:
-        tel: "Телефонный номер"
+        tel: Телефонный номер
       link_code:
-        origin: "Ссылка на сайт"
+        origin: Ссылка на сайт

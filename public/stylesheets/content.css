@@ -22,6 +22,11 @@
   font-size: 18px;
 }
 
+.item .small {
+  width: 100%;
+  padding: 0;
+}
+
 .action-list {
   display: table-row; 
 }

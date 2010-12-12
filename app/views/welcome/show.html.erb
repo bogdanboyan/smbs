@@ -13,19 +13,20 @@
 </div>
 
 <div class="grid_4 omega">
+  <p><%= flash[:error] %></p>
   <%= form_for :invite, :url => invite_path, :as => :post do |f| %>
     <ul class="input-list">
       <li class="item">
         <%= f.label :company, "*название компании:" %>
-        <%= f.text_field :company, :class => 'text-field' %>
+        <%= f.text_field :company, :class => 'small text-field' %>
       </li>
       <li class="item">
         <%= f.label :email, "*контактный email:" %>
-        <%= f.text_field :email, :class => 'text-field' %>
+        <%= f.text_field :email, :class => 'small text-field' %>
       </li>
       <li class="item">
         <%= f.label :phone, "*контактный телефон:" %>
-        <%= f.text_field :phone, :class => 'text-field' %>
+        <%= f.text_field :phone, :class => 'small text-field' %>
       </li>
       <li>
         <%= submit_tag "Пригласить меня", :class=>'submit_button' %>
@@ -33,5 +34,4 @@
     </ul>
   <%end%>
   <p>Выслав нам заполненую заявку Вы получите возможность одним из первых получить аккаунт.</p>
-  <p><%= flash[:error] %></p>
 </div>
