@@ -1,0 +1,10 @@
+<h1>Завки на создание аккаунта</h1>
+
+<ul>
+  <% @invites.each_with_index do |invite, index| -%>
+    <li>
+      <p><%= index + 1 %>. Компания: <%= invite.company %></p>
+      <p>Контакты: <%= invite.phone %> (<%= invite.email %>)</p>
+    </li>
+   <% end %>
+</ul>

@@ -21,6 +21,7 @@ Smbs::Application.routes.draw do
     
     resource  :dashboard
     
+    resources :invites
     resources :accounts do
       member { get :settings }
       resources :users
