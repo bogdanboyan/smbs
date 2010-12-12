@@ -1,6 +1,6 @@
 <div>
   <div class="block-center">
-    <h1>Вход в систему</h1>
+    <h1>Авторизация пользователя</h1>
     <%= error_messages_for :user_session, :header_message => nil, :message => nil -%>  
   </div>
 
@@ -21,7 +21,7 @@
     </ul>
   </div>
   <div class="block-center">
-    <%= submit_tag "Вход" %> или <%= link_to "Востановить пароль", "#" %>
+    <%= submit_tag "Войти" %> или <%= link_to "Забыли пароль?", "#" %>
   </div>
 <%end%>
 </div>

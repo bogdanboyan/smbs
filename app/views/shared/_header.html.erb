@@ -9,7 +9,8 @@
         <li><%= link_to "Панель управления", account_home_url %></li>
         <li><%= link_to "Выход", logout_path %></li>
       <%else%>
-        <li><%= link_to "Вход", login_path %></li>
+        <li><%= link_to("Главная", root_url) if     controller_name == 'sessions' %></li>
+        <li><%= link_to("Вход", login_path)  unless controller_name == 'sessions' %></li>
       <%end%>
     </ul>
   </div>

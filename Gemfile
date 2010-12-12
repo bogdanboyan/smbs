@@ -27,6 +27,8 @@ gem 'aasm',                   '2.2.0'
 
 gem 'will_paginate',          '3.0.pre2'
 
+gem 'escape_utils'
+
 group :test do
   gem 'rspec',                '2.2.0'
   gem 'rspec-rails',          '2.2.1'

@@ -70,6 +70,7 @@ GEM
     elif (0.1.0)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    escape_utils (0.1.9)
     exception_notification_rails3 (1.0.0)
     factory_girl (1.3.2)
     ffi (0.6.3)
@@ -156,6 +157,7 @@ DEPENDENCIES
   cucumber-rails (= 0.3.2)
   database_cleaner (= 0.6.0)
   dynamic_form (= 1.1.1)
+  escape_utils
   exception_notification_rails3 (= 1.0.0)
   factory_girl (= 1.3.2)
   geoip-c!

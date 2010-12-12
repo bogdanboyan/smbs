@@ -11,7 +11,7 @@ ru:
       not_active: Ваш аккаунт не активен
       not_confirmed: Ваш аккаунт неподтвержденный
       not_approved: Ваш аккаунт неподтвержденный
-      no_authentication_details: Вы не указали данные для аутентификации
+      no_authentication_details: Пожалуйста укажите свой email и пароль
     models:
       user_session: UserSession (or whatever name you are using)
     attributes:
