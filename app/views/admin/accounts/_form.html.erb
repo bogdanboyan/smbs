@@ -1,36 +1,36 @@
 <div class="block-center">
   <ul class="input-list">
     <li class="item">
-      <p><%= form.label :title, "название аккаунта" %></p>
+      <p><%= form.label :title, "название аккаунта:" %></p>
       <p class="field"><%= form.text_field :title, :class => "text-field" %></p>
     </li>
     <li class="item">
-      <p><%= form.label :contact_phone, "контактный телефон" %></p>
+      <p><%= form.label :contact_phone, "контактный телефон:" %></p>
       <p class="field"><%= form.telephone_field :contact_phone, :class => "text-field" %></p>
     </li>
     <li class="item">
-      <p><%= form.label :contact_person, "контактное лицо" %></p>
+      <p><%= form.label :contact_person, "контактное лицо:" %></p>
       <p class="field"><%= form.text_field :contact_person, :class => "text-field" %></p>
     </li>
     <li class="item">
-      <p><%= form.label :city, "город" %></p>
+      <p><%= form.label :city, "город:" %></p>
       <p class="field"><%= form.text_field :city, :class => "text-field" %></p>
     </li>
     <li class="item">
-      <p><%= form.label :address, "почтовый адрес" %></p>
+      <p><%= form.label :address, "почтовый адрес:" %></p>
       <p class="field"><%= form.text_field :address, :class => "text-field" %></p>
     </li>
     <li class="item">
-      <p><%= form.label :bank_account, "банковские реквизиты" %></p>
+      <p><%= form.label :bank_account, "банковские реквизиты:" %></p>
       <p class="field"><%= form.text_field :bank_account, :class => "text-field" %></p>
     </li>
     <li class="item">
-      <p><%= form.label :address, "почтовый адрес" %></p>
+      <p><%= form.label :address, "почтовый адрес:" %></p>
       <p class="field"><%= form.text_field :address, :class => "text-field" %></p>
     </li>
     <% unless @account.is?(:yamco) %>
     <li class="item">
-      <p><%= form.label :kind_of, "тип аккаунта" %></p>
+      <p><%= form.label :kind_of, "тип аккаунта:" %></p>
       <p class="field">
         <%= form.radio_button :kind_of, "reseller", :class => "radio-field" %><span>Реселлер</span>
         <%= form.radio_button :kind_of, "business", :class => "radio-field" %><span>Бизнес</span>
@@ -43,3 +43,4 @@
 <div class="block-center">
   <%= submit_tag "Сохранить изменения" %>
 </div>
+ß
