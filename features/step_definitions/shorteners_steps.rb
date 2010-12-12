@@ -6,6 +6,7 @@
     @short_urls << ShortUrl.create(row)
   end
   @short_url = @short_urls.try(:first)
+  Account.first.short_urls = @short_urls
 end
 
 Тогда /^список созданых мною Short адресов:$/ do |таблица|

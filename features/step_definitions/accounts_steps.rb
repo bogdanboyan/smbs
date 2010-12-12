@@ -16,3 +16,12 @@ end
   @user = User.create :state => state, :email => email, :password => password, :password_confirmation => password
   @account.users << @user
 end
+
+Допустим /^"([^\"]*)" пользователь уже (?:|авторизирован|существует)$/ do |kind_of|
+  Допустим %Q(существует аккаунт типа "#{kind_of}")
+  И %Q(пользователь "cukes@yam.co.ua" c паролем "yamco!")
+  Когда %Q(я захожу на /login)
+  И %Q(я заполню "user_session_email" значением "cukes@yam.co.ua")
+  И %Q(я заполню "user_session_password" значением "yamco!")
+  Тогда %Q(я нажму "Войти")
+end
