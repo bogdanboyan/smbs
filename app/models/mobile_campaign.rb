@@ -1,10 +1,22 @@
+# encoding: utf-8
 class MobileCampaign < ActiveRecord::Base
 
   belongs_to :account
-
-  has_many :image_assets, :dependent => :destroy
   belongs_to :short_url
-  
+
+  has_and_belongs_to_many :asset_files, :uniq => true do
+    def only_images
+      where(:type => 'ImageAsset')
+    end
+    
+    # HACK :uniq => true doesnot works!
+    def push!(*records)
+      records.each{ |o| (@owner.asset_files << o) unless @owner.asset_files.include?(o) }
+    end
+    
+  end
+
+
   validate :document_state
 
   # init final state machine
@@ -42,6 +54,24 @@ class MobileCampaign < ActiveRecord::Base
     end
   end
 
+  def sanitize(document = [])
+    document = document.delete_if do |partial|
+      type, value = partial['type'], partial['value']
+      type.nil? || type =~ /[^header|text|images]/ || value.nil? || value.empty? || sanitize_partial(type, value)
+    end
+    document.compact
+  end
+  
+  def map_document_model_images
+    document_model_as(:array).each do |document|
+      if document['type'] == 'images'
+        document['value'].each do |image_model|
+          asset_files.push!(ImageAsset.find image_model['asset_id']) if ImageAsset.exists?(image_model['asset_id'])
+        end
+      end # end if
+    end
+  end
+
 
   protected
   
@@ -50,7 +80,7 @@ class MobileCampaign < ActiveRecord::Base
     
     sanitized_document_model = sanitize(document_model_as(:array))
     
-    (errors.add(:base, 'document_model is empty and sanitized') && return) if (!sanitized_document_model || sanitized_document_model.empty?)
+    (errors.add(:base, 'Пустой документ не может быть сохранен') && return) if (!sanitized_document_model || sanitized_document_model.empty?)
     
     sanitized_document_model.each do |partial|
       type, value = partial['type'], partial['value']
@@ -74,14 +104,6 @@ class MobileCampaign < ActiveRecord::Base
 
   def should_be_true(*state)
     errors.add("value", "has invalid format") unless state.delete_if {|s| s}.empty?
-  end
-
-  def sanitize(document = [])
-    document = document.delete_if do |partial|
-      type, value = partial['type'], partial['value']
-      type.nil? || type =~ /[^header|text|images]/ || value.nil? || value.empty? || sanitize_partial(type, value)
-    end
-    document.compact
   end
 
   def sanitize_partial(type, value)

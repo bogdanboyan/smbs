@@ -30,6 +30,12 @@ CREATE TABLE `asset_files_mobile_campaigns` (
   KEY `index_mobile_campaign_id_and_asset_file_id` (`mobile_campaign_id`,`asset_file_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `asset_files_mobile_campaigns` (
+  `mobile_campaign_id` int(11) DEFAULT NULL,
+  `asset_file_id` int(11) DEFAULT NULL,
+  KEY `index_mobile_campaign_id_and_asset_file_id` (`mobile_campaign_id`,`asset_file_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 CREATE TABLE `bar_codes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -90,7 +96,11 @@ CREATE TABLE `clicks` (
   KEY `index_clicks_on_short_url_id` (`short_url_id`),
   KEY `index_clicks_on_user_agent_id` (`user_agent_id`),
   KEY `index_clicks_on_short_url_id_and_created_at` (`short_url_id`,`created_at`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+>>>>>>> origin/master
 
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -184,8 +194,12 @@ CREATE TABLE `short_urls` (
   `account_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_short_urls_on_short` (`short`),
+<<<<<<< HEAD
   KEY `index_short_urls_on_current_state` (`current_state`),
   KEY `index_short_urls_on_account_id` (`account_id`)
+=======
+  KEY `index_short_urls_on_current_state` (`current_state`)
+>>>>>>> origin/master
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `summarized_clicks` (
@@ -270,6 +284,7 @@ INSERT INTO schema_migrations (version) VALUES ('20101122221155');
 
 INSERT INTO schema_migrations (version) VALUES ('20101124155451');
 
+<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20101130155522');
 
 INSERT INTO schema_migrations (version) VALUES ('20101201085957');
@@ -283,3 +298,6 @@ INSERT INTO schema_migrations (version) VALUES ('20101208140500');
 INSERT INTO schema_migrations (version) VALUES ('20101208185144');
 
 INSERT INTO schema_migrations (version) VALUES ('20101208194411');
+=======
+INSERT INTO schema_migrations (version) VALUES ('20101130155522');
+>>>>>>> origin/master

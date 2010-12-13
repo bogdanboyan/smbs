@@ -8,25 +8,22 @@ a:hover {
   text-decoration: none;
 }
 
-#action {
-  height: 50px;
-}
 
-#action input {
-	width: 54%;
-	float: left;
-	font-size: 16px;
-}
-
-#action ul li {
-	list-style: none;
-	font-size: 16px;
+.controls input {
+  width: 325px;
   float: left;
-	padding: 6px;
-	margin-left: 10px;
+  font-size: 16px;
 }
 
-#action #notice {
+.controls .actions li {
+  list-style: none;
+  font-size: 16px;
+  float: left;
+  padding: 6px;
+  margin-left: 10px;
+}
+
+.controls #notice {
   text-align: center;
 }
 
@@ -99,18 +96,18 @@ a:hover {
   text-align: center;
 }
 
-.image > .controls > .move,  .image > .controls > .remove {
+.image .controls .move,  .image .controls .remove {
   position: absolute;
   font-size: 9.5px;
   background-color: #CCCCCC;
 }
 
-.image > .controls > .move {
+.image .controls .move {
   cursor: move;
   right: 5px;
 }
 
-.image > .controls > .remove {
+.image .controls .remove {
   cursor: pointer;
   bottom: 15px;
   right: 5px;
@@ -157,17 +154,28 @@ a:hover {
   clear: left;
 }
 
-#gallery {
+/* gallery widget */
+
+.widget-container {
+  position: fixed;
   padding: 10px;
   margin-left: 15px;
 }
 
-.assets {
-}
-
-.assets .container {
+.gallery-widget .items .container {
   float: left;
   margin-right: 6px;
+}
+
+.gallery-widget .notice {
+  display: none;
+}
+
+.navigation-tools .loading {
+  display: none;
+  padding-left: 20px;
+  background:url("/images/ajax-loader-small.gif") no-repeat left center;
+  padding-right: 78px;
 }
 
 /* preview */
