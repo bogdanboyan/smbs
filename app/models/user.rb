@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
   aasm_state :pending
 
   aasm_event :activate do
-    transitions :to => :activated, :from => [ :pending ], :on_transition => Proc.new { |u| UserMailer.account_activate_notice(u) }
+    transitions :to => :activated, :from => [ :pending ], :on_transition => Proc.new { |u| UserMailer.account_activate_notice(u).deliver }
   end
   
   aasm_event :disable do
-    transitions :to => :pending, :from => [ :activated ], :on_transition => Proc.new { |u| UserMailer.account_disable_notice(u)  }
+    transitions :to => :pending, :from => [ :activated ], :on_transition => Proc.new { |u| UserMailer.account_disable_notice(u).deliver  }
   end
   
   # init authlogic
