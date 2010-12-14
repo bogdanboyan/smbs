@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  helper_method :current_user_session, :current_user, :account_home_url
+  helper_method :current_user_session, :current_user, :is_current?, :account_home_url
 
   helper :all # include all helpers, all the time
 
@@ -32,6 +32,10 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session.try(:user)
+  end
+  
+  def is_current?(given_user)
+    current_user == given_user
   end
   
   def require_yamco_user

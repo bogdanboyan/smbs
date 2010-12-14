@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
   respond_to :html
   
   before_filter :load_account
-  before_filter :load_user, :only => [:edit, :update]
+  before_filter :load_user, :only => [ :edit, :update, :activate, :disable ]
   
   def index
     @users = @account.users
@@ -24,6 +24,28 @@ class Admin::UsersController < Admin::BaseController
       flash[:notice] = "Пользователь с логином '%s' успешно изменен" % @user.email
     end
     respond_with @user, :location => admin_account_users_path(@account)
+  end
+  
+  def activate
+    if @user.pending?
+      @user.activate!
+      flash[:notice] = "Пользователь '%s' был успешно активирован" % @user.email
+    else
+      flash[:error] = "Пользователь '%s' уже заблокирован и не может заблокироваться снова" % @user.email
+    end
+    
+    redirect_to edit_admin_account_user_path(@account, @user)
+  end
+  
+  def disable
+    if @user.activated?
+      @user.disable!
+      flash[:notice] = "Пользователь '%s' был заблокирован" % @user.email
+    else
+      flash[:error] = "Пользователь '%s' уже активирован и не может активироваться повторно" % @user.email
+    end
+    
+    redirect_to edit_admin_account_user_path(@account, @user)
   end
 
 

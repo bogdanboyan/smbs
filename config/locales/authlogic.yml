@@ -8,9 +8,9 @@ ru:
       email_invalid: неверный
       password_blank: не указан
       password_invalid: неверный
-      not_active: Ваш аккаунт не активен
-      not_confirmed: Ваш аккаунт неподтвержденный
-      not_approved: Ваш аккаунт неподтвержденный
+      not_active: Ваш аккаунт не активен или заблокирован службой поддержки
+      not_confirmed: Аккаунт является неподтвержденным проверте свой почтовый ящик
+      not_approved: Аккаунт является неподтвержденным проверте свой почтовый ящик
       no_authentication_details: Пожалуйста укажите свой email и пароль
     models:
       user_session: UserSession (or whatever name you are using)

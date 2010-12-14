@@ -23,8 +23,10 @@ Smbs::Application.routes.draw do
     
     resources :invites
     resources :accounts do
-      member { get :settings }
-      resources :users
+      member           { get :settings; put :activate; put :disable; }
+      resources :users do
+        member         { put :activate; put :disable;                }
+      end
     end
   end
   
