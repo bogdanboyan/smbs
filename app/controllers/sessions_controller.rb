@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    current_user_session.destroy if current_user_session
+    current_user_session.try :destroy
     redirect_to root_url
   end
   

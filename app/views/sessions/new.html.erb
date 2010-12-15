@@ -1,7 +1,8 @@
 <div>
   <div class="block-center">
     <h1>Авторизация пользователя</h1>
-    <%= error_messages_for :user_session, :header_message => nil, :message => nil -%>  
+    <%= error_messages_for :user_session, :header_message => nil, :message => nil -%>
+    <%= render :partial => 'shared/notice' %>
   </div>
 
 <%= form_for :user_session, :url => login_url do |form| %>
@@ -21,7 +22,7 @@
     </ul>
   </div>
   <div class="block-center">
-    <%= submit_tag "Войти" %> или <%= link_to "Забыли пароль?", "#" %>
+    <%= submit_tag "Войти" %> или <%= link_to "Забыли пароль?", new_password_reset_path %>
   </div>
 <%end%>
 </div>

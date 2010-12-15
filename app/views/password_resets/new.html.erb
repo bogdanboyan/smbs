@@ -1,0 +1,20 @@
+<div>
+  <div class="block-center">
+    <h1>Восстановление пароля</h1>
+    <%= render :partial => 'shared/notice' %>
+  </div>
+
+<%= form_for :user, :url => password_resets_path do |form| %>
+  <div class="block-center">
+    <ul class="input-list">
+      <li class="item">
+        <p><%= form.label :email, "введите свой email:" %></p>
+        <p class="field"><%= form.text_field :email, :class => "text-field" %></p>
+      </li>
+    </ul>
+  </div>
+  <div class="block-center">
+    <%= submit_tag "Отправить инструкцию" %>
+  </div>
+<%end%>
+</div>

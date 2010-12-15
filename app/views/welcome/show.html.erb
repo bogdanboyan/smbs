@@ -14,7 +14,7 @@
 
 <div class="grid_4 omega">
   <p><%= flash[:error] %></p>
-  <%= form_for :invite, :url => invite_path, :as => :post do |f| %>
+  <%= form_for :invite, :url => invite_path do |f| %>
     <ul class="input-list">
       <li class="item">
         <%= f.label :company, "*название компании:" %>
