@@ -33,12 +33,13 @@ class PasswordResetsController < ApplicationController
 
     respond_with @user, :location => login_url
   end
-  
-  private
+
+
+  protected
   
   def load_user_using_perishable_token
     unless @user = User.find_using_perishable_token(params[:id])
-      redirect_to login_url, :error => 'Невозможно найти аккаунт пользователя по заданному ключу'
+      redirect_to login_url, :notice => 'Невозможно найти аккаунт пользователя по заданному ключу'
     end
   end
   

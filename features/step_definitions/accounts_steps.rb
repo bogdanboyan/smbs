@@ -25,3 +25,7 @@ end
   И %Q(я заполню "user_session_password" значением "yamco!")
   Тогда %Q(я нажму "Войти")
 end
+
+Допустим /^пользователь "([^\"]*)" с "([^\"]*)" значения "([^\"]*)"$/ do |email, field, value|
+  User.connection.update "UPDATE users SET #{field} = '#{value}' WHERE email = '#{email}'"
+end

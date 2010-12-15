@@ -18,8 +18,8 @@ class UserMailer < ActionMailer::Base
     @user = user
     @password_reset_url = edit_password_reset_url(@user.perishable_token)
     
-    puts @password_reset_url
-    
-    mail :to => @user.email, :subject => 'Инструкция по восстановлению пароля'
+    # email body logged in base64 mode
+    puts @password_reset_url if Rails.env == 'development'
+    mail :to => @user.email, :subject => 'Инструкция по пользовательского восстановлению пароля'
   end
 end
