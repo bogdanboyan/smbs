@@ -2,8 +2,8 @@
 
 class PasswordResetsController < ApplicationController
   
-  before_filter :require_no_user
-  before_filter :load_user_using_perishable_token, :only => [:edit, :update]
+  before_filter :require_no_user, :except => [ :update ]
+  before_filter :load_user_using_perishable_token, :only => [ :edit, :update ]
 
   respond_to :html
 
@@ -26,13 +26,12 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation       = params[:user][:password_confirmation]
 
     if @user.save
-      #flash[:notice] = "Пароль был успешно сохранен."
+      flash[:notice] = "Пароль был успешно изменен."
       # AuthLogic automatically create session on success
-      #why current_user_session is null
-      #current_user_session.try :destroy
+      current_user_session.destroy
     end
 
-    respond_with @user, :location => root_url
+    respond_with @user, :location => login_url
   end
   
   private
