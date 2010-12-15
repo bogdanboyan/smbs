@@ -19,11 +19,11 @@ class Account < ActiveRecord::Base
   aasm_state :disabled
   
   aasm_event :activate do
-    transitions :to => :activated, :from => [:disabled]
+    transitions :to => :activated, :from => [ :disabled ], :on_transition => Proc.new { |a| a.users.each { |u| u.activate! if u.pending? } }
   end
   
   aasm_event :disable do
-    transitions :to => :disabled, :from => [:activated]
+    transitions :to => :disabled, :from => [ :activated ], :on_transition => Proc.new { |a| a.users.each { |u| u.disable! if u.activated? } }
   end
 
 

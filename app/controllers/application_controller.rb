@@ -34,8 +34,11 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session.try(:user)
   end
   
-  def is_current?(given_user)
-    current_user == given_user
+  def is_current?(given_user_or_account)
+    case given_user_or_account
+      when User    then current_user    == given_user_or_account
+      when Account then current_account == given_user_or_account
+    end
   end
   
   def require_yamco_user

@@ -9,6 +9,7 @@ module Admin::AccountsHelper
     case state
       when 'activated' then 'активирован'
       when 'pending'   then 'заблокирован'
+      when 'disabled'  then 'заблокирован'
     end
   end
   
@@ -23,6 +24,7 @@ module Admin::AccountsHelper
     action = case options[:current_state]
       when 'activated' then 'disable'
       when 'pending'   then 'activate'
+      when 'disabled'  then 'activate'
     end
     
     name = humanize_state_action(action)

@@ -31,9 +31,6 @@ class User < ActiveRecord::Base
     c.session_class UserSession
   end
   
-  # authlogic magic state
-  alias :active? :activated?
-  
   # Skip blank passwords ignoring
   attr_accessor :require_non_blank_passwords
   
@@ -42,6 +39,11 @@ class User < ActiveRecord::Base
   
   def ignore_blank_passwords?
     require_non_blank_passwords != true
+  end
+  
+  # authlogic magic state
+  def active?
+    self.account.activated? and self.activated?
   end
   
 end

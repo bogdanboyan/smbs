@@ -34,7 +34,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "Пользователь '%s' уже заблокирован и не может заблокироваться снова" % @user.email
     end
     
-    redirect_to edit_admin_account_user_path(@account, @user)
+    redirect_to edit_admin_account_user_url(@account, @user)
   end
   
   def disable
@@ -45,7 +45,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "Пользователь '%s' уже активирован и не может активироваться повторно" % @user.email
     end
     
-    redirect_to edit_admin_account_user_path(@account, @user)
+    redirect_to edit_admin_account_user_url(@account, @user)
   end
 
 

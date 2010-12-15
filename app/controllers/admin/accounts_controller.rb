@@ -30,6 +30,28 @@ class Admin::AccountsController < Admin::BaseController
     end
   end
   
+  def activate
+    if @account.disabled?
+      @account.activate!
+      flash[:notice] = "Аккаунт '%s' был успешно активирован" % @account.title
+    else
+      flash[:error] = "Аккаунт '%s' уже заблокирован и не может заблокироваться снова" % @account.title
+    end
+    
+    redirect_to settings_admin_account_url(@account)
+  end
+  
+  def disable
+    if @account.activated?
+      @account.disable!
+      flash[:notice] = "Аккаунт '%s' был заблокирован" % @account.title
+    else
+      flash[:error] = "Аккаунт '%s' уже активирован и не может активироваться повторно" % @account.title
+    end
+    
+    redirect_to settings_admin_account_url(@account)
+  end
+  
   
   private
   
