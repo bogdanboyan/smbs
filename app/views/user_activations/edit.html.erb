@@ -1,0 +1,25 @@
+<div>
+  <div class="block-center">
+    <h1>Активируйте свой аккаунт для доступа к Yamco</h1>
+    <%= error_messages_for :user, :header_message => nil, :message => nil -%>
+    <%= render :partial => 'shared/notice' %>
+  </div>
+
+<%= form_for :user, :url => user_activation_path(@user.perishable_token), :html => { :method => :put } do |form| %>
+  <div class="block-center">
+    <ul class="input-list">
+      <li class="item">
+        <p><%= form.label :password, "пароль:" %></p>
+        <p class="field"><%= form.password_field :password, :class => "text-field" %></p>
+      </li>
+      <li class="item">
+        <p><%= form.label :password_confirmation, "введите пароль повторно:" %></p>
+        <p class="field"><%= form.password_field :password_confirmation, :class => "text-field" %></p>
+      </li>
+    </ul>
+  </div>
+  <div class="block-center">
+    <%= submit_tag "Активировать" %>
+  </div>
+<%end%>
+</div>

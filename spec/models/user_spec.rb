@@ -43,5 +43,33 @@ describe User do
 
   end
   
+  describe "with require_non_blank_passwords" do
+    before(:each) do
+      @user = Factory.build :user
+    end
+
+    it { @user.require_non_blank_passwords.should be_nil }
+
+    context "when it false" do
+      it "should be valid when blank password assigned" do
+        @user.require_non_blank_passwords = false
+        @user.password = " "
+        @user.password_confirmation = " "
+        @user.should be_valid
+      end
+    end
+    
+    context "when it false" do
+      it "should be invalid when blank password assigned" do
+        @user.require_non_blank_passwords = true
+        @user.password = " "
+        @user.password_confirmation = " "
+        @user.should_not be_valid
+      
+        @user.errors[:password].should == ['is too short (minimum is 4 characters)']
+        @user.errors[:password_confirmation].should == ['is too short (minimum is 4 characters)']
+      end
+    end
+  end
   
 end

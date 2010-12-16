@@ -11,6 +11,7 @@ Smbs::Application.routes.draw do
   
   get  'logout'   => 'sessions#destroy'
   
+  resources :user_activations
   resources :password_resets
   
   match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)

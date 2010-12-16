@@ -11,8 +11,12 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    @user = User.new params[:user]
+    @user = User.new params[:user].merge(:state => :pending)
+    @user.require_non_blank_passwords = false
+    
     if @user.save
+      UserMailer.account_activation_instructions(@user, current_user).deliver
+      
       flash[:notice] = "Пользователь с логином '%s' был создан" % @user.email
       @account.users << @user
     end
