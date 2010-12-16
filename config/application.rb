@@ -42,12 +42,12 @@ module Smbs
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
-    config.action_mailer.default_url_options = { :host => 'smbs.com' }
+    config.action_mailer.default_url_options = { :host => 'yam.co.ua' }
     
     config.middleware.use ExceptionNotifier, {
-      :email_prefix          => "[SMBS #{Rails.env}] ",
-      :sender_address        => %{"Application Error" <smbs.app@gmail.com>},
-      :exception_recipients  => %w{smbs.app@gmail.com},
+      :email_prefix          => "[Yamco #{Rails.env}] ",
+      :sender_address        => %{"Application Error" <support@yam.co.ua>},
+      :exception_recipients  => %w{app.support@gmail.com},
       :ignore_exceptions     => []
     }
     
