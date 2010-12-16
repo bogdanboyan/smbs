@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
   aasm_column :state
 
-  aasm_initial_state :activated
+  aasm_initial_state :pending
 
   aasm_state :activated
   aasm_state :pending

@@ -30,17 +30,17 @@ describe User do
       @user = Factory.create :user
     end
     
-    it { @user.should be_activated    }
-    it { @user.should_not be_pending  }
-    
-    context "with disable! event" do
-      specify { @user.disable!; @user.should be_pending }
-    end
+    it { @user.should be_pending          }
+    it { @user.should_not be_activated    }
     
     context "with activate! event" do
       specify { @user.activate!; @user.should be_activated }
     end
-
+    
+    context "with disable! event" do
+      specify { @user.disable!; @user.should be_pending    }
+    end
+    
   end
   
   describe "with require_non_blank_passwords" do
