@@ -41,7 +41,7 @@ Smbs::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'yam.co.ua',
-    :user_name            => 'app.support',
+    :user_name            => 'support@yam.co.ua',
     :password             => 'yamcokickass!',
     :authentication       => 'plain',
     :enable_starttls_auto => true
