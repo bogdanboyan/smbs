@@ -28,7 +28,7 @@ class PasswordResetsController < ApplicationController
     if @user.save
       flash[:notice] = "Пароль был успешно изменен."
       # AuthLogic automatically create session on success
-      current_user_session.destroy
+      current_user_session.try(:destroy)
     end
 
     respond_with @user, :location => login_url

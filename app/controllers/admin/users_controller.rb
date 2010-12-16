@@ -60,7 +60,7 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def load_user
-    @user = @account.users.find(params[:id])
+    @user = @account.users.find params[:id]
   end
   
 end
