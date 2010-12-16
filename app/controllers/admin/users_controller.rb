@@ -11,14 +11,14 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    @user = User.new params[:user].merge(:state => :pending)
-    @user.require_non_blank_passwords = false
+    @user = User.new params[:user].merge(:account => @account, :state => :pending)
+    @user.generate_random_password
     
     if @user.save
+      @user.reset_perishable_token!
       UserMailer.account_activation_instructions(@user, current_user).deliver
       
       flash[:notice] = "Пользователь с логином '%s' был создан" % @user.email
-      @account.users << @user
     end
     respond_with @user, :location => admin_account_users_path(@account)
   end

@@ -45,7 +45,7 @@ describe User do
   
   describe "with require_non_blank_passwords" do
     before(:each) do
-      @user = Factory.build :user
+      @user = User.create :email => 'rspec@yam.co.ua', :password => 'rspec!', :password_confirmation => 'rspec!'
     end
 
     it { @user.require_non_blank_passwords.should be_nil }
@@ -53,8 +53,6 @@ describe User do
     context "when it false" do
       it "should be valid when blank password assigned" do
         @user.require_non_blank_passwords = false
-        @user.password = " "
-        @user.password_confirmation = " "
         @user.should be_valid
       end
     end

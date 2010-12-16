@@ -33,16 +33,25 @@ class User < ActiveRecord::Base
   # Skip blank passwords ignoring
   attr_accessor :require_non_blank_passwords
   
+  def generate_random_password
+    random_password       = generate_password
+    self.password              = random_password
+    self.password_confirmation = random_password
+  end
   
   protected
   
   def ignore_blank_passwords?
-    require_non_blank_passwords != true
+    require_non_blank_passwords != true                                            
   end
   
   # authlogic magic state
   def active?
     self.account.activated? and self.activated?
+  end
+  
+  def generate_password
+    ActiveSupport::SecureRandom.hex(3)
   end
   
 end

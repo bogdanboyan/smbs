@@ -13,7 +13,7 @@ class UserActivationsController < ApplicationController
     @user.password_confirmation       = params[:user][:password_confirmation]
 
     if @user.save
-      flash[:notice] = "Аккаунт был успешно активирован"
+      flash[:notice] = "Аккаунт был успешно активирован. Теперь вы можете использовать свой email и пароль"
       @user.activate!
     end
 

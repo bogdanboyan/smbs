@@ -18,11 +18,11 @@ class UserMailer < ActionMailer::Base
   
   def account_activation_instructions(to_user, from_user = nil)
     @to_user, @from_user = to_user, from_user
-    @user_activation_url = edit_user_activation_path(@to_user.perishable_token)
+    @user_activation_url = edit_user_activation_url(@to_user.perishable_token)
     
     # email body logged in base64 mode
-    puts @password_reset_url if Rails.env == 'development'
-    mail :to => @user.email, :subject => '%s: Начало работы с Yamco' % from_user.try(:full_name) || from_user.try(:account).try(:title) || "Коллектив Yamco"
+    puts @user_activation_url if Rails.env == 'development'
+    mail :to => @to_user.email, :subject => '%s: Начало работы с Yamco' % from_user.try(:full_name) || from_user.try(:account).try(:title) || "Коллектив Yamco"
   end
   
   def password_reset_instructions(user)
