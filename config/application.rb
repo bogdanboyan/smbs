@@ -47,7 +47,7 @@ module Smbs
     config.middleware.use ExceptionNotifier, {
       :email_prefix          => "[Yamco #{Rails.env}] ",
       :sender_address        => %{"Application Error" <support@yam.co.ua>},
-      :exception_recipients  => %w{app.support@gmail.com},
+      :exception_recipients  => %w{app.support@yam.co.ua},
       :ignore_exceptions     => []
     }
     
