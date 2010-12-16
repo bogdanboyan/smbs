@@ -1,7 +1,7 @@
 #encoding: utf-8
 class UserMailer < ActionMailer::Base
   
-  default :from => 'Служба поддержки Yamco <smbs.app@gmail.com>'
+  default :from => 'Служба поддержки Yamco <support@yam.co.ua>'
   
   
   def account_disable_notice(user)

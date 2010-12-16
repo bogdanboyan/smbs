@@ -5,7 +5,6 @@
 end
 
 Допустим /^существует "([^\"]*)" аккаунт типа "([^\"]*)"$/ do |state, kind_of|
-  #does not help Account.destroy_all
   @account = Account.create :state => state, :kind_of => kind_of, :title => kind_of.camelize
 end
 
@@ -14,9 +13,7 @@ end
 end
 
 Допустим /^"([^\"]*)" пользователь "([^\"]*)" c паролем "([^\"]*)"$/ do |state, email, password|
-  #does not help User.destroy_all
-  @user = User.create :state => state, :email => email, :password => password, :password_confirmation => password
-  @account.users << @user
+  @user = User.create(:account => @account, :state => state, :email => email, :password => password, :password_confirmation => password)
 end
 
 Допустим /^"([^\"]*)" пользователь уже (?:|авторизирован|существует)$/ do |kind_of|

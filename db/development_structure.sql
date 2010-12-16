@@ -11,7 +11,7 @@ CREATE TABLE `accounts` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `asset_files` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -22,13 +22,7 @@ CREATE TABLE `asset_files` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-CREATE TABLE `asset_files_mobile_campaigns` (
-  `mobile_campaign_id` int(11) DEFAULT NULL,
-  `asset_file_id` int(11) DEFAULT NULL,
-  KEY `index_mobile_campaign_id_and_asset_file_id` (`mobile_campaign_id`,`asset_file_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `asset_files_mobile_campaigns` (
   `mobile_campaign_id` int(11) DEFAULT NULL,
@@ -52,7 +46,7 @@ CREATE TABLE `bar_codes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_bar_codes_on_id_and_type` (`id`,`type`),
   KEY `index_bar_codes_on_account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `campaigns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -76,7 +70,7 @@ CREATE TABLE `cities` (
   KEY `index_cities_on_country_id` (`country_id`),
   KEY `index_cities_on_name` (`name`),
   KEY `index_cities_on_name_and_country_id_and_region_id` (`name`,`country_id`,`region_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `clicks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -96,11 +90,7 @@ CREATE TABLE `clicks` (
   KEY `index_clicks_on_short_url_id` (`short_url_id`),
   KEY `index_clicks_on_user_agent_id` (`user_agent_id`),
   KEY `index_clicks_on_short_url_id_and_created_at` (`short_url_id`,`created_at`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
->>>>>>> origin/master
 
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -124,7 +114,7 @@ CREATE TABLE `invites` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `mobile_campaigns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -139,7 +129,7 @@ CREATE TABLE `mobile_campaigns` (
   PRIMARY KEY (`id`),
   KEY `index_mobile_campaigns_on_current_state` (`current_state`),
   KEY `index_mobile_campaigns_on_account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `mobiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -178,7 +168,7 @@ CREATE TABLE `short_sequences` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `short_urls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -194,13 +184,9 @@ CREATE TABLE `short_urls` (
   `account_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_short_urls_on_short` (`short`),
-<<<<<<< HEAD
   KEY `index_short_urls_on_current_state` (`current_state`),
   KEY `index_short_urls_on_account_id` (`account_id`)
-=======
-  KEY `index_short_urls_on_current_state` (`current_state`)
->>>>>>> origin/master
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `summarized_clicks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -216,7 +202,7 @@ CREATE TABLE `summarized_clicks` (
   PRIMARY KEY (`id`),
   KEY `index_summarized_clicks_on_short_url_id` (`short_url_id`),
   KEY `index_summarized_clicks_on_short_url_id_and_date` (`short_url_id`,`date`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `user_agents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -248,7 +234,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_users_on_account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100430172227');
 
@@ -284,7 +270,6 @@ INSERT INTO schema_migrations (version) VALUES ('20101122221155');
 
 INSERT INTO schema_migrations (version) VALUES ('20101124155451');
 
-<<<<<<< HEAD
 INSERT INTO schema_migrations (version) VALUES ('20101130155522');
 
 INSERT INTO schema_migrations (version) VALUES ('20101201085957');
@@ -298,6 +283,7 @@ INSERT INTO schema_migrations (version) VALUES ('20101208140500');
 INSERT INTO schema_migrations (version) VALUES ('20101208185144');
 
 INSERT INTO schema_migrations (version) VALUES ('20101208194411');
-=======
-INSERT INTO schema_migrations (version) VALUES ('20101130155522');
->>>>>>> origin/master
+
+INSERT INTO schema_migrations (version) VALUES ('20101208200117');
+
+INSERT INTO schema_migrations (version) VALUES ('20101216112014');

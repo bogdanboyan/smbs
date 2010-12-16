@@ -58,15 +58,11 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "Вы должны быть авторизированы для доступа к этой странице"
       
       redirect_to login_url
-      return false
     end
   end
 
   def require_no_user
-    if current_user
-      redirect_to root_url
-      return false
-    end
+    redirect_to root_url if current_user
   end
   
   def account_home_url(given_user = nil)
