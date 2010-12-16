@@ -9,7 +9,7 @@ source 'http://rubygems.org'
 gem 'rails',                  '3.0.3'
 
 gem 'mysql2',                 '0.2.3'
-gem 'unicorn',                '1.1.4'
+gem 'unicorn',                '3.1.0'
 
 # gem 'authlogic',              '2.1.6'
 gem 'authlogic', :git => 'git://github.com/railsware/authlogic.git', :tag => 'v2.1.6.1'

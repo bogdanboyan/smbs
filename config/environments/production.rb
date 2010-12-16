@@ -40,11 +40,11 @@ Smbs::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'baci.lindsaar.net',
-    :user_name            => 'smbs.app',
-    :password             => 'smbskickass!',
+    :domain               => 'yam.co.ua',
+    :user_name            => 'support@yam.co.ua',
+    :password             => 'yamcokickass!',
     :authentication       => 'plain',
-    :enable_starttls_auto => true  
+    :enable_starttls_auto => true
   }
 
   # Enable threaded mode
