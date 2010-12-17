@@ -1,11 +1,13 @@
 #encoding: utf-8
+
 class Admin::UsersController < Admin::BaseController
   
-  respond_to :html
-  
   before_filter :load_account
-  before_filter :load_user, :only => [ :edit, :update, :activate, :disable ]
+  before_filter :load_user, :only => [:edit, :update, :activate, :disable]
   
+  respond_to :html
+
+
   def index
     @users = @account.users
   end
@@ -53,14 +55,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
 
-  private
+  protected
   
   def load_account
-    @account = Account.find params[:account_id]
+    @account = Account.find(params[:account_id])
   end
   
   def load_user
-    @user = @account.users.find params[:id]
+    @user = @account.users.find(params[:id])
   end
-  
 end
