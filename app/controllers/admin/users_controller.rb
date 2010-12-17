@@ -62,6 +62,6 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def load_user
-    @user = @account.users.find(params[:id])
+    @user = @account.users.find(params[:id]) if params[:id] # Mistery: this hook invoks for NEW actions!
   end
 end
