@@ -3,7 +3,7 @@
 class Admin::UsersController < Admin::BaseController
   
   before_filter :load_account
-  before_filter :load_user, :only => [:edit, :update, :activate, :disable]
+  before_filter :load_user, :except => [:index, :new]
   
   respond_to :html
 
