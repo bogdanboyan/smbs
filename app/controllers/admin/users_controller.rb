@@ -17,10 +17,8 @@ class Admin::UsersController < Admin::BaseController
     @user.generate_random_password
     
     if @user.save
-      @user.reset_perishable_token!
-      UserMailer.account_activation_instructions(@user, current_user).deliver
-      
-      flash[:notice] = "Пользователь с логином '%s' был создан" % @user.email
+      @user.invite!
+      flash[:notice] = "Письмо активации аккаунта было отправлено по адресу '%s'" % @user.email
     end
     respond_with @user, :location => admin_account_users_path(@account)
   end
@@ -30,6 +28,15 @@ class Admin::UsersController < Admin::BaseController
       flash[:notice] = "Пользователь с логином '%s' успешно изменен" % @user.email
     end
     respond_with @user, :location => admin_account_users_path(@account)
+  end
+  
+  def invite
+    if @user.pending? || @user.invited?
+      @user.invite!
+      flash[:notice] = "Приглашение было повторно отправлено на адрес '%s'" % @user.email
+    end
+    
+    redirect_to edit_admin_account_user_url(@account, @user)
   end
   
   def activate

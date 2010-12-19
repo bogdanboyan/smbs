@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
 
 
   aasm_event :invite do
-    transitions :to => :invited, :from => [ :pending, :invited ], :on_transition => Proc.new { |u| UserMailer.account_activation_instructions(u).deliver }
+    transitions :to => :invited, :from => [ :pending, :invited ], :on_transition => Proc.new { |user|
+      user.reset_perishable_token! and UserMailer.account_activation_instructions(user).deliver
+    }
   end
 
   aasm_event :activate do
