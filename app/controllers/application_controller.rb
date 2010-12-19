@@ -56,7 +56,6 @@ class ApplicationController < ActionController::Base
   def require_user(kind_of = nil)
     if !current_user || (kind_of && !current_user.account.is?(kind_of))
       flash[:notice] = "Вы должны быть авторизированы для доступа к этой странице"
-      
       redirect_to login_url
     end
   end

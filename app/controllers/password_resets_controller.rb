@@ -1,5 +1,4 @@
 #encoding: utf-8
-
 class PasswordResetsController < ApplicationController
   
   before_filter :require_no_user, :except => [ :update ]
@@ -7,6 +6,8 @@ class PasswordResetsController < ApplicationController
 
   respond_to :html
 
+
+  def new; end
 
   def create
     if @user = User.find_by_email(params[:user][:email])
@@ -39,6 +40,7 @@ class PasswordResetsController < ApplicationController
   
   def load_user_using_perishable_token
     unless @user = User.find_using_perishable_token(params[:id])
+      puts "load_user_using_perishable_token"
       redirect_to login_url, :notice => 'Невозможно найти аккаунт пользователя по заданному ключу'
     end
   end
