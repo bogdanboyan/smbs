@@ -1,17 +1,22 @@
 #encoding: utf-8
-
 class Admin::UsersController < Admin::BaseController
   
   before_filter :load_account
-  before_filter :load_user, :except => [:index, :new]
+  before_filter :load_account_user, :except => [ :index, :new ]
   
   respond_to :html
 
 
+  # Q: Why rails render new.html.erb without enter load_account_user before hook if new method isn't defined??
+  # A ActiveRecord::RecordNotFound occurred in users#new:
+  # Couldn't find User without an ID
+  # activerecord (3.0.3) lib/active_record/relation/finder_methods.rb:279:in `find_with_ids'
+  def new; end
+
   def index
     @users = @account.users
   end
-
+  
   def create
     @user = User.new params[:user].merge(:account => @account)
     @user.generate_random_password
@@ -65,10 +70,10 @@ class Admin::UsersController < Admin::BaseController
   protected
   
   def load_account
-    @account = Account.find(params[:account_id])
+    @account = Account.find params[:account_id]
   end
   
-  def load_user
-    @user = @account.users.find(params[:id]) if params[:id] # Mistery: this hook invoks for NEW actions!
+  def load_account_user
+    @user = @account.users.find params[:id]
   end
 end
