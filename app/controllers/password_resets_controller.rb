@@ -6,7 +6,7 @@ class PasswordResetsController < ApplicationController
 
   respond_to :html
 
-
+  # Q: Why rails render new.html.erb without enter load_user_using_perishable_token before hook if new method isn't defined??
   def new; end
 
   def create
@@ -28,8 +28,8 @@ class PasswordResetsController < ApplicationController
 
     if @user.save
       flash[:notice] = "Пароль был успешно изменен."
-      # AuthLogic automatically create session on success
-      current_user_session.try(:destroy)
+      # authlogic automatically create session on success
+      logged_user_session.try(:destroy)
     end
 
     respond_with @user, :location => login_url
@@ -40,7 +40,6 @@ class PasswordResetsController < ApplicationController
   
   def load_user_using_perishable_token
     unless @user = User.find_using_perishable_token(params[:id])
-      puts "load_user_using_perishable_token"
       redirect_to login_url, :notice => 'Невозможно найти аккаунт пользователя по заданному ключу'
     end
   end

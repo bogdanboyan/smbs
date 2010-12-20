@@ -1,9 +1,10 @@
 #encoding: utf-8
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery
+  include ApplicationHelper
 
-  helper_method :current_user_session, :current_user, :is_current?, :account_home_url
+
+  protect_from_forgery
 
   helper :all # include all helpers, all the time
 
@@ -19,30 +20,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find
-  end
-  
-  def current_account
-    return @current_account if defined?(@current_account)
-    @current_account = current_user.try(:account)
-  end
-
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session.try(:user)
-  end
-  
-  def is_current?(given_user_or_account)
-    case given_user_or_account
-      when User    then current_user    == given_user_or_account
-      when Account then current_account == given_user_or_account
-    end
+  def require_no_user
+    redirect_to root_url if current_user
   end
   
   def require_yamco_user
-    require_user(:yamco)
+    require_gituser(:yamco)
   end
   
   def require_reseller_user
@@ -55,25 +38,8 @@ class ApplicationController < ActionController::Base
   
   def require_user(kind_of = nil)
     if !current_user || (kind_of && !current_user.account.is?(kind_of))
-      flash[:notice] = "Вы должны быть авторизированы для доступа к этой странице"
-      redirect_to login_url
+      redirect_to login_url, :notice => "Вы должны быть авторизированы для доступа к этой странице"
     end
   end
 
-  def require_no_user
-    redirect_to root_url if current_user
-  end
-  
-  def account_home_url(given_user = nil)
-    kind_of = (current_user||given_user).account.kind_of
-    
-    case kind_of
-    when 'yamco'    then admin_dashboard_url
-    when 'reseller' then reseller_dashboard_url
-    when 'business' then business_dashboard_url
-    else
-      raise "can't find '%s' account type home page " % kind_of
-    end
-  end
-  
 end
