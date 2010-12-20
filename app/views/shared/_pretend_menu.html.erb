@@ -1,0 +1,7 @@
+<% if pretends? %>
+<div class="grid_12">
+  <div class="block-center">
+    Управляющий '<%= real_current_user.full_name %>' просматривает данные '<%= current_account.title %>' аккаунта используя полномочия пользователя '<%= current_user.email %>'. <%= link_to "Покинуть просмотр #{current_account.title}", '#' %>
+  </div>
+</div>
+<% end %>

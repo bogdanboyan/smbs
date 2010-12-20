@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_yamco_user
-    require_gituser(:yamco)
+    require_user(:yamco)
   end
   
   def require_reseller_user
