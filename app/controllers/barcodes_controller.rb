@@ -1,6 +1,7 @@
 class BarcodesController < ApplicationController
   
-  before_filter :require_user
+  before_filter :require_current_user
+  
   
   def index
     @bar_codes = current_account.bar_codes.order('id DESC')

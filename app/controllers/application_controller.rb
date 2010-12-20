@@ -25,21 +25,26 @@ class ApplicationController < ActionController::Base
   end
   
   def require_yamco_user
-    require_user(:yamco)
+    require_real_current_user(:yamco)
   end
   
   def require_reseller_user
-    require_user(:reseller)
+    require_current_user(:reseller)
   end
   
   def require_business_user
-    require_user(:business)
+    require_current_user(:business)
   end
   
-  def require_user(kind_of = nil)
-    if !current_user || (kind_of && !current_user.account.is?(kind_of))
-      redirect_to login_url, :notice => "Вы должны быть авторизированы для доступа к этой странице"
-    end
+  [:require_real_current_user, :require_current_user].each do |filter|
+    class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
+      def #{filter}(kind_of = nil)                                                                          # def require_current_user(kind_of = nil)
+        given_user = send '#{filter}'.gsub('require_', '').to_sym                                           #   given_user = send 'require_current_user'.gsub('require_', '').to_sym
+        if !given_user || (kind_of && !given_user.account.is?(kind_of))                                     #   if !given_user || (kind_of && given_user.account.is?(kind_of))
+          redirect_to login_url, :notice => "Вы должны быть авторизированы для доступа к этой странице"     #     redirect_to login_url, :notice => "Вы должны быть авторизированы для доступа к этой странице"
+        end                                                                                                 #   end 
+      end                                                                                                   # end
+    RUBY_EVAL
   end
 
 end

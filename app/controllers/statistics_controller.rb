@@ -1,8 +1,8 @@
 class StatisticsController < ApplicationController
-
-  before_filter :require_user
-
+  
+  before_filter :require_current_user
   before_filter :load_short_url
+  
   
   def show
     ClicksAgregator.summarize_all_clicks(@short_url.id)

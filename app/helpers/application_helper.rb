@@ -24,8 +24,9 @@ module ApplicationHelper
   def current_user
     return @current_user if defined?(@current_user)
     
-    if real_current_user.account.is?(:yamco) && session[:pretend_account_short_id]
-      @current_user = Account.find(session[:pretend_account_short_id]).users.first # TODO use owner as current_user
+    if session[:pretend_account_short_id] && real_current_user && real_current_user.account.is?(:yamco)
+      # TODO use owner as current_user
+      @current_user = Account.find(session[:pretend_account_short_id]).users.first
     else
       @current_user = logged_user_session.try(:user)
     end

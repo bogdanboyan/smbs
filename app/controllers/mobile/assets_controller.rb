@@ -1,6 +1,7 @@
 class Mobile::AssetsController < ApplicationController
 
-  before_filter :require_user
+  before_filter :require_current_user
+  
 
   def upload_image
     image = ImageAsset.new({:asset => create_io_from_post_raw})

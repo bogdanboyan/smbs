@@ -2,8 +2,9 @@ class Mobile::ImagesController < ApplicationController
   
   respond_to :js
   
-  before_filter :require_user
+  before_filter :require_current_user
   before_filter :load_mobile_campaign
+  
   
   def index
     @images = @campaign.asset_files.only_images
