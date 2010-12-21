@@ -9,15 +9,19 @@
   </head>
   
   <body>
+    <div class="hd row pos-c">
+      <span><%= link_to "yamco.mobi", "http://yamco.mobi" %> - лучшие предложения города</span>
+    </div>
+    <div class="bd">
     <% @document_model.each do |entity| -%>
         <% if controller.is_a_data?(entity, 'header') -%>
-          <%= raw controller.t9e(entity[:value], :header) %>
+          <%== controller.t9e(entity[:value], :header) %>
         <% end -%>
         <% if controller.is_a_data?(entity, 'text') -%>
-          <div class="cm"><%= raw controller.t9e(entity[:value], :text) %></div>
+          <div class="c-block"><%== controller.t9e(entity[:value], :text) %></div>
         <% end -%>
         <% if controller.is_a_data?(entity, 'images') -%>
-          <div class="cm" style="text-align: center;">
+          <div class="c-block pos-c">
           <% controller.prepared_images(entity[:value]).each do |image| -%>
               <a href="<%= image[:instance].asset.url(:preview) %>"><img src="<%= image[:instance].asset.url(image[:style]) %>" style="width: <%= image[:width] %>"/></a>
           <% end -%>
@@ -25,9 +29,13 @@
           <div class="clear">&nbsp;</div>
         <% end -%>
     <% end -%>
-    <div class="cm">
-      <br/>
-      <span class="cpr"><%= link_to "Ямко", "http://yamco.mobi" %>&copy; <%= Time.now.year %></span>
+    </div>
+    <div class="ft row pos-c">
+      <ul class="ft-list">
+        <li class="item"><span class="cpr">Ямко &copy;<%= Time.now.year %></span></li>
+        <li class="item navi"><%= link_to "Главная", "#" %></li>
+        <li class="item navi"><%= link_to "О проекте", "#" %></li>
+      </ul>
     </div>
   </body>
 </html>
