@@ -40,7 +40,7 @@ class ShortUrl < ActiveRecord::Base
     end
   end
   
-  def short_url(request)
+  def short_url
     "http://yamco.mobi/#{self.short}"
   end
   

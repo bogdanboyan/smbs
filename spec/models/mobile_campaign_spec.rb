@@ -5,9 +5,15 @@ describe MobileCampaign do
   # specify model members
   it { should have_db_column(:document_model)           }
   it { should have_db_column(:title)                    }
+  
+  it { should belong_to(:account)                       }
   it { should belong_to(:short_url)                     }
   
   it { should have_and_belong_to_many(:asset_files)     }
+  
+  it { should have_db_index(:account_id)                }
+  it { should have_db_index(:short_url_id)              }
+  it { should have_db_index(:current_state)             }
   
   describe "with assets" do
     

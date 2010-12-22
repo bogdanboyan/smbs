@@ -30,6 +30,17 @@
         <% end -%>
     <% end -%>
     </div>
+    <% unless @see_more.empty? -%>
+      <div class="more pos-c">
+        <span>Смотрите также:</span>
+        <ul>
+          <% @see_more.each do |mbc| -%>
+            <li><%= link_to mbc.title, mbc.short_url.short_url %></li>
+          <%end-%>
+          <li>Посмотреть все предложения</li>
+        </ul>
+      </div>
+    <%end-%>
     <div class="ft row pos-c">
       <ul class="ft-list">
         <li class="item"><span class="cpr">Ямко &copy;<%= Time.now.year %></span></li>

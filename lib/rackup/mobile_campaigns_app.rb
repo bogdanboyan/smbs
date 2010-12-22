@@ -8,6 +8,7 @@ module Rackup
       # if MobileCampaign.exists? params[:id]
         @mbc = MobileCampaign.find params[:id]
         @document_model = @mbc.document_model_as(:array).map! {|entity| entity.symbolize_keys }
+        @see_more = MobileCampaign.where(:current_state => "published").where("mobile_campaigns.short_url_id IS NOT NULL AND mobile_campaigns.id != #{@mbc.id}").order("id desc").limit(3)
         render
       # else
       #   render :text => 'Страница не найдена', :status => 404
