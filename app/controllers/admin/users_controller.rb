@@ -2,7 +2,7 @@
 class Admin::UsersController < Admin::BaseController
   
   before_filter :load_account
-  before_filter :load_account_user, :except => [ :index, :new ]
+  before_filter :load_account_user, :except => [ :index, :new, :create ]
   
   respond_to :html
 
