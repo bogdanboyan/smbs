@@ -41,7 +41,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:notice] = "Приглашение было повторно отправлено на адрес '%s'" % @user.email
     end
     
-    redirect_to edit_admin_account_user_url(@account, @user)
+    redirect_to settings_admin_account_path(@account)
   end
   
   def activate
@@ -52,7 +52,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "Пользователь '%s' уже заблокирован и не может заблокироваться снова" % @user.email
     end
     
-    redirect_to edit_admin_account_user_url(@account, @user)
+    redirect_to settings_admin_account_path(@account)
   end
   
   def disable
@@ -63,7 +63,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "Пользователь '%s' уже активирован и не может активироваться повторно" % @user.email
     end
     
-    redirect_to edit_admin_account_user_url(@account, @user)
+    redirect_to settings_admin_account_path(@account)
   end
 
 
