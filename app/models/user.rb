@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
   aasm_initial_state :pending
 
   aasm_state :invited,   :after_enter => Proc.new { |user| user.reset_perishable_token! and UserMailer.account_activation_instructions(user).deliver }
-  aasm_state :activated, :after_enter => Proc.new { |user| UserMailer.account_activate_notice(user).deliver }
-  aasm_state :pending,   :after_enter => Proc.new { |user| UserMailer.account_disable_notice(user).deliver  }
+  aasm_state :activated
+  aasm_state :pending
 
 
   aasm_event :invite do
@@ -24,11 +24,11 @@ class User < ActiveRecord::Base
   end
 
   aasm_event :activate do
-    transitions :to => :activated, :from => [ :invited, :pending ]
+    transitions :to => :activated, :from => [ :invited, :pending ], :on_transition => Proc.new { |user| UserMailer.account_activate_notice(user).deliver }
   end
   
   aasm_event :disable do
-    transitions :to => :pending, :from => [ :activated ]
+    transitions :to => :pending, :from => [ :activated ], :on_transition => Proc.new { |user| UserMailer.account_disable_notice(user).deliver  }
   end
 
 
