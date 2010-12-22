@@ -53,6 +53,17 @@ class Admin::AccountsController < Admin::BaseController
   end
   
   
+  def pretend
+    session[:pretend_account_short_id] = @account.id
+    redirect_to account_dashboard_url(@account)
+  end
+  
+  def stop_pretend
+    session[:pretend_account_short_id] = nil
+    redirect_to account_dashboard_url(real_current_account)
+  end
+  
+  
   private
   
   def load_account

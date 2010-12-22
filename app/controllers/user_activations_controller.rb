@@ -24,9 +24,8 @@ class UserActivationsController < ApplicationController
   protected
   
   def load_user_using_perishable_token
-    @user = User.find_using_perishable_token params[:id]
-    unless @user.try(:pending?)
-      redirect_to login_url, :notice => 'Не удалось обнаружить неактивированный аккаунт пользователя'
+    unless @user = User.find_using_perishable_token(params[:id])
+      redirect_to login_url, :notice => 'Эта ссылка неверная или уже неактивна'
     end
   end
   

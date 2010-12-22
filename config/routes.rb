@@ -21,14 +21,14 @@ Smbs::Application.routes.draw do
 
   # yamco console
   namespace :admin do
-    
+
     resource  :dashboard
-    
+
     resources :invites
     resources :accounts do
-      member           { get :settings; put :activate; put :disable; }
+      member           { get :settings; put :activate; put :disable; put :pretend; get :stop_pretend }
       resources :users do
-        member         { put :activate; put :disable;                }
+        member         { put :invite; put :activate; put :disable;   }
       end
     end
   end

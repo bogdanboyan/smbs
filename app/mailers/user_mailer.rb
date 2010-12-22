@@ -22,7 +22,7 @@ class UserMailer < ActionMailer::Base
     
     # email body logged in base64 mode
     puts @user_activation_url if Rails.env == 'development'
-    mail :to => @to_user.email, :subject => '%s: Начало работы с Yamco' % from_user.try(:full_name) || from_user.try(:account).try(:title) || "Коллектив Yamco"
+    mail :to => @to_user.email, :subject => '%s: Начало работы с Yamco' % (from_user.try(:full_name) || from_user.try(:account).try(:title) || "Коллектив Yamco")
   end
   
   def password_reset_instructions(user)

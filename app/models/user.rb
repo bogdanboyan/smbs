@@ -14,17 +14,24 @@ class User < ActiveRecord::Base
 
   aasm_initial_state :pending
 
+  aasm_state :invited,   :after_enter => Proc.new { |user| user.reset_perishable_token! and UserMailer.account_activation_instructions(user).deliver }
   aasm_state :activated
   aasm_state :pending
 
+
+  aasm_event :invite do
+    transitions :to => :invited, :from => [ :pending, :invited ]
+  end
+
   aasm_event :activate do
-    transitions :to => :activated, :from => [ :pending ], :on_transition => Proc.new { |u| UserMailer.account_activate_notice(u).deliver }
+    transitions :to => :activated, :from => [ :invited, :pending ], :on_transition => Proc.new { |user| UserMailer.account_activate_notice(user).deliver }
   end
   
   aasm_event :disable do
-    transitions :to => :pending, :from => [ :activated ], :on_transition => Proc.new { |u| UserMailer.account_disable_notice(u).deliver  }
+    transitions :to => :pending, :from => [ :activated ], :on_transition => Proc.new { |user| UserMailer.account_disable_notice(user).deliver  }
   end
-  
+
+
   # init authlogic
   acts_as_authentic do |c|
     c.session_class UserSession
@@ -38,7 +45,8 @@ class User < ActiveRecord::Base
     self.password              = random_password
     self.password_confirmation = random_password
   end
-  
+
+
   protected
   
   def ignore_blank_passwords?

@@ -1,5 +1,4 @@
 #encoding: utf-8
-
 class PasswordResetsController < ApplicationController
   
   before_filter :require_no_user, :except => [ :update ]
@@ -7,6 +6,8 @@ class PasswordResetsController < ApplicationController
 
   respond_to :html
 
+  # Q: Why rails render new.html.erb without enter load_user_using_perishable_token before hook if new method isn't defined??
+  def new; end
 
   def create
     if @user = User.find_by_email(params[:user][:email])
@@ -27,8 +28,8 @@ class PasswordResetsController < ApplicationController
 
     if @user.save
       flash[:notice] = "Пароль был успешно изменен."
-      # AuthLogic automatically create session on success
-      current_user_session.try(:destroy)
+      # authlogic automatically create session on success
+      logged_user_session.try(:destroy)
     end
 
     respond_with @user, :location => login_url

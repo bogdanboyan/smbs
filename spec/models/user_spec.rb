@@ -31,14 +31,19 @@ describe User do
     end
     
     it { @user.should be_pending          }
+    it { @user.should_not be_invited      }
     it { @user.should_not be_activated    }
     
+    context "with invite! event" do
+      specify { @user.invite!; @user.should be_invited; ActionMailer::Base.deliveries.should have(1).item }
+    end
+    
     context "with activate! event" do
-      specify { @user.activate!; @user.should be_activated }
+      specify { @user.activate!; @user.should be_activated; ActionMailer::Base.deliveries.should have(2).item }
     end
     
     context "with disable! event" do
-      specify { @user.disable!; @user.should be_pending    }
+      specify { @user.disable!; @user.should be_pending; ActionMailer::Base.deliveries.should have(3).item }
     end
     
   end
