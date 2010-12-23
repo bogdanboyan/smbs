@@ -43,6 +43,7 @@ class ShortUrl < ActiveRecord::Base
   def short_url
     "http://yamco.mobi/#{self.short}"
   end
+  alias :link :short_url
   
   def has_clicks?
     self.clicks_count > 0
