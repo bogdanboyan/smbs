@@ -3,20 +3,35 @@ require 'ip_location'
 
 module Rackup
   class ShortenersRedirectApp < ActionController::Metal
-
+    
     def redirect
-      if @short_url = ShortUrl.find_by_short(params[:short])
-        click = build_clicks_params(env) and click = update_location_for(Click.new(click))
-        @short_url.clicks << click
-
-        set_headers :status => 301, :response_body => 'Ваш запрос будет перенаправлен', :location => @short_url.origin
-      else
-        set_headers :status => 404, :response_body => 'Запрашиваем ресурс не найден'
+      if short_url = ShortUrl.find_by_short(params[:short])
+        
+        if short_url.proxied?
+          click = build_clicks_params(env) and click = update_location_for(Click.new(click))
+          short_url.clicks << click
+          location = short_url.origin
+        end
+        
+        if short_url.pending?
+          location = url_for(:shortener_is_pending_url)
+        end
       end
+      
+      set_headers :status => 302, :response_body => 'Redirecting...', :location => (location || url_for(:shortener_not_found_url))
     end
 
 
     private
+    
+    def url_for(named_route)
+      @@url_map ||= {
+        :shortener_not_found_url  => '/mobi/shorteners/not-found',
+        :shortener_is_pending_url => '/mobi/shorteners/pending'
+      }.freeze
+      
+      env['HTTP_HOST'] + @@url_map[named_route]
+    end
     
     def set_headers(options)
       options.each { |k,v| self.send k.to_s+'=', v }
@@ -33,6 +48,6 @@ module Rackup
     def update_location_for(click)
       IpLocation.resolve_location_for(click)
     end
-      
+
   end # end class
 end
