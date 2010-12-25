@@ -13,16 +13,16 @@
          <div class="clear">&nbsp;</div>
  
          <div class="grid_12 head">
-           <%= render :partial => 'shared/pretend_menu' %>
-           <%= render :partial => 'shared/header' %>
+           <%= render :partial => 'layouts/pretend_menu' %>
+           <%= render :partial => 'layouts/header' %>
          </div>
  
          <div class="grid_12 page">
            <div class="grid_9 alpha">
-              <%= render :partial => 'shared/notice' %>
+              <%= render :partial => 'layouts/notice' %>
               <%= yield %>
            </div>
-           <div class="grid_3 omega"><%= render :partial => "shared/#{current_user.account.kind_of}_dashboard_tools" %></div>
+           <div class="grid_3 omega"><%= render :partial => "layouts/dashboard/#{current_user.account.kind_of}_dashboard_tools" %></div>
         </div>
        </div>
     </body>

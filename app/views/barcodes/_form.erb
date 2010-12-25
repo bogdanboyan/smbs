@@ -12,7 +12,7 @@
 </script>
 
 
-<%= render :partial=>'shared/notice', :object=> 'bar_code_notice' %>
+<%= render :partial=>'layouts/notice', :object=> 'bar_code_notice' %>
 
 <%= form_for :link_code, :url=> '#', :html=>{:id=>'link_form'} do |f| %>
 	<div>адрес сайта:</div>
