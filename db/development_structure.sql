@@ -123,7 +123,7 @@ CREATE TABLE `mobile_campaigns` (
   `document_model` text COLLATE utf8_unicode_ci,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `current_state` varchar(15) COLLATE utf8_unicode_ci DEFAULT 'published',
+  `current_state` varchar(15) COLLATE utf8_unicode_ci DEFAULT 'draft',
   `short_url_id` int(11) DEFAULT NULL,
   `account_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -235,7 +235,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_users_on_account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100430172227');
 
@@ -290,3 +290,5 @@ INSERT INTO schema_migrations (version) VALUES ('20101208200117');
 INSERT INTO schema_migrations (version) VALUES ('20101216112014');
 
 INSERT INTO schema_migrations (version) VALUES ('20101222102300');
+
+INSERT INTO schema_migrations (version) VALUES ('20101225160717');

@@ -3,7 +3,7 @@
   <div class="clicks"><em><strong><%= clicks_counter_link_to(campaign.short_url) %></strong></em></div>
   <div class="info">
     <p class="title">
-      <span><%= truncate campaign.title, :length => 40 %></span>
+      <span class="additional-info"><%= humanized_state(campaign) %></span><span><%= truncate campaign.title, :length => 40 %></span>
       <ul class="history_actions">
         <li><%= link_to "Редактировать", edit_mobile_campaign_path(campaign) %></li>
         <li><%= link_to "Настройки", settings_mobile_campaign_path(campaign) %></li>
