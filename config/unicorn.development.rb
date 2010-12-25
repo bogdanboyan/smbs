@@ -1,4 +1,4 @@
-worker_processes 2
+worker_processes 1
 
 pid         'tmp/pids/unicorn.pid'
 stderr_path 'log/unicorn.development.log'
