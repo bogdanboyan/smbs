@@ -21,15 +21,7 @@ module Mobile::CampaignsHelper
     (short_url && short_url.clicks_count > 0) ? link_to(short_url.clicks_count, statistic_path(short_url)) : 0
   end
   
-  def humanized_state(campaign)
-    title = case campaign.current_state
-      when 'draft' then 'черновик'
-    end
-    
-    '%s: ' % title if title
-  end
-
-
+  
   private
   
   def render_partial_for container
