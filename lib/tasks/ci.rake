@@ -4,7 +4,7 @@ task :ci do
   puts "\nRun specs: %s" % spec
   system spec
   
-  cucumber = "script/cucumber features/"
+  cucumber = "script/cucumber -r features/ features/"
   puts "\nRun cukes: %s" % cucumber
   system cucumber
 end
