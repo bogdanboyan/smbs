@@ -14,7 +14,7 @@ end
   таблица.hashes.each do |row|
     within('.history') do
       body.should include(row['origin'])
-      body.should(include(ShortUrl.find_by_origin(row['origin']).short))
+      body.should include(ShortUrl.find_by_origin(row['origin']).short)
       body.should include(row['clicks_count'])
     end
   end
@@ -48,11 +48,19 @@ end
   short_url.clicks_count.should == 0
 end
 
+Допустим /^я не перехожу перехожу по ссылкам перенаправления$/ do
+  driver = page.driver
+  def driver.follow_redirects!
+   false
+  end
+end
+
+
 Тогда /^мой запрос должен быть перенаправлен на адрес "([^\"]*)"$/ do |адрес|
-  page.status_code == 301
-  page.response_headers['Location'] == адрес
+  page.status_code.should == 302
+  page.response_headers['Location'].should include(адрес)
 end
 
 Тогда /^я должен получить ошибку "([^\"]*)"$/ do |код|
-  page.status_code == код.to_i
+  page.status_code.should == код.to_i
 end

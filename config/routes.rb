@@ -65,6 +65,7 @@ Smbs::Application.routes.draw do
   namespace :mobile_app do
     get '/'                     => 'welcome#index',  :as => :root
     get '/campaigns/:id'        => 'campaigns#show', :as => :campaign
+    get '/shorteners/:action'   => 'shorteners',     :as => :shorteners
   end
   
 end

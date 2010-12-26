@@ -1,4 +1,5 @@
 # encoding: utf-8
+
 require 'ip_location'
 
 module Rackup
@@ -14,20 +15,23 @@ module Rackup
         end
         
         if short_url.pending?
-          location = url_for(:shortener_is_pending_url)
+          location = url_for(:is_pending_mobile_app_shorteners_path)
         end
       end
       
-      set_headers :status => 302, :response_body => 'Redirecting...', :location => (location || url_for(:shortener_not_found_url))
+      location ||= url_for(:not_found_mobile_app_shorteners_path)
+      
+      set_headers :status => 302, :response_body => 'Redirecting...', :location => location
     end
 
 
     private
     
+    # ActionController::Metal is not recognize named routes
     def url_for(named_route)
       @@url_map ||= {
-        :shortener_not_found_url  => '/mobi/shorteners/not-found',
-        :shortener_is_pending_url => '/mobi/shorteners/pending'
+        :not_found_mobile_app_shorteners_path  => '/mobile_app/shorteners/not_found',
+        :is_pending_mobile_app_shorteners_path => '/mobile_app/shorteners/is_pending'
       }.freeze
       
       env['HTTP_HOST'] + @@url_map[named_route]
