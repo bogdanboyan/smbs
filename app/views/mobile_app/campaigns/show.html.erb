@@ -1,0 +1,28 @@
+<div class="bd">
+<% @document_model.each do |entity| -%>
+    <% if is_a_data?(entity, 'header') -%>
+      <%== t9e(entity[:value], :header) %>
+    <% end -%>
+    <% if is_a_data?(entity, 'text') -%>
+      <div class="c-block"><%== t9e(entity[:value], :text) %></div>
+    <% end -%>
+    <% if is_a_data?(entity, 'images') -%>
+      <div class="c-block pos-c">
+      <% prepared_images(entity[:value]).each do |image| -%>
+          <a href="<%= image[:instance].asset.url(:preview) %>"><img src="<%= image[:instance].asset.url(image[:style]) %>" style="width: <%= image[:width] %>"/></a>
+      <% end -%>
+      </div>
+      <div class="clear">&nbsp;</div>
+    <% end -%>
+<% end -%>
+</div>
+<% unless @see_more.empty? -%>
+  <div class="other">
+    <ul class="other-list">
+        <li class="item title"><span>смотрите также:</span></li>
+      <% @see_more.each do |mbc| -%>
+        <li class="item"><%= link_to mbc.title, mbc.short_url.link %></li>
+      <%end-%>
+    </ul>
+  </div>
+<%end-%>

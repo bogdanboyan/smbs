@@ -4,20 +4,18 @@ Smbs::Application.routes.draw do
 
   root  :to       => 'welcome#show'
   
-  post  'invite' => "invite#create"
+  post 'invite'   => 'invite#create'
 
   get  'login'    => 'sessions#new'
   post 'login'    => 'sessions#create'
-  
   get  'logout'   => 'sessions#destroy'
   
-  resources :user_activations
-  resources :password_resets
+  resources :user_activations, :password_resets
   
   match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
   match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
-  get   '/mobile/campaigns/:id'              => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
-  get   '/mobile'                            => Rackup::MobileApp.action(:index)
+  #get   '/mobile/campaigns/:id'              => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
+  #get   '/mobile'                            => Rackup::MobileApp.action(:index)
 
   # yamco console
   namespace :admin do
@@ -48,17 +46,8 @@ Smbs::Application.routes.draw do
   end
 
   resources :barcodes do
-
-    collection do
-      post :create_link
-      post :create_sms
-      post :create_text
-    end
-
-    member do
-      get :download
-    end
-
+    collection { post :create_link; post :create_sms; post :create_text }
+    member     { get :download }
   end
 
   namespace :mobile do
@@ -71,5 +60,13 @@ Smbs::Application.routes.draw do
     end
     
   end
-
+  
+  
+  # mobile application routing schema
+  # =================================
+  namespace :mobile_app do
+    get '/'                     => 'welcome#index',  :as => :root
+    get '/campaigns/:id'        => 'campaigns#show', :as => :campaign
+  end
+  
 end
