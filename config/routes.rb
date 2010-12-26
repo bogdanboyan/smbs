@@ -14,8 +14,6 @@ Smbs::Application.routes.draw do
   
   match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
   match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
-  #get   '/mobile/campaigns/:id'              => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
-  #get   '/mobile'                            => Rackup::MobileApp.action(:index)
 
   # yamco console
   namespace :admin do
