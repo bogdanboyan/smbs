@@ -34,7 +34,7 @@ module Rackup
         :is_pending_mobile_app_shorteners_path => '/mobile_app/shorteners/is_pending'
       }.freeze
       
-      env['HTTP_HOST'] + @@url_map[named_route]
+      "http://%s%s" % [ Global.host_mobi, @@url_map[named_route] ]
     end
     
     def set_headers(options)
