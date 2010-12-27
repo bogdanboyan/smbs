@@ -6,6 +6,9 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+# Load global congiguration
+require File.expand_path('../global', __FILE__)
+
 module Smbs
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -40,9 +43,9 @@ module Smbs
     config.active_record.schema_format = :sql
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [ :password ]
 
-    config.action_mailer.default_url_options = { :host => 'yam.co.ua' }
+    config.action_mailer.default_url_options = { :host => Global.host }
     
     config.middleware.use ExceptionNotifier, {
       :email_prefix          => "[Yamco #{Rails.env}] ",

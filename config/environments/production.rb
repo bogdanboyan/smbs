@@ -40,8 +40,8 @@ Smbs::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'yam.co.ua',
-    :user_name            => 'support@yam.co.ua',
+    :domain               => Global.host,
+    :user_name            => 'support@' + Global.host,
     :password             => 'yamcokickass!',
     :authentication       => 'plain',
     :enable_starttls_auto => true

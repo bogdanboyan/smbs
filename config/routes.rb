@@ -62,7 +62,7 @@ Smbs::Application.routes.draw do
   
   # mobile application routing schema
   # =================================
-  namespace :mobile_app do
+  namespace :mobile_app, :host => Global.host_mobi do
     get '/'                     => 'welcome#index',  :as => :root
     get '/campaigns/:id'        => 'campaigns#show', :as => :campaign
     get '/shorteners/:action'   => 'shorteners',     :as => :shorteners
