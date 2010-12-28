@@ -53,7 +53,7 @@ class MobileCampaign < ActiveRecord::Base
   end
   
   aasm_event :cancel_response do
-    transitions :to => :draft, :from => [ :pending ]
+    transitions :to => :draft, :from => [ :pending, :published ]
   end
 
 

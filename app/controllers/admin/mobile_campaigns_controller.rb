@@ -41,6 +41,6 @@ class Admin::MobileCampaignsController < Admin::BaseController
   end
   
   def redirect_to_pending_action(notice)
-    redirect_to pending_admin_mobile_campaigns_url, :notice => notice
+    redirect_to :back, :notice => notice
   end
 end

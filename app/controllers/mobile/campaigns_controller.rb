@@ -7,7 +7,7 @@ class Mobile::CampaignsController < ApplicationController
   
   
   def index
-    @campaigns  = current_account.mobile_campaigns.where("current_state = 'draft' OR current_state = 'published'").order('created_at DESC')
+    @campaigns  = current_account.mobile_campaigns.where("current_state = 'draft' OR current_state = 'published'").order('updated_at DESC')
   end
   
   def edit
