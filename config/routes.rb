@@ -46,6 +46,11 @@ Smbs::Application.routes.draw do
 
     resources :invites
     
+    resources :mobile_campaigns do
+      collection { get :pending; get :published }
+      member     { put :publish; put :cancel; put :unpublish; put :archive }
+    end
+    
     resources :accounts do
       member           { get :settings; put :activate; put :disable; put :pretend; get :stop_pretend }
       resources :users do

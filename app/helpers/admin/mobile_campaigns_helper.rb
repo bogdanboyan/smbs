@@ -1,0 +1,2 @@
+module Admin::MobileCampaignsHelper
+end
