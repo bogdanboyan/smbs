@@ -12,15 +12,40 @@ Smbs::Application.routes.draw do
   
   resources :user_activations, :password_resets
   
-  match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
-  match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
-
-  # yamco console
+  
+  # logged users tools
+  # ==================
+  resources :shorteners
+  
+  resources :statistics do
+    member { get :details }
+  end
+  
+  resources :barcodes do
+    collection { post :create_link; post :create_sms; post :create_text }
+    member     { get :download }
+  end
+  
+  namespace :mobile do
+    
+    resources :campaigns do
+       member     { get :settings;  put :assign_short_url; put :generate_short_url; put :approve }
+       collection { get :ids_with_images }
+       
+       resources  :images
+    end
+    
+  end
+  
+  
+  # management console
+  # ==================
   namespace :admin do
 
     resource  :dashboard
 
     resources :invites
+    
     resources :accounts do
       member           { get :settings; put :activate; put :disable; put :pretend; get :stop_pretend }
       resources :users do
@@ -36,28 +61,12 @@ Smbs::Application.routes.draw do
   namespace :business do
     resource :dashboard
   end
-
-  resources :shorteners
-
-  resources :statistics do
-    member { get :details }
-  end
-
-  resources :barcodes do
-    collection { post :create_link; post :create_sms; post :create_text }
-    member     { get :download }
-  end
-
-  namespace :mobile do
-    
-    resources :campaigns do
-       member     { get :settings;  put :assign_short_url; put :generate_short_url }
-       collection { get :ids_with_images }
-       
-       resources  :images
-    end
-    
-  end
+  
+  
+  # rackup controllers
+  # ==================
+  match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
+  match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
   
   
   # mobile application routing schema

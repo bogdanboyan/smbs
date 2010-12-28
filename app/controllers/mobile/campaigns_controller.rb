@@ -3,7 +3,8 @@ class Mobile::CampaignsController < ApplicationController
   
   before_filter :require_current_user
   
-  before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url, :generate_short_url]
+  before_filter :load_mobile_camapign, :except => [ :index, :new, :create ]
+  
   
   def index
     @campaigns  = current_account.mobile_campaigns.where("current_state = 'draft' OR current_state = 'published'").order('created_at DESC')
@@ -55,7 +56,15 @@ class Mobile::CampaignsController < ApplicationController
     @campaign.save!
     
     flash[:notice] = "Короткий адрес '/#{@campaign.short_url.short}' был добавлен к мобильной странице"
+    redirect_to settings_mobile_campaign_url(@campaign)
+  end
   
+  def approve
+    if @campaign.draft?
+      @campaign.request_approve!
+      flash[:notice] = 'Заявка на публикацию страницы принята и будет обработана'
+    end
+    
     redirect_to settings_mobile_campaign_url(@campaign)
   end
 

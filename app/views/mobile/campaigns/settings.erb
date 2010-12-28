@@ -53,5 +53,12 @@
         <li class="item"><%= submit_tag 'Добавить', :class=> 'submit_button' %></li>
       </ul>
     <%end%>
-  </div>  
+  </div>
+  
+  <div>
+    <p><strong>Статус страницы:</strong></p>
+    <ul class="input-list">
+      <li class="item"><%= switch_campaign_state_button(@campaign) %></li>
+    </ul>
+  </div>
 </div>

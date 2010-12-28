@@ -39,13 +39,21 @@ class MobileCampaign < ActiveRecord::Base
   end
   
   aasm_event :publish do
-    transitions :to => :published, :from => [ :pending, :draft ],
+    transitions :to => :published, :from => [ :pending ],
       :on_transition => Proc.new { |mc| mc.short_url.enable! if mc.short_url.try :pending?  }
   end
   
   aasm_event :unpublish do
     transitions :to => :pending, :from => [ :published ], 
       :on_transition => Proc.new { |mc| mc.short_url.disable! if mc.short_url.try :proxied? }
+  end
+  
+  aasm_event :request_approve do
+    transitions :to => :pending, :from => [ :draft ]
+  end
+  
+  aasm_event :cancel_response do
+    transitions :to => :draft, :from => [ :pending ]
   end
 
 

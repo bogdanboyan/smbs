@@ -111,7 +111,12 @@ describe MobileCampaign do
       it { @mbc.should_not be_archived  }
       
       specify "state transition" do
+        @mbc.request_approve!; @mbc.should be_pending
+        @mbc.cancel_response!; @mbc.should be_draft
+        
+        @mbc.request_approve!; @mbc.should be_pending
         @mbc.publish!; @mbc.should be_published
+        
         @mbc.unpublish!; @mbc.should be_pending
         @mbc.archive!; @mbc.should be_archived
       end
@@ -133,6 +138,7 @@ describe MobileCampaign do
       it { @short_url.should be_pending; @short_url.should_not be_proxied }
       
       specify "state transition" do
+         @mbc.request_approve!; @mbc.should be_pending
          @mbc.publish!; @mbc.should be_published; @mbc.short_url.should be_proxied
          @mbc.unpublish!; @mbc.should be_pending; @mbc.short_url.should be_pending
          @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending
@@ -155,6 +161,7 @@ describe MobileCampaign do
       it { @short_url.should be_pending }
       
       specify "state transition" do
+        @mbc.request_approve!; @mbc.should be_pending
         @mbc.publish!; @mbc.should be_published; @mbc.short_url.should be_proxied
         @mbc.unpublish!; @mbc.should be_pending; @mbc.short_url.should be_pending
         @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending
