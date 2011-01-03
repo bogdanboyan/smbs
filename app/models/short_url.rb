@@ -42,7 +42,7 @@ class ShortUrl < ActiveRecord::Base
   
   def short_url
     # http://yamco.mobi/A1a
-    '%s/%s' % [ Global.host_mobi, short ]
+    'http://%s/%s' % [ Global.host_mobi, short ]
   end
   alias :link :short_url
   
