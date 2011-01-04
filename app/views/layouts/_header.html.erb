@@ -6,7 +6,7 @@
         <li><%= link_to "Короткие адреса", shorteners_path %></li>
         <li><%= link_to "Мобильныe страницы", mobile_campaigns_path%></li>
         <li><%= link_to "QR коды", barcodes_path %></li>
-        <li><%= link_to "Панель управления", account_home_url %></li>
+        <li><%= link_to "Панель управления", account_dashboard_url %></li>
         <li><%= link_to "Выход", logout_path %></li>
       <%else%>
         <li><%= link_to("Главная", root_url) if     controller_name == 'sessions' %></li>

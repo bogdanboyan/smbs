@@ -1,0 +1,11 @@
+development:
+  :host: 'yamco.local'
+  :host_mobi: 'yamco.mobi.local'
+
+test:
+  :host: 'yamco.local'
+  :host_mobi: 'yamco.mobi.local'
+
+production:
+  :host: 'yam.co.ua'
+  :host_mobi: 'yamco.mobi'

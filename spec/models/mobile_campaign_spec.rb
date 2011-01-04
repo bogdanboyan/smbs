@@ -5,9 +5,15 @@ describe MobileCampaign do
   # specify model members
   it { should have_db_column(:document_model)           }
   it { should have_db_column(:title)                    }
+  
+  it { should belong_to(:account)                       }
   it { should belong_to(:short_url)                     }
   
   it { should have_and_belong_to_many(:asset_files)     }
+  
+  it { should have_db_index(:account_id)                }
+  it { should have_db_index(:short_url_id)              }
+  it { should have_db_index(:current_state)             }
   
   describe "with assets" do
     
@@ -30,10 +36,6 @@ describe MobileCampaign do
       @mobile_campaign.asset_files.only_images.first.should be_instance_of(ImageAsset)
     end
   end
-  
-  it {should belong_to(:account)              }
-  it {should have_db_index(:account_id)       }
-  
   
   describe "with document model" do
     it 'should truncate invalid document model' do
@@ -103,20 +105,20 @@ describe MobileCampaign do
         @mbc = Factory.create(:mobile_campaign)
       end
       
-      it { @mbc.should be_published    }
-      it { @mbc.should_not be_pending  }
-      it { @mbc.should_not be_archived }
-    
-      context "with unpublish! event" do
-        specify { @mbc.unpublish!; @mbc.should be_pending }
-      end
+      it { @mbc.should be_draft         }
+      it { @mbc.should_not be_published }
+      it { @mbc.should_not be_pending   }
+      it { @mbc.should_not be_archived  }
       
-      context "with publish! event" do
-        specify { @mbc.publish!; @mbc.should be_published }
-      end
-      
-      context "with archive! event" do
-        specify { @mbc.archive!; @mbc.should be_archived }
+      specify "state transition" do
+        @mbc.request_approve!; @mbc.should be_pending
+        @mbc.cancel_response!; @mbc.should be_draft
+        
+        @mbc.request_approve!; @mbc.should be_pending
+        @mbc.publish!; @mbc.should be_published
+        
+        @mbc.unpublish!; @mbc.should be_pending
+        @mbc.archive!; @mbc.should be_archived
       end
     
     end # end context
@@ -130,21 +132,18 @@ describe MobileCampaign do
         @mbc           = Factory.create(:mobile_campaign, :short_url => @short_url)
         @short_url     = Factory.create(:short_url)
         @mbc.short_url = @short_url
+        @mbc.save!
       end
       
-      it { @short_url.should be_proxied }
+      it { @short_url.should be_pending; @short_url.should_not be_proxied }
       
-      context "with unpublish! event" do
-        specify { @mbc.unpublish!; @mbc.should be_pending; @mbc.short_url.should be_pending }
+      specify "state transition" do
+         @mbc.request_approve!; @mbc.should be_pending
+         @mbc.publish!; @mbc.should be_published; @mbc.short_url.should be_proxied
+         @mbc.unpublish!; @mbc.should be_pending; @mbc.short_url.should be_pending
+         @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending
       end
       
-      context "with publish! event" do
-        specify { @mbc.publish!; @mbc.should be_published; @mbc.short_url.should be_proxied }
-      end
-      
-      context "with archive! event" do
-        specify { @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending }
-      end
     end # end context
     
     context "by linked pending short_url" do
@@ -161,19 +160,13 @@ describe MobileCampaign do
       
       it { @short_url.should be_pending }
       
-      context "with unpublish! event" do
-        specify { @mbc.unpublish!; @mbc.should be_pending; @mbc.short_url.should be_pending }
+      specify "state transition" do
+        @mbc.request_approve!; @mbc.should be_pending
+        @mbc.publish!; @mbc.should be_published; @mbc.short_url.should be_proxied
+        @mbc.unpublish!; @mbc.should be_pending; @mbc.short_url.should be_pending
+        @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending
       end
       
-      context "with publish! event" do
-        specify { @mbc.publish!; @mbc.should be_published; @mbc.short_url.should be_proxied }
-      end
-      
-      context "with archive! event" do
-        specify { @mbc.archive!; @mbc.should be_archived; @mbc.short_url.should be_pending }
-      end
     end # end context
-    
   end #end describe
-  
 end

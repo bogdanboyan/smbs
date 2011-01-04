@@ -1,4 +1,4 @@
-module  Rackup::MobileHelper
+module MobileApp::ApplicationHelper
   
   def compress_css(source)
     source.gsub!(/\s+/, " ")

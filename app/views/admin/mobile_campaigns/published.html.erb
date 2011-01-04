@@ -1,0 +1,12 @@
+<h1>Мобильные страницы: Опубликованые</h1>
+
+<ul>
+  <% @published_campaigns.each do |mbc| %>
+  <li class="item">
+    <%= link_to campaign_title_with_shortener(mbc), mobile_app_campaign_url(mbc), :target => 'blank' %>
+    <span class="action"><%= button_to 'Cнять с публикации', unpublish_admin_mobile_campaign_path(mbc), :method => :put %></span>
+    <span class="action"><%= button_to 'Отправить на доработку', cancel_admin_mobile_campaign_path(mbc), :method => :put %></span>
+    <span class="action"><%= button_to 'Архивировать', archive_admin_mobile_campaign_path(mbc), :method => :put %></span>
+  </li>
+  <%end%>
+</ul>

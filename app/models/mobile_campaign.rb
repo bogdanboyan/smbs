@@ -18,30 +18,42 @@ class MobileCampaign < ActiveRecord::Base
 
 
   validate :document_state
+  
+  
+  before_save :disable_short_url_callback
 
   # init final state machine
   include AASM
   
   aasm_column :current_state
-  aasm_initial_state :published
+  aasm_initial_state :draft
   
+  aasm_state :draft
   aasm_state :published
   aasm_state :pending
   aasm_state :archived
   
   aasm_event :archive do
-    transitions :to => :archived, :from => [:published, :pending], 
-      :on_transition => Proc.new { |t| t.short_url.disable! if t.short_url && t.short_url.proxied? }
+    transitions :to => :archived, :from => [ :published, :pending, :draft ],
+      :on_transition => Proc.new { |mc| mc.short_url.disable! if mc.short_url.try :proxied? }
   end
   
   aasm_event :publish do
-    transitions :to => :published, :from => [:pending], 
-      :on_transition => Proc.new { |t| t.short_url.enable! if t.short_url && t.short_url.pending?  }
+    transitions :to => :published, :from => [ :pending ],
+      :on_transition => Proc.new { |mc| mc.short_url.enable! if mc.short_url.try :pending?  }
   end
   
   aasm_event :unpublish do
-    transitions :to => :pending, :from => [:published], 
-      :on_transition => Proc.new { |t| t.short_url.disable! if t.short_url && t.short_url.proxied? }
+    transitions :to => :pending, :from => [ :published ], 
+      :on_transition => Proc.new { |mc| mc.short_url.disable! if mc.short_url.try :proxied? }
+  end
+  
+  aasm_event :request_approve do
+    transitions :to => :pending, :from => [ :draft ]
+  end
+  
+  aasm_event :cancel_response do
+    transitions :to => :draft, :from => [ :pending, :published ]
   end
 
 
@@ -109,6 +121,15 @@ class MobileCampaign < ActiveRecord::Base
   def sanitize_partial(type, value)
     case type
         when 'images' then !value.is_a?(Array) || (value.is_a?(Array) && value.empty?)
+    end
+  end
+  
+  
+  private
+  
+  def disable_short_url_callback
+    if draft? || pending?
+      short_url.disable! if short_url.try :proxied?
     end
   end
   

@@ -1,12 +1,13 @@
 #encoding: utf-8
 class Mobile::CampaignsController < ApplicationController
   
-  before_filter :require_user
+  before_filter :require_current_user
   
-  before_filter :load_mobile_camapign, :only => [:settings, :edit, :update, :destroy, :assign_short_url, :generate_short_url]
+  before_filter :load_mobile_camapign, :except => [ :index, :new, :create ]
+  
   
   def index
-    @campaigns  = current_account.mobile_campaigns.where(:current_state => 'published').order('created_at DESC')
+    @campaigns  = current_account.mobile_campaigns.where("current_state = 'draft' OR current_state = 'published'").order('updated_at DESC')
   end
   
   def edit
@@ -33,8 +34,7 @@ class Mobile::CampaignsController < ApplicationController
   
   def assign_short_url
     if params[:short_url].match(/\/(\w+)$/) && short_url = ShortUrl.find_by_short($1)
-      short_url.origin    = mobile_campaign_url(@campaign)
-      short_url.save!
+      short_url.origin    = mobile_app_campaign_url(@campaign)
       
       @campaign.short_url = short_url
       @campaign.save!
@@ -52,11 +52,19 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def generate_short_url
-    @campaign.short_url = ShortUrl.generate mobile_campaign_url(@campaign)
+    @campaign.short_url = ShortUrl.generate mobile_app_campaign_url(@campaign)
     @campaign.save!
     
     flash[:notice] = "Короткий адрес '/#{@campaign.short_url.short}' был добавлен к мобильной странице"
+    redirect_to settings_mobile_campaign_url(@campaign)
+  end
   
+  def approve
+    if @campaign.draft?
+      @campaign.request_approve!
+      flash[:notice] = 'Заявка на публикацию страницы принята и будет обработана'
+    end
+    
     redirect_to settings_mobile_campaign_url(@campaign)
   end
 

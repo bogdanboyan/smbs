@@ -20,8 +20,17 @@ module Mobile::CampaignsHelper
   def clicks_counter_link_to(short_url)
     (short_url && short_url.clicks_count > 0) ? link_to(short_url.clicks_count, statistic_path(short_url)) : 0
   end
-
-
+  
+  def switch_campaign_state_button(instance)
+    case instance.current_state
+      when 'draft'
+        confirm = 'Содержание каждой страницы проверяется админинистрацией. После подтверждения страница будет опубликова. Вы уверены что готовы опубликовать?'
+        button_to 'Опубликовать страницу', approve_mobile_campaign_path(@campaign), :method => :put, :confirm => confirm
+      when 'published' then 'страница опубликована'
+      when 'pending'   then 'проверяется содержание страницы'
+    end
+  end
+  
   private
   
   def render_partial_for container

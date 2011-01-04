@@ -40,9 +40,11 @@ class ShortUrl < ActiveRecord::Base
     end
   end
   
-  def short_url(request)
-    "http://yamco.mobi/#{self.short}"
+  def short_url
+    # http://yamco.mobi/A1a
+    'http://%s/%s' % [ Global.host_mobi, short ]
   end
+  alias :link :short_url
   
   def has_clicks?
     self.clicks_count > 0

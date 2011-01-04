@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ямко - навигатор выгодных предложений</title>
+    <style type="text/css"><%= compress_css render(:partial => 'layouts/mobile_layout.css') %></style>
+  </head>
+  
+  <body>
+    <div class="hd row pos-c">
+      <span><%= link_to "yamco.mobi", mobile_app_root_path %> - лучшие предложения города</span>
+    </div>
+    <%= yield %>
+    <div class="ft row pos-c">
+      <ul class="ft-list">
+        <li class="item"><span class="cpr">Ямко &copy;<%= Time.now.year %></span></li>
+        <li class="item navi"><%= link_to "Главная", mobile_app_root_path %></li>
+      </ul>
+    </div>
+  </body>
+</html>

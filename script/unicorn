@@ -17,7 +17,8 @@ system "cat config/unicorn.development.rb"
 puts "=> Start SMBS application"
 puts "=> Ctrl-C to shutdown server"
 
-system 'unicorn_rails --config-file config/unicorn.development.rb'
+puts cmd = 'unicorn_rails --env development --config-file config/unicorn.development.rb'
+system cmd
 
 trap(:INT) { exit }
 

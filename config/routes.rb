@@ -4,31 +4,57 @@ Smbs::Application.routes.draw do
 
   root  :to       => 'welcome#show'
   
-  post  'invite' => "invite#create"
+  post 'invite'   => 'invite#create'
 
   get  'login'    => 'sessions#new'
   post 'login'    => 'sessions#create'
-  
   get  'logout'   => 'sessions#destroy'
   
-  resources :user_activations
-  resources :password_resets
+  resources :user_activations, :password_resets
   
-  match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
-  match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
-  get   '/mobile/campaigns/:id'              => Rackup::MobileCampaignsApp.action(:show), :id => /\d+/
-  get   '/mobile'                            => Rackup::MobileApp.action(:index)
-
-  # yamco console
+  
+  # logged users tools
+  # ==================
+  resources :shorteners
+  
+  resources :statistics do
+    member { get :details }
+  end
+  
+  resources :barcodes do
+    collection { post :create_link; post :create_sms; post :create_text }
+    member     { get :download }
+  end
+  
+  namespace :mobile do
+    
+    resources :campaigns do
+       member     { get :settings;  put :assign_short_url; put :generate_short_url; put :approve }
+       collection { get :ids_with_images }
+       
+       resources  :images
+    end
+    
+  end
+  
+  
+  # management console
+  # ==================
   namespace :admin do
-    
+
     resource  :dashboard
-    
+
     resources :invites
+    
+    resources :mobile_campaigns do
+      collection { get :pending; get :published }
+      member     { put :publish; put :cancel; put :unpublish; put :archive }
+    end
+    
     resources :accounts do
-      member           { get :settings; put :activate; put :disable; }
+      member           { get :settings; put :activate; put :disable; put :pretend; get :stop_pretend }
       resources :users do
-        member         { put :activate; put :disable;                }
+        member         { put :invite; put :activate; put :disable;   }
       end
     end
   end
@@ -40,36 +66,20 @@ Smbs::Application.routes.draw do
   namespace :business do
     resource :dashboard
   end
-
-  resources :shorteners
-
-  resources :statistics do
-    member { get :details }
+  
+  
+  # rackup controllers
+  # ==================
+  match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
+  match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
+  
+  
+  # mobile application routing schema
+  # =================================
+  namespace :mobile_app, :host => Global.host_mobi do
+    get '/'                     => 'welcome#index',  :as => :root
+    get '/campaigns/:id'        => 'campaigns#show', :as => :campaign
+    get '/shorteners/:action'   => 'shorteners',     :as => :shorteners
   end
-
-  resources :barcodes do
-
-    collection do
-      post :create_link
-      post :create_sms
-      post :create_text
-    end
-
-    member do
-      get :download
-    end
-
-  end
-
-  namespace :mobile do
-    
-    resources :campaigns do
-       member     { get :settings;  put :assign_short_url; put :generate_short_url }
-       collection { get :ids_with_images }
-       
-       resources  :images
-    end
-    
-  end
-
+  
 end

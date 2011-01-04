@@ -123,12 +123,13 @@ CREATE TABLE `mobile_campaigns` (
   `document_model` text COLLATE utf8_unicode_ci,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `current_state` varchar(15) COLLATE utf8_unicode_ci DEFAULT 'published',
+  `current_state` varchar(15) COLLATE utf8_unicode_ci DEFAULT 'draft',
   `short_url_id` int(11) DEFAULT NULL,
   `account_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_mobile_campaigns_on_current_state` (`current_state`),
-  KEY `index_mobile_campaigns_on_account_id` (`account_id`)
+  KEY `index_mobile_campaigns_on_account_id` (`account_id`),
+  KEY `index_mobile_campaigns_on_short_url_id` (`short_url_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `mobiles` (
@@ -168,7 +169,7 @@ CREATE TABLE `short_sequences` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `short_urls` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -186,7 +187,7 @@ CREATE TABLE `short_urls` (
   UNIQUE KEY `index_short_urls_on_short` (`short`),
   KEY `index_short_urls_on_current_state` (`current_state`),
   KEY `index_short_urls_on_account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `summarized_clicks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -234,7 +235,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_users_on_account_id` (`account_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO schema_migrations (version) VALUES ('20100430172227');
 
@@ -287,3 +288,7 @@ INSERT INTO schema_migrations (version) VALUES ('20101208194411');
 INSERT INTO schema_migrations (version) VALUES ('20101208200117');
 
 INSERT INTO schema_migrations (version) VALUES ('20101216112014');
+
+INSERT INTO schema_migrations (version) VALUES ('20101222102300');
+
+INSERT INTO schema_migrations (version) VALUES ('20101225160717');

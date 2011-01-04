@@ -1,9 +1,10 @@
 #encoding: utf-8
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery
+  include ApplicationHelper
 
-  helper_method :current_user_session, :current_user, :is_current?, :account_home_url
+
+  protect_from_forgery
 
   helper :all # include all helpers, all the time
 
@@ -19,62 +20,31 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def current_user_session
-    return @current_user_session if defined?(@current_user_session)
-    @current_user_session = UserSession.find
-  end
-  
-  def current_account
-    return @current_account if defined?(@current_account)
-    @current_account = current_user.try(:account)
-  end
-
-  def current_user
-    return @current_user if defined?(@current_user)
-    @current_user = current_user_session.try(:user)
-  end
-  
-  def is_current?(given_user_or_account)
-    case given_user_or_account
-      when User    then current_user    == given_user_or_account
-      when Account then current_account == given_user_or_account
-    end
-  end
-  
-  def require_yamco_user
-    require_user(:yamco)
-  end
-  
-  def require_reseller_user
-    require_user(:reseller)
-  end
-  
-  def require_business_user
-    require_user(:business)
-  end
-  
-  def require_user(kind_of = nil)
-    if !current_user || (kind_of && !current_user.account.is?(kind_of))
-      flash[:notice] = "Вы должны быть авторизированы для доступа к этой странице"
-      
-      redirect_to login_url
-    end
-  end
-
   def require_no_user
     redirect_to root_url if current_user
   end
   
-  def account_home_url(given_user = nil)
-    kind_of = (current_user||given_user).account.kind_of
-    
-    case kind_of
-    when 'yamco'    then admin_dashboard_url
-    when 'reseller' then reseller_dashboard_url
-    when 'business' then business_dashboard_url
-    else
-      raise "can't find '%s' account type home page " % kind_of
-    end
+  def require_yamco_user
+    require_real_current_user(:yamco)
   end
   
+  def require_reseller_user
+    require_current_user(:reseller)
+  end
+  
+  def require_business_user
+    require_current_user(:business)
+  end
+  
+  [:require_real_current_user, :require_current_user].each do |filter|
+    class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1
+      def #{filter}(kind_of = nil)                                                                          # def require_current_user(kind_of = nil)
+        given_user = send '#{filter}'.gsub('require_', '').to_sym                                           #   given_user = send 'require_current_user'.gsub('require_', '').to_sym
+        if !given_user || (kind_of && !given_user.account.is?(kind_of))                                     #   if !given_user || (kind_of && given_user.account.is?(kind_of))
+          redirect_to login_url, :notice => "Вы должны быть авторизированы для доступа к этой странице"     #     redirect_to login_url, :notice => "Вы должны быть авторизированы для доступа к этой странице"
+        end                                                                                                 #   end 
+      end                                                                                                   # end
+    RUBY_EVAL
+  end
+
 end

@@ -1,22 +1,41 @@
 # encoding: utf-8
+
 require 'ip_location'
 
 module Rackup
   class ShortenersRedirectApp < ActionController::Metal
-
+    
     def redirect
-      if @short_url = ShortUrl.find_by_short(params[:short])
-        click = build_clicks_params(env) and click = update_location_for(Click.new(click))
-        @short_url.clicks << click
-
-        set_headers :status => 301, :response_body => 'Ваш запрос будет перенаправлен', :location => @short_url.origin
-      else
-        set_headers :status => 404, :response_body => 'Запрашиваем ресурс не найден'
+      if short_url = ShortUrl.find_by_short(params[:short])
+        
+        if short_url.proxied?
+          click = build_clicks_params(env) and click = update_location_for(Click.new(click))
+          short_url.clicks << click
+          location = short_url.origin
+        end
+        
+        if short_url.pending?
+          location = url_for(:is_pending_mobile_app_shorteners_path)
+        end
       end
+      
+      location ||= url_for(:not_found_mobile_app_shorteners_path)
+      
+      set_headers :status => 302, :response_body => 'Redirecting...', :location => location
     end
 
 
     private
+    
+    # ActionController::Metal is not recognize named routes
+    def url_for(named_route)
+      @@url_map ||= {
+        :not_found_mobile_app_shorteners_path  => '/mobile_app/shorteners/not_found',
+        :is_pending_mobile_app_shorteners_path => '/mobile_app/shorteners/is_pending'
+      }.freeze
+      
+      "http://%s%s" % [ Global.host_mobi, @@url_map[named_route] ]
+    end
     
     def set_headers(options)
       options.each { |k,v| self.send k.to_s+'=', v }
@@ -33,6 +52,6 @@ module Rackup
     def update_location_for(click)
       IpLocation.resolve_location_for(click)
     end
-      
+
   end # end class
 end

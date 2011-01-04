@@ -1,0 +1,10 @@
+<% unless @see_more.empty? -%>
+  <div class="other">
+    <ul class="other-list">
+        <li class="item title"><span>смотрите также:</span></li>
+      <% @see_more.each do |mbc| -%>
+        <li class="item"><%= link_to mbc.title, mbc.short_url.link %></li>
+      <%end-%>
+    </ul>
+  </div>
+<%end-%>
