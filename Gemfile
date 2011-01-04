@@ -13,7 +13,7 @@ gem 'unicorn',                '3.1.0'
 
 # gem 'authlogic',              '2.1.6'
 gem 'authlogic', :git => 'git://github.com/railsware/authlogic.git', :tag => 'v2.1.6.1'
-gem 'dynamic_form',           '1.1.1'
+gem 'dynamic_form',           '1.1.3'
 
 gem 'rmagick',                '2.12.2'
 gem 'paperclip',              '2.3.3'
