@@ -3,7 +3,7 @@ class Mobile::CampaignsController < ApplicationController
   
   before_filter :require_current_user
   
-  before_filter :load_mobile_camapign, :except => [ :index, :new, :create ]
+  before_filter :load_mobile_camapign, :except => [ :index, :new, :create, :ids_with_images ]
   
   
   def index
