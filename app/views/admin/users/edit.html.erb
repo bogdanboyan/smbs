@@ -1,12 +1,14 @@
-<h1><%= account_pages_title %></h1>
+<h3><%= account_pages_title %></h3>
 
 <%= render :partial => 'admin/accounts/actions' %>
 
 <h2>Редактировать пользователя <%= @user.full_name %></h2>
 
 <p>Статус: <%= humanize_state(@user.state) %></p>
-<%= switch_state_action_button(:path => admin_account_user_path(@account, @user), :current_state => @user.state) unless is_current?(@user) %>
-
+<div>
+  <%= switch_state_action_button(:path => admin_account_user_path(@account, @user), :current_state => @user.state) unless is_current?(@user) %>
+  <div class="clear">&nbsp;</div>
+</div>
 <%= error_messages_for :user, :header_message => nil, :message => nil -%>
 <%= form_for :user, :url => admin_account_user_path(@account, @user), :html => { :method => :put } do |form| %>
   <%= render :partial => 'form', :object => form %>
