@@ -51,12 +51,12 @@ a.button.white:hover {
   background-color: #FDF3DE;
 }
 
-form.button {
+form.button_to {
   float:left;
   padding: 0px 3px 0px;
 }
 
-form.button input {
+form.button_to input {
   -moz-border-radius: 5px 5px 5px 5px;
   border: 1px solid #CCCCCC;
   font-size: 11px;
