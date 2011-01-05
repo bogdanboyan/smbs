@@ -1,0 +1,10 @@
+<script>
+  $(document).ready(function() {
+    $('.flash.notice').fadeOut(6000);
+  });
+</script>
+
+<div class="flash-wrapper">
+  <span class="flash notice"<%= " style='display:none;'" unless flash[:notice] %>><%= flash[:notice] %></span>
+  <span class="flash error"<%= " style='display:none;'" unless flash[:error] %>><%= flash[:error] %></span>
+</div>
