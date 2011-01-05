@@ -1,5 +1,27 @@
 .red { color:red; }
 
+
+.flash-wrapper {
+  position:fixed;
+  top:0;
+  width:100%;
+  text-align:center;
+}
+
+.flash {
+  display:inline-block;
+  padding:10px 12px 10px 40px;
+  border-radius:0 0 5px 5px;
+  -webkit-border-radius:0 0 5px 5px;
+  -moz-border-radius:0 0 5px 5px;
+  text-align:center;
+}
+
+.flash.notice {background:#93e42c url("/images/icons/flash_notice.png") no-repeat 12px center;}
+
+.flash.error {background:#ff6600 url("/images/icons/flash_error.png") no-repeat 12px center;}
+
+
 .additional-info {
   color:#666;
   font-size:11px;
@@ -8,4 +30,37 @@
 .hint {
   color:#666;
   font-size:12px;
+}
+
+
+a.button {
+  -moz-border-radius: 5px 5px 5px 5px;
+  border: 1px solid #CCCCCC;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 6px 7px 4px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+a.button.white {
+  background-color: #FFFFFF;
+}
+
+a.button.white:hover {
+  background-color: #FDF3DE;
+}
+
+form.button {
+  float:left;
+  padding: 0px 3px 0px;
+}
+
+form.button input {
+  -moz-border-radius: 5px 5px 5px 5px;
+  border: 1px solid #CCCCCC;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 6px 7px 4px;
+  text-transform: uppercase;
 }
