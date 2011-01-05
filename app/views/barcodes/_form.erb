@@ -6,13 +6,11 @@
     return false;
   }
   var on_ajax_success = function(data) {
-    if(data.error_message) { display_notice('#bar_code_notice', data.error_message); }
+    if(data.error_message) { SMBS.Application.show_error(data.error_message); }
     if(data.html) { $('#bar_code_element').prepend(data.html); $('#bar_code_element').trigger('change'); }
   }
 </script>
 
-
-<%= render :partial=>'layouts/notice', :object=> 'bar_code_notice' %>
 
 <%= form_for :link_code, :url=> '#', :html=>{:id=>'link_form'} do |f| %>
 	<div>адрес сайта:</div>

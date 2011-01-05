@@ -1,5 +1,3 @@
-<%= render :partial=>'layouts/notice', :object=> 'short_url_notice' %>
-
 <%= form_for :short_url, :url=> '#', :html=>{ :id => :short_form } do |f| %>
   <ul class="input-list">
     <li class="item">
@@ -21,7 +19,7 @@
       data: form_data,
       success: function(data) {
         if(data.error_message) {
-          display_notice('#short_url_notice', data.error_message);
+          SMBS.Application.show_error(data.error_message);
         }
         if(data.html) {
           $('#short_url_element').prepend(data.html).trigger('change');

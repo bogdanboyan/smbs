@@ -2,7 +2,6 @@
   <div class="block-center">
     <h1>Активируйте свой аккаунт для доступа к Yamco</h1>
     <%= error_messages_for :user, :header_message => nil, :message => nil -%>
-    <%= render :partial => 'layouts/notice' %>
   </div>
 
 <%= form_for :user, :url => user_activation_path(@user.perishable_token), :html => { :method => :put } do |form| %>

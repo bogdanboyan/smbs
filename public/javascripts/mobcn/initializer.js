@@ -20,16 +20,16 @@ $(document).ready(function() {
         page_id = data.mbc_id;
         if(data.success) {
           switch_save_to_update()
-          show_notice('Страница была успешно сохранена')
+          SMBS.Application.show_notice('Страница была успешно сохранена')
           
           // image gallery widget ready for image upload!
           SMBS.MobileCampaign.ImageGalleryWidget.campaign_id = page_id
           SMBS.MobileCampaign.ImageGalleryWidget.enable()
         } else {
-          show_notice(data.error)
+          SMBS.Application.show_error(data.error)
         }
       },
-      error: function() { show_notice('Сохранение не может быть выполнено из-за ошибки сети. Попробуйте позже') }
+      error: function() { SMBS.Application.show_error('Сохранение не может быть выполнено из-за ошибки сети. Попробуйте позже') }
     });
     return false;
   });

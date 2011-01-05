@@ -25,7 +25,7 @@ class UserActivationsController < ApplicationController
   
   def load_user_using_perishable_token
     unless @user = User.find_using_perishable_token(params[:id])
-      redirect_to login_url, :notice => 'Эта ссылка неверная или уже неактивна'
+      redirect_to login_url, :flash => { :error => 'Эта ссылка неверная или уже неактивна' }
     end
   end
   

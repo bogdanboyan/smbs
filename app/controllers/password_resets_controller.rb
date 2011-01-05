@@ -16,7 +16,7 @@ class PasswordResetsController < ApplicationController
       
       render :action => :instructions
     else
-      flash[:notice] = 'По указанному почтовому адресу не числится ни один аккаунт'
+      flash[:error] = 'По указанному почтовому адресу не числится ни один аккаунт'
       render :action => :new
     end
   end
@@ -40,7 +40,7 @@ class PasswordResetsController < ApplicationController
   
   def load_user_using_perishable_token
     unless @user = User.find_using_perishable_token(params[:id])
-      redirect_to login_url, :notice => 'Невозможно найти аккаунт пользователя по заданному ключу'
+      redirect_to login_url, :flash => { :error => 'Невозможно найти аккаунт пользователя по заданному ключу' }
     end
   end
   
