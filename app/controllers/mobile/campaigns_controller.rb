@@ -6,6 +6,12 @@ class Mobile::CampaignsController < ApplicationController
   before_filter :load_mobile_camapign, :except => [ :index, :new, :create ]
   
   
+  # Q: Why rails render new.html.erb without enter load_mobile_camapign before hook if new method isn't defined??
+  # A ActiveRecord::RecordNotFound occurred in users#new:
+  # Couldn't find User without an ID
+  # activerecord (3.0.3) lib/active_record/relation/finder_methods.rb:279:in `find_with_ids'
+  def new; end
+  
   def index
     @campaigns  = current_account.mobile_campaigns.where("current_state = 'draft' OR current_state = 'published'").order('updated_at DESC')
   end
