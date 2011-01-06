@@ -1,3 +1,11 @@
+.posC {text-align: center;}
+
+.posL {float:left;}
+
+.posR {float:right;}
+
+
+
 .red { color:red; }
 
 
@@ -52,7 +60,6 @@ a.button.white:hover {
 }
 
 form.button_to {
-  float:left;
   padding: 0px 3px 0px;
 }
 

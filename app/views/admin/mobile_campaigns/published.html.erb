@@ -6,12 +6,11 @@
     <div>
       <%= link_to campaign_title_with_shortener(mbc), mobile_app_campaign_url(mbc), :target => 'blank' %>
     </div>
-    <span class="actions">
-      <%= button_to 'Cнять с публикации', unpublish_admin_mobile_campaign_path(mbc), :method => :put %>
-      <%= button_to 'Отправить на доработку', cancel_admin_mobile_campaign_path(mbc), :method => :put %>
-      <%= button_to 'Архивировать', archive_admin_mobile_campaign_path(mbc), :method => :put %>
-    </span>
-    <div class="clear">&nbsp;</div>
+    <div class="actions">
+      <span class="posL"><%= button_to 'Cнять с публикации', unpublish_admin_mobile_campaign_path(mbc), :method => :put %></span>
+      <span class="posL"><%= button_to 'Отправить на доработку', cancel_admin_mobile_campaign_path(mbc), :method => :put %></span>
+      <span><%= button_to 'Архивировать', archive_admin_mobile_campaign_path(mbc), :method => :put %></span>
+    </div>
   </li>
   <%end%>
 </ul>

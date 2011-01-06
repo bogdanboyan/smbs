@@ -8,10 +8,9 @@
 <p>Статус: <%= humanize_state(@account.state) %></p>
 
 <div>
-  <%= switch_state_action_button(:path => admin_account_path(@account), :current_state => @account.state) unless is_current?(@account) %>
+  <span class="posL"><%= switch_state_action_button(:path => admin_account_path(@account), :current_state => @account.state) unless is_current?(@account) %></span>
 
-  <%= button_to("Зайти от имени владельца", pretend_admin_account_path(@account), :method => :put) unless @account.is?(:yamco) %>
-  <div class="clear">&nbsp;</div>
+  <span><%= button_to("Зайти от имени владельца", pretend_admin_account_path(@account), :method => :put) %></span>
 </div>
 
 <%= error_messages_for :account, :header_message => nil, :message => nil -%>
