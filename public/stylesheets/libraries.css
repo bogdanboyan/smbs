@@ -71,3 +71,7 @@ form.button_to input {
   padding: 6px 7px 4px;
   text-transform: uppercase;
 }
+
+ul .item {
+  margin-bottom: 10px;
+}

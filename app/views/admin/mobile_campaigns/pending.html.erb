@@ -2,8 +2,8 @@
 
 <ul>
   <% @pending_campaigns.each do |mbc| %>
-  <li>
-    <div><%= link_to campaign_title_with_shortener(mbc), mobile_app_campaign_url(mbc), :target => 'blank' %></div>
+  <li class="item">
+    <span><%= link_to campaign_title_with_shortener(mbc), mobile_app_campaign_url(mbc), :target => 'blank' %></span>
     <div class="actions">
       <span class="posL"><%= button_to 'Опубликовать', publish_admin_mobile_campaign_path(mbc), :method => :put %></span>
       <span class="posL"><%= button_to 'Отправить на доработку', cancel_admin_mobile_campaign_path(mbc), :method => :put %></span>

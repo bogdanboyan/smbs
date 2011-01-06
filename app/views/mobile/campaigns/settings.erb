@@ -13,7 +13,7 @@
   <div class="controls">
     <input id="title" name="title" value="<%= render_document_title(@campaign) %>" disabled="true"/>
     <ul class="actions">
-      <li><%= link_to "Редактировать", edit_mobile_campaign_path(@campaign) %> (<%= link_to 'Закрыть', mobile_campaigns_path %>)</li>
+      <li><%= link_to "Редактировать", edit_mobile_campaign_path(@campaign), :class => "button" %> <%= link_to 'Закрыть', mobile_campaigns_path, :class => "button" %></li>
     </ul>
     <div class="clear">&nbsp;</div>
   </div>

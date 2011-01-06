@@ -24,8 +24,8 @@
   <div class="controls">
     <input id="title" name="title" value="<%= render_document_title(@campaign) %>" />
     <ul class="actions">
-      <li><a id="save" href="#">Сохранить</a> (<%= link_to 'Закрыть', mobile_campaigns_path %>)</li>
-      <li><a id="settings" href="#">Настройки</a></li>
+      <li><a id="save" href="#" class="button">Сохранить</a> <%= link_to 'Закрыть', mobile_campaigns_path, :class=> "button" %></li>
+      <li><a id="settings" href="#" class="button">Настройки</a></li>
     </ul>
     <div class="clear">&nbsp;</div> 
   </div>

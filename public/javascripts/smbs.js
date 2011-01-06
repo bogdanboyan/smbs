@@ -12,7 +12,7 @@ SMBS.Application = {
   
   show_error : function(message) {
     flash = $('.flash.error');
-    flash.show().text(message);
+    flash.show().text(message).fadeOut(12000);
   },
   
 };
