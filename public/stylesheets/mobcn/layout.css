@@ -162,6 +162,11 @@ a:hover {
   margin-left: 15px;
 }
 
+.gallery-widget .navigation-tools {
+  margin-top: 5px;
+  margin-bottom: 12px;
+}
+
 .gallery-widget .items .container {
   float: left;
   margin-right: 6px;
