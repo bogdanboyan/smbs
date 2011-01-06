@@ -41,6 +41,8 @@ class Mobile::CampaignsController < ApplicationController
   def assign_short_url
     if params[:short_url].match(/\/(\w+)$/) && short_url = ShortUrl.find_by_short($1)
       short_url.origin    = mobile_app_campaign_url(@campaign)
+      short_url.account   = current_account
+      short_url.save!
       
       @campaign.short_url = short_url
       @campaign.save!
@@ -58,7 +60,11 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def generate_short_url
-    @campaign.short_url = ShortUrl.generate mobile_app_campaign_url(@campaign)
+    short_url = ShortUrl.generate mobile_app_campaign_url(@campaign)
+    short_url.account = current_account
+    short_url.save!
+    
+    @campaign.short_url = short_url
     @campaign.save!
     
     flash[:notice] = "Короткий адрес '/#{@campaign.short_url.short}' был добавлен к мобильной странице"
