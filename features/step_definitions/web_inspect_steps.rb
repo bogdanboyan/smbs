@@ -59,5 +59,5 @@ end
 end
 
 Тогда /^(?:|я )должен увидеть сообщение "([^"]*)"$/ do |сообщение|
-  within('.status_bar') { body.should include(сообщение) }
+  within('.flash-wrapper') { body.should include(сообщение) }
 end
