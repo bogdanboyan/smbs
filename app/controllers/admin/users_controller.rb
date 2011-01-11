@@ -7,7 +7,7 @@ class Admin::UsersController < Admin::BaseController
   respond_to :html
 
 
-  # Q: Why rails render new.html.erb without enter load_account_user before hook if new method isn't defined??
+  # Fix rails unknown issue
   # A ActiveRecord::RecordNotFound occurred in users#new:
   # Couldn't find User without an ID
   # activerecord (3.0.3) lib/active_record/relation/finder_methods.rb:279:in `find_with_ids'
