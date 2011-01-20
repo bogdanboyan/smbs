@@ -8,9 +8,11 @@
       <p class="info">Информация</p>
     </div>
     <div>
-      <%= render :partial=> 'campaign', :collection=> @campaigns %>
+      <%= render :partial => 'campaign', :collection => @campaigns %>
     </div>
   </div>
+  
+  <%= paginate @campaigns, :renderer => PaginationHelper::CampaignsLinkRenderer %>
   
 </div>
 

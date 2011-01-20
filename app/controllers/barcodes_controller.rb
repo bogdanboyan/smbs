@@ -4,7 +4,9 @@ class BarcodesController < ApplicationController
   
   
   def index
-    @bar_codes = current_account.bar_codes.order('id DESC')
+    @bar_codes = current_account.bar_codes
+      .order('id DESC')
+      .paginate(:page => params[:page], :per_page => 10)
   end
   
   def show

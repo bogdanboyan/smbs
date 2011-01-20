@@ -35,7 +35,9 @@
       <%= render :partial=> 'bar_code', :collection=> @bar_codes %>
     </div>
   </div>
-	
+
+  <%= paginate @bar_codes, :renderer => PaginationHelper::BarcodesLinkRenderer %>
+
 </div>
 
 <div class="grid_4 omega">

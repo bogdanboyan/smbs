@@ -14,6 +14,9 @@
       <%= render :partial=> 'short_url', :collection=> @short_urls %>
     </div>
   </div>
+  
+  <%= paginate @short_urls, :renderer => PaginationHelper::ShortenersLinkRenderer %>
+  
 </div>
 
 <div class="grid_4 omega">

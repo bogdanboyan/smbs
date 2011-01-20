@@ -13,7 +13,10 @@ class Mobile::CampaignsController < ApplicationController
   def new; end
   
   def index
-    @campaigns  = current_account.mobile_campaigns.where("current_state = 'draft' OR current_state = 'published'").order('updated_at DESC')
+    @campaigns  = current_account.mobile_campaigns
+      .where("current_state = 'draft' OR current_state = 'published'")
+      .order('updated_at DESC')
+      .paginate(:page => params[:page], :per_page => 10)
   end
   
   def edit

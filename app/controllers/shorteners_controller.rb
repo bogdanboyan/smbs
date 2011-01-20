@@ -6,7 +6,10 @@ class ShortenersController < ApplicationController
   
   
   def index
-    @short_urls = current_account.short_urls.where(:current_state => 'proxied').order('id DESC')
+    @short_urls = current_account.short_urls
+      .where(:current_state => 'proxied')
+      .order('id DESC')
+      .paginate(:page => params[:page], :per_page => 10)
   end
   
   def create
