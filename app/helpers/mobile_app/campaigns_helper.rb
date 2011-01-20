@@ -12,9 +12,12 @@ module MobileApp::CampaignsHelper
   end
   
   def t9e(text, group = :text)
+    # sanitize "<div class='item'>html block</div>", :tags => []
+    # => "html block"
+    sanitized_text = sanitize(text, :tags => [])
     case group
-      when :header then text =~ /(h1\.|h2\.|h3\.)/ ? textilize(text) : "<h1>#{text}</h1>"
-      when :text   then textilize_without_paragraph(text)
+      when :header then sanitized_text =~ /(h1\.|h2\.|h3\.)/ ? textilize(sanitized_text) : "<h1>#{sanitized_text}</h1>"
+      when :text   then textilize_without_paragraph(sanitized_text)
     end
   end
   

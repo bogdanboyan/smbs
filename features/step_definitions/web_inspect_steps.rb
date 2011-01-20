@@ -31,6 +31,13 @@ end
   end
 end
 
+Тогда /^(?:|я )должен увидеть строку "([^"]*)"(?: внутри "([^"]*)")?$/ do |текст, область|
+  with_scope(область) do
+    page.respond_to?(:should) ? page.should(have_content(текст)) : assert(page.has_content?(текст))
+  end
+end
+
+
 Когда /^(?:|я )кликну(?:| на) "([^"]*)"(?: внутри "([^"]*)")?$/ do |линк, область|
   with_scope(область) do
     click_link(линк)
