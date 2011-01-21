@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   attr_accessor :require_non_blank_passwords
   
   def generate_random_password
-    random_password       = generate_password
+    random_password            = generate_password
     self.password              = random_password
     self.password_confirmation = random_password
   end
