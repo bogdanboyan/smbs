@@ -24,8 +24,12 @@ module Mobile::CampaignsHelper
   def switch_campaign_state_button(instance)
     case instance.current_state
       when 'draft'
-        confirm = 'Содержание каждой страницы проверяется админинистрацией. После подтверждения страница будет опубликова. Вы уверены что готовы опубликовать?'
-        button_to 'Опубликовать страницу', approve_mobile_campaign_path(@campaign), :method => :put, :confirm => confirm
+        if instance.short_url
+          confirm = 'Содержание каждой страницы проверяется админинистрацией. После подтверждения страница будет опубликова. Вы уверены что готовы опубликовать?'
+          button_to 'Опубликовать страницу', approve_mobile_campaign_path(@campaign), :method => :put, :confirm => confirm
+        else
+          'установите короткий адрес'
+        end
       when 'published' then 'страница опубликована'
       when 'pending'   then 'проверяется содержание страницы'
     end

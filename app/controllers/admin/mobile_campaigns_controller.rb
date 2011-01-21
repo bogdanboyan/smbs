@@ -15,22 +15,28 @@ class Admin::MobileCampaignsController < Admin::BaseController
   
   def publish
     @mobile_campaign.publish!
-    redirect_to_pending_action "Страница '%s' была опубликована" % @mobile_campaign.title
+    MobileCampaignMailer.publish_notice(@mobile_campaign).deliver
+    
+    redirect_to :back, :notice => "Страница '#{@mobile_campaign.title}' была опубликована"
   end
   
   def cancel
     @mobile_campaign.cancel_response!
-    redirect_to_pending_action "Странице '%s' было отказано в публикации" % @mobile_campaign.title
+    MobileCampaignMailer.cancel_response_notice(@mobile_campaign).deliver
+    
+    redirect_to :back, :notice => "Странице '#{@mobile_campaign.title}' было отказано в публикации"
   end
     
   def unpublish
     @mobile_campaign.unpublish!
-    redirect_to_pending_action "Страница '%s' была cнята с публикации" % @mobile_campaign.title
+    MobileCampaignMailer.unpublish_notice(@mobile_campaign).deliver
+    
+    redirect_to :back, :notice => "Страница '#{@mobile_campaign.title}' была cнята с публикации"
   end
   
   def archive
     @mobile_campaign.archive!
-    redirect_to_pending_action "Страница '%s' была помещена в архив" % @mobile_campaign.title
+    redirect_to :back, :notice => "Страница '#{@mobile_campaign.title}' была помещена в архив"
   end
   
   
@@ -38,9 +44,5 @@ class Admin::MobileCampaignsController < Admin::BaseController
   
   def load_mobile_campaign
     @mobile_campaign = MobileCampaign.find params[:id]
-  end
-  
-  def redirect_to_pending_action(notice)
-    redirect_to :back, :notice => notice
   end
 end
