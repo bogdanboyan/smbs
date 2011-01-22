@@ -20,7 +20,8 @@ SMBS.MobileCampaign.Preview = {
   
   toggle_preview : function() {
     $('#preview').empty()
-    $('<iframe id="preview_frame" src="'+this._mobile_campaign_path+'">').appendTo('#preview');
+    $('<iframe id="preview_frame" src="'+this._mobile_campaign_path+'">').appendTo('#preview')
+    $('#preview iframe').css('width', 240).css('height', 320)
   }
   
 };
