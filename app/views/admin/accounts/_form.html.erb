@@ -17,16 +17,12 @@
       <p class="field"><%= form.text_field :city, :class => "text-field" %></p>
     </li>
     <li class="item">
-      <p><%= form.label :address, "почтовый адрес:" %></p>
+      <p><%= form.label :address, "почтовый адрес компании:" %></p>
       <p class="field"><%= form.text_field :address, :class => "text-field" %></p>
     </li>
     <li class="item">
       <p><%= form.label :bank_account, "банковские реквизиты:" %></p>
       <p class="field"><%= form.text_field :bank_account, :class => "text-field" %></p>
-    </li>
-    <li class="item">
-      <p><%= form.label :address, "почтовый адрес:" %></p>
-      <p class="field"><%= form.text_field :address, :class => "text-field" %></p>
     </li>
     <% unless @account.is?(:yamco) %>
     <li class="item">
