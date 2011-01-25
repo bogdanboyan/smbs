@@ -34,7 +34,7 @@ module DataSource
       rows, reports = {}, SummarizedClick.find_all_by_short_url_id(id)
       
       reports.each do |report|
-        city = report.city.try(:display) || report.city.try(:name) || "Другие города"
+        city = report.city.try(:display) || report.city.try(:name) || "Украина*"
         rows.has_key?(city) ? rows[city] += report.clicks : rows[city] = report.clicks
       end
       

@@ -10,10 +10,9 @@
 </script>
 
 <div class="grid_8 alpha">
-  <h2>Общая статистика переходов</h2>
+  <h2>Cтатистика переходов<%= ": " + truncate(@short_url.mobile_campaign.title) if @short_url.mobile_campaign %></h2>
   <p>Ресурс: <%= short_url_title_with_origin_link_pair(@short_url) %></p>
-  <p>Дата создания: <%= l @short_url.created_at.to_date, :format=> :long %></p>
-    
+  <p>Общее количество просмотров страницы (за весь период): <strong><%= @short_url.clicks_count %></strong></p>
   <div id="clicks_report"></div>
 
   <h2>Статистика по городам</h2>
