@@ -17,6 +17,10 @@ module Location
       # def merge_duplications!
       # end
       
+      def has_synonym?(city_name)
+        city_name != replace(city_name)
+      end
+      
       def replace(city_name)
         SYNONYMS_MAP.each_pair do |generic_name, synonyms|
           return generic_name if city_name == synonyms

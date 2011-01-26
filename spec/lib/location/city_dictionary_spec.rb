@@ -11,6 +11,11 @@ module Location
       @shortener   = Factory.build :short_url
     end
     
+    it 'should has_synonym' do
+      CityDictionary.has_synonym?("Kiev").should be_false
+      CityDictionary.has_synonym?("Lviv").should be_true
+    end
+    
     it 'should replace' do
       CityDictionary.replace("Kiev").should == "Kiev"
       CityDictionary.replace("Lvov").should == "Lvov"

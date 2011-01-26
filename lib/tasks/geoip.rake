@@ -5,16 +5,6 @@ namespace :geoip do
   
   namespace :upgrade do
     
-    desc "find all cities with NULL display and set entered value"
-    task :cities => :environment do
-      count = 0
-      City.where(:display => nil).each do |city|
-        display = HighLine.new.ask "Enter russian city name for #{city.name} (#{city.try(:region).try(:name)}):"
-        (city.update_attribute('display', display) and count += 1) unless display.empty?
-      end
-      count > 0 ? puts("Updated %d records" % count) : puts("Nothing update")
-    end
-    
     desc "download new version of geoip db (previous db stored as '_GeoLiteCity.dat' file)"
     task :db => :environment do
       system('cd tmp && wget -N http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz')
@@ -24,7 +14,7 @@ namespace :geoip do
       system('mv -f tmp/GeoLiteCity.dat db/max_mind/GeoLiteCity.dat')
     end # end task
     
-    desc "find clicks undefined clicks and try find location"
+    desc "find undefined clicks and try find location"
     task :clicks => :environment do
       count = 0
       Click.find_all_by_located(false).each do |click|

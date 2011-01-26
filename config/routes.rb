@@ -60,6 +60,7 @@ Smbs::Application.routes.draw do
     
     resources :locations do
       collection { get :countries; get :regions; get :cities }
+      member     { put :update_city_display_name; put :update_country_display_name }
     end
   end
   
