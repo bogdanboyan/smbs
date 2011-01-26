@@ -57,6 +57,10 @@ Smbs::Application.routes.draw do
         member         { put :invite; put :activate; put :disable;   }
       end
     end
+    
+    resources :locations do
+      collection { get :countries; get :regions; get :cities }
+    end
   end
   
   namespace :reseller do
