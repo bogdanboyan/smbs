@@ -61,7 +61,7 @@ module Rackup
       if profile = env['HTTP_PROFILE']
         user_agent.update_attribute('profile', profile) unless user_agent.profile
       elsif x_wap_profile = env['HTTP_X_WAP_PROFILE']
-        user_agent.x_wap_profile.update_attribute('x_wap_profile', x_wap_profile) unless user_agent.x_wap_profile
+        user_agent.update_attribute('x_wap_profile', x_wap_profile) unless user_agent.x_wap_profile
       end
       
       user_agent
