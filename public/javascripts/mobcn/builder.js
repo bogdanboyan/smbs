@@ -35,7 +35,8 @@ var Builder = Class.extend({
     this._all_document_partials().each(function(index, element) {
       document_model[index] = $(element).data('behaviour').to_object(element);
     });
-    return escape(JSON.stringify(document_model));
+    
+    return JSON.stringify(document_model).replace(/&/g, '%26');
   },
   
   inject_serialized_document : function(model) {
