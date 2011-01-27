@@ -45,12 +45,26 @@ module Rackup
       click = {}
       click[:ip_address] = env['HTTP_X_REAL_IP'] || env['REMOTE_ADDR']
       click[:referer]    = env['HTTP_REFERER']
-      click[:user_agent] = UserAgent.find_or_create_by_details(env['HTTP_USER_AGENT']) unless env['HTTP_USER_AGENT'].blank?
+      click[:user_agent] = find_or_create_user_agent(env) unless env['HTTP_USER_AGENT'].blank?
       click
     end
 
     def update_location_for(click)
       Location::IpDetector.resolve_location_for(click)
+    end
+    
+    def find_or_create_user_agent(env)
+      user_agent = UserAgent.find_or_create_by_details env['HTTP_USER_AGENT']
+      
+      # this implementation is FIX for existing user_agent records without HTTP_PROFILE or HTTP_X_WAP_PROFILE headers
+      # TODO: add this headers to dynamic find_or_create_by_details method and remove this code
+      if profile = env['HTTP_PROFILE']
+        user_agent.update_attribute('profile', profile) unless user_agent.profile
+      elsif x_wap_profile = env['HTTP_X_WAP_PROFILE']
+        user_agent.x_wap_profile.update_attribute('x_wap_profile', x_wap_profile) unless user_agent.x_wap_profile
+      end
+      
+      user_agent
     end
 
   end # end class
