@@ -29,6 +29,7 @@ gem 'will_paginate',          '3.0.pre2'
 
 gem 'escape_utils'
 gem 'nokogiri',               '1.4.4'
+gem 'patron',                 '0.4.11'
 
 group :test do
   gem 'rspec',                '2.2.0'
