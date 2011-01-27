@@ -6,7 +6,7 @@ module Location
       #'generic_name' => 'synonyms'
       'Lvov'    => 'Lviv',
       'Kharkov' => 'Kharkiv'
-    }
+    }.freeze
     
     
     class << self
