@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'ip_location'
+require 'location'
 
 module Rackup
   class ShortenersRedirectApp < ActionController::Metal
@@ -50,7 +50,7 @@ module Rackup
     end
 
     def update_location_for(click)
-      IpLocation.resolve_location_for(click)
+      Location::IpDetector.resolve_location_for(click)
     end
 
   end # end class
