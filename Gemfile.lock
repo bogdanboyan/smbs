@@ -93,7 +93,7 @@ GEM
     paperclip (2.3.3)
       activerecord
       activesupport
-    patron (0.4.11)
+    patron (0.4.9)
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.13)
@@ -170,7 +170,7 @@ DEPENDENCIES
   mysql2 (= 0.2.3)
   nokogiri (= 1.4.4)
   paperclip (= 2.3.3)
-  patron (= 0.4.11)
+  patron (= 0.4.9)
   rails (= 3.0.3)
   request-log-analyzer (= 1.9.8)
   rmagick (= 2.12.2)
