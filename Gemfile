@@ -3,6 +3,7 @@
 # apt-get install libmysql-ruby libmysqlclient-dev
 # apt-get install imagemagick
 # apt-get install geoip-bin libgeoip1 libgeoip-dev
+# apt-get install libcurl3-gnutls-dev libcurl3-openssl-dev
 
 source 'http://rubygems.org'
 
