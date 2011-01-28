@@ -68,7 +68,7 @@ module Rackup
     end
     
     def update_empty_attribute(user_agent, attribute, value)
-      user_agent.update_attribute(attribute, value.delete('"\'')) if not instance.try(attribute)
+      user_agent.update_attribute(attribute, value.delete('"\'')) if not user_agent.try(attribute)
     end
 
   end # end class
