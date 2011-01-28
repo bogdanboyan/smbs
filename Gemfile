@@ -22,7 +22,7 @@ gem 'RedCloth',               '4.2.3'
 
 gem 'geoip-c',                :git => 'git://github.com/zarqman/geoip.git'
 
-gem 'exception_notification_rails3', '1.0.0', :require => 'exception_notifier'
+gem 'exception_notification_rails3', '1.2.0', :require => 'exception_notifier'
 
 gem 'aasm',                   '2.2.0'
 
