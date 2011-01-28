@@ -9,10 +9,21 @@ module Analytic
       class << self
       
         def parse(opts)
-          yamdex_api_opts = opts.each { |k,v| opts[k] = EscapeUtils.escape_uri(v) }.to_query
-          yandex_api_url = "http://phd.yandex.net/detect?" + yandex_api_opts
+          yandex_api_url = "http://phd.yandex.net/detect?#{opts.to_query}"
           
-          doc = Nokogiri::XML get(yandex_api_url).body
+          if document = Nokogiri::XML(get(yandex_api_url).body)
+            
+            return {} if not document.css('yandex-mobile-info-error').empty?
+            
+            data = {
+              :manufacturer => document.css('vendor').text,
+              :model        => document.css('name').text,
+              :width        => document.css('screenx').text,
+              :height       => document.css('screeny').text,
+            }
+            
+            data.merge! :resolution => "#{data[:width]} x #{data[:height]}"
+          end
         end
       
       
