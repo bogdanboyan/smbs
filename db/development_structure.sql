@@ -214,8 +214,10 @@ CREATE TABLE `user_agents` (
   `updated_at` datetime DEFAULT NULL,
   `profile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `x_wap_profile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `mobile_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_user_agents_on_mobile_id` (`mobile_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -304,3 +306,5 @@ INSERT INTO schema_migrations (version) VALUES ('20110121125656');
 INSERT INTO schema_migrations (version) VALUES ('20110122112902');
 
 INSERT INTO schema_migrations (version) VALUES ('20110127131557');
+
+INSERT INTO schema_migrations (version) VALUES ('20110128115153');
