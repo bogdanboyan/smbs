@@ -59,12 +59,16 @@ module Rackup
       # this implementation is FIX for existing user_agent records without HTTP_PROFILE or HTTP_X_WAP_PROFILE headers
       # TODO: add this headers to dynamic find_or_create_by_details method and remove this code
       if profile = env['HTTP_PROFILE']
-        user_agent.update_attribute('profile', profile) unless user_agent.profile
+        update_empty_attribute(user_agent, 'profile', profile)
       elsif x_wap_profile = env['HTTP_X_WAP_PROFILE']
-        user_agent.update_attribute('x_wap_profile', x_wap_profile) unless user_agent.x_wap_profile
+        update_empty_attribute(user_agent, 'x_wap_profile', x_wap_profile)
       end
       
       user_agent
+    end
+    
+    def update_empty_attribute(user_agent, attribute, value)
+      user_agent.update_attribute(attribute, value.delete('"\'')) if not instance.try(attribute)
     end
 
   end # end class
