@@ -1,7 +1,13 @@
 # encoding: utf-8
 
-include ActionView::Helpers::SanitizeHelper::ClassMethods, ActionView::Helpers::SanitizeHelper
-include CampaignsHelper, QrCodesHelper, ShortenersHelper
+[
+  ActionView::Helpers::SanitizeHelper::ClassMethods,
+  ActionView::Helpers::SanitizeHelper,
+  CampaignsHelper,
+  QrCodesHelper,
+  ShortenersHelper,
+].each { |mixin| include mixin }
+
 
 То /^когда я выбираю адрес "([^\"]*)" из списка$/ do |урл|
   shortener = ShortUrl.find_by_origin("http://#{урл}")
