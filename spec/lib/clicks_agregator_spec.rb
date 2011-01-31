@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'ip_location'
+require 'location'
 
 describe ClicksAgregator do
   
@@ -21,7 +21,7 @@ describe ClicksAgregator do
       45.times { clicks << Factory.build(:moscow_click, :short_url => @short_url, :created_at => 1.day.ago.to_time) }
       10.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => Time.now)          }
       
-      clicks.each { |click| IpLocation.resolve_location_for(click).save }
+      clicks.each { |click| Location::IpDetector.resolve_location_for(click).save }
       
       s_clicks = ClicksAgregator.summarize_all_clicks(@short_url.id)
       
@@ -44,7 +44,7 @@ describe ClicksAgregator do
       25.times { clicks << Factory.build(:moscow_click, :short_url => @short_url, :created_at => 2.day.ago.to_time) }
       10.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => Time.now)          }
       
-      clicks.each { |click| IpLocation.resolve_location_for(click).save }
+      clicks.each { |click| Location::IpDetector.resolve_location_for(click).save }
       
       s_clicks = ClicksAgregator.summarize_clicks_for(@short_url.id, 2.day.ago.to_date)
       s_clicks.should_not be_nil
@@ -69,7 +69,7 @@ describe ClicksAgregator do
       26.times { clicks << Factory.build(:moscow_click, :short_url => @short_url, :created_at => 1.day.ago.to_time) }
       13.times { clicks << Factory.build(:kiev_click,   :short_url => @short_url, :created_at => Time.now)          }
       
-      clicks.each { |click| IpLocation.resolve_location_for(click).save }
+      clicks.each { |click| Location::IpDetector.resolve_location_for(click).save }
       
       s_clicks = ClicksAgregator.summarize_today_clicks(@short_url.id)
       s_clicks.should_not be_nil

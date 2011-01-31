@@ -3,6 +3,7 @@
 # apt-get install libmysql-ruby libmysqlclient-dev
 # apt-get install imagemagick
 # apt-get install geoip-bin libgeoip1 libgeoip-dev
+# apt-get install libcurl3-gnutls-dev libcurl3-openssl-dev
 
 source 'http://rubygems.org'
 
@@ -21,13 +22,15 @@ gem 'RedCloth',               '4.2.3'
 
 gem 'geoip-c',                :git => 'git://github.com/zarqman/geoip.git'
 
-gem 'exception_notification_rails3', '1.0.0', :require => 'exception_notifier'
+gem 'exception_notification_rails3', '1.2.0', :require => 'exception_notifier'
 
 gem 'aasm',                   '2.2.0'
 
 gem 'will_paginate',          '3.0.pre2'
 
 gem 'escape_utils'
+gem 'nokogiri',               '1.4.4'
+gem 'patron',                 '0.4.9'
 
 group :test do
   gem 'rspec',                '2.2.0'

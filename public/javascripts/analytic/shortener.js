@@ -41,7 +41,7 @@ SMBS.Shortener.Regions = {
         
         data = response.getDataTable();
         chart = new google.visualization.BarChart(document.getElementById('regions_report'));
-        chart.draw(data, {width: 650, height: 240, hAxis: {title: 'Суммарное количество нажатий'} });
+        chart.draw(data, {width: 650, height: 240, hAxis: {title: 'Суммарное количество посетителей. * (без классификации по городу)'} });
     }
   }
 }

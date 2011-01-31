@@ -1,13 +1,6 @@
-# == Schema Info
-#
-# Table name: user_agents
-#
-#  id         :integer(4)      not null, primary key
-#  details    :string(255)     not null
-#  created_at :datetime
-#  updated_at :datetime
-
 class UserAgent < ActiveRecord::Base
+  
+  belongs_to :mobile
   
   has_many :clicks
 end
