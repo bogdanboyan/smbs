@@ -18,7 +18,7 @@ module Mobile::CampaignsHelper
   end
   
   def clicks_counter_link_to(short_url)
-    (short_url && short_url.clicks_count > 0) ? link_to(short_url.clicks_count, statistic_path(short_url)) : 0
+    short_url.try(:clicks_count) > 0 ? link_to(short_url.clicks_count, statistic_path(short_url)) : 0
   end
   
   def switch_campaign_state_button(instance)

@@ -1,8 +1,12 @@
 # encoding: utf-8
 module Admin::MobileCampaignsHelper
   
-  
-  def campaign_title_with_shortener(instance)
-    truncate(instance.title, :length => 80) + " (короткий адрес: %s)" % (instance.short_url.try(:short) || 'не установлен')
+  def campaign_short_url_link_title(instance)
+    "короткий адрес: %s" % (instance.short_url.try(:link) || 'не установлен')
   end
+  
+  def campaign_clicks_counter(instance)
+    "просмотров: %d" % (instance.short_url.try(:clicks_count) || 0)
+  end
+  
 end
