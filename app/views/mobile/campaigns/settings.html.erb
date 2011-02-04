@@ -43,14 +43,16 @@
         <li class="item">
           <%= button_to 'Создать автоматически', generate_short_url_mobile_campaign_path(@campaign), :method => :put %>
         </li>
-    <%= form_tag assign_short_url_mobile_campaign_path(@campaign), :method => :put do %>
-        <li class="item">
-          <%= label_tag 'short_url', "введите новый адрес:" %>
-          <%= text_field_tag 'short_url' %>
-        </li>
-        <li class="item"><%= submit_tag 'Добавить', :class=> 'submit_button' %></li>
-      </ul>
-    <%end%>
+        <% if real_current_account.is?(:yamco) %>
+          <%= form_tag assign_short_url_mobile_campaign_path(@campaign), :method => :put do %>
+          <li class="item">
+            <%= label_tag 'short_url', "введите новый адрес:" %>
+            <%= text_field_tag 'short_url' %>
+          </li>
+          <li class="item"><%= submit_tag 'Добавить', :class=> 'submit_button' %></li>
+          <%end%>
+        <%end%>
+    </ul>
   </div>
   
   <div>
