@@ -1,0 +1,18 @@
+<h3>Мобильные страницы</h3>
+
+<%= render :partial => 'actions' %>
+
+<h3>Черновики</h3>
+
+<ul>
+  <% @drafted_campaigns.each do |mbc| %>
+  <li class="item">
+    <span>
+      <%== admin_campaign_navigation_title mbc %>
+    </span>
+    <div class="actions">
+      <span><%= button_to 'Архивировать', archive_admin_mobile_campaign_path(mbc), :method => :put %></span>
+    </div>
+  </li>
+  <%end%>
+</ul>

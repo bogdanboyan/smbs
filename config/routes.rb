@@ -47,7 +47,7 @@ Smbs::Application.routes.draw do
     resources :invites
     
     resources :mobile_campaigns do
-      collection { get :pending; get :published }
+      collection { get :pending; get :published; get :draft }
       member     { put :publish; put :cancel; put :unpublish; put :archive }
     end
     

@@ -8,7 +8,7 @@
   <% @pending_campaigns.each do |mbc| %>
   <li class="item">
     <span>
-      <%= link_to truncate(mbc.title, :length => 80), mobile_app_campaign_url(mbc), :target => 'blank' %> <%= campaign_clicks_counter(mbc) %>; <%= campaign_short_url_link_title(mbc) %>
+      <%== admin_campaign_navigation_title mbc %>
     </span>
     <div class="actions">
       <span class="posL"><%= button_to 'Опубликовать', publish_admin_mobile_campaign_path(mbc), :method => :put %></span>

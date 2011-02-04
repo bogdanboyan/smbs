@@ -12,6 +12,10 @@ class Admin::MobileCampaignsController < Admin::BaseController
     @published_campaigns = MobileCampaign.where(:current_state => 'published')
   end
   
+  def draft
+    @drafted_campaigns = MobileCampaign.where(:current_state => 'draft')
+  end
+  
   
   def publish
     @mobile_campaign.publish!

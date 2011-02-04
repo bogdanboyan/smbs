@@ -9,4 +9,13 @@ module Admin::MobileCampaignsHelper
     "просмотров: %d" % (instance.short_url.try(:clicks_count) || 0)
   end
   
+  def admin_campaign_navigation_title(instance)
+    "%s &rarr; %s %s; %s" % [
+      link_to(truncate(instance.account.title, :length => 15), settings_admin_account_path(instance.account), :title => instance.account.title),
+      link_to(truncate(instance.title), mobile_app_campaign_url(instance), :target => 'blank', :title => instance.title),
+      campaign_clicks_counter(instance),
+      campaign_short_url_link_title(instance),
+    ]
+  end
+  
 end
