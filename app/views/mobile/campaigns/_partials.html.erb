@@ -1,5 +1,5 @@
-<% if partials == 'header_container' %>
-  <div class="document_partial"style="display: none;">
+<% if partials == 'header_container' -%>
+  <div class="document_partial" style="display: none;">
     <div class="toolbar">
       <span class="move">переместить</span> <span class="remove">удалить</span>
       <span class="text_control">панель инструментов</span>
@@ -9,11 +9,10 @@
     </div>
     <div class="clear">&nbsp;</div>
   </div>
-<%end%>
+<%end-%>
 
-
-<% if partials == 'text_container' %>
-  <div class="document_partial"style="display: none;">
+<% if partials == 'text_container' -%>
+  <div class="document_partial" style="display: none;">
     <div class="toolbar">
       <span class="move">переместить</span> <span class="remove">удалить</span>
       <span class="text_control">панель инструментов</span>
@@ -21,11 +20,10 @@
     <div class="text_container"><textarea name="text"></textarea></div>
     <div class="clear">&nbsp;</div>
   </div>
-<%end%>
+<%end-%>
 
-
-<% if partials == 'image_container' %>
-  <div class="document_partial"style="display: none;">
+<% if partials == 'image_container' -%>
+  <div class="document_partial" style="display: none;">
     <div class="toolbar">
       <span class="move">переместить</span> <span class="remove">удалить</span>
       <div class="image_slider"></div>
@@ -33,4 +31,14 @@
     <div class="image_container droppable"><p class="drag_here">Переместите изображение из галлереи</p></div>
     <div class="clear">&nbsp;</div>
   </div>
-<%end%>
+<%end-%>
+
+<% if partials == 'delimiter_container' -%>
+  <div class="document_partial" style="display: none;">
+    <div class="toolbar">
+      <span class="move">переместить</span> <span class="remove">удалить</span>
+    </div>
+    <div class="delimiter_container"></div>
+    <div class="clear">&nbsp;</div>
+  </div>
+<%end-%>

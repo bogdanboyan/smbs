@@ -4,14 +4,14 @@ var PartialRegistry = (function() {
     header           : 'header_container',
     images           : 'image_container',
     text             : 'text_container',
-    image_and_text   : 'text_container',
-    text_and_image   : 'text_container',
+    delimiter        : 'delimiter_container',
   }
   
   var behaviours = {
-    header_container : function(type) { return new HeadersBehaviour(type); },
-    image_container  : function(type) { return new ImagesBehaviour(type);  },
-    text_container   : function(type) { return new TextsBehaviour(type);   },
+    header_container      : function(type) { return new HeadersBehaviour(type);      },
+    image_container       : function(type) { return new ImagesBehaviour(type);       },
+    text_container        : function(type) { return new TextsBehaviour(type);        },
+    delimiter_container   : function(type) { return new DelimitersBehaviour(type);   },
   }
   
   return {

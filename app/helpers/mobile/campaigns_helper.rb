@@ -6,9 +6,10 @@ module Mobile::CampaignsHelper
   def render_partials_to_js_object
     <<-JS_OBJECT 
     {
-        text_container   : '#{render_partial_for('text_container')}',
-        header_container : '#{render_partial_for('header_container')}',
-        image_container  : '#{render_partial_for('image_container')}'
+        text_container       : '#{render_partial_for('text_container')}',
+        header_container     : '#{render_partial_for('header_container')}',
+        image_container      : '#{render_partial_for('image_container')}',
+        delimiter_container  : '#{render_partial_for('delimiter_container')}'
     } 
     JS_OBJECT
   end
@@ -18,7 +19,7 @@ module Mobile::CampaignsHelper
   end
   
   def clicks_counter_link_to(short_url)
-    short_url.try(:clicks_count) > 0 ? link_to(short_url.clicks_count, statistic_path(short_url)) : 0
+    (short_url && short_url.clicks_count.to_i > 0) ? link_to(short_url.clicks_count, statistic_path(short_url)) : 0
   end
   
   def switch_campaign_state_button(instance)

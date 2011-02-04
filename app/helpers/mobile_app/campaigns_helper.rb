@@ -1,7 +1,7 @@
 module MobileApp::CampaignsHelper
   
-  def is_a_data?(model, type)
-    model[:type] == type
+  def is_a_data?(entity, type)
+    entity[:type] == type
   end
   
   def prepared_images(images_model)
