@@ -972,9 +972,9 @@ qq.extend(qq.UploadHandlerForm.prototype, {
         // prevent CSRF attacks. If this is not copied to the iframed form, the POST will fail.
         // Other frameworks potentially have their own CSRF protection strategies, 
         // which would also need to be accomodated for here.
-        csrfInput = fileInput.form.childNodes[0].lastChild;
-        if (csrfInput && csrfInput.getAttribute('name') == 'authenticity_token')
-          this._inputs['_csrf'] = csrfInput;
+        //csrfInput = fileInput.form.childNodes[0].lastChild;
+        //if (csrfInput && csrfInput.getAttribute('name') == 'authenticity_token')
+        //  this._inputs['_csrf'] = csrfInput;
         
         // remove file input from DOM
         if (fileInput.parentNode){
