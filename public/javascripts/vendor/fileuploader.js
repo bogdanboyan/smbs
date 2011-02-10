@@ -1074,9 +1074,15 @@ qq.extend(qq.UploadHandlerForm.prototype, {
         this.log("innerHTML = " + doc.body.innerHTML);
                         
         try {
-            response = eval("(" + doc.body.innerHTML + ")");
+            // fix for opera 11
+            // server return response: 
+            // => {"success":true,"html":"<div class=\"container\"><img class=\"draggable item\" src=\"/assets/mobcn/96/1297333711.thumbnail.jpg?1297333711\"/></div>"} 
+            // opera receive
+            // => "{"success":true,"html":"<div class='\"container\"'><img class='\"draggable' item\"="" src='\"/assets/mobcn/96/1297333711.thumbnail.jpg?1297333711\"/'></div>"}"
+            innerHTML = doc.body.innerHTML.replace(/'/g, "").replace(/=""/g, "");
+            response = eval("(" + innerHTML + ")");
         } catch(err){
-            response = {};
+            response = {error: "internal fileuploader error: can't parse JSON from server response"};
         }        
 
         return response;
