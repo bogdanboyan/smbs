@@ -1,5 +1,7 @@
 # encoding: utf-8
 class MobileCampaign < ActiveRecord::Base
+  
+  include Dashboardable
 
   belongs_to :account
   belongs_to :user
