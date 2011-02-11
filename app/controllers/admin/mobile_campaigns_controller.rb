@@ -18,21 +18,27 @@ class Admin::MobileCampaignsController < Admin::BaseController
   
   
   def publish
+    @mobile_campaign.update_dashboard(:page_published)
     @mobile_campaign.publish!
+    
     MobileCampaignMailer.publish_notice(@mobile_campaign).deliver
     
     redirect_to :back, :notice => "Страница '#{@mobile_campaign.title}' была опубликована"
   end
   
   def cancel
+    @mobile_campaign.update_dashboard(:page_drafted)
     @mobile_campaign.cancel_response!
+    
     MobileCampaignMailer.cancel_response_notice(@mobile_campaign).deliver
     
     redirect_to :back, :notice => "Странице '#{@mobile_campaign.title}' было отказано в публикации"
   end
     
   def unpublish
+    @mobile_campaign.update_dashboard(:page_unpublished)
     @mobile_campaign.unpublish!
+    
     MobileCampaignMailer.unpublish_notice(@mobile_campaign).deliver
     
     redirect_to :back, :notice => "Страница '#{@mobile_campaign.title}' была cнята с публикации"
@@ -40,6 +46,7 @@ class Admin::MobileCampaignsController < Admin::BaseController
   
   def archive
     @mobile_campaign.archive!
+    
     redirect_to :back, :notice => "Страница '#{@mobile_campaign.title}' была помещена в архив"
   end
   

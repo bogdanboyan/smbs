@@ -3,7 +3,15 @@ module Dashboardable
   attr_accessor :transition
   
   TRANSITION_LIST = {
-    MobileCampaign => [ :content_changed ]
+    MobileCampaign => [ 
+      :page_created,
+      :content_changed,
+      :short_url_assigned,
+      :short_url_generated,
+      :page_published,
+      :page_drafted,
+      :page_unpublished,
+    ]
   }
   
   

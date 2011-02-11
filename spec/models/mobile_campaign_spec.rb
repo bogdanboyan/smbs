@@ -184,7 +184,13 @@ describe MobileCampaign do
     end
     
     specify "update_dashboard with valid transition" do
-      lambda { @mobile_campaign.assert_transition_key(:content_changed) }.should_not raise_error
+      lambda { @mobile_campaign.assert_transition_key(:page_created)          }.should_not raise_error
+      lambda { @mobile_campaign.assert_transition_key(:content_changed)       }.should_not raise_error
+      lambda { @mobile_campaign.assert_transition_key(:short_url_assigned)    }.should_not raise_error
+      lambda { @mobile_campaign.assert_transition_key(:short_url_generated)   }.should_not raise_error
+      lambda { @mobile_campaign.assert_transition_key(:page_published)        }.should_not raise_error
+      lambda { @mobile_campaign.assert_transition_key(:page_drafted)          }.should_not raise_error
+      lambda { @mobile_campaign.assert_transition_key(:page_unpublished)      }.should_not raise_error
     end
     
   end

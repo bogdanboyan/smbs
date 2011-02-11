@@ -24,8 +24,10 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def create
-    campaign = MobileCampaign.new params[:mbc]
+    campaign      = MobileCampaign.new(params[:mbc])
     campaign.user = current_user
+    
+    campaign.update_dashboard(:page_created)
     
     if is_saved = campaign.save
       campaign.map_document_model_images
@@ -38,7 +40,9 @@ class Mobile::CampaignsController < ApplicationController
   def update
     @campaign.update_dashboard(:content_changed)
     
-    is_updated = @campaign.update_attributes(params[:mbc]) and @campaign.map_document_model_images
+    if is_updated = @campaign.update_attributes(params[:mbc])
+      @campaign.map_document_model_images
+    end
     
     render :json => { :mbc_id => @campaign.id, :success => !!is_updated, :error => @campaign.errors.full_messages.first }
   end
@@ -50,12 +54,9 @@ class Mobile::CampaignsController < ApplicationController
   
   def assign_short_url
     if params[:short_url].match(/\/(\w+)$/) && short_url = ShortUrl.find_by_short($1)
-      short_url.origin    = mobile_app_campaign_url(@campaign)
-      short_url.account   = current_account
-      short_url.save!
+      short_url.origin = mobile_app_campaign_url(@campaign)
       
-      @campaign.short_url = short_url
-      @campaign.save!
+      merge_campaign_with(short_url)
       
       flash[:notice] = "Короткий адрес '/#{short_url.short}' был добавлен к мобильной странице"
     else
@@ -71,11 +72,8 @@ class Mobile::CampaignsController < ApplicationController
   
   def generate_short_url
     short_url = ShortUrl.generate mobile_app_campaign_url(@campaign)
-    short_url.account = current_account
-    short_url.save!
     
-    @campaign.short_url = short_url
-    @campaign.save!
+    merge_campaign_with(short_url)
     
     flash[:notice] = "Короткий адрес '/#{@campaign.short_url.short}' был добавлен к мобильной странице"
     redirect_to settings_mobile_campaign_url(@campaign)
@@ -95,5 +93,14 @@ class Mobile::CampaignsController < ApplicationController
   
   def load_mobile_camapign
     @campaign = current_account.mobile_campaigns.find params[:id]
+  end
+  
+  def merge_campaign_with(short_url)
+    short_url.account = current_account
+    short_url.save!
+    
+    @campaign.update_dashboard(:short_url_generated)
+    @campaign.short_url = short_url
+    @campaign.save!
   end
 end
