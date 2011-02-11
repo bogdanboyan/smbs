@@ -16,6 +16,8 @@ class ShortenersController < ApplicationController
     @short_url = ShortUrl.new params[:short_url]
     if @short_url.valid?
       @short_url.short = Shortener.get_basemade_value(ShortSequence.create.id)
+      
+      @short_url.update_dashboard(:shortener_created)
 
       @short_url.save
       current_account.short_urls << @short_url

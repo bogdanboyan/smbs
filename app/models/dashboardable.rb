@@ -17,6 +17,10 @@ module Dashboardable
       :user_created,
       :user_updated,
       :user_activated,
+    ],
+    
+    ShortUrl => [
+      :shortener_created,
     ]
   }
   

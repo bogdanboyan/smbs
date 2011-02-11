@@ -2,7 +2,7 @@ require 'shortener'
 
 class ShortUrl < ActiveRecord::Base
 
-  include Validations::Url, Dashboardable
+  include Validations::Url
 
   belongs_to :account
 
@@ -29,6 +29,10 @@ class ShortUrl < ActiveRecord::Base
   aasm_event :disable do
     transitions :to => :pending, :from => [:proxied]
   end
+  
+  
+  include Dashboardable
+  
   
   class << self
     
