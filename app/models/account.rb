@@ -30,9 +30,6 @@ class Account < ActiveRecord::Base
   AVAILABLE_TYPES = %w[business reseller]
 
 
-  include Dashboardable
-  
-  
   def is?(type)
     kind_of == type.to_s
   end

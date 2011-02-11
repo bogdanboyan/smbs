@@ -36,23 +36,5 @@ describe Account do
     end
 
   end
-  
-  describe "dashboardable" do
-    
-    before(:all) { @account = Account.new }
-    
-    it { @account.should be_kind_of(Dashboardable) }
-    
-    specify "update_dashboard with invalid transition" do
-      lambda { @account.assert_transition_key(:yo!) }.should raise_error(RuntimeError)
-    end
-    
-    specify "update_dashboard with valid transition" do
-      lambda { @account.assert_transition_key(:user_added)          }.should_not raise_error
-      lambda { @account.assert_transition_key(:user_removed)        }.should_not raise_error
-    end
-    
-  end
-  
 
 end

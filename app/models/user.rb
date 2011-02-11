@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     c.session_class UserSession
   end
   
+  
+  include Dashboardable
+  
+  
   # Skip blank passwords ignoring
   attr_accessor :require_non_blank_passwords
   

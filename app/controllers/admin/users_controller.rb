@@ -21,6 +21,8 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(params[:user].merge(:account => @account))
     @user.generate_random_password
     
+    @user.update_dashboard(:user_created)
+    
     if @user.save
       @user.invite!
       flash[:notice] = "Письмо активации аккаунта было отправлено по адресу '%s'" % @user.email
@@ -29,6 +31,8 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def update
+    @user.update_dashboard(:user_updated)
+    
     if @user.update_attributes params[:user]
       flash[:notice] = "Пользователь с логином '%s' успешно изменен" % @user.email
     end
@@ -46,7 +50,9 @@ class Admin::UsersController < Admin::BaseController
   
   def activate
     if @user.pending?
+      @user.update_dashboard(:user_activated)
       @user.activate!
+      
       flash[:notice] = "Пользователь '%s' был успешно активирован" % @user.email
     else
       flash[:error] = "Пользователь '%s' уже заблокирован и не может заблокироваться снова" % @user.email
