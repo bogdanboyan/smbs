@@ -2,7 +2,7 @@ class DashboardObserver < ActiveRecord::Observer
   
   include ApplicationHelper
   
-  observe :mobile_campaign, :short_url
+  observe :mobile_campaign, :short_url, :account
   
   def after_save(record)
     Rails.logger.debug "** Enter to DashboardObserver after_save callback"

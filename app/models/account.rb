@@ -8,7 +8,7 @@ class Account < ActiveRecord::Base
   has_many :bar_codes
   
   validates_length_of :title, :minimum => 4
-
+  
   # init final state machine
   include AASM
   
@@ -30,6 +30,9 @@ class Account < ActiveRecord::Base
   AVAILABLE_TYPES = %w[business reseller]
 
 
+  include Dashboardable
+  
+  
   def is?(type)
     kind_of == type.to_s
   end

@@ -11,6 +11,11 @@ module Dashboardable
       :page_published,
       :page_drafted,
       :page_unpublished,
+    ],
+    
+    Account => [
+      :user_added,
+      :user_removed,
     ]
   }
   

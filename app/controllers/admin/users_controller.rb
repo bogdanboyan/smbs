@@ -18,7 +18,7 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def create
-    @user = User.new params[:user].merge(:account => @account)
+    @user = User.new(params[:user].merge(:account => @account))
     @user.generate_random_password
     
     if @user.save
