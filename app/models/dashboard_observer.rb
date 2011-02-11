@@ -6,9 +6,9 @@ class DashboardObserver < ActiveRecord::Observer
   
   
   def after_save(record)
-    Rails.logger.debug "** Enter to DashboardObserver after_save callback"
-    
     if record.transition
+      Rails.logger.debug "** Enter to DashboardObserver after_save callback"
+      
       tail = DashboardTail.new
       
       tail.account         = record.account
