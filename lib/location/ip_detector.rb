@@ -19,7 +19,7 @@ module Location
         
           click.located  = true if click.region && click.city
         else
-          Rails.logger.warn("Can't lookup ip: " + click.ip_address)
+          Rails.logger.debug "** Can't lookup info for ip address '#{click.ip_address}'"
         end
       
         click

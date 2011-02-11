@@ -36,6 +36,8 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def update
+    @campaign.update_dashboard(:content_changed)
+    
     is_updated = @campaign.update_attributes(params[:mbc]) and @campaign.map_document_model_images
     
     render :json => { :mbc_id => @campaign.id, :success => !!is_updated, :error => @campaign.errors.full_messages.first }

@@ -170,5 +170,23 @@ describe MobileCampaign do
       end
       
     end # end context
-  end #end describe
+    
+  end #end AASM describe
+  
+  describe "dashboardable" do
+    
+    before(:all) { @mobile_campaign = MobileCampaign.new }
+    
+    it { @mobile_campaign.should be_kind_of(Dashboardable) }
+    
+    specify "update_dashboard with invalid transition" do
+      lambda { @mobile_campaign.assert_transition_key(:yo!) }.should raise_error(RuntimeError)
+    end
+    
+    specify "update_dashboard with valid transition" do
+      lambda { @mobile_campaign.assert_transition_key(:content_changed) }.should_not raise_error
+    end
+    
+  end
+  
 end

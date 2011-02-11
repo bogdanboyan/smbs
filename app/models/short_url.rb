@@ -2,7 +2,7 @@ require 'shortener'
 
 class ShortUrl < ActiveRecord::Base
 
-  include Validations::Url
+  include Validations::Url, Dashboardable
 
   belongs_to :account
 
