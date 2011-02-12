@@ -51,7 +51,7 @@ describe User do
   
   describe "with require_non_blank_passwords" do
     before(:each) do
-      @user = User.create :email => 'rspec@yam.co.ua', :password => 'rspec!', :password_confirmation => 'rspec!'
+      @user = User.create(email: 'rspec@yam.co.ua', password: 'rspec!', password_confirmation: 'rspec!')
     end
 
     it { @user.require_non_blank_passwords.should be_nil }
@@ -83,13 +83,13 @@ describe User do
     it { @user.should be_kind_of(Dashboardable) }
     
     specify "update_dashboard with invalid transition" do
-      lambda { @user.assert_transition_key(:yo!) }.should raise_error(RuntimeError)
+      -> { @user.assert_transition_key(:yo!) }.should raise_error(RuntimeError)
     end
     
     specify "update_dashboard with valid transition" do
-      lambda { @user.assert_transition_key(:user_created)        }.should_not raise_error
-      lambda { @user.assert_transition_key(:user_updated)        }.should_not raise_error
-      lambda { @user.assert_transition_key(:user_activated)      }.should_not raise_error
+      -> { @user.assert_transition_key(:user_created)        }.should_not raise_error
+      -> { @user.assert_transition_key(:user_updated)        }.should_not raise_error
+      -> { @user.assert_transition_key(:user_activated)      }.should_not raise_error
     end
     
   end

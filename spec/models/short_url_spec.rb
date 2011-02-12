@@ -63,11 +63,11 @@ describe ShortUrl do
     it { @short_url.should be_kind_of(Dashboardable) }
     
     specify "update_dashboard with invalid transition" do
-      lambda { @short_url.assert_transition_key(:yo!) }.should raise_error(RuntimeError)
+      -> { @short_url.assert_transition_key(:yo!) }.should raise_error(RuntimeError)
     end
     
     specify "update_dashboard with valid transition" do
-      lambda { @short_url.assert_transition_key(:shortener_created)        }.should_not raise_error
+      -> { @short_url.assert_transition_key(:shortener_created)        }.should_not raise_error
     end
     
   end # end describe 'dashboardable'
