@@ -66,7 +66,7 @@ SMBS.Popup = {
       SMBS.Popup.countMsgLength(options.textarea_max_length);
     });
     SMBS.Popup.countMsgLength(options.textarea_max_length);
-    jQuery(document).trigger('on_rp_popup_open');
+    jQuery(document).trigger('on_popup_open');
   },
   
   close: function(){
