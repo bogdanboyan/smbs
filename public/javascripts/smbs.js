@@ -53,6 +53,8 @@ SMBS.Popup = {
   open: function(content, width, height, options){
     if(!options) options = {};
     
+    if(options.closeable == false) jQuery('#popupClose').hide()
+    
     // try to extract content from the storage
     // name is generally less than 200 chars, while content is more
     var storedContent = content;

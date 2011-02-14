@@ -64,7 +64,10 @@
   </div>
   
   <div class="mod">
-    <a href="#" onclick="SMBS.Popup.open('simple_popup', '450px', '350px');return false;">Открыть</a> всплывающее окно '450px', '350px'
+    <ul>
+      <li><a href="#" onclick="SMBS.Popup.open('simple_popup', '450px', '350px');return false;">Открыть</a> всплывающее окно '450px', '350px'</li>
+      <li><a href="#" onclick="SMBS.Popup.open('simple_popup', '450px', '350px', {closeable:false});return false;">Открыть</a> всплывающее окно (незакрывающее)'450px', '350px'</li>
+    </ul>
     <div id="simple_popup" class="popupContent" style="display:none;">
       <h1>Заголовок окна</h1>
       <p class="center">
