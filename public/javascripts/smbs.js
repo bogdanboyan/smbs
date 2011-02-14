@@ -126,7 +126,7 @@ SMBS.Bubble = {
   init: function(){
 
     // jQuery('body').click(function(){
-    //   RpBubble.close();
+    //   SMBS.Bubble.close();
     // });
     jQuery('body').append('<span class="bubble" style="display: none;">'+
                           '<span class="text"></span>'+
@@ -143,7 +143,7 @@ SMBS.Bubble = {
       jQuery('.bubble').addClass('error');
       jQuery('.bubble').css({'top':($(obj).offset().top - jQuery('.bubble').height() - 20), 'left':($(obj).offset().left - 20)}).show();
       jQuery(obj).bind('focus', function(){
-        RpBubble.close();
+        SMBS.Bubble.close();
         $(this).removeClass("error-field");
       });
     } else {
