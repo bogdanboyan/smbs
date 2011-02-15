@@ -25,6 +25,14 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   
+  # Turn on GC
+  config.before(:all) do
+    DeferredGarbageCollection.start
+  end
+  config.after(:all) do
+    DeferredGarbageCollection.reconsider
+  end
+  
   # Turn Database cleaner
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
