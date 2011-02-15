@@ -31,5 +31,8 @@
            <div class="grid_3 omega"><%= render :partial => "layouts/dashboard/#{current_user.account.kind_of}_dashboard_tools" %></div>
         </div>
        </div>
+       <% unless controller_path == 'welcome'-%>
+         <%= render :partial => 'layouts/unsupported_browser'-%>
+       <%end-%>
     </body>
 </html>

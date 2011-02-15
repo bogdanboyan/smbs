@@ -27,5 +27,8 @@
           <%= yield %>
         </div>
        </div>
+       <% unless controller_path == 'welcome'-%>
+         <%= render :partial => 'layouts/unsupported_browser'-%>
+       <%end-%>
     </body>
 </html>

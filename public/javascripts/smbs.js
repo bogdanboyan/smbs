@@ -118,7 +118,7 @@ SMBS.Popup = {
     }
   }
   
-};
+}; jQuery(document).ready(function() { SMBS.Popup.init(); });
 
 
 SMBS.Bubble = {
