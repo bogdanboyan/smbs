@@ -1,10 +1,14 @@
 custom {display: none;}
 
-/* header */
 .head {
   margin: 0 auto 20px auto;
   padding-top: 20px;
 }
+
+.footer {
+  margin-top: 20px;
+}
+
 
 /* navigation */
 .menu {float: right; }
