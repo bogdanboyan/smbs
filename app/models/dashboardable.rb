@@ -1,8 +1,12 @@
+# encoding: utf-8
 module Dashboardable
+  
+  autoload :Stringify, 'dashboardable_stringify'
   
   attr_accessor :transition
   
-  TRANSITION_LIST = {
+  TRANSITIONS = {
+    
     MobileCampaign => [ 
       :page_created,
       :content_changed,
@@ -30,11 +34,16 @@ module Dashboardable
     self.transition = transition
   end
   
+  def update_dashboard!(transition)
+    update_dashboard(transition) and self.save!
+  end
+  
   def has_transition_key?(transition)
-    TRANSITION_LIST[self.class].try(:include?, transition)
+    TRANSITIONS[self.class].try(:include?, transition)
   end
   
   def assert_transition_key(transition)
     raise "can't assert transition message '#{transition}' for '#{self.class}' class" unless has_transition_key?(transition)
   end
+  
 end

@@ -15,7 +15,7 @@ class DashboardObserver < ActiveRecord::Observer
       tail.user            = record.user        if record.respond_to? :user
       
       tail.attachable      = record
-      tail.transition_user = current_user
+      tail.transition_user = Rails.env.test? ? record.user : current_user
       tail.transition      = record.transition
       
       tail.save!
