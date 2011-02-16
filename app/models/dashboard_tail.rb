@@ -1,4 +1,4 @@
-require 'dashboardable_stringify'
+require 'dashboardable'
 
 class DashboardTail < ActiveRecord::Base
   

@@ -1,6 +1,8 @@
 # encoding: utf-8
 module Dashboardable
   
+  autoload :Stringify, 'dashboardable/stringify'
+  
   attr_accessor :transition
   
   TRANSITIONS = {

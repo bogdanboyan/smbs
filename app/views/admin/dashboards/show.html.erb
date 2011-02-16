@@ -1,3 +1,9 @@
 <h3>Панель управления: <%= current_user.account.title %></h3>
 
-<p>Раздел на стадии разработки</p>
+<p>Последние добавления</p>
+
+<ul>
+  <% @dashboard_tails.each do |tail| -%>
+    <li><%= stringify_admin_dashboard_item(tail) %></li>
+  <%end-%>
+</ul>
