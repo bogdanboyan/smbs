@@ -5,15 +5,13 @@ module Dashboardable
   
   describe Stringify do
     
-    before(:each) do
-      @user    = Factory.build(:user)
-      @account = Factory.build(:account)
-    end
-    
     context 'MobileCampaign' do
       
       before(:each) do
+        @account = Factory.build(:account)
+        @user    = Factory.build(:user)
         @short_url       = Factory.build(:short_url)
+        
         @mobile_campaign = Factory.build(:mobile_campaign, :user => @user, :account => @account, :short_url => @short_url)
       end
       
@@ -67,6 +65,58 @@ module Dashboardable
       end
       
     end # context 'MobileCampaign'
+    
+    context 'User' do
+      
+      before(:each) do 
+        @user    = Factory.build(:user, :account => Factory.build(:account))
+      end
+      
+      it 'should stringify :user_created' do
+        strf, vars = dashboard_tail_stringify_for(@user, :user_created)
+        
+        strf.should == '%s -> %s добавил пользователя %s'
+        vars.should have(3).items
+      end
+      
+      it 'should stringify :user_updated' do
+        strf, vars = dashboard_tail_stringify_for(@user, :user_updated)
+        
+        strf.should == '%s -> %s изменил информацию о пользователе %s'
+        vars.should have(3).items
+      end
+      
+      it 'should stringify :user_activated' do
+        strf, vars = dashboard_tail_stringify_for(@user, :user_activated)
+        
+        strf.should == '%s -> %s активировал свой аккаунт'
+        vars.should have(2).items
+      end
+      
+      it 'should stringify :user_activated (extended)' do
+        @user.last_login_at = 2.days.from_now
+        strf, vars = dashboard_tail_stringify_for(@user, :user_activated)
+        
+        strf.should == '%s -> %s активировал свой аккаунт и логинился %s назад'
+        vars.should have(3).items
+      end
+      
+    end # context 'User'
+    
+    context 'ShortUrl' do
+      
+      before(:each) do 
+        @short_url = Factory.build(:short_url, :account => Factory.build(:account), :user => Factory.build(:user))
+      end
+      
+      it 'should stringify :shortener_created' do
+        strf, vars = dashboard_tail_stringify_for(@short_url, :shortener_created)
+        
+        strf.should == '%s -> %s создал короткий адрес %s для %s'
+        vars.should have(4).items
+      end
+      
+    end # context 'ShortUrl'
     
     
     # test helper methods

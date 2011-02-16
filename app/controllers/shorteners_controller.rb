@@ -18,9 +18,11 @@ class ShortenersController < ApplicationController
       @short_url.short = Shortener.get_basemade_value(ShortSequence.create.id)
       
       @short_url.update_dashboard(:shortener_created)
-
-      @short_url.save
-      current_account.short_urls << @short_url
+      
+      @short_url.account = current_account
+      @short_url.user    = current_user
+      
+      @short_url.save!
 
       result = {:html=> render_to_string(:partial=> 'short_url', :object=> @short_url)}
     else

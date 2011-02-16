@@ -12,10 +12,12 @@ class DashboardObserver < ActiveRecord::Observer
       tail = DashboardTail.new
       
       tail.account         = record.account
-      tail.user            = record.user        if record.respond_to? :user
+      
+      record.kind_of?(User) ? tail.user = record : tail.user = record.user
       
       tail.attachable      = record
-      tail.transition_user = Rails.env.test? ? record.user : current_user
+      # Rails.env.test? added for dashboardable_stringify_spec.rb
+      tail.transition_user = Rails.env.test? ? tail.user : current_user
       tail.transition      = record.transition
       
       tail.save!

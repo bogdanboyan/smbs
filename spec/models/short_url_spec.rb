@@ -32,6 +32,9 @@ describe ShortUrl do
     
     it {should belong_to(:account)              }
     it {should have_db_index(:account_id)       }
+    
+    it {should belong_to(:user)                 }
+    it {should have_db_index(:user_id)          }
   end
   
   describe "with AASM" do
