@@ -1,6 +1,5 @@
 require 'yaml'
 
-require 'active_support/basic_object'
 require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/core_ext/hash/deep_merge'
 
@@ -31,31 +30,16 @@ require 'active_support/core_ext/hash/deep_merge'
 # > Global.smtp_settings.port
 #
 module Global
-  class Configuration < ::ActiveSupport::BasicObject
+  class Configuration
+    
+    attr_reader :hash
+    delegate :to_hash, :key?, :[], :inspect, :to => :hash
+    
     def initialize(hash)
-      @hash = hash
-    end
-
-    def to_hash
-      @hash
-    end
-
-    def key?(key)
-      @hash.key?(key)
-    end
-
-    def [](key)
-      @hash[key]
+      @hash = hash.freeze
     end
     
-    def []=(key, value)
-      @hash[key] = value
-    end
     
-    def inspect
-      @hash.inspect
-    end
-
     protected
 
     def method_missing(method, *args, &block)
