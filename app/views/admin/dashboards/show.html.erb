@@ -2,6 +2,15 @@
 
 <p>Последние добавления</p>
 
+<div class="block-center">
+<ul class="action-list">
+  <li class="item"><%= admin_dashboard_items_filter_link "Сегодня", 0.day.ago %></li>
+  <li class="item"><%= admin_dashboard_items_filter_link "Вчера", 1.days.ago %></li>
+  <li class="item"><%= admin_dashboard_items_filter_link "Позавчера", 2.days.ago %></li>
+</ul>
+</div>
+
+
 <ul>
   <% @dashboard_tails.each do |tail| -%>
     <li><%== clickable_dashboard_item(tail, :for => :admin) %></li>
