@@ -11,6 +11,8 @@ class UserActivationsController < ApplicationController
     @user.require_non_blank_passwords = true
     @user.password                    = params[:user][:password]
     @user.password_confirmation       = params[:user][:password_confirmation]
+    
+    @user.update_dashboard(:user_activated)
 
     if @user.save
       flash[:notice] = "Аккаунт был успешно активирован. Теперь вы можете использовать свой email и пароль"

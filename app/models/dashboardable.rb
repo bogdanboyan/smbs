@@ -38,6 +38,10 @@ module Dashboardable
     update_dashboard(transition) and self.save!
   end
   
+  def dashboard_updated
+    self.transition = nil
+  end
+  
   def has_transition_key?(transition)
     TRANSITIONS[self.class].try(:include?, transition)
   end

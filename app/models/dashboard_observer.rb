@@ -17,10 +17,10 @@ class DashboardObserver < ActiveRecord::Observer
       
       tail.attachable      = record
       # Rails.env.test? added for dashboardable_stringify_spec.rb
-      tail.transition_user = Rails.env.test? ? tail.user : current_user
+      tail.transition_user = Rails.env.test? ? tail.user : (current_user || tail.user)
       tail.transition      = record.transition
       
-      tail.save!
+      tail.save! and record.dashboard_updated
     else
       Rails.logger.debug "** Skip DashboardObserver for instance '#{record.inspect}'"
       

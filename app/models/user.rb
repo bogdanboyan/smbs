@@ -50,7 +50,11 @@ class User < ActiveRecord::Base
     self.password_confirmation = random_password
   end
 
-
+  def title
+    full_name || email
+  end
+  
+  
   protected
   
   def ignore_blank_passwords?

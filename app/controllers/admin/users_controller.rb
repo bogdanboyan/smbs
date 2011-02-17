@@ -50,12 +50,10 @@ class Admin::UsersController < Admin::BaseController
   
   def activate
     if @user.pending?
-      @user.update_dashboard(:user_activated)
       @user.activate!
-      
       flash[:notice] = "Пользователь '%s' был успешно активирован" % @user.email
     else
-      flash[:error] = "Пользователь '%s' уже заблокирован и не может заблокироваться снова" % @user.email
+      flash[:error] = "Пользователь '%s' уже активирован и не может активироваться повторно" % @user.email
     end
     
     redirect_to settings_admin_account_path(@account)
@@ -66,7 +64,7 @@ class Admin::UsersController < Admin::BaseController
       @user.disable!
       flash[:notice] = "Пользователь '%s' был заблокирован" % @user.email
     else
-      flash[:error] = "Пользователь '%s' уже активирован и не может активироваться повторно" % @user.email
+      flash[:error] = "Пользователь '%s' уже заблокирован и не может заблокироваться снова" % @user.email
     end
     
     redirect_to settings_admin_account_path(@account)

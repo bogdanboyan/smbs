@@ -4,6 +4,6 @@
 
 <ul>
   <% @dashboard_tails.each do |tail| -%>
-    <li><%= stringify_admin_dashboard_item(tail) %></li>
+    <li><%== clickable_dashboard_item(tail, :for => :admin) %></li>
   <%end-%>
 </ul>

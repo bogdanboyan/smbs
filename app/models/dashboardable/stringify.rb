@@ -52,19 +52,19 @@ module Dashboardable
       
         case tail.transition.to_sym
         when :user_created
-          trnf = 'добавил пользователя %s'
-          vars << tail.attachable
+          trnf = 'добавил пользователя %s (%s)'
+          vars << tail.attachable << tail.attachable.account
         
         when :user_updated
-          trnf = 'изменил информацию о пользователе %s'
-          vars << tail.attachable
+          trnf = 'изменил информацию о пользователе %s (%s)'
+          vars << tail.attachable << tail.attachable.account
         
         when :user_activated
           trnf = 'активировал свой аккаунт'
           
-          if last_login_at = tail.attachable.last_login_at
-            trnf + ' и логинился %s назад'
-            vars << time_ago_in_words(last_login_at)
+          if current_login_at = tail.attachable.current_login_at
+            trnf = trnf + ' и логинился %s назад'
+            vars << time_ago_in_words(current_login_at)
           end
         end
       

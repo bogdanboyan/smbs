@@ -75,15 +75,15 @@ module Dashboardable
       it 'should stringify :user_created' do
         strf, vars = dashboard_tail_stringify_for(@user, :user_created)
         
-        strf.should == '%s -> %s добавил пользователя %s'
-        vars.should have(3).items
+        strf.should == '%s -> %s добавил пользователя %s (%s)'
+        vars.should have(4).items
       end
       
       it 'should stringify :user_updated' do
         strf, vars = dashboard_tail_stringify_for(@user, :user_updated)
         
-        strf.should == '%s -> %s изменил информацию о пользователе %s'
-        vars.should have(3).items
+        strf.should == '%s -> %s изменил информацию о пользователе %s (%s)'
+        vars.should have(4).items
       end
       
       it 'should stringify :user_activated' do
