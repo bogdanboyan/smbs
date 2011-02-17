@@ -5,6 +5,11 @@ class AddUserIdToShortUrls < ActiveRecord::Migration
     
     # remove old stuff
     remove_column :short_urls, :campaign_id
+    
+    # migrate all short_urls without user reference
+    ShortUrl.where(:user_id => nil).each do |short_url|
+      short_url.update_attributes(:user => short_url.account.users.first) if short_url.account
+    end
   end
 
   def self.down
