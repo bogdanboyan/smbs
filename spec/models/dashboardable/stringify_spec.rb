@@ -69,7 +69,7 @@ module Dashboardable
     context 'User' do
       
       before(:each) do 
-        @user    = Factory.build(:user, :account => Factory.build(:account))
+        @user    = Factory.create(:user, :account => Factory.build(:account))
       end
       
       it 'should stringify :user_created' do
@@ -94,7 +94,7 @@ module Dashboardable
       end
       
       it 'should stringify :user_activated (extended)' do
-        @user.last_login_at = 2.days.from_now
+        @user.update_attribute 'current_login_at', 2.days.ago
         strf, vars = dashboard_tail_stringify_for(@user, :user_activated)
         
         strf.should == '%s -> %s активировал свой аккаунт и логинился %s назад'
