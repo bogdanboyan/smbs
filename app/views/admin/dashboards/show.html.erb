@@ -10,9 +10,44 @@
 </ul>
 </div>
 
+<script>
+  jQuery(document).ready(function() {
+    var page = 1,
+        path = '<%== more_activity_admin_dashboard_path(page: 0, select_date: params[:select_date]) %>'
+        
+    var update_more_activity_path = function() {
+      jQuery('#more_activity').attr('href', path.replace(/\d+/, ++page))
+    }
+    
+    update_more_activity_path()
+    
+    jQuery('#more_activity').bind("ajax:loading", function(xhr) {
+      
+      jQuery('.ajax_pagination').addClass('loading')
+      
+    }).bind("ajax:complete", function(xhr) {
+      
+      jQuery('.ajax_pagination').removeClass('loading')
+      
+    }).bind("ajax:success", function(event, data, status, xhr) {
+      
+      if(data.html) {
+        jQuery('.activity_feeds').append(data.html)
+        update_more_activity_path()
+      } else {
+        jQuery('#more_activity').hide()
+      }
+      
+    })
+  })
+</script>
 
-<ul>
-  <% @dashboard_tails.each do |tail| -%>
-    <li><%== clickable_dashboard_item(tail, :for => :admin) %></li>
-  <%end-%>
-</ul>
+<div class="activity_feeds">
+  <%= render :partial => 'dashboard_tail', :collection => @dashboard_tails %>
+</div>
+
+<% unless @dashboard_tails.empty? -%>
+  <div class="ajax_pagination">
+    <%= link_to "Больше", "#", :id => :more_activity, :remote => true, 'data-type' => :json %>
+  </div>
+<% end -%>

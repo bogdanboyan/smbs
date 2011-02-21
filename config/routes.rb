@@ -42,7 +42,9 @@ Smbs::Application.routes.draw do
   # ==================
   namespace :admin do
 
-    resource  :dashboard
+    resource  :dashboard do
+      collection   { get :more_activity }
+    end
 
     resources :invites
     
