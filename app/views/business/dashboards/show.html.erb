@@ -3,7 +3,5 @@
 <p>Последние добавления</p>
 
 <ul>
-  <% @dashboard_tails.each do |tail| -%>
-    <li><%== clickable_dashboard_item(tail, :for => :customer) %></li>
-  <%end-%>
+  <%= render :partial => 'dashboard_tail', :collection => @dashboard_tails %>
 </ul>
