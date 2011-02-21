@@ -22,7 +22,7 @@ class DashboardObserver < ActiveRecord::Observer
       
       tail.save! and record.dashboard_updated
     else
-      Rails.logger.debug "** Skip DashboardObserver for instance '#{record.inspect}'"
+      Rails.logger.debug "** DashboardObserver skipped"
       
       true
     end
