@@ -35,9 +35,3 @@
   display: table-cell;
   padding: 3px 6px;
 }
-
-.pretend-row {
-  padding: 5px 5px 10px 30px;
-  background-color: #FDF3DE;
-  -moz-border-radius: 5px 5px 5px 5px;
-}

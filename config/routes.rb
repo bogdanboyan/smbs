@@ -69,7 +69,9 @@ Smbs::Application.routes.draw do
   end
   
   namespace :business do
-    resource :dashboard
+    resource :dashboard do
+      collection   { get :more_activity }
+    end
   end
   
   

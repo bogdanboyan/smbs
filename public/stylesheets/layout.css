@@ -7,6 +7,13 @@ custom {display: none;}
 }
 
 /* navigation */
+
+.pretend-row {
+  padding: 5px 5px 10px 30px;
+  background-color: #FDF3DE;
+  -moz-border-radius: 5px 5px 5px 5px;
+}
+
 .menu {float: right; }
 
 .menu ul { 
@@ -29,6 +36,7 @@ custom {display: none;}
 
 .menu a:hover {text-decoration: underline;}
 .menu .active a {}
+
 
 /* notice */
 .status_bar {
