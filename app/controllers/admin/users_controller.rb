@@ -23,16 +23,16 @@ class Admin::UsersController < Admin::BaseController
     
     if @user.save
       @user.invite!
-      flash[:notice] = "Письмо активации аккаунта было отправлено по адресу '%s'" % @user.email
+      flash[:notice] = "Письмо активации аккаунта было отправлено пользователю на адрес '%s'" % @user.email
     end
-    respond_with @user, :location => admin_account_users_path(@account)
+    respond_with @user, :location => admin_account_users_url(@account)
   end
   
   def update
     if @user.update_attributes params[:user]
       flash[:notice] = "Пользователь с логином '%s' успешно изменен" % @user.email
     end
-    respond_with @user, :location => admin_account_users_path(@account)
+    respond_with @user, :location => admin_account_users_url(@account)
   end
   
   def invite
@@ -41,7 +41,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:notice] = "Приглашение было повторно отправлено на адрес '%s'" % @user.email
     end
     
-    redirect_to settings_admin_account_path(@account)
+    redirect_to settings_admin_account_url(@account)
   end
   
   def activate
@@ -52,7 +52,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "Пользователь '%s' уже заблокирован и не может заблокироваться снова" % @user.email
     end
     
-    redirect_to settings_admin_account_path(@account)
+    redirect_to settings_admin_account_url(@account)
   end
   
   def disable
@@ -63,7 +63,7 @@ class Admin::UsersController < Admin::BaseController
       flash[:error] = "Пользователь '%s' уже активирован и не может активироваться повторно" % @user.email
     end
     
-    redirect_to settings_admin_account_path(@account)
+    redirect_to settings_admin_account_url(@account)
   end
 
 
