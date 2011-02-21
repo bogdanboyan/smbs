@@ -18,14 +18,14 @@ module Dashboardable
       it 'should stringify :page_created' do
         strf, vars = dashboard_tail_stringify_for(@mobile_campaign, :page_created)
         
-        strf.should == '%s -> %s создал мобильную страаницу "%s"'
+        strf.should == '%s -> %s создал мобильную страницу "%s"'
         vars.should have(3).items
       end
       
       it 'should stringify :content_changed' do
         strf, vars = dashboard_tail_stringify_for(@mobile_campaign, :content_changed)
         
-        strf.should == '%s -> %s внес изменения для мобильной страаницы "%s"'
+        strf.should == '%s -> %s внес изменения для мобильной страницы "%s"'
         vars.should have(3).items
       end
       
@@ -75,7 +75,7 @@ module Dashboardable
       it 'should stringify :user_created' do
         strf, vars = dashboard_tail_stringify_for(@user, :user_created)
         
-        strf.should == '%s -> %s добавил пользователя %s (%s)'
+        strf.should == '%s -> %s добавил пользователя %s для аккаунта %s'
         vars.should have(4).items
       end
       

@@ -14,11 +14,11 @@ module Dashboardable
       
         case tail.transition.to_sym
         when :page_created
-          trnf = 'создал мобильную страаницу "%s"'
+          trnf = 'создал мобильную страницу "%s"'
           vars << tail.attachable
         
         when :content_changed
-          trnf = 'внес изменения для мобильной страаницы "%s"'
+          trnf = 'внес изменения для мобильной страницы "%s"'
           vars << tail.attachable
         
         when :short_url_assigned 
@@ -52,7 +52,7 @@ module Dashboardable
       
         case tail.transition.to_sym
         when :user_created
-          trnf = 'добавил пользователя %s (%s)'
+          trnf = 'добавил пользователя %s для аккаунта %s'
           vars << tail.attachable << tail.attachable.account
         
         when :user_updated
