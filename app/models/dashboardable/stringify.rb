@@ -82,16 +82,30 @@ module Dashboardable
         end
         
         ["%s -> %s #{trnf}", vars]
+      end,
+      
+      BarCode => lambda do |tail|
+        
+        vars = [tail.transition_user.account, tail.transition_user]
+        
+        case tail.transition.to_sym
+        when :qr_code_created
+          trnf = 'создал QR код который содержит %s'
+          vars << tail.attachable
+          puts tail.attachable.inspect
+        end
+        
+        ["%s -> %s #{trnf}", vars]
       end
     }
   
   
     def stringify
-      STRFTRANSITION[attachable.class].call(self) if can_stringify?
+      STRFTRANSITION[STRFTRANSITION.keys.find { |label| attachable.kind_of?(label) }].call(self) if can_stringify?
     end
   
     def can_stringify?
-      Dashboardable::TRANSITIONS[attachable.class].try(:include?, transition.to_sym) and STRFTRANSITION[attachable.class]
+      Dashboardable::TRANSITIONS[Dashboardable::TRANSITIONS.keys.find { |label| attachable.kind_of?(label) }].try(:include?, transition.to_sym) #and STRFTRANSITION[attachable.class]
     end
   end # module Stringify
 end

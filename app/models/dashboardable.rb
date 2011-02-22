@@ -25,6 +25,10 @@ module Dashboardable
     
     ShortUrl => [
       :shortener_created,
+    ],
+    
+    BarCode => [
+      :qr_code_created
     ]
   }
   
@@ -43,7 +47,7 @@ module Dashboardable
   end
   
   def has_transition_key?(transition)
-    TRANSITIONS[self.class].try(:include?, transition)
+    TRANSITIONS[TRANSITIONS.keys.find { |label| self.kind_of?(label) }].try(:include?, transition)
   end
   
   def assert_transition_key(transition)

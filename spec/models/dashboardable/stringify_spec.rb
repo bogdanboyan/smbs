@@ -118,6 +118,23 @@ module Dashboardable
       
     end # context 'ShortUrl'
     
+    context 'BarCode' do
+      
+      [
+        TextCode.new(:text =>'simple text', :user => Factory.build(:user), :account => Factory.build(:account)), 
+        SmsCode.new(:tel=>'+380978053300', :user => Factory.build(:user), :account => Factory.build(:account)), 
+        LinkCode.new(:origin=>'yandex.ru', :user => Factory.build(:user), :account => Factory.build(:account)),
+      ].each do |qr_code|
+        it "should stringify :qr_code_created for #{qr_code.class.name}" do
+          strf, vars = dashboard_tail_stringify_for(qr_code, :qr_code_created)
+
+          strf.should == '%s -> %s создал QR код который содержит %s'
+          vars.should have(3).items
+        end
+      end
+      
+    end # context 'BarCode
+    
     
     # test helper methods
     def dashboard_tail_stringify_for(instanse, transition)

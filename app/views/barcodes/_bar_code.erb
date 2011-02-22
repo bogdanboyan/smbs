@@ -5,7 +5,7 @@
   <div class="info">
     <p class="title">
       <span><%= qr_code_title(bar_code) %></span>
-      <p><%= raw qr_code_description(bar_code) %></p>
+      <p><%== qr_code_annotation(bar_code) %></p>
       <ul class="history_actions">
         <li><%= link_to "Cкачать изображение", download_barcode_path(bar_code) %></li>
         <li><%= link_to "Удалить", "#", :class => 'remove' %></li>

@@ -77,6 +77,18 @@ module DashboardHelper
       map_short_url_vars_for_admin
     end
     
+    def map_bar_code_vars_for_admin
+      qr_code = @vars[2] and @vars[2] = qr_code_annotation(qr_code)
+    end
+    
+    def map_link_code_vars_for_admin;    map_bar_code_vars_for_admin; end
+    def map_sms_code_vars_for_admin;     map_bar_code_vars_for_admin; end
+    def map_text_code_vars_for_admin;    map_bar_code_vars_for_admin; end
+    
+    def map_link_code_vars_for_customer; map_bar_code_vars_for_admin; end
+    def map_sms_code_vars_for_customer;  map_bar_code_vars_for_admin; end
+    def map_text_code_vars_for_customer; map_bar_code_vars_for_admin; end
+    
     
     private
     

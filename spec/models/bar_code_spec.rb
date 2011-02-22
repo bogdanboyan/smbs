@@ -27,6 +27,23 @@ describe BarCode do
     file_path.should == "assets/barcodes/#{qr.id}/#{qr.id}.thumbnail.png"
     %w(preview thumbnail).each { |style| File.exist?("public/assets/barcodes/#{qr.id}/#{qr.id}." + style + ".png").should be_true }
   end
+  
+  describe "dashboardable" do
+    
+    before(:all) { @qr_code = BarCode.new }
+    
+    it { @qr_code.should be_kind_of(Dashboardable) }
+    
+    specify "update_dashboard with invalid transition" do
+      -> { @qr_code.assert_transition_key(:yo!) }.should raise_error(RuntimeError)
+    end
+    
+    specify "update_dashboard with valid transition" do
+      -> { @qr_code.assert_transition_key(:qr_code_created)      }.should_not raise_error
+    end
+    
+  end
+  
 end
 
 describe SmsCode do

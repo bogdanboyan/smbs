@@ -2,7 +2,7 @@ class DashboardObserver < ActiveRecord::Observer
   
   include ApplicationHelper
   
-  observe :mobile_campaign, :user, :short_url
+  observe :mobile_campaign, :user, :short_url, :link_code, :sms_code, :text_code
   
   
   def after_save(record)
@@ -22,7 +22,7 @@ class DashboardObserver < ActiveRecord::Observer
       
       tail.save! and record.dashboard_updated
     else
-      Rails.logger.debug "** DashboardObserver skipped"
+      Rails.logger.debug "** DashboardObserver skipped for #{record.class.name} class"
       
       true
     end
