@@ -92,7 +92,6 @@ module Dashboardable
         when :qr_code_created
           trnf = 'создал QR код который содержит %s'
           vars << tail.attachable
-          puts tail.attachable.inspect
         end
         
         ["%s -> %s #{trnf}", vars]
