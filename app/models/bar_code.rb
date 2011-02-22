@@ -1,6 +1,7 @@
 class BarCode < ActiveRecord::Base
   
   belongs_to :account
+  belongs_to :user
   
   before_save  :encode_code_source
   after_create :save_image_boundle
