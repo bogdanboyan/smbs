@@ -33,15 +33,15 @@ gem 'nokogiri',               '1.4.4'
 gem 'patron',                 '0.4.9'
 
 group :test do
-  gem 'rspec',                '2.2.0'
-  gem 'rspec-rails',          '2.2.1'
-  gem "shoulda",              '2.11.3'
-  gem 'factory_girl',         '1.3.2'
-  gem 'cucumber',             '0.8.5'
-  gem 'cucumber-rails',       '0.3.2'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'factory_girl'
+  gem 'cucumber'
+  gem 'cucumber-rails'
   gem 'selenium-webdriver',   '0.1.0'
   gem 'capybara',             '0.3.9'
-  gem 'database_cleaner',     '0.6.0'
+  gem 'database_cleaner'
 end
 
 group :production do
