@@ -1,4 +1,21 @@
-/* builder */
+/* builder tools */
+
+#document_partials ul li {
+  list-style: none;
+  float: left;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 15px 10px 0 0;
+  margin-right: 10px;
+  margin-top: 15px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border: 1px solid #CCCCCC;
+  font-weight: bold;
+  padding: 6px 7px 4px;
+  color: #02627A;
+}
+
 
 a {
   color: #02627A;
@@ -27,12 +44,17 @@ a:hover {
   text-align: center;
 }
 
+
+/* document partials */
+
 .document_partial {
   margin: 10px 0;
-  border: 1px solid #999;
-  padding: 10px;
-  background-color: #ccc;
+  padding: 1em;
   overflow: hidden;
+  -moz-border-radius: 1em 1em 1em 1em;
+  -webkit-border-radius: 1em 1em 1em 1em;
+  background: none repeat scroll 0 0 #F9F9F9;
+  border: 1px solid #E4E4E4;
 }
 
 .toolbar {
@@ -55,12 +77,16 @@ a:hover {
 
 .text_container {
 	width: 100%;
-/*  height: 125px;*/
 }
 
 .text_container textarea {
-	height: 125px;
-	resize: none;
+  height: 125px;
+  resize: none;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  color: #000000;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  padding: 6px 0px;
 }
 
 
@@ -70,6 +96,14 @@ a:hover {
 
 .header_container input[type="text"] {
   width: 100%;
+  font-weight: bold;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #DDDDDD;
+  color: #000000;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 1.3em;
+  line-height: 1.8em;
+  padding: 6px 0px;
 }
 
 
@@ -135,26 +169,12 @@ a:hover {
 	left: 5px;
 }
 
-#document_partials ul li {
-	list-style: none;
-  float: left;
-	background-color: #555;
-	cursor: pointer;
-	padding: 5px 10px;
-	margin: 15px 10px 0 0;
-	margin-right: 10px;
-	margin-top: 15px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	-webkit-box-shadow: 5px 5px 8px #888;
-	color: #fff;
-}
-
 .ui-slider {
   clear: left;
 }
 
-/* gallery widget */
+
+/* image gallery widget */
 
 .widget-container {
   position: fixed;
@@ -183,7 +203,8 @@ a:hover {
   padding-right: 78px;
 }
 
-/* preview */
+
+/* preview (settings) */
 
 #resolutions {
   cursor: pointer;
