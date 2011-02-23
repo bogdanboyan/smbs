@@ -75,6 +75,10 @@ a:hover {
 	cursor: pointer;
 }
 
+.element_resizer {
+  cursor: move;
+}
+
 .text_container {
 	width: 100%;
 }
