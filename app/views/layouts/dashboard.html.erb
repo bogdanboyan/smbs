@@ -3,11 +3,17 @@
     <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <title>Ямко: Панель управления</title>
-      <%= stylesheet_link_tag 'reset', '960', 'layout', 'content', 'libraries', 'modules', :cache => true %>
+      
+      <%= stylesheet_link_tag 'reset', '960', 
+        'layout', 'content', 'libraries', 'modules',
+        'popup', 'bubble',
+         :cache => true %>
+         
       <%= javascript_include_tag 'vendor/jquery-min', 'vendor/rails', 'smbs', :cache => true %>
       <%= javascript_include_tag 'admin/locations', :cache => 'all_dashboard' %>
       
       <%= csrf_meta_tag %>
+      
       <%= yield :head %>
     </head>
     <body>
@@ -24,6 +30,13 @@
            </div>
            <div class="grid_3 omega"><%= render :partial => "layouts/dashboard/#{current_user.account.kind_of}_dashboard_tools" %></div>
         </div>
+       </div>
+       <% unless controller_path == 'welcome'-%>
+         <%= render :partial => 'layouts/unsupported_browser'-%>
+       <%end-%>
+       <div class="clear">&nbsp;</div>
+       <div class="container_12 footer posC">
+        <span class="hint">&copy; <%= Time.now.year %> Ямко (proof of concept). Служба поддержки: support@yam.co.ua</span>
        </div>
     </body>
 </html>

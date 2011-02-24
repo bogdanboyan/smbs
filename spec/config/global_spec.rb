@@ -2,27 +2,21 @@ require 'spec_helper'
 
 describe Global do
   
-  context 'with development env' do
+  describe 'development env' do
     
-    before(:all) { @global = Global.configuration }
+    subject {  Global.configuration('development') }
     
-    specify 'hosts' do
-      @global.host.should      == 'yamco.local'
-      @global.host_mobi.should == 'yamco.mobi.local'
-    end
+    its('host')      { should == 'yamco.local'      }
+    its('host_mobi') { should == 'yamco.mobi.local' }
+    
   end
   
-  context 'with production env' do
+  describe 'production env' do
     
-    before(:all) do 
-      Global.reload!('production')
-      @global = Global.configuration
-    end
+    subject { @configuration ||= Global.reload!('production') }
     
-    specify 'hosts' do
-      @global.host.should      == 'yam.co.ua'
-      @global.host_mobi.should == 'yamco.mobi'
-    end
+    its('host')      { should == 'yam.co.ua'  }
+    its('host_mobi') { should == 'yamco.mobi' }
     
   end
 end

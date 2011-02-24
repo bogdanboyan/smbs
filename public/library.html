@@ -9,6 +9,12 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/960.css" />
   <link rel="stylesheet" type="text/css" href="/stylesheets/libraries.css" />
   <link rel="stylesheet" type="text/css" href="/stylesheets/modules.css" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/popup.css" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/bubble.css" />
+  
+  <script type="text/javascript" src="/javascripts/vendor/jquery-min.js"></script>
+  <script type="text/javascript" src="/javascripts/vendor/rails.js"></script>
+  <script type="text/javascript" src="/javascripts/smbs.js"></script>
   
   <style type="text/css">
     .mod { margin:20px; }
@@ -55,6 +61,40 @@
   <div class="mod">
     <form class="button_to" action="#" method="post"><div><input type="hidden" value="put" name="_method"><input type="submit" value="Опубликовать"><input type="hidden" value="qGkLubi+hDOMgxvyUl/oQs32rPQbZdNkdfFUpNLe3no=" name="authenticity_token"></div></form>
     <form class="button_to" action="#" method="post"><div><input type="hidden" value="put" name="_method"><input type="submit" value="Опубликовать"><input type="hidden" value="qGkLubi+hDOMgxvyUl/oQs32rPQbZdNkdfFUpNLe3no=" name="authenticity_token"></div></form>
+  </div>
+  
+  <div class="mod">
+    <h3>Модальные окна</h3>
+    <ul>
+      <li><a href="#" onclick="SMBS.Popup.open('simple-popup', '450px', '350px');return false;">Открыть</a> всплывающее окно '450px', '350px'</li>
+      <li><a href="#" onclick="SMBS.Popup.open('simple-popup', '450px', '350px', {closeable:false});return false;">Открыть</a> всплывающее окно (незакрывающее)'450px', '350px'</li>
+    </ul>
+    <div id="simple-popup" class="popupContent" style="display:none;">
+      <h1>Заголовок окна</h1>
+      <p class="center">
+        This is a paragraph. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <ul>
+        <li>элемент списока</li>
+        <li>элемент списока</li>
+        <li>элемент списока</li>
+      </ul>
+      <div class="popup-footer">
+          <span class="additional-link"><a class="button white" href="#" onclick="return false;">Подтвердить</a> или <a href="#" onclick="SMBS.Popup.close();return false;">Отменить</a></span>
+      </div>
+    </div>
+    
+    <script>SMBS.Popup.init();</script>
+  </div>
+  
+  <div class="mod">
+    <h3>Пузырьки</h3>
+    <ul>
+      <li><a href="#" onclick="SMBS.Bubble.open(this, ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'); return false;">Открыть</a></li>
+      <li><a href="#" onclick="SMBS.Bubble.open(this, ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'error'); return false;">Открыть (Ошибка)</a></li>
+    </ul>
+    
+    <script>SMBS.Bubble.init();</script>
   </div>
   
 </body>
