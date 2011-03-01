@@ -3,7 +3,7 @@ class CreateLikeIts < ActiveRecord::Migration
     create_table :like_its do |t|
       t.integer :mobile_campaign_id
       t.integer :clicks_count
-      t.string  :label
+      t.string  :tag
       t.timestamps
     end
     
@@ -16,8 +16,8 @@ class CreateLikeIts < ActiveRecord::Migration
 
   def self.down
     remove_column :like_its, :mobile_campaign_id
-    remove_column :like_its, :clicks_cache
-    remove_column :like_its, :label
+    remove_column :like_its, :clicks_count
+    remove_column :like_its, :tag
     
     remove_index :like_its, :mobile_campaign_id
     

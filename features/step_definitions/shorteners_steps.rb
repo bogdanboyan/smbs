@@ -48,7 +48,7 @@ end
   short_url.clicks_count.should == 0
 end
 
-Допустим /^я не перехожу перехожу по ссылкам перенаправления$/ do
+Допустим /^я не перехожу по ссылкам перенаправления$/ do
   driver = page.driver
   def driver.follow_redirects!
    false

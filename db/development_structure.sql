@@ -78,7 +78,7 @@ CREATE TABLE `clicks` (
   `ip_address` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `referer` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
   `user_agent_id` int(11) NOT NULL DEFAULT '1',
-  `short_url_id` int(11) NOT NULL,
+  `short_url_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `country_id` int(11) DEFAULT NULL,
@@ -138,7 +138,7 @@ CREATE TABLE `like_its` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mobile_campaign_id` int(11) DEFAULT NULL,
   `clicks_count` int(11) DEFAULT NULL,
-  `label` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tag` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -350,3 +350,5 @@ INSERT INTO schema_migrations (version) VALUES ('20110221184634');
 INSERT INTO schema_migrations (version) VALUES ('20110222132101');
 
 INSERT INTO schema_migrations (version) VALUES ('20110301191227');
+
+INSERT INTO schema_migrations (version) VALUES ('20110301214721');
