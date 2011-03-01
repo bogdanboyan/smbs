@@ -66,7 +66,7 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def ids_with_images
-    render :json => { :ids => MobileCampaign.all.delete_if {|i| i.asset_files.only_images.empty? }.map(&:id) }
+    render :json => { :ids => current_account.mobile_campaigns.delete_if {|i| i.asset_files.only_images.empty? }.map(&:id) }
   end
   
   def generate_short_url
