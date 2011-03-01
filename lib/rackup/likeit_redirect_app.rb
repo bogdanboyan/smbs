@@ -2,7 +2,7 @@
 module Rackup
   class LikeitRedirectApp < AbstractClickableApp
     
-    def redirect
+    def capture
       
       location ||= mobile_app_root_path
       
