@@ -17,6 +17,8 @@ module Rackup
       "http://%s%s" % [ Global.host_mobi, @@url_map[named_route] ]
     end
     
+    def mobile_app_root_path; url_for(nil); end
+    
     def set_headers(options)
       options.each { |k,v| self.send k.to_s+'=', v }
     end
