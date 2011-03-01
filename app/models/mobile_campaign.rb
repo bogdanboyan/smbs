@@ -7,6 +7,8 @@ class MobileCampaign < ActiveRecord::Base
   belongs_to :user
   belongs_to :short_url
 
+  has_many :like_its
+
   has_and_belongs_to_many :asset_files, :uniq => true do
     def only_images
       where(:type => 'ImageAsset')

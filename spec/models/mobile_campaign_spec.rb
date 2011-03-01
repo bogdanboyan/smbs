@@ -10,6 +10,8 @@ describe MobileCampaign do
   it { should belong_to(:user)                          }
   it { should belong_to(:short_url)                     }
   
+  it { should have_many(:like_its)                      }
+  
   it { should have_and_belong_to_many(:asset_files)     }
   
   it { should have_db_index(:account_id)                }
