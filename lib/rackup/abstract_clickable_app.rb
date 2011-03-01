@@ -11,7 +11,8 @@ module Rackup
     def url_for(named_route)
       @@url_map ||= {
         :not_found_mobile_app_shorteners_path  => '/mobile_app/shorteners/not_found',
-        :is_pending_mobile_app_shorteners_path => '/mobile_app/shorteners/is_pending'
+        :is_pending_mobile_app_shorteners_path => '/mobile_app/shorteners/is_pending',
+        :mobile_app_campaign_path              => '/mobile_app/campaigns/:id'
       }.freeze
       
       "http://%s%s" % [ Global.host_mobi, @@url_map[named_route] ]

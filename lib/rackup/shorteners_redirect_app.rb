@@ -11,9 +11,7 @@ module Rackup
           location = short_url.origin
         end
         
-        if short_url.pending?
-          location = url_for(:is_pending_mobile_app_shorteners_path)
-        end
+        location = url_for(:is_pending_mobile_app_shorteners_path) if short_url.pending?
       end
       
       location ||= url_for(:not_found_mobile_app_shorteners_path)

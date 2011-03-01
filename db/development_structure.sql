@@ -137,7 +137,7 @@ CREATE TABLE `invites` (
 CREATE TABLE `like_its` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mobile_campaign_id` int(11) DEFAULT NULL,
-  `clicks_cache` int(11) DEFAULT NULL,
+  `clicks_count` int(11) DEFAULT NULL,
   `label` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

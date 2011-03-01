@@ -4,7 +4,7 @@ describe LikeIt do
 
   context "specify fields" do
 
-    it {should have_db_column(:clicks_cache)         }
+    it {should have_db_column(:clicks_count)         }
     it {should have_db_column(:label)                }
 
     it {should belong_to(:mobile_campaign)           }
