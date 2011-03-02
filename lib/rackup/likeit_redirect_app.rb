@@ -3,7 +3,6 @@ module Rackup
   class LikeitRedirectApp < AbstractClickableApp
     
     def capture
-      
       if LikeIt.exists?(params[:id]) and like_it = LikeIt.find(params[:id])
         click = build_clicks_params(env) and click = update_location_for(Click.new(click))
         like_it.clicks << click
