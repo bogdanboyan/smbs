@@ -5,8 +5,7 @@
   float: left;
   cursor: pointer;
   padding: 5px 10px;
-  margin: 15px 10px 0 0;
-  margin-right: 10px;
+  margin-right: 5px;
   margin-top: 15px;
   -moz-border-radius: 5px 5px 5px 5px;
   -webkit-border-radius: 5px 5px 5px 5px;
@@ -177,6 +176,32 @@ a:hover {
   clear: left;
 }
 
+
+.likeit_control input {
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+.likeit_control .title {
+  width: 130px;
+}
+
+.likeit_control .tag {
+  width: 60px;
+}
+
+.likeit_container {
+  margin: 15px 5px 0px 5px;
+}
+
+.likeit_container .button {
+  -moz-border-radius: 5px 5px 5px 5px; 
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border: 1px solid #CCCCCC;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 6px 7px 4px;
+  color: #50799A;
+}
 
 /* image gallery widget */
 
