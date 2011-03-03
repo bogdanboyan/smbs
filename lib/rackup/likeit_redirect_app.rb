@@ -7,10 +7,8 @@ module Rackup
         click = build_clicks_params(env) and click = update_location_for(Click.new(click))
         like_it.clicks << click
         
-        if like_it.mobile_campaign 
-          location = url_for(:mobile_app_campaign_path).sub(':id', like_it.mobile_campaign.id.to_s)
-        else
-          location = env['HTTP_REFERER']
+        location = env['HTTP_REFERER'] || if like_it.mobile_campaign 
+          url_for(:mobile_app_campaign_path).sub(':id', like_it.mobile_campaign.id.to_s)
         end
       end
       
