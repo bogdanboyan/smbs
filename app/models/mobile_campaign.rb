@@ -60,8 +60,11 @@ class MobileCampaign < ActiveRecord::Base
   aasm_event :cancel_response do
     transitions :to => :draft, :from => [ :pending, :published ]
   end
-
-
+  
+  
+  after_save :map_document_model_images, :map_document_model_likeits
+  
+  
   def document_model_as(format = :json)
     case format
       when :json  then attributes['document_model']
@@ -80,16 +83,20 @@ class MobileCampaign < ActiveRecord::Base
   end
   
   def map_document_model_images
-    document_model_as(:array).each do |document|
-      if document['type'] == 'images'
-        document['value'].each do |image_model|
-          asset_files.push!(ImageAsset.find image_model['asset_id']) if ImageAsset.exists?(image_model['asset_id'])
-        end
-      end # end if
+    document_model_as(:array).select{ |partial| partial['type'] == 'images' }.each do |partial|
+      partial['value'].each do |image_model|
+        asset_files.push!(ImageAsset.find image_model['asset_id']) if ImageAsset.exists?(image_model['asset_id'])
+      end
     end
   end
-
-
+  
+  def map_document_model_likeits
+    document_model_as(:array).select{ |partial| partial['type'] == 'likeit' }.each do |partial|
+      LikeIt.create(:tag => partial['tag'], :mobile_campaign => self) unless like_its.find_by_tag partial['tag']
+    end
+  end
+  
+  
   protected
   
   def document_state
