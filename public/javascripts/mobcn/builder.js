@@ -1,29 +1,30 @@
 var Builder = Class.extend({
 
-  document :          '#document',
-  document_partial :  '.document_partial',
+  document          : '#document',
+  document_partial  : '.document_partial',
+  document_sequence : 0,
   document_partials : {},
 
   init : function(document_partials) {
     this.document_partials = document_partials;
 
     /* 'this' context as proxied object */
-    var place_container_to_document_proxy = $.proxy(this._place_container_to_document, this);
+    var place_container_to_document_proxy = jQuery.proxy(this._place_container_to_document, this);
     
     /* init document partials listeners */
-    $('#document_partials ul').find('li').each(function(/*<li>*/index) {
-      $(this).click(function() { place_container_to_document_proxy($(this).attr('id')); });
+    jQuery('#document_partials ul').find('li').each(function(/*<li>*/index) {
+      jQuery(this).click(function() { place_container_to_document_proxy(jQuery(this).attr('id')); });
     });
 
     /* common behaviour */
-    $('#document').sortable({
+    jQuery('#document').sortable({
       axis:   'y',
       handle: '.toolbar .move'
     });
     
-    $('.toolbar .remove').live('click', function() {
+    jQuery('.toolbar .remove').live('click', function() {
       if(confirm('Вы уверены что хотите удалить целый блок?')) {
-        $(this).parentsUntil('#document').remove();
+        jQuery(this).parentsUntil('#document').remove();
       }
     });
   },
@@ -33,7 +34,7 @@ var Builder = Class.extend({
   serialize_document : function() {
     document_model = [];
     this._all_document_partials().each(function(index, element) {
-      document_model[index] = $(element).data('behaviour').to_object(element);
+      document_model[index] = jQuery(element).data('behaviour').to_object(jQuery(element));
     });
     
     return JSON.stringify(document_model).replace(/&/g, '%26');
@@ -50,14 +51,14 @@ var Builder = Class.extend({
       container_id = PartialRegistry.to_s(id);
       behaviour = PartialRegistry.init_behaviour(id);
       if(container_id && behaviour) {
-        $(this.document).append(this.document_partials[container_id]);
-        element = this._all_document_partials().last();
-        element.data('behaviour', behaviour);
-        behaviour.apply(element, data);
+        partial = jQuery(this.document_partials[container_id]).attr('id', ++this.document_sequence);
+        jQuery(this.document).append(partial);
+        partial.data('behaviour', behaviour);
+        behaviour.apply(partial, data);
       }
     },
     
     _all_document_partials : function() {
-      return $(this.document).find(this.document_partial);
+      return jQuery(this.document).find(this.document_partial);
     }
 });

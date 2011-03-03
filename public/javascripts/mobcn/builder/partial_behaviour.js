@@ -23,7 +23,7 @@ var PartialRegistry = (function() {
 })();
 
 var PartialBehaviour = Class.extend({
-  
+
   init : function(partial_type) {
     this.partial_type = partial_type;
     this.partial_model = {type:partial_type};
@@ -34,6 +34,8 @@ var PartialBehaviour = Class.extend({
   },
 
   apply : function(/*JQuery*/ element) {
-    this.element = element;
+    this.element    = element;
+    this.element_id = element.attr('id');
   }
+
 });
