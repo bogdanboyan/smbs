@@ -1,21 +1,35 @@
 <div class="bd">
 <% @document_model.each do |entity| -%>
-    <% if is_a_data?(entity, 'header') -%>
+    <% if entity.is_a_partial?('header') -%>
       <%== t9e(entity[:value], :header) %>
     <% end -%>
-    <% if is_a_data?(entity, 'text') -%>
+    <% if entity.is_a_partial?('text') -%>
       <div class="c-block"><%== t9e(entity[:value], :text) %></div>
     <% end -%>
-    <% if is_a_data?(entity, 'images') -%>
-      <div class="c-block pos-c">
+    <% if entity.is_a_partial?('images') -%>
+      <div class="c-block posC">
       <% prepared_images(entity[:value]).each do |image| -%>
           <a href="<%= image[:instance].asset.url(:preview) %>"><img src="<%= image[:instance].asset.url(image[:style]) %>" style="width: <%= image[:width] %>"/></a>
       <% end -%>
       </div>
       <div class="clear">&nbsp;</div>
     <% end -%>
-    <% if is_a_data?(entity, 'delimiter') -%>
-      <div class="c-block pos-c"><span class="del">&nbsp;</span></div>
+    <% if entity.is_a_partial?('delimiter') -%>
+      <div class="c-block posC"><span class="del">&nbsp;</span></div>
+    <% end -%>
+    <% if entity.is_a_partial?('likeit') && like_it = find_like_it(entity[:tag]) -%>
+      <div class="c-block likeit <%= entity[:position] %>">
+        <a href="<%= mobile_app_likeit_path(like_it) %>"><%= entity[:title] %></a>
+        
+        <% if like_it.clicks_count.try(:==, 1) -%>
+         <span class="like-count">(одному человеку это нравится)</span>
+        <% elsif like_it.clicks_count.try(:>, 1) -%>
+         <span class="like-count">(<%= like_it.clicks_count %> людям это нравится)</span>
+        <% else -%>
+         <span class="like-count">(будь первым!)</span>
+        <% end -%>
+      </div>
+      <div class="clear">&nbsp;</div>
     <% end -%>
 <% end -%>
 </div>

@@ -9,11 +9,11 @@
   </head>
   
   <body>
-    <div class="hd row pos-c">
+    <div class="hd row posC">
       <span><%= link_to "yamco.mobi", mobile_app_root_path %> - лучшие предложения города</span>
     </div>
     <%= yield %>
-    <div class="ft row pos-c">
+    <div class="ft row posC">
       <ul class="ft-list">
         <li class="item"><span class="cpr">&copy;<%= Time.now.year %> Ямко</span></li>
         <li class="item navi"><%= link_to "Главная", mobile_app_root_path %></li>
