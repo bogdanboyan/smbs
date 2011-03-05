@@ -2,7 +2,6 @@
   <div class="menu">
     <ul>
       <%if current_user -%>
-        <li><%#= link_to "Главная", root_url %></li>
         <li><%= link_to "Короткие адреса", shorteners_path %></li>
         <li><%= link_to "Мобильныe страницы", mobile_campaigns_path%></li>
         <li><%= link_to "QR коды", barcodes_path %></li>
@@ -12,6 +11,7 @@
         <li><%= link_to("Главная", root_url) if     controller_name == 'sessions' %></li>
         <li><%= link_to("Вход", login_path)  unless controller_name == 'sessions' %></li>
       <%end%>
+        <li class="additional-info"><%= Smbs::Application::CURRENT_TAG %></li>
     </ul>
   </div>
 </div>

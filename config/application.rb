@@ -11,6 +11,9 @@ require File.expand_path('../global', __FILE__)
 
 module Smbs
   class Application < Rails::Application
+    
+    CURRENT_TAG = `git tag | tail -1`.chomp
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

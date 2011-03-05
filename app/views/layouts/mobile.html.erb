@@ -15,7 +15,7 @@
     <%= yield %>
     <div class="ft row pos-c">
       <ul class="ft-list">
-        <li class="item"><span class="cpr">&copy;<%= Time.now.year %> Ямко</span></li>
+        <li class="item"><span class="cpr">&copy;<%= Time.now.year %> Ямко (<%= Smbs::Application::CURRENT_TAG %>)</span></li>
         <li class="item navi"><%= link_to "Главная", mobile_app_root_path %></li>
       </ul>
     </div>
