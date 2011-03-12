@@ -9,7 +9,8 @@ module Mobile::CampaignsHelper
         text_container       : '#{render_partial_for('text_container')}',
         header_container     : '#{render_partial_for('header_container')}',
         image_container      : '#{render_partial_for('image_container')}',
-        delimiter_container  : '#{render_partial_for('delimiter_container')}'
+        delimiter_container  : '#{render_partial_for('delimiter_container')}',
+        likeit_container     : '#{render_partial_for('likeit_container')}',
     } 
     JS_OBJECT
   end

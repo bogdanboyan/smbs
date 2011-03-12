@@ -3,6 +3,8 @@ include  ApplicationHelper, ActionController::RecordIdentifier
 
 
 Допустим /^(?:|пользователь|бизнес) уже создал Mobile Campaign под названием "([^\"]*)"$/ do |factory_name|
+  AssetFile.destroy_all
+  
   @mobile_campaign = Factory.create factory_name
   
   @mobile_campaign.account = current_account

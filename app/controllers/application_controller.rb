@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
       def #{filter}(kind_of = nil)                                                                                 # def require_current_user(kind_of = nil)
         given_user = send '#{filter}'.gsub('require_', '').to_sym                                                  #   given_user = send 'require_current_user'.gsub('require_', '').to_sym
         if !given_user || (kind_of && !given_user.account.is?(kind_of))                                            #   if !given_user || (kind_of && given_user.account.is?(kind_of))
+          cookies[:return_to] = { value: request.url, expires: 15.minutes.from_now }                               #     cookies[:return_to] = { value: request.url, expires: 15.minutes.from_now }
           redirect_to login_url, flash: { error: "Вы должны быть авторизированы для доступа к этой странице" }     #     redirect_to login_url, flash: { error: "Вы должны быть авторизированы для доступа к этой странице" }
         end                                                                                                        #   end 
       end                                                                                                          # end

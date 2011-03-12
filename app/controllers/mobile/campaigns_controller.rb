@@ -31,7 +31,7 @@ class Mobile::CampaignsController < ApplicationController
     
     campaign.update_dashboard(:page_created)
     
-    campaign.map_document_model_images if is_saved = campaign.save!
+    is_saved = campaign.save!
     
     render :json => { :mbc_id => campaign.id, :success => !!is_saved, :error => campaign.errors.full_messages.first }
   end
@@ -39,9 +39,7 @@ class Mobile::CampaignsController < ApplicationController
   def update
     @campaign.update_dashboard(:content_changed)
     
-    if is_updated = @campaign.update_attributes(params[:mbc])
-      @campaign.map_document_model_images
-    end
+    is_updated = @campaign.update_attributes(params[:mbc])
     
     render :json => { :mbc_id => @campaign.id, :success => !!is_updated, :error => @campaign.errors.full_messages.first }
   end
@@ -66,7 +64,7 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def ids_with_images
-    render :json => { :ids => MobileCampaign.all.delete_if {|i| i.asset_files.only_images.empty? }.map(&:id) }
+    render :json => { :ids => current_account.mobile_campaigns.delete_if {|i| i.asset_files.only_images.empty? }.map(&:id) }
   end
   
   def generate_short_url

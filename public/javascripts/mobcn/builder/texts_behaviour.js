@@ -39,8 +39,9 @@ var TextsBehaviour = PartialBehaviour.extend({
   
   
   to_object : function(/*JQuery*/ element) {
-    this.partial_model.value = jQuery(element).find('textarea').val();
-    this.partial_model.window_height = parseInt(jQuery(element).find('textarea').css('height'))
+    this.partial_model.value         = element.find('textarea').val();
+    this.partial_model.window_height = parseInt(element.find('textarea').css('height'));
+    
     return this.partial_model;
   },
 

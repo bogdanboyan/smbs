@@ -79,8 +79,9 @@ Smbs::Application.routes.draw do
   
   # rackup controllers
   # ==================
-  match '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
-  match '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
+  get '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
+  get '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
+  get '/mobile_app/likeit/:id'             => Rackup::LikeitRedirectApp.action(:capture), :as => :mobile_app_likeit
   
   
   # mobile application routing schema

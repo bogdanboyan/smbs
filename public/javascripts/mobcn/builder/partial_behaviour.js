@@ -1,10 +1,11 @@
 var PartialRegistry = (function() {
   
   var map = {
-    header           : 'header_container',
-    images           : 'image_container',
-    text             : 'text_container',
-    delimiter        : 'delimiter_container',
+    header       : 'header_container',
+    images       : 'image_container',
+    text         : 'text_container',
+    delimiter    : 'delimiter_container',
+    likeit       : 'likeit_container',
   }
   
   var behaviours = {
@@ -12,6 +13,7 @@ var PartialRegistry = (function() {
     image_container       : function(type) { return new ImagesBehaviour(type);       },
     text_container        : function(type) { return new TextsBehaviour(type);        },
     delimiter_container   : function(type) { return new DelimitersBehaviour(type);   },
+    likeit_container      : function(type) { return new LikeitsBehaviour(type);      },
   }
   
   return {
@@ -21,7 +23,7 @@ var PartialRegistry = (function() {
 })();
 
 var PartialBehaviour = Class.extend({
-  
+
   init : function(partial_type) {
     this.partial_type = partial_type;
     this.partial_model = {type:partial_type};
@@ -32,6 +34,8 @@ var PartialBehaviour = Class.extend({
   },
 
   apply : function(/*JQuery*/ element) {
-    this.element = element;
+    this.element    = element;
+    this.element_id = element.attr('id');
   }
+
 });

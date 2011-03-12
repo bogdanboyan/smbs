@@ -1,14 +1,14 @@
 module MobileApp::CampaignsHelper
   
-  def is_a_data?(entity, type)
-    entity[:type] == type
-  end
-  
   def prepared_images(images_model)
     images_model.map! do |data|
       data = data.symbolize_keys and data[:instance] = ImageAsset.find(data[:asset_id])
       data
     end
+  end
+  
+  def find_like_it(tag)
+    @mbc.like_its.find_by_tag tag
   end
   
   def t9e(text, group = :text)
