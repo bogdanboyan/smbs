@@ -1,0 +1,13 @@
+development:
+  :base64_filter:
+    :use: false
+    :max_image_size: 23
+  :bundle_filter:
+    :use: false
+  :compress_filter:
+    :use: true
+    :obfuscate_js: true
+  :cdn_filter:
+    :use: false
+    :http_hosts: ['http://localhost:3000']
+    :https_hosts: ['https://localhost:3000']

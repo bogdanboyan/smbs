@@ -32,6 +32,8 @@ gem 'escape_utils'
 gem 'nokogiri',               '1.4.4'
 gem 'patron',                 '0.4.9'
 
+gem 'web_resource_bundler', :git => 'git://github.com/railsware/web-bundler.git'
+
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
