@@ -93,7 +93,7 @@ CREATE TABLE `clicks` (
   KEY `index_clicks_on_user_agent_id` (`user_agent_id`),
   KEY `index_clicks_on_short_url_id_and_created_at` (`short_url_id`,`created_at`),
   KEY `index_clicks_on_like_it_id` (`like_it_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -121,7 +121,7 @@ CREATE TABLE `dashboard_tails` (
   PRIMARY KEY (`id`),
   KEY `index_dashboard_tails_on_account_id` (`account_id`),
   KEY `index_dashboard_tails_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `invites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -143,7 +143,7 @@ CREATE TABLE `like_its` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_like_its_on_mobile_campaign_id` (`mobile_campaign_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `mobile_campaigns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -161,7 +161,7 @@ CREATE TABLE `mobile_campaigns` (
   KEY `index_mobile_campaigns_on_account_id` (`account_id`),
   KEY `index_mobile_campaigns_on_short_url_id` (`short_url_id`),
   KEY `index_mobile_campaigns_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `mobiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -246,7 +246,8 @@ CREATE TABLE `user_agents` (
   `x_wap_profile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `mobile_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `index_user_agents_on_mobile_id` (`mobile_id`)
+  KEY `index_user_agents_on_mobile_id` (`mobile_id`),
+  KEY `index_user_agents_on_details` (`details`)
 ) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE `users` (
@@ -352,3 +353,5 @@ INSERT INTO schema_migrations (version) VALUES ('20110222132101');
 INSERT INTO schema_migrations (version) VALUES ('20110301191227');
 
 INSERT INTO schema_migrations (version) VALUES ('20110301214721');
+
+INSERT INTO schema_migrations (version) VALUES ('20110303130507');
