@@ -4,18 +4,13 @@ module Location
   
     SYNONYMS_MAP = {
       #'generic_name' => 'synonyms'
-      'Lvov'    => 'Lviv',
-      'Kharkov' => 'Kharkiv'
+      'Lvov'           => 'Lviv',
+      'Kharkov'        => 'Kharkiv',
+      'Dnepropetrovsk' => 'Dnipropetrovsk'
     }.freeze
     
     
     class << self
-      
-      # def migrate
-      # end
-      
-      # def merge_duplications!
-      # end
       
       def has_synonym?(city_name)
         city_name != replace(city_name)
