@@ -5,7 +5,7 @@
     <%= stylesheet_link_tag 'vendor/jquery-ui', 
       'vendor/fileuploader', 
       'mobcn/layout', 
-     %>
+      :cache => 'all_mobcn_builder' %>
 
     <%= javascript_include_tag 'vendor/jquery-ui-min', 
       'vendor/inheritance', 
@@ -19,7 +19,7 @@
       'mobcn/image_gallery_widget',
       'mobcn/builder',
       'mobcn/initializer',
-     %>
+      :cache => 'all_mobcn_builder' %>
       
     <%end%>
 

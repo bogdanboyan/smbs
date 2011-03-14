@@ -9,10 +9,10 @@
         <%= stylesheet_link_tag 'reset', '960', 
           'layout', 'content', 'libraries', 'modules',
           'popup', 'bubble',
-         %>
+           :cache => true %>
          
-        <%= javascript_include_tag 'vendor/jquery-min', 'vendor/rails', 'smbs' %>
-        <%= javascript_include_tag 'admin/locations' %>
+        <%= javascript_include_tag 'vendor/jquery-min', 'vendor/rails', 'smbs', :cache => true %>
+        <%= javascript_include_tag 'admin/locations', :cache => 'all_dashboard' %>
       
       <%end%>
       
