@@ -5,34 +5,9 @@ development:
   :bundle_filter:
     :use: false
   :compress_filter:
+    :use: true
+    :obfuscate_js: true
+  :cdn_filter:
     :use: false
-    :obfuscate_js: true
-  :cdn_filter:
-    :use: false
-
-# without cache but with wrb
-test:
-  :base64_filter:
-    :use: true
-    :max_image_size: 23
-  :bundle_filter:
-    :use: true
-  :compress_filter:
-    :use: true
-    :obfuscate_js: true
-  :cdn_filter:
-    :use: true
-
-# with cache and wrb
-production:
-  :base64_filter:
-    :use: true
-    :max_image_size: 23
-  :bundle_filter:
-    :use: true
-  :compress_filter:
-    :use: true
-    :obfuscate_js: true
-  :cdn_filter:
-    :use: true
-
+    :http_hosts: ['http://localhost:3000']
+    :https_hosts: ['https://localhost:3000']
