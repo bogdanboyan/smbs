@@ -13,7 +13,7 @@ gem 'mysql2',                 '0.2.3'
 gem 'unicorn',                '3.1.0'
 
 # gem 'authlogic',              '2.1.6'
-gem 'authlogic', :git => 'git://github.com/railsware/authlogic.git', :tag => 'v2.1.6.1'
+gem 'authlogic',              :git => 'git://github.com/railsware/authlogic.git', :tag => 'v2.1.6.1'
 gem 'dynamic_form',           '1.1.3'
 
 gem 'rmagick',                '2.12.2'
@@ -31,6 +31,8 @@ gem 'will_paginate',          '3.0.pre2'
 gem 'escape_utils'
 gem 'nokogiri',               '1.4.4'
 gem 'patron',                 '0.4.9'
+
+gem 'jammit',                 :git => 'git://github.com/alexandrebini/jammit.git' # with encoding patch
 
 group :test do
   gem 'rspec'

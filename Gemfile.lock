@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/alexandrebini/jammit.git
+  revision: 3f91ae5b6a04c0ea1ccfd9d73c4229de055a5d34
+  specs:
+    jammit (0.5.4)
+      closure-compiler (>= 0.1.0)
+      yui-compressor (>= 0.9.1)
+
+GIT
   remote: git://github.com/railsware/authlogic.git
   revision: 6b0fc4faa9f275a7d1a84b775d877bce273b442e
   tag: v2.1.6.1
@@ -55,6 +63,7 @@ GEM
       selenium-webdriver (>= 0.0.3)
     childprocess (0.1.4)
       ffi (~> 0.6.3)
+    closure-compiler (1.0.0)
     cucumber (0.10.0)
       builder (>= 2.1.2)
       diff-lcs (~> 1.1.2)
@@ -148,6 +157,7 @@ GEM
       kgio (~> 2.0.0)
       rack
     will_paginate (3.0.pre2)
+    yui-compressor (0.9.4)
 
 PLATFORMS
   ruby
@@ -166,6 +176,7 @@ DEPENDENCIES
   factory_girl
   geoip-c!
   highline
+  jammit!
   mysql (= 2.8.1)
   mysql2 (= 0.2.3)
   nokogiri (= 1.4.4)
