@@ -5,7 +5,7 @@ var PartialRegistry = (function() {
     images       : 'image_container',
     text         : 'text_container',
     delimiter    : 'delimiter_container',
-    likeit       : 'likeit_container',
+    likeit       : 'likeit_container'
   }
   
   var behaviours = {
@@ -13,7 +13,7 @@ var PartialRegistry = (function() {
     image_container       : function(type) { return new ImagesBehaviour(type);       },
     text_container        : function(type) { return new TextsBehaviour(type);        },
     delimiter_container   : function(type) { return new DelimitersBehaviour(type);   },
-    likeit_container      : function(type) { return new LikeitsBehaviour(type);      },
+    likeit_container      : function(type) { return new LikeitsBehaviour(type);      }
   }
   
   return {
@@ -37,5 +37,4 @@ var PartialBehaviour = Class.extend({
     this.element    = element;
     this.element_id = element.attr('id');
   }
-
 });

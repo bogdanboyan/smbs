@@ -12,6 +12,9 @@ stylesheets:
   application:
     - public/stylesheets/*.css
     - public/stylesheets/vendor/jquery-ui.css
+  mobile_campaign:
+    - public/stylesheets/mobcn/*.css
+    - public/stylesheets/vendor/fileuploader.css
 
 javascripts:
   application:
@@ -22,3 +25,13 @@ javascripts:
     - public/javascripts/analytic/*.js
   admin_dashboard:
     - public/javascripts/admin/*.js
+  mobile_campaign_builder:
+    - public/javascripts/vendor/inheritance.js
+    - public/javascripts/vendor/fileuploader.js
+    - public/javascripts/mobcn/builder/partial_behaviour.js
+    - public/javascripts/mobcn/builder/images_behaviour.js
+    - public/javascripts/mobcn/builder/texts_behaviour.js
+    - public/javascripts/mobcn/builder/headers_behaviour.js
+    - public/javascripts/mobcn/builder/delimiters_behaviour.js
+    - public/javascripts/mobcn/builder/likeits_behaviour.js
+    - public/javascripts/mobcn/*.js

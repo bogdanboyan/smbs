@@ -1,24 +1,6 @@
 <% content_for :head do %>
-
-  <%= stylesheet_link_tag 'vendor/jquery-ui', 
-    'vendor/fileuploader', 
-    'mobcn/layout', 
-    :cache => 'all_mobcn_builder' %>
-
-    <%= javascript_include_tag 'vendor/jquery-ui-min', 
-      'vendor/inheritance', 
-      'vendor/fileuploader', 
-      'mobcn/builder/partial_behaviour', 
-      'mobcn/builder/images_behaviour', 
-      'mobcn/builder/texts_behaviour', 
-      'mobcn/builder/headers_behaviour', 
-      'mobcn/builder/delimiters_behaviour',
-      'mobcn/builder/likeits_behaviour',
-      'mobcn/image_gallery_widget',
-      'mobcn/builder',
-      'mobcn/initializer',
-      :cache => 'all_mobcn_builder' %>
-      
+  <%= include_stylesheets :mobile_campaign %>
+  <%= include_javascripts :mobile_campaign_builder %>
 <%end%>
 
 

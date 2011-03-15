@@ -43,6 +43,5 @@ var TextsBehaviour = PartialBehaviour.extend({
     this.partial_model.window_height = parseInt(element.find('textarea').css('height'));
     
     return this.partial_model;
-  },
-
+  }
 });

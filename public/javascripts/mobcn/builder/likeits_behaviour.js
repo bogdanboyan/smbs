@@ -54,6 +54,5 @@ var LikeitsBehaviour = PartialBehaviour.extend({
     this.partial_model.position = element.find('.likeit_control input[type="radio"]:checked').val() || "posL";
     
     return this.partial_model;
-  },
-  
+  }
 });

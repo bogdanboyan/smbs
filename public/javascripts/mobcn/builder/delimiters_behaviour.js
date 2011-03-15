@@ -8,6 +8,5 @@ var DelimitersBehaviour = PartialBehaviour.extend({
   
   to_object : function(/*JQuery*/ element) {
     return this.partial_model;
-  },
-  
+  }
 });

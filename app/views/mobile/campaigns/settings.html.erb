@@ -1,8 +1,6 @@
 <% content_for :head do %>
-
-  <%= stylesheet_link_tag 'mobcn/layout' %>
-  <%= javascript_include_tag 'mobcn/preview' -%>
-
+  <%= include_stylesheets :mobile_campaign %>
+  <%= include_javascripts :mobile_campaign_builder %>
 <%end%>
 
 <script>

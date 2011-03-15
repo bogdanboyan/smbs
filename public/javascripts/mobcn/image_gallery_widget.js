@@ -1,7 +1,7 @@
 SMBS.MobileCampaign.ImageGalleryWidget = {
   
   campaign_id: '',
-  _uploader:    '',
+  _uploader:   '',
   
   init : function(mobile_campaign_id) {
     this.campaign_id = mobile_campaign_id
@@ -56,8 +56,7 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
   
   mobile_campaign_images_path: function() {
     return '/mobile/campaigns/'+this.campaign_id+'/images'
-  },
-  
+  }
 } // end SMBS.MobileCampaign.ImageGalleryWidget
 
 
@@ -121,6 +120,5 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
     $('.gallery-widget .items').children().remove()
     SMBS.MobileCampaign.ImageGalleryWidget.append(html)
     SMBS.MobileCampaign.ImageGalleryWidget.draggable()
-  },
-  
+  }
 }

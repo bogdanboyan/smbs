@@ -11,6 +11,5 @@ var HeadersBehaviour = PartialBehaviour.extend({
     this.partial_model.value = element.find('input[name*="header"]').val();
     
     return this.partial_model;
-  },
-  
+  }
 });

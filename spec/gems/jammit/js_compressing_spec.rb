@@ -34,10 +34,9 @@ describe 'yui-compressor javascript compressing' do
           specify_compression(@comp, File.open(js_file).read)
         end
         
-        it "should munge and compress #{js_file} file" do
-          pending
-          specify_compression(@munge_comp, File.open(js_file).read)
-        end
+        # it "should munge and compress #{js_file} file" do
+        #   specify_compression(@munge_comp, File.open(js_file).read)
+        # end
         
       end
       
