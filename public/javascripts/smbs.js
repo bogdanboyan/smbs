@@ -13,7 +13,7 @@ SMBS.Application = {
   show_error : function(message) {
     flash = jQuery('.flash.error');
     flash.show().text(message).fadeOut(12000);
-  },
+  }
   
 };
 

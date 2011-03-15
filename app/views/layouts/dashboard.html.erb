@@ -5,7 +5,11 @@
       <title>Ямко: Панель управления</title>
       
       <%= include_stylesheets :application, :media => 'all' %>
-      <%= include_javascripts :application, :admin_dashboard %>
+      <%= include_javascripts :application %>
+      
+      <%if current_user.account.is?(:yamco) -%>
+        <%= include_javascripts :admin_dashboard %>
+      <%end-%>
       
       <%= csrf_meta_tag %>
       

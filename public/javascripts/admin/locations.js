@@ -41,5 +41,5 @@ SMBS.Admin.Locations = {
         error: function() { SMBS.Application.show_error('Сохранение не может быть выполнено из-за ошибки сети. Попробуйте позже') }
       });
     } // end if
-  }, // end submit_city_display_name
+  } // end submit_city_display_name
 }
