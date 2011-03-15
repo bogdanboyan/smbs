@@ -16,6 +16,7 @@ stylesheets:
 javascripts:
   application:
     - public/javascripts/vendor/jquery-min.js
+    - public/javascripts/vendor/jquery-ui-min.js
     - public/javascripts/vendor/rails.js
     - public/javascripts/smbs.js
     - public/javascripts/analytic/*.js
