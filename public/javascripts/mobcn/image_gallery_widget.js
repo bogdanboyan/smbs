@@ -58,7 +58,7 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
     return '/mobile/campaigns/'+this.campaign_id+'/images'
   },
   
-}, // end SMBS.MobileCampaign.ImageGalleryWidget
+} // end SMBS.MobileCampaign.ImageGalleryWidget
 
 
 SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
@@ -67,7 +67,7 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
   map:    undefined,
   
   
-  goto: function(direction) {
+  go_to: function(direction) {
     
     if(this.map == undefined) {
       $.ajax({
