@@ -1,3 +1,28 @@
+.h1 {
+	font-size: 25px;
+}
+
+.h2 {
+	font-size: 23px;
+}
+
+.h3 {
+	font-size: 21px;
+}
+
+.h4 {
+	font-size: 19px;
+}
+
+.h5 {
+	font-size: 17px;
+}
+
+.h6 {
+	font-size: 15px;
+}
+
+
 .posC {text-align: center;}
 
 .posL {float:left;}
@@ -5,9 +30,7 @@
 .posR {float:right;}
 
 
-
 .red { color:red; }
-
 
 .flash-wrapper {
   position:fixed;
@@ -38,6 +61,19 @@
 .hint {
   color:#666;
   font-size:12px;
+}
+
+.action-listing .item {
+  margin-bottom: 10px;
+}
+
+/* Dashboard navigation */
+.ajax_pagination {
+  padding-left: 25px;
+}
+
+.ajax-loader-small {
+  background: url("/images/ajax-loader-small.gif") no-repeat;
 }
 
 

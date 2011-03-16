@@ -15,11 +15,11 @@
     
     jQuery('#more_activity').bind("ajax:loading", function(xhr) {
       
-      jQuery('.ajax_pagination').addClass('loading')
+      jQuery('.ajax_pagination').addClass('ajax-loader-small')
       
     }).bind("ajax:complete", function(xhr) {
       
-      jQuery('.ajax_pagination').removeClass('loading')
+      jQuery('.ajax_pagination').removeClass('ajax-loader-small')
       
     }).bind("ajax:success", function(event, data, status, xhr) {
       
