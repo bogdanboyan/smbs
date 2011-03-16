@@ -1,19 +1,74 @@
-<div class="grid_8 alpha">
-  <p><%= flash[:notice] %></p>
-  <h3>Начните использовать мобильники ваших клиентов!</h3>
+<div class="grid_12">
+  <div class="grid_12 alpha">
+    <h2>Платформа для создания и проведения мобильных промоакций</h2>
+    <h3>Для Брендов, Рекламных Агентств и Бизнеса</h3>
   
-  <p>Благодаря сервису ЯМКО вы сможете:</p>
-  <ul class="benefit-list">
-    <li class="item">Создать мобильный сайт вашего бизнеса или вашей рекламной акции в течении всего 10 мин.</li>
-    <li class="item">С помощью простого редактора вы можете загружать изображения ваших блюд, размещать галерею ваших товаров.</li>
-    <li class="item">Просматривать статистику о посетителях - это поможет вам оценить эффективность вашей рекламы.</li>
-    <li class="item">Получить постоянную ссылку на ваш мобильный сайт и использовать ее в смс рассылках.</li>
-    <li class="item">Вы также можете использовать несколько ссылок для того чтоб определить какая рассылка привлекла больше внимания.</li>
-  </ul>
+    <p class="h5">Сервис Ямко представляет набор интернет инструментов и сервисов:</p>
+    <ul class="benefit-listing">
+      <li class="item">доставки промо-сообщений на мобильный телефон вашего клиента;</li>
+      <li class="item">получения отзывов и обратной связи;</li>
+      <li class="item">увеличения целевой аудитории вашего промо-сообщения;</li>
+      <li class="item">измерения и анализа просмотров промо-материалов;</li>
+    </ul>
+    <p class="hint">На данный момент сервис закрыт для открытого использования. Если вы хотите знать о том, когда сервис начнет свою работу - заполните <a href="#" onclick="SMBS.Popup.open('invitation_subscription_popup', '600px', '400px');">форму приглашения</a>.</p>
+  </div>
 </div>
 
-<div class="grid_4 omega">
-  <%= form_for :invite, :url => invite_path do |f| %>
+<div class="grid_12">
+  <div class="grid_4 alpha">
+    <ul class="product-description">
+      <li>Ямко</li>
+      <li class="h5">Мобильные Интернет Адреса</li>
+      <li class="additional-info">динамические короткие адреса yamco.mobi</li>
+      <li>Для того чтоб изучить целевую аудиторию вашей конкретной промоакции вы можете использовать сервис генерации коротких мобильных адресов. Короткий адрес может ссылаться и перенаправлять на любую страницу в интернете но при этом сохранит информацию о посетителе который зашел на адрес с помощью своего мобильного телефона.</li>
+    </ul>
+  </div>
+  <div class="grid_4">
+    <ul class="product-description">
+      <li>Ямко</li>
+      <li class="h5">Мобильный Навигатор</li>
+      <li class="additional-info">yamco.mobi - навигатор всех предложений города</li>
+      <li>Разместите информацию о своем продукте или услуге в мобильной поисковой системе yamco.mobi а также получите возможность эффективно SEO оптимизировать свой бизнес профайл, контактную информацию и информацию о ваших услугах и промоакций для других мобильных поисковых систем таких как m.google.com.</li>
+    </ul>
+  </div>
+  <div class="grid_4 omega">
+    <ul class="product-description">
+      <li>Ямко</li>
+      <li class="h5">Мобильные Интернет Страницы</li>
+      <li class="additional-info">онлайн редактор создания промоакции</li>
+      <li>Используя этот инструмент вы создаете мобильную страницу на которой размещаете рекламный материал, добавляете интерактивные виджеты для получения обратной связи от посетителей вашей страницы. Каждая мобильная страница публикуется на портале yamco.mobi и становится доступной для всех посетителей сервиса и поисковых систем.</li>
+    </ul>
+  </div>
+</div>
+
+<div id="invitation_subscription_popup" class="popupContent" style="display:none;">
+  
+  <script>
+    jQuery('form').bind('ajax:before', function() {
+      jQuery('span.form_message').text('').hide();
+    })
+    jQuery('form').bind('ajax:after', function() {
+      jQuery('span.form_message').show();
+    })
+    
+    jQuery('form').bind('ajax:failure', function() {
+      jQuery('span.form_message').text('Проверьте ваше интернет соединение');
+    })
+    
+    jQuery('form').bind('ajax:success', function(event, data, status, xhr) {
+      jQuery('span.form_message').text(data.message);
+      if(!data.error) {
+        setTimeout(function() {SMBS.Popup.close()}, 3000);
+      }
+    })
+  </script>
+  
+  <h1>Форма приглашения</h1>
+  <p class="center additional-info">Выслав нам заполненую заявку Вы получите возможность одним из первых зарегистрировать свой аккаунт.</p>
+  
+  <span class="form_message" style="display:none;"></span>
+  
+  <%= form_for :invite, url: invite_path, remote: true, html: { 'data-type' => :json } do |f| %>
     <ul class="input-list">
       <li class="item">
         <%= f.label :company, "*название компании:" %>
@@ -27,10 +82,10 @@
         <%= f.label :phone, "*контактный телефон:" %>
         <%= f.text_field :phone, :class => 'small text-field' %>
       </li>
-      <li>
-        <%= submit_tag "Пригласить меня", :class=>'submit_button' %>
-      </li>
     </ul>
+    <div class="popup-footer">
+        <span class="additional-link"><a class="button white" href="#" onclick="jQuery('form').submit(); return false;">Пригласить меня</a> или <a href="#" onclick="SMBS.Popup.close();return false;">Отменить</a></span>
+    </div>
+    
   <%end%>
-  <p>Выслав нам заполненую заявку Вы получите возможность одним из первых получить аккаунт.</p>
 </div>

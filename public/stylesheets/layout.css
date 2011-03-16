@@ -48,16 +48,6 @@ custom {display: none;}
 	margin-bottom: 15px;
 }
 
-.benefit-list {
-  margin: 1em 0 1em 2em !important;
-}
-
-.benefit-list .item {
-  list-style-type: circle;
-  margin-bottom:0.5em;
-  margin-top:0.5em;
-}
-
 .input-list .item {
   margin-bottom: 10px;
 }

@@ -1,0 +1,18 @@
+.benefit-listing {
+  margin: 1em 0 1em 2em !important;
+}
+
+.benefit-listing .item {
+  list-style-type: circle;
+  margin-bottom:0.5em;
+  margin-top:0.5em;
+}
+
+
+.product-description {
+  margin-top: 10px;
+}
+
+.product-description .additional-info {
+  margin-bottom: 10px;
+}
