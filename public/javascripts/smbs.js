@@ -25,13 +25,18 @@ SMBS.Popup = {
   init: function(){
     jQuery('body').append('<div id="shadow" style="display: none">&nbsp;</div>'+
                           '<div id="popup" style="display: none">'+
+                          '<div class="pop-tr">&nbsp;</div>'+
+                          '<div class="pop-tl">&nbsp;</div>'+
+                          '<div class="pop-br">&nbsp;</div>'+
+                          '<div class="pop-bl">&nbsp;</div>'+
+                          '<div class="pop-vert">&nbsp;</div>'+
+                          '<div class="pop-hor">&nbsp;</div>'+
                             '<div id="popupClose">&nbsp;</div>'+
                             '<div id="loading" style="display: none">'+
                                 '<img alt="" src="/images/gray-loader.gif"><br />'+
                                 'Загрузка...'+
                             '</div>'+
                             '<div class="popup-content">'+
-
                             '</div>'+
                           '</div>');
 

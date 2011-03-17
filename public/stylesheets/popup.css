@@ -16,25 +16,25 @@
 }
 
 .pop-tr {
-  background: url("/images/popup/tr.png") no-repeat 0 0;
+  background: url("/images/embed/popup/tr.png") no-repeat 0 0;
   top: -11px;
   right: -11px;
 }
 
 .pop-tl {
-  background: url("/images/popup/tl.png") no-repeat 0 0;
+  background: url("/images/embed/popup/tl.png") no-repeat 0 0;
   top: -11px;
   left: -11px;
 }
 
 .pop-bl {
-  background: url("/images/popup/bl.png") no-repeat 0 0;
+  background: url("/images/embed/popup/bl.png") no-repeat 0 0;
   bottom: -11px;
   left: -11px;
 }
 
 .pop-br {
-  background: url("/images/popup/br.png") no-repeat 0 0;
+  background: url("/images/embed/popup/br.png") no-repeat 0 0;
   bottom: -11px;
   right: -11px;
 }
@@ -80,7 +80,7 @@
   right: 5px;
   top: 5px;
   z-index: 21000;
-  background: url("/images/popup/close.gif") no-repeat 0 0;
+  background: url("/images/embed/popup/close.gif") no-repeat 0 0;
 }
 
 #popupClose:hover {
