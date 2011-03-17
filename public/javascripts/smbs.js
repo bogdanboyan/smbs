@@ -33,7 +33,7 @@ SMBS.Popup = {
                           '<div class="pop-hor">&nbsp;</div>'+
                             '<div id="popupClose">&nbsp;</div>'+
                             '<div id="loading" style="display: none">'+
-                                '<img alt="" src="/images/gray-loader.gif"><br />'+
+                                '<img alt="" src="/images/gray_loader.gif"><br />'+
                                 'Загрузка...'+
                             '</div>'+
                             '<div class="popup-content">'+
