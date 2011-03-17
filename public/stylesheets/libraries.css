@@ -48,9 +48,9 @@
   text-align:center;
 }
 
-.flash.notice {background:#93e42c url("/images/icons/flash_notice.png") no-repeat 12px center;}
+.flash.notice {background:#93e42c url("/images/embed/flash_notice.png") no-repeat 12px center;}
 
-.flash.error {background:#ff6600 url("/images/icons/flash_error.png") no-repeat 12px center;}
+.flash.error {background:#ff6600 url("/images/embed/flash_error.png") no-repeat 12px center;}
 
 
 .additional-info {
@@ -73,7 +73,7 @@
 }
 
 .ajax-loader-small {
-  background: url("/images/ajax-loader-small.gif") no-repeat;
+  background: url("/images/embed/ajax_loader_small.gif") no-repeat;
 }
 
 

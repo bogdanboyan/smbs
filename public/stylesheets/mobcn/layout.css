@@ -228,7 +228,7 @@ a:hover {
 .navigation-tools .loading {
   display: none;
   padding-left: 20px;
-  background:url("/images/ajax-loader-small.gif") no-repeat left center;
+  background:url("/images/embed/ajax_loader_small.gif") no-repeat left center;
   padding-right: 78px;
 }
 
