@@ -10,7 +10,7 @@
       <li class="item">увеличения целевой аудитории вашего промо-сообщения;</li>
       <li class="item">измерения и анализа просмотров промо-материалов;</li>
     </ul>
-    <p class="hint">На данный момент сервис закрыт для открытого использования. Если вы хотите знать о том, когда сервис начнет свою работу - заполните <a href="#" onclick="SMBS.Popup.open('invitation_subscription_popup', '600px', '400px');">форму приглашения</a>.</p>
+    <p class="hint">На данный момент сервис закрыт для открытого использования. Если вы хотите знать о том, когда сервис начнет свою работу - заполните <a href="#" onclick="SMBS.Popup.open('invitation_subscription_popup', '600px', '460px');">форму приглашения</a>.</p>
   </div>
 </div>
 
@@ -69,7 +69,7 @@
   <span class="form_message" style="display:none;"></span>
   
   <%= form_for :invite, url: invite_path, remote: true, html: { 'data-type' => :json } do |f| %>
-    <ul class="input-list">
+    <ul class="input-list" style="width: 440px;">
       <li class="item">
         <%= f.label :company, "*название компании:" %>
         <%= f.text_field :company, :class => 'small text-field' %>
@@ -81,6 +81,10 @@
       <li class="item">
         <%= f.label :phone, "*контактный телефон:" %>
         <%= f.text_field :phone, :class => 'small text-field' %>
+      </li>
+      <li class="item">
+        <%= f.label :comment, "небольшие сообщение:" %>
+        <%= f.text_area :comment, :class => 'small text-field' %>
       </li>
     </ul>
     <div class="popup-footer">

@@ -161,6 +161,23 @@
   display: inline;
 }
 
+.popup-content ul {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
+
+.popup-content ul li {
+  font-size: 14px;
+  line-height: 18px;
+  text-align: left;
+}
+
+
+.popup-content textarea {
+  resize: none;
+}
+
 .popup-content .textarea {
   width: 300px;
   margin: 0px auto;
@@ -299,19 +316,3 @@ a.green-big-button:hover span {
 a.green-big-button:hover span span {
   background: url("/images/sprite_no-repeat.png") repeat-x 0px -925px;
 }
-
-/* Flexible green big button end */
-
-.popup-content ul {
-  display: inline-block;
-  zoom: 1;
-  *display: inline;
-}
-
-.popup-content ul li {
-  font-size: 14px;
-  line-height: 18px;
-  text-align: left;
-}
-
-/* end SMBS notifications */
