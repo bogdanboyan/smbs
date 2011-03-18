@@ -13,7 +13,7 @@ module Location
       def resolve_location_for(click)
         if location = find(click.ip_address) and click.country = find_or_create_country(location)
           click.region   = find_or_create_region(location, click) if location[:region]
-          click.city     = find_or_create_city(location, click)    if click.region && location[:city]
+          click.city     = find_or_create_city(location, click) if click.region && location[:city]
         
           click.latitude, click.longitude = location[:latitude], location[:longitude]
         
