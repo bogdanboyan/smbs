@@ -1,4 +1,5 @@
 require 'highline'
+require 'location'
 
 desc "Helpers for IP geo location environment"
 namespace :geoip do
@@ -18,7 +19,7 @@ namespace :geoip do
     task :clicks => :environment do
       count = 0
       Click.find_all_by_located(false).each do |click|
-        IpLocation.resolve_location_for click
+        Location::IpDetector.resolve_location_for click
         (click.save and count += 1) if click.located?
       end
       count > 0 ? puts("Updated %d records" % count) : puts("Nothing update")
