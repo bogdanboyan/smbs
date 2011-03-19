@@ -43,7 +43,7 @@ module DataSource
       clicks_map.each do |summarized_click|
         if not city = summarized_click.city.try(:display)
           city = Location::CityDictionary.replace_and_get_diplay(summarized_click.city.try(:name)) # replace if city name is synonym
-          city ||= "Украина*"
+          city ||= "*Украина"
         end
         
         if reduced_data.has_key?(city) 
