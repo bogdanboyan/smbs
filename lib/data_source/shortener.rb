@@ -20,18 +20,23 @@ module DataSource
     private
     
     def fetch_clicks_data(id)
-      merged_reports, reports = {}, SummarizedClick.find_all_by_short_url_id(id)
+      reduced_data, clicks_map = {}, SummarizedClick.where(:short_url_id => id)
       
-      reports.reduce(merged_reports) do |memo, report|
-        memo[report.date] = report.clicks + (memo[report.date] || 0)
+      # reduce clicks for summarized_clicks
+      clicks_map.reduce(reduced_data) do |memo, summarized_click|
+        memo[summarized_click.date] = summarized_click.clicks + (memo[summarized_click.date] || 0)
         memo
       end
       
-      merged_reports.map { |report| {:c => [ {:v => date_field(report.first)}, {:v => report.last} ] } }
+      # reduce TODAY clicks
+      today_clicks = Click.where(["short_url_id = ? AND DATE(created_at) = ?", id, Date.today]).count
+      reduced_data[Date.today] = today_clicks if today_clicks > 0
+      
+      reduced_data.map { |report| {:c => [ {:v => date_field(report.first)}, {:v => report.last} ] } }
     end
     
     def fetch_regions_data(id)
-      rows, reports = {}, SummarizedClick.find_all_by_short_url_id(id)
+      rows, reports = {}, SummarizedClick.where(:short_url_id => id)
       
       reports.each do |report|
         city = report.city.try(:display) || report.city.try(:name) || "Украина*"

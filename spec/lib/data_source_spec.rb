@@ -49,7 +49,7 @@ describe DataSource do
         report[:rows][0][:c][1].has_key?(:v).should be_true
       end
       
-      it 'should contains right graph' do
+      it 'should return report for three days' do
         
         [ # clicks from kiev
           {:clicks => 50,  :percent => "10.0", :date => 3.days.ago.to_date },
@@ -90,10 +90,39 @@ describe DataSource do
         one_days_ago = report[:rows][2][:c]
         one_days_ago.first[:v].should   == I18n.l(1.days.ago.to_date, :format => :long)
         one_days_ago.last[:v].should    == 700
-        
       end
       
-      specify 'should return empty graph' do
+      it 'should return report for previous date and today' do
+        [ # clicks from kiev
+          {:clicks => 50,  :percent => "10.0", :date => 1.days.ago.to_date },
+        ].each do |params|
+          SummarizedClick.create params.merge(:city => @kiev, :region => @kiev_region, :country => @ukraine, :short_url => @short_url)
+        end
+        
+        user_agent = Factory.create :nokia_e51_user_agent
+        11.times { Click.create(:short_url => @short_url, :ip_address => '127.0.0.1', :user_agent => user_agent) }
+        
+        report = DataSource.fetch('shortener', 'clicks', @short_url.id)
+        
+        specify_clicks_cols_structure(report)
+        specify_clicks_rows_structure(report)
+        
+        #puts report.to_s
+        
+        report[:rows].should have(2).items
+        
+        # report for 1.day.ago
+        one_days_ago = report[:rows][0][:c]
+        one_days_ago.first[:v].should   == I18n.l(1.days.ago.to_date, :format => :long)
+        one_days_ago.last[:v].should    == 50
+        
+        # report for 1.day.ago
+        today = report[:rows][1][:c]
+        today.first[:v].should   == I18n.l(Date.today, :format => :long)
+        today.last[:v].should    == 11
+      end
+      
+      it 'should return empty report data' do
         report = DataSource.fetch('shortener', 'clicks', -10)
         
         specify_clicks_cols_structure(report)
