@@ -7,7 +7,9 @@ module Location
       'Lvov'           => 'Lviv',
       'Kharkov'        => 'Kharkiv',
       'Dnepropetrovsk' => %w{Dnipropetrovsk Dniepropetrovsk},
-      'Chernogiv'      => 'Chernihiv'
+      'Chernogiv'      => 'Chernihiv',
+      'Horlovka'       => 'Horlivka',
+      'Irpen'          => 'Irpin',
     }.freeze
     
     
