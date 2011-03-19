@@ -60,8 +60,7 @@ SMBS.Shortener.Regions = {
           width: 620,
           height: chart_height + 60,
           fontSize: 12,
-          'chartArea.top': 1,
-          'chartArea.height': chart_height,
+          chartArea: { top: 1, height: chart_height },
           hAxis: {title: 'Суммарное количество посетителей. *без классификации по городу'},
           legend: 'none'
         });
