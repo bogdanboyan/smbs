@@ -202,7 +202,7 @@ describe DataSource do
         
         # report for other cities
         other_rows   = report[:rows][2][:c]
-        other_rows.first[:v].should == 'Украина*'
+        other_rows.first[:v].should == '*Украина'
         other_rows.last[:v].should  == 17
       end
       
