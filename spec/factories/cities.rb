@@ -20,3 +20,10 @@ Factory.define :vinitsa, :class => City do |c|
   c.association :country, :factory => :ukraine
   c.association :region,  :factory => :vinitsa_region
 end
+
+Factory.define :lvov, :class => City do |c|
+  c.name       'Lvov'
+  
+  c.association :country, :factory => :ukraine
+  c.association :region,  :factory => :lvov_region
+end

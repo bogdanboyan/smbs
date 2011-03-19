@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'spec_helper'
 require 'location'
 
@@ -26,6 +27,12 @@ module Location
     it 'should relpace multiple synonyms' do
       CityDictionary.replace("Dnipropetrovsk").should  == "Dnepropetrovsk"
       CityDictionary.replace("Dniepropetrovsk").should == "Dnepropetrovsk"
+    end
+    
+    specify 'replace_and_get_diplay' do
+      lvov = Factory.build :lvov
+      lvov.update_attribute('display', 'Львов') # I can't set this via factory! Factory thorws strage error for display field!
+      CityDictionary.replace_and_get_diplay("Lviv").should == lvov.display
     end
     
     it 'should remap_city_synonyms!' do

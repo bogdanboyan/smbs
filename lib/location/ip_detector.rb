@@ -37,7 +37,6 @@ module Location
       end
     
       def find_or_create_city(location, click)
-        resolved_city_name = CityDictionary.replace location[:city]
         City.find_or_create_by_name_and_country_id_and_region_id(location[:city], click.country.id, click.region.id)
       end
 

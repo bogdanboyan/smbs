@@ -29,6 +29,12 @@ module Location
         city_name
       end
       
+      def replace_and_get_diplay(city_name)
+        return if city_name.nil?
+        city_name = replace(city_name)
+        City.connection.select_value("SELECT display FROM cities WHERE name = '#{city_name}' limit 1") || city_name
+      end
+      
       def remap_city_synonyms!
         SYNONYMS_MAP.each_pair do |generic_name, synonyms|
           remap_city_synonym!(generic_name, synonyms)

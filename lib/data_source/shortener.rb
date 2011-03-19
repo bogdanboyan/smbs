@@ -1,4 +1,6 @@
 # encoding: utf-8
+require 'location'
+
 module DataSource
   class Shortener
     
@@ -36,14 +38,22 @@ module DataSource
     end
     
     def fetch_regions_data(id)
-      rows, reports = {}, SummarizedClick.where(:short_url_id => id)
+      reduced_data, clicks_map = {}, SummarizedClick.where(:short_url_id => id)
       
-      reports.each do |report|
-        city = report.city.try(:display) || report.city.try(:name) || "Украина*"
-        rows.has_key?(city) ? rows[city] += report.clicks : rows[city] = report.clicks
+      clicks_map.each do |summarized_click|
+        if not city = summarized_click.city.try(:display)
+          city = Location::CityDictionary.replace_and_get_diplay(summarized_click.city.try(:name)) # replace if city name is synonym
+          city ||= "Украина*"
+        end
+        
+        if reduced_data.has_key?(city) 
+          reduced_data[city] += summarized_click.clicks
+        else
+          reduced_data[city] = summarized_click.clicks
+        end
       end
       
-      rows.map {|city, clicks| {:c => [ {:v => city}, {:v => clicks} ]} }
+      reduced_data.map {|city, clicks| {:c => [ {:v => city}, {:v => clicks} ]} }
     end
     
     def date_field(date)
