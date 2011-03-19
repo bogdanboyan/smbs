@@ -54,9 +54,14 @@ SMBS.Shortener.Regions = {
         
         data = response.getDataTable();
         chart = new google.visualization.BarChart(document.getElementById('regions_report'));
-        estimated_height = (30 * data.D.length) + 70;
+        chart_height = (30 * data.D.length);
         chart.draw(data, { 
-          width: 620, height: estimated_height, 
+          titlePosition: 'none',
+          width: 620,
+          height: chart_height + 60,
+          fontSize: 12,
+          'chartArea.top': 1,
+          'chartArea.height': chart_height,
           hAxis: {title: 'Суммарное количество посетителей. *без классификации по городу'},
           legend: 'none'
         });
