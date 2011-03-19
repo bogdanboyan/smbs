@@ -6,7 +6,7 @@ module ShortenersHelper
   end
   
   def short_url_title_with_origin_link_pair(model)
-    "#{model.short_url} &rarr; ".html_safe + link_to("#{truncate(model.origin, :length => 40)}", model.origin, :class=> 'title', :target=> '_blank')
+    "#{model.short_url} &rarr; ".html_safe + link_to("#{truncate(model.origin, :length => 58)}", model.origin, :class=> 'title', :target=> '_blank')
   end
   
   def link_to_origin_or_mobile_campaign(short_url)

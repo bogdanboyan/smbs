@@ -9,7 +9,7 @@
 </script>
 
 <div class="grid_8 alpha">
-  <h2>Cтатистика переходов<%= ": " + truncate(@short_url.mobile_campaign.title) if @short_url.mobile_campaign %></h2>
+  <h3>Cтатистика переходов<%= ": " + truncate(@short_url.mobile_campaign.title) if @short_url.mobile_campaign %></h3>
   <p>Ресурс: <%= short_url_title_with_origin_link_pair(@short_url) %></p>
   <p>Общее количество просмотров страницы (за весь период): <strong><%= @short_url.clicks_count %></strong></p>
   
