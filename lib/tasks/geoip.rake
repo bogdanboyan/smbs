@@ -1,4 +1,3 @@
-require 'highline'
 require 'location'
 
 desc "Helpers for IP geo location environment"
