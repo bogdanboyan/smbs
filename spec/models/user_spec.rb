@@ -70,8 +70,8 @@ describe User do
         @user.password_confirmation = " "
         @user.should_not be_valid
       
-        @user.errors[:password].should == ['недостаточной длины (не может быть меньше 4 символа)']
-        @user.errors[:password_confirmation].should == ['недостаточной длины (не может быть меньше 4 символа)']
+        @user.errors[:password].should == ['недостаточной длины (не может быть меньше 4 символов)']
+        @user.errors[:password_confirmation].should == ['недостаточной длины (не может быть меньше 4 символов)']
       end
     end
   end # end describe
