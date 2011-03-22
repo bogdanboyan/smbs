@@ -4,10 +4,6 @@ class StatisticsController < ApplicationController
   before_filter :load_short_url
   
   
-  def show
-    ClicksAgregator.summarize_all_clicks(@short_url.id)
-  end
-  
   def details
     @clicks = Click.where(:short_url_id => @short_url).includes(:user_agent).order('id ASC').paginate(:page => params[:page], :per_page => 20)
   end
