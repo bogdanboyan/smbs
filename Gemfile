@@ -35,6 +35,8 @@ gem 'patron',                 '0.4.9'
 
 gem 'jammit',                 :git => 'git://github.com/alexandrebini/jammit.git' # with encoding patch
 
+gem 'russian',                :git => 'git://github.com/yaroslav/russian.git'
+
 group :test do
   gem 'rspec'
   gem 'rspec-rails'

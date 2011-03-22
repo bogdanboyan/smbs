@@ -15,6 +15,12 @@ GIT
       activesupport
 
 GIT
+  remote: git://github.com/yaroslav/russian.git
+  revision: 57af7fee22f9c324ac6313064c36e582d58ba8df
+  specs:
+    russian (0.2.7)
+
+GIT
   remote: git://github.com/zarqman/geoip.git
   revision: f8c6887808961b8419b1b36e52d030a5227defe5
   specs:
@@ -187,6 +193,7 @@ DEPENDENCIES
   rmagick (= 2.12.2)
   rspec
   rspec-rails
+  russian!
   scout
   selenium-webdriver (= 0.1.0)
   shoulda
