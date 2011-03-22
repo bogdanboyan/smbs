@@ -1,3 +1,3 @@
-<div class="activity-item">
-  <%== clickable_dashboard_item(dashboard_tail, :for => :customer) %>
-</div>
+<li class="item">
+  <%== clickable_dashboard_item(dashboard_tail, :for => :customer) %> <span class="additional-info">(<%= time_ago_in_words(dashboard_tail.created_at) %>)</span>
+</li>

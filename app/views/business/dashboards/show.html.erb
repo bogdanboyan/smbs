@@ -24,7 +24,7 @@
     }).bind("ajax:success", function(event, data, status, xhr) {
       
       if(data.html) {
-        jQuery('.activity_feeds').append(data.html)
+        jQuery('.activity_feeds ul').append(data.html)
         update_more_activity_path()
       } else {
         jQuery('#more_activity').hide()
@@ -35,7 +35,9 @@
 </script>
 
 <div class="activity_feeds">
+  <ul>
   <%= render :partial => 'dashboard_tail', :collection => @dashboard_tails %>
+  </ul>
 </div>
 
 <div class="ajax_pagination">
