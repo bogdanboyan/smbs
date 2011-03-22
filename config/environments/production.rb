@@ -42,7 +42,7 @@ Smbs::Application.configure do
     :port                 => 587,
     :domain               => Global.host,
     :user_name            => 'support@' + Global.host,
-    :password             => 'yamcokickass!',
+    :password             => '!@34yamco!',
     :authentication       => 'plain',
     :enable_starttls_auto => true
   }
