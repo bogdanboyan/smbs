@@ -31,6 +31,6 @@ class UserMailer < ActionMailer::Base
     
     # email body logged in base64 mode
     puts @password_reset_url if Rails.env == 'development'
-    mail :to => @user.email, :subject => 'Инструкция по пользовательского восстановлению пароля'
+    mail :to => @user.email, :subject => 'Инструкция по восстановлению пароля'
   end
 end
