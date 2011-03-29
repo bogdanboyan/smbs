@@ -1,7 +1,5 @@
 class DashboardObserver < ActiveRecord::Observer
   
-  include ApplicationHelper
-  
   observe :mobile_campaign, :user, :short_url, :link_code, :sms_code, :text_code
   
   
@@ -17,13 +15,12 @@ class DashboardObserver < ActiveRecord::Observer
       
       tail.attachable      = record
       # Rails.env.test? added for dashboardable_stringify_spec.rb
-      tail.transition_user = Rails.env.test? ? tail.user : (current_user || tail.user)
+      tail.transition_user = Rails.env.test? ? tail.user : (record.transition_user || tail.user)
       tail.transition      = record.transition
       
       tail.save! and record.dashboard_updated
     else
       Rails.logger.debug "** DashboardObserver skipped for #{record.class.name} class"
-      
       true
     end
   end

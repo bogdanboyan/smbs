@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(params[:user].merge(:account => @account))
     @user.generate_random_password
     
-    @user.update_dashboard(:user_created)
+    @user.update_dashboard(:user_created, current_user)
     
     if @user.save
       @user.invite!
@@ -31,7 +31,7 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def update
-    @user.update_dashboard(:user_updated)
+    @user.update_dashboard(:user_updated, current_user)
     
     if @user.update_attributes params[:user]
       flash[:notice] = "Пользователь с логином '%s' успешно изменен" % @user.email

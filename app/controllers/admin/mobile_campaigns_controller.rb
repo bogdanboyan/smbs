@@ -18,7 +18,7 @@ class Admin::MobileCampaignsController < Admin::BaseController
   
   
   def publish
-    @mobile_campaign.update_dashboard(:page_published)
+    @mobile_campaign.update_dashboard(:page_published, current_user)
     @mobile_campaign.publish!
     
     MobileCampaignMailer.publish_notice(@mobile_campaign).deliver
@@ -27,7 +27,7 @@ class Admin::MobileCampaignsController < Admin::BaseController
   end
   
   def cancel
-    @mobile_campaign.update_dashboard(:page_drafted)
+    @mobile_campaign.update_dashboard(:page_drafted, current_user)
     @mobile_campaign.cancel_response!
     
     MobileCampaignMailer.cancel_response_notice(@mobile_campaign).deliver
@@ -36,7 +36,7 @@ class Admin::MobileCampaignsController < Admin::BaseController
   end
     
   def unpublish
-    @mobile_campaign.update_dashboard(:page_unpublished)
+    @mobile_campaign.update_dashboard(:page_unpublished, current_user)
     @mobile_campaign.unpublish!
     
     MobileCampaignMailer.unpublish_notice(@mobile_campaign).deliver

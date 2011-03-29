@@ -65,7 +65,7 @@ class BarcodesController < ApplicationController
     qr_code.account = current_account
     qr_code.user    = current_user
     
-    qr_code.update_dashboard(:qr_code_created)
+    qr_code.update_dashboard(:qr_code_created, real_current_user)
     
     qr_code.save
   end

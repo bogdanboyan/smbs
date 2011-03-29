@@ -29,7 +29,7 @@ class Mobile::CampaignsController < ApplicationController
     campaign.account = current_account
     campaign.user    = current_user
     
-    campaign.update_dashboard(:page_created)
+    campaign.update_dashboard(:page_created, real_current_user)
     
     is_saved = campaign.save!
     
@@ -37,7 +37,7 @@ class Mobile::CampaignsController < ApplicationController
   end
   
   def update
-    @campaign.update_dashboard(:content_changed)
+    @campaign.update_dashboard(:content_changed, real_current_user)
     
     is_updated = @campaign.update_attributes(params[:mbc])
     
@@ -96,7 +96,7 @@ class Mobile::CampaignsController < ApplicationController
     short_url.account = current_account
     short_url.save!
     
-    @campaign.update_dashboard(:short_url_generated)
+    @campaign.update_dashboard(:short_url_generated, real_current_user)
     @campaign.short_url = short_url
     @campaign.save!
   end

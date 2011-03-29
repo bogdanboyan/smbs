@@ -20,7 +20,7 @@ class ShortenersController < ApplicationController
       short_url.account = current_account
       short_url.user    = current_user
       
-      short_url.update_dashboard(:shortener_created)
+      short_url.update_dashboard(:shortener_created, real_current_user)
       
       short_url.save
 

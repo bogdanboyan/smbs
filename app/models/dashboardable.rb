@@ -3,7 +3,7 @@ module Dashboardable
   
   autoload :Stringify, 'dashboardable/stringify'
   
-  attr_accessor :transition
+  attr_accessor :transition, :transition_user
   
   TRANSITIONS = {
     
@@ -33,17 +33,17 @@ module Dashboardable
   }
   
   
-  def update_dashboard(transition)
+  def update_dashboard(transition, transition_user = nil)
     assert_transition_key(transition)
-    self.transition = transition
+    self.transition, self.transition_user = transition, transition_user
   end
   
-  def update_dashboard!(transition)
-    update_dashboard(transition) and self.save!
+  def update_dashboard!(transition, transition_user = nil)
+    update_dashboard(transition, transition_user) and self.save!
   end
   
   def dashboard_updated
-    self.transition = nil
+    self.transition, self.transition_user = nil, nil
   end
   
   def has_transition_key?(transition)
