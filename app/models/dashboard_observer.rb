@@ -1,6 +1,6 @@
 class DashboardObserver < ActiveRecord::Observer
   
-  observe :mobile_campaign, :user, :short_url, :link_code, :sms_code, :text_code
+  observe :mobile_campaign, :user, :short_url, :bar_code
   
   
   def after_save(record)
