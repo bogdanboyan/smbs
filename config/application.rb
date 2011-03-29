@@ -12,7 +12,7 @@ require File.expand_path('../global', __FILE__)
 module Smbs
   class Application < Rails::Application
     
-    CURRENT_TAG =  'v0.7.11' #`git tag | tail -1`.chomp
+    CURRENT_TAG =  'v0.7.12' #`git tag | tail -1`.chomp
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
