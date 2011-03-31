@@ -64,6 +64,10 @@ Smbs::Application.routes.draw do
       collection { get :countries; get :regions; get :cities }
       member     { put :update_city_display_name; put :update_country_display_name }
     end
+    
+    resources :tags do
+      collection { get :cities; get :places; get :labels }
+    end
   end
   
   namespace :reseller do
