@@ -35,6 +35,8 @@ gem 'jammit',                 :git => 'git://github.com/alexandrebini/jammit.git
 
 gem 'russian',                :git => 'git://github.com/yaroslav/russian.git'
 
+gem 'acts-as-taggable-on'
+
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
