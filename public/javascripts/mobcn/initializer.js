@@ -10,12 +10,13 @@ $(document).ready(function() {
   }),
 
   $('#save').click(function() {
+    csrf = 'authenticity_token=' + jQuery('meta[name="csrf-token"]').attr('content') + '&utf=✓'
     $.ajax({
       async:    false,
       type:     page_id ? 'put' : 'post',
       dataType: 'json',
       url:      page_id ? '/mobile/campaigns/' + page_id : '/mobile/campaigns',
-      data:     'mbc[title]=' + $('#title').val() + '&mbc[document_model]=' + builder.serialize_document(),
+      data:     csrf + '&mbc[title]=' + $('#title').val() + '&mbc[document_model]=' + builder.serialize_document(),
       success: function(data) {
         page_id = data.mbc_id;
         if(data.success) {
