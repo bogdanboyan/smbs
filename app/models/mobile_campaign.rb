@@ -2,31 +2,7 @@
 class MobileCampaign < ActiveRecord::Base
   
   include Dashboardable
-
-  belongs_to :account
-  belongs_to :user
-  belongs_to :short_url
-
-  has_many :like_its
-
-  has_and_belongs_to_many :asset_files, :uniq => true do
-    def only_images
-      where(:type => 'ImageAsset')
-    end
-    
-    # HACK :uniq => true doesnot works!
-    def push!(*records)
-      records.each{ |o| (@owner.asset_files << o) unless @owner.asset_files.include?(o) }
-    end
-    
-  end
-
-
-  validate :document_state
   
-  
-  before_save :disable_short_url_callback
-
   # init final state machine
   include AASM
   
@@ -62,7 +38,33 @@ class MobileCampaign < ActiveRecord::Base
   end
   
   
+  # tags
+  acts_as_taggable_on :cities, :places, :labels
+  
+  
+  belongs_to :account
+  belongs_to :user
+  belongs_to :short_url
+
+  has_many :like_its
+
+  has_and_belongs_to_many :asset_files, :uniq => true do
+    def only_images
+      where(:type => 'ImageAsset')
+    end
+    
+    # HACK :uniq => true doesnot works!
+    def push!(*records)
+      records.each{ |o| (@owner.asset_files << o) unless @owner.asset_files.include?(o) }
+    end
+    
+  end
+  
+  
   after_save :map_document_model_images, :map_document_model_likeits
+  before_save :disable_short_url_callback
+  
+  validate :document_state
   
   
   def document_model_as(format = :json)
