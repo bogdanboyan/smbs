@@ -28,3 +28,14 @@ end
 Допустим /^пользователь "([^\"]*)" с "([^\"]*)" значения "([^\"]*)"$/ do |email, field, value|
   User.connection.update "UPDATE users SET #{field} = '#{value}' WHERE email = '#{email}'"
 end
+
+Допустим /^администратор зашел от имени пользователя "([^\"]*)"$/ do |email|
+  
+  account = User.find_by_email(email).account
+  
+  Когда %Q(я захожу на /admin/accounts)
+  Тогда %Q(я должен увидеть "Управление аккаунтами")
+  Когда %Q(я кликну на "#{account.title}")
+  И %Q(нажму "Зайти от имени владельца")
+  Тогда %Q(я должен увидеть "Управляющий 'cukes@yam.co.ua' просматривает данные аккаунта '#{account.title}' от имени '#{email}'. Завершить просмотр")
+end
