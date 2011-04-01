@@ -1,7 +1,7 @@
 <% if pretends? %>
 <div class="grid_12">
   <div class="block-center pretend-row">
-    <span>Управляющий '<%= real_current_user.full_name %>' просматривает данные аккаунта '<%= current_account.title %>' от имени '<%= current_user.email %>'. <%= link_to "Завершить просмотр", stop_pretend_admin_account_path(current_account) %></span>
+    <span>Управляющий '<%= real_current_user.title %>' просматривает данные аккаунта '<%= current_account.title %>' от имени '<%= current_user.email %>'. <%= link_to "Завершить просмотр", stop_pretend_admin_account_path(current_account) %></span>
   </div>
 </div>
 <% end %>
