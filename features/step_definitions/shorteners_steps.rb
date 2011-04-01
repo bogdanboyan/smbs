@@ -20,14 +20,23 @@ end
   end
 end
 
-Тогда /^я должен увидеть Short адрес:$/ do |список|
+Тогда /^я должен увидеть Short адрес:$/ do |table|
   has_css?('.history')
-  row = список.rows_hash
   within('.history') do
-    short_url = ShortUrl.find_by_origin(row['origin'])
+    short_url = ShortUrl.find_by_origin(table.rows_hash['origin'])
     body.should include(short_url.origin)
   end
 end
+
+Тогда /^я должен увидеть Short адрес \(созданый от имени "([^\"]*)" пользователя\):$/ do |email, table|
+  has_css?('.history')
+  within('.history') do
+    short_url = ShortUrl.find_by_origin(table.rows_hash['origin'])
+    short_url.user.email.should == email
+    body.should include(short_url.origin)
+  end
+end
+
 
 Тогда /^система должна зарегистрировать мой переход$/ do
   short_url = @short_urls.first.reload
