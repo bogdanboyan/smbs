@@ -75,11 +75,10 @@ class MobileCampaign < ActiveRecord::Base
   end
 
   def sanitize(document = [])
-    document = document.delete_if do |partial|
+    document.delete_if do |partial|
       type, value = partial['type'], partial['value']
       type.nil? || type =~ /[^header|text|images]/ || value.nil? || value.empty? || sanitize_partial(type, value)
-    end
-    document.compact
+    end.compact
   end
   
   def map_document_model_images

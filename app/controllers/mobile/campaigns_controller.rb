@@ -25,13 +25,12 @@ class Mobile::CampaignsController < ApplicationController
   
   def create
     campaign         = MobileCampaign.new params[:mbc]
-    
     campaign.account = current_account
     campaign.user    = current_user
     
-    campaign.update_dashboard(:page_created, real_current_user)
-    
-    is_saved = campaign.save!
+    if is_saved = campaign.save
+      campaign.update_dashboard(:page_created, real_current_user)
+    end
     
     render :json => { :mbc_id => campaign.id, :success => !!is_saved, :error => campaign.errors.full_messages.first }
   end
