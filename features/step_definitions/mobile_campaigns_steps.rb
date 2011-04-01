@@ -3,13 +3,16 @@ include  ApplicationHelper, ActionController::RecordIdentifier
 
 
 Допустим /^(?:|пользователь|бизнес) уже создал Mobile Campaign под названием "([^\"]*)"$/ do |factory_name|
-  AssetFile.destroy_all
-  
-  @mobile_campaign = Factory.create factory_name
-  
-  @mobile_campaign.account = current_account
-  @mobile_campaign.save
+  Допустим %Q(пользователь "#{current_user.email}" уже создал Mobile Campaign под названием "#{factory_name}")
 end
+
+Допустим /^пользователь "([^\"]*)" уже создал Mobile Campaign под названием "([^\"]*)"$/ do |email, factory_name|
+  AssetFile.destroy_all
+  user = User.find_by_email(email)
+  
+  @mobile_campaign = Factory.create(factory_name, :user => user, :account => user.account)
+end
+
 
 Допустим /^я должен увидеть в списке Mobile Campaign c названием "([^\"]*)"$/ do |campaign_title|
   mobile_campaign = MobileCampaign.find_by_title campaign_title
