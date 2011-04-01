@@ -10,7 +10,7 @@ source 'http://rubygems.org'
 
 gem 'rails',                  '3.0.5'
 gem 'mysql2',                 '0.2.7'
-gem 'unicorn',                '3.1.0'
+gem 'unicorn',                '3.5.0'
 
 gem 'authlogic',              :git => 'git://github.com/railsware/authlogic.git', :tag => 'v2.1.6.1'
 gem 'dynamic_form',           '1.1.3'
