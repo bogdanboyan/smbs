@@ -16,7 +16,7 @@ gem 'authlogic',              :git => 'git://github.com/railsware/authlogic.git'
 gem 'dynamic_form',           '1.1.3'
 
 gem 'rmagick',                '2.12.2'
-gem 'paperclip',              '2.3.3'
+gem 'paperclip',              '2.3.8'
 gem 'RedCloth',               '4.2.3'
 
 gem 'geoip-c',                :git => 'git://github.com/zarqman/geoip.git'

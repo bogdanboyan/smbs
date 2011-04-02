@@ -106,7 +106,7 @@ GEM
     mysql (2.8.1)
     mysql2 (0.2.7)
     nokogiri (1.4.4)
-    paperclip (2.3.3)
+    paperclip (2.3.8)
       activerecord
       activesupport
     patron (0.4.9)
@@ -186,7 +186,7 @@ DEPENDENCIES
   mysql (= 2.8.1)
   mysql2 (= 0.2.7)
   nokogiri (= 1.4.4)
-  paperclip (= 2.3.3)
+  paperclip (= 2.3.8)
   patron (= 0.4.9)
   rails (= 3.0.5)
   request-log-analyzer
