@@ -23,11 +23,11 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
           SMBS.MobileCampaign.ImageGalleryWidget.append(JST['gallery_thumbnail'](response.model))
           // re-index draggable elements
           SMBS.MobileCampaign.ImageGalleryWidget.draggable()
-          // reset download progress bar
-          $('.qq-upload-list').empty()
           
           if(response.success) {
             SMBS.Application.show_notice('Файл '+file_name+' был загружен и сохранен на сервере')
+            upload_status = _.detect($('.qq-upload-file'), function(item) { return $(item).text() == file_name })
+            $(upload_status).parent().remove()
           } else {
             SMBS.Application.show_error(response.error || 'Файл не может быть сохранен из-за ошибки сети. Попробуйте немного позже')
           }

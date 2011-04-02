@@ -543,9 +543,9 @@ qq.extend(qq.FileUploader.prototype, {
      **/
     _find: function(parent, type){                                
         var element = qq.getByClass(parent, this._options.classes[type])[0];        
-        if (!element){
-            throw new Error('element not found ' + type);
-        }
+        // if (!element){
+        //     throw new Error('element not found ' + type);
+        // }
         
         return element;
     },
@@ -597,6 +597,7 @@ qq.extend(qq.FileUploader.prototype, {
         qq.FileUploaderBasic.prototype._onProgress.apply(this, arguments);
 
         var item = this._getItemByFileId(id);
+        if(item) {
         var size = this._find(item, 'size');
         size.style.display = 'inline';
         
@@ -608,20 +609,24 @@ qq.extend(qq.FileUploader.prototype, {
         }          
         
         qq.setText(size, text);         
+        }
     },
     _onComplete: function(id, fileName, result){
         qq.FileUploaderBasic.prototype._onComplete.apply(this, arguments);
 
         // mark completed
         var item = this._getItemByFileId(id);                
-        qq.remove(this._find(item, 'cancel'));
-        qq.remove(this._find(item, 'spinner'));
+        if(item) {
+          qq.remove(this._find(item, 'cancel'));
+          qq.remove(this._find(item, 'spinner'));
         
-        if (result.success){
-            qq.addClass(item, this._classes.success);    
-        } else {
-            qq.addClass(item, this._classes.fail);
-        }         
+        
+          if (result.success){
+              qq.addClass(item, this._classes.success);    
+          } else {
+              qq.addClass(item, this._classes.fail);
+          }
+        }
     },
     _addToList: function(id, fileName){
         var item = qq.toElement(this._options.fileTemplate);                
