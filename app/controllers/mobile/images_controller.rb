@@ -16,15 +16,16 @@ class Mobile::ImagesController < ApplicationController
     
     respond_with do |format|
       format.js do
-        render :json => { :html => @images.map { |i| render_to_string :partial => '/mobile/campaigns/image_asset', :object => i }.join }
+        models = @images.map { |image| { :thumbnail_url => image.asset.url(:thumbnail) } }
+        render :text => { :models => models }.to_json
       end
     end
   end
   
   def create
-    image = ImageAsset.new :asset => create_io_stream_from_request
+    image = ImageAsset.new(:asset => create_io_stream_from_request)
     if image.valid? && image.save && @campaign.asset_files.push!(image)
-      render_response render_to_string(:partial => 'mobile/campaigns/image_asset', :object => image)
+      render_response(:thumbnail_url => image.asset.url(:thumbnail))
     else
       render_error_message image
     end
@@ -38,9 +39,9 @@ class Mobile::ImagesController < ApplicationController
     render :text => { :error => instance.errors.full_messages.first }.to_json
   end
   
-  def render_response(partial)
+  def render_response(params)
     # opera can receive only text based response vs json => { :success => true }
-    render :text => { :success => true, :html => partial }.to_json
+    render :text => { :success => true, :model => params }.to_json
   end
   
   def create_io_stream_from_request

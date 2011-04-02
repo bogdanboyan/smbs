@@ -20,6 +20,7 @@ javascripts:
   application:
     - public/javascripts/vendor/jquery-min.js
     - public/javascripts/vendor/jquery-ui-min.js
+    - public/javascripts/vendor/underscore-min.js
     - public/javascripts/vendor/rails.js
     - public/javascripts/smbs.js
     - public/javascripts/analytic/*.js
@@ -35,3 +36,4 @@ javascripts:
     - public/javascripts/mobcn/builder/delimiters_behaviour.js
     - public/javascripts/mobcn/builder/likeits_behaviour.js
     - public/javascripts/mobcn/*.js
+    - app/views/mobile/campaigns/gallery_thumbnail.jst

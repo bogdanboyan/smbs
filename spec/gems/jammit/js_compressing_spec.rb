@@ -15,7 +15,7 @@ describe 'yui-compressor javascript compressing' do
   
   
   JS_DIRECTORIES = Jammit.configuration[:javascripts].each_pair do |key, value|
-    Jammit.configuration[:javascripts][key] = value.map { |pattern| Dir[pattern] }.flatten
+    Jammit.configuration[:javascripts][key] = value.map { |pattern| Dir[pattern] }.flatten.delete_if{ |file| file =~ /.jst/ }
   end
   
   JS_DIRECTORIES.each_key do |key|

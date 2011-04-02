@@ -5,16 +5,22 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
   
   init : function(mobile_campaign_id) {
     this.campaign_id = mobile_campaign_id
-    SMBS.MobileCampaign.ImageGalleryWidget.draggable()
+    
+    // images as draggable
+    this.draggable()
+    
+    // load images
+    this.display_images(this.campaign_id)
+    
     // init upload button
     this._uploader = new qq.FileUploader({
         element: document.getElementById('file-uploader'),
         action: SMBS.MobileCampaign.ImageGalleryWidget.mobile_campaign_images_path(),
         allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
-        sizeLimit: 1048576 /*512kbx2*/,
+        sizeLimit: 2097152 /*1Mb x 2*/,
         onComplete: function(id, file_name, response) {
           // append image
-          SMBS.MobileCampaign.ImageGalleryWidget.append(response.html)
+          SMBS.MobileCampaign.ImageGalleryWidget.append(JST['gallery_thumbnail'](response.model))
           // re-index draggable elements
           SMBS.MobileCampaign.ImageGalleryWidget.draggable()
           // reset download progress bar
@@ -29,6 +35,32 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
     })
     
   }, // end init
+  
+  display_images: function(campaign_id, try_move_to) {
+    if(campaign_id) {
+      $.ajax( {
+        type:     'get',
+        dataType: 'json',
+        url:      '/mobile/campaigns/'+campaign_id+'/images',
+        beforeSend: function(request) {
+          $('.navigation-tools .title').hide()
+          $('.navigation-tools .loading').show()
+        },
+        success:  function(data) {
+          if(data.models) { 
+            if(try_move_to) SMBS.MobileCampaign.ImageGalleryWidget.Navi.cursor = try_move_to
+          
+            html = _.map(data.models, function(model) {return JST['gallery_thumbnail'](model)}).join('')
+            SMBS.MobileCampaign.ImageGalleryWidget.Navi._show(html)
+          }
+        },
+        complete: function(request) {
+          $('.navigation-tools .loading').hide()
+          $('.navigation-tools .title').show()
+        }
+      }) // end ajax
+    } // end if
+  },
   
   disable: function() {
     $('.gallery-widget .disabled').show()
@@ -91,26 +123,8 @@ SMBS.MobileCampaign.ImageGalleryWidget.Navi = {
   },
   
   _show_after_load: function(try_move_to) {
-    if(this.map[try_move_to]) {
-      $.ajax( {
-        type:     'get',
-        dataType: 'json',
-        url:      '/mobile/campaigns/'+this.map[try_move_to]+'/images',
-        beforeSend: function(request) {
-          $('.navigation-tools .title').hide()
-          $('.navigation-tools .loading').show()
-        },
-        success:  function(data) {
-          if(data.html) { 
-            SMBS.MobileCampaign.ImageGalleryWidget.Navi.cursor = try_move_to
-            SMBS.MobileCampaign.ImageGalleryWidget.Navi._show(data.html)
-          }
-        },
-        complete: function(request) {
-          $('.navigation-tools .loading').hide()
-          $('.navigation-tools .title').show()
-        }
-      }) // end ajax
+    if(campaign_id = this.map[try_move_to]) {
+      SMBS.MobileCampaign.ImageGalleryWidget.display_images(campaign_id, try_move_to)
     } // end if
     
     return false
