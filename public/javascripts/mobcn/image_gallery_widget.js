@@ -26,7 +26,7 @@ SMBS.MobileCampaign.ImageGalleryWidget = {
           
           if(response.success) {
             SMBS.Application.show_notice('Файл '+file_name+' был загружен и сохранен на сервере')
-            upload_status = _.detect($('.qq-upload-file'), function(item) { return $(item).text() == file_name })
+            upload_status = _.detect($('.qq-upload-file'), function(item) { return $(item).text() == qq.FileUploaderBasic.prototype._formatFileName(file_name) })
             $(upload_status).parent().remove()
           } else {
             SMBS.Application.show_error(response.error || 'Файл не может быть сохранен из-за ошибки сети. Попробуйте немного позже')
