@@ -48,3 +48,14 @@ RSpec.configure do |config|
   end
   
 end
+
+
+# Global project assets dictionary
+
+JS_DIRECTORIES = Jammit.configuration[:javascripts].each_pair do |key, value|
+  Jammit.configuration[:javascripts][key] = value.map { |pattern| Dir[pattern] }.flatten.delete_if{ |file| file =~ /.jst/ }
+end
+
+CSS_DIRECTORIES = Jammit.configuration[:stylesheets].each_pair do |key, value|
+  Jammit.configuration[:stylesheets][key] = value.map { |pattern| Dir[pattern] }.flatten
+end

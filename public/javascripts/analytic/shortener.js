@@ -1,4 +1,4 @@
-SMBS.Shortener = {}
+SMBS.Shortener = {};
 
 //
 // http://code.google.com/apis/visualization/documentation/index.html
@@ -6,6 +6,7 @@ SMBS.Shortener = {}
 // http://code.google.com/apis/ajax/playground/?type=visualization#area_chart
 //
 SMBS.Shortener.Clicks = {
+  
   init: function(short_url_id) {
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(initialize);
@@ -30,13 +31,14 @@ SMBS.Shortener.Clicks = {
         });
      }
   }
-}
+};
 
 //
 // http://code.google.com/apis/visualization/documentation/gallery/barchart.html
 // http://code.google.com/apis/ajax/playground/?type=visualization#bar_chart
 //
 SMBS.Shortener.Regions = {
+  
   init: function(short_url_id) {
     google.load("visualization", "1", {packages:["corechart"]});
     google.setOnLoadCallback(initialize);
@@ -66,4 +68,4 @@ SMBS.Shortener.Regions = {
         });
     }
   }
-}
+};

@@ -58,7 +58,7 @@ SMBS.Popup = {
   open: function(content, width, height, options){
     if(!options) options = {};
     
-    if(options.closeable == false) jQuery('#popupClose').hide()
+    if(options.closeable == false) { jQuery('#popupClose').hide(); }
     
     // try to extract content from the storage
     // name is generally less than 200 chars, while content is more
@@ -69,7 +69,7 @@ SMBS.Popup = {
     jQuery("#popup .popup-content").html(content);
     SMBS.Popup.setPosition(width, height);
     jQuery("#shadow").show();
-    jQuery('.textarea textarea').keyup(function(){
+    jQuery('.textarea textarea').keyup(function() {
       SMBS.Popup.countMsgLength(options.textarea_max_length);
     });
     SMBS.Popup.countMsgLength(options.textarea_max_length);
@@ -85,7 +85,7 @@ SMBS.Popup = {
     var popup = jQuery("#popup");
     var currentWindow = jQuery(window);
     if (jQuery('#popup .popup-footer').length > 0) {
-      if (height == 'auto'){
+      if (height == 'auto') {
         jQuery("#popup .popup-content").css('padding-bottom', '80px');
       } else {
         jQuery("#popup .popup-content").css('padding-bottom', '0px');
@@ -117,9 +117,9 @@ SMBS.Popup = {
 
     counter.text(chars_left);
     if (textarea.val().length > max_message_length) { 
-      counter.addClass('red') 
+      counter.addClass('red');
     } else {
-      counter.removeClass('red')
+      counter.removeClass('red');
     }
   }
   

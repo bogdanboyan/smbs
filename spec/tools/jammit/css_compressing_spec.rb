@@ -12,10 +12,7 @@ describe 'yui-compressor stylesheet compressing' do
     compressed.should_not be_empty
   end
   
-  CSS_DIRECTORIES = Jammit.configuration[:stylesheets].each_pair do |key, value|
-    Jammit.configuration[:stylesheets][key] = value.map { |pattern| Dir[pattern] }.flatten
-  end
-  
+  # from spec_helper.rb
   CSS_DIRECTORIES.each_key do |key|
     
     context "for #{key} package" do

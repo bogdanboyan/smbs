@@ -13,11 +13,7 @@ describe 'yui-compressor javascript compressing' do
     compressed.should_not be_empty
   end
   
-  
-  JS_DIRECTORIES = Jammit.configuration[:javascripts].each_pair do |key, value|
-    Jammit.configuration[:javascripts][key] = value.map { |pattern| Dir[pattern] }.flatten.delete_if{ |file| file =~ /.jst/ }
-  end
-  
+  # from spec_helper.rb
   JS_DIRECTORIES.each_key do |key|
     
     context "for #{key} package" do
