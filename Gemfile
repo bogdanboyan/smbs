@@ -1,11 +1,3 @@
-# required Debian packages
-# sudo apt-get install libxslt1-dev
-# sudo apt-get install libmysql-ruby libmysqlclient-dev
-# sudo apt-get install imagemagick
-# sudo apt-get install geoip-bin libgeoip1 libgeoip-dev
-# sudo apt-get install libcurl3-gnutls-dev libcurl3-openssl-dev
-# sudo apt-get install openjdk-6-jre
-
 source 'http://rubygems.org'
 
 gem 'rails',                  '3.0.5'
