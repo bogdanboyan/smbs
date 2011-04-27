@@ -1,7 +1,7 @@
 class ChangeAccountsTypeFields < ActiveRecord::Migration
 
   def self.up
-    rename_column :accounts, :type, :kind_of
+    # rename_column :accounts, :type, :kind_of
     
     account = Account.create :title => 'Yamco', :kind_of => 'yamco', :state => 'activated'
     user    = User.create :email => 'smbs.app@gmail.com', :full_name => 'SMBS app user', :password => 'smbskickass!', :password_confirmation => 'smbskickass!', :state => 'activated'
