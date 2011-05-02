@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 Допустим /^пользователь уже создал Short адрес:$/ do |таблица|
   @short_urls = []
   таблица.hashes.each do |row|
@@ -8,6 +7,7 @@
   @short_url = @short_urls.try(:first)
   Account.first.short_urls = @short_urls
 end
+
 
 Тогда /^список созданых мною Short адресов:$/ do |таблица|
   has_css?('.history')
@@ -20,6 +20,7 @@ end
   end
 end
 
+
 Тогда /^я должен увидеть Short адрес:$/ do |table|
   has_css?('.history')
   within('.history') do
@@ -27,6 +28,7 @@ end
     body.should include(short_url.origin)
   end
 end
+
 
 Тогда /^я должен увидеть Short адрес \(созданый от имени "([^\"]*)" пользователя\):$/ do |email, table|
   has_css?('.history')
@@ -38,12 +40,11 @@ end
 end
 
 
-Тогда /^система должна зарегистрировать мой переход$/ do
-  short_url = @short_urls.first.reload
-  short_url.clicks_count.should == 1
-  short_url.clicks.size.should  == 1
-  short_url.clicks.first.ip_address.should == '127.0.0.1'
+Тогда /^количество переходов по короткому адресу "([^\"]*)" должно быть "([^\"]*)"$/ do |short, count|
+  short_url = ShortUrl.where(:short => short).first
+  short_url.clicks_count.should == count.to_i if count.to_i > 0
 end
+
 
 Тогда /^Short адрес посетили такие пользователи:$/ do |таблица|
   @clicks = []
@@ -52,10 +53,6 @@ end
   end
 end
 
-Тогда /^система не должна регистрировать этот запрос$/ do
-  short_url = @short_urls.first.reload
-  short_url.clicks_count.should == 0
-end
 
 Допустим /^я не перехожу по ссылкам перенаправления$/ do
   driver = page.driver
@@ -69,6 +66,7 @@ end
   page.status_code.should == 302
   page.response_headers['Location'].should include(адрес)
 end
+
 
 Тогда /^я должен получить ошибку "([^\"]*)"$/ do |код|
   page.status_code.should == код.to_i

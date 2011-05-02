@@ -80,7 +80,7 @@ Smbs::Application.routes.draw do
   # rackup controllers
   # ==================
   get '/analytic/:source/:id/:member.json' => Rackup::AnalyticDataSourceApp.action(:fetch)
-  get '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect)
+  get '/shorteners/:short/redirect'        => Rackup::ShortenersRedirectApp.action(:redirect), :constraints => { :short => /\w+(\.tel)?/ }
   get '/mobile_app/likeit/:id'             => Rackup::LikeitRedirectApp.action(:capture), :as => :mobile_app_likeit
   
   
