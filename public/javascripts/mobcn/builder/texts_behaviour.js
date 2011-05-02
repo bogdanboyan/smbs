@@ -21,12 +21,12 @@ var TextsBehaviour = PartialBehaviour.extend({
       textarea = element.find('textarea');
       element.bind('mousemove', function(e) {
         absolute_y = e.pageY - start_y;
-        textarea_height = parseInt(textarea.css('height')) + absolute_y;
+        textarea_height = parseInt(textarea.css('height'),10) + absolute_y;
         if(textarea_height >= 25 && textarea_height <= 800) {
           start_y += absolute_y;
           textarea.css('height', textarea_height);
         }
-      })
+      });
     });
     
     jQuery('body').mouseup(function(e) {
@@ -40,7 +40,7 @@ var TextsBehaviour = PartialBehaviour.extend({
   
   to_object : function(/*JQuery*/ element) {
     this.partial_model.value         = element.find('textarea').val();
-    this.partial_model.window_height = parseInt(element.find('textarea').css('height'));
+    this.partial_model.window_height = parseInt(element.find('textarea').css('height'),10);
     
     return this.partial_model;
   }

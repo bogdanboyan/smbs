@@ -6,7 +6,7 @@ var PartialRegistry = (function() {
     text         : 'text_container',
     delimiter    : 'delimiter_container',
     likeit       : 'likeit_container'
-  }
+  };
   
   var behaviours = {
     header_container      : function(type) { return new HeadersBehaviour(type);      },
@@ -14,12 +14,12 @@ var PartialRegistry = (function() {
     text_container        : function(type) { return new TextsBehaviour(type);        },
     delimiter_container   : function(type) { return new DelimitersBehaviour(type);   },
     likeit_container      : function(type) { return new LikeitsBehaviour(type);      }
-  }
+  };
   
   return {
     to_s           : function(id) { return map[id]; },
     init_behaviour : function(id) { return behaviours[this.to_s(id)](id); }
-  }
+  };
 })();
 
 var PartialBehaviour = Class.extend({
